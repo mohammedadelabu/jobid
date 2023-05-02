@@ -1,0 +1,328 @@
+<!-- <p>job-details works!</p> -->
+<div class="pb-5 mt-4 job-details">
+  <div class="d-flex align-items-center justify-content-between flex-wrap mb-5">
+    <div class="d-flex align-items-center">
+      <img
+        (click)="back()"
+        src="assets/images/icons/angle-left-icon.svg"
+        alt=""
+        class="img-fluid back-icon cursor-pointer mr-4"
+      />
+      <h1 class="page-title py-0">Job Detail</h1>
+    </div>
+    <div class="d-flex align-items-end flex-wrap">
+      <div class="d-flex align-items-end">
+        <button
+          class="mr-2 share-button"
+          [routerLink]="[
+            '/recruiter/employee-management/job-board/share-job/',
+            CompanyDetails?.CompanyId,
+            JobDetails?.Id
+          ]"
+        >
+          <i class="fa fa-share-alt mr-2" aria-hidden="true"></i> Share
+        </button>
+        <!-- <div>
+                      <share-buttons [theme]="'modern-dark'" [include]="['facebook','twitter','linkedin','reddit','telegram','whatsapp','email','copy']" [show]="3" [url]="'https://jobid.app/recruiter/employee-management/job-board'" [image]="'https://www.eduforbetterment.com/wp-content/uploads/2020/08/qrcode.jpg'"
+                          [autoSetMeta]="false"></share-buttons>
+                  </div> -->
+        <!-- <share-buttons theme="material-dark" [show]="5"></share-buttons> -->
+
+        <!--  -->
+      </div>
+      <!-- <button type="button" class="btn btn-sm action-btn download-cv-btn mr-2 mb-2 mb-sm-0" (click)="onDownloadJob()">
+              Download
+            </button> -->
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 col-xl-8">
+      <section id="job-details-section">
+        <div class="d-flex align-items-start justify-content-between mb-4">
+          <div>
+            <h2 class="job-title">{{ JobDetails?.JobTitle }}</h2>
+            <div class="company">{{ CompanyDetails?.Name }}</div>
+          </div>
+          <!-- <small class="time-remaining">17 days ago</small> -->
+        </div>
+
+        <!--  -->
+
+        <ul class="list-style-none pl-0 mb-0 job-info">
+          <li *ngIf="JobDetails?.JobType">
+            <div class="job-type">
+              <i class="fas fa-briefcase"></i> {{ JobDetails?.JobType }}
+            </div>
+          </li>
+          <li *ngIf="JobDetails?.StartDate">
+            <div class="date">
+              <i class="fas fa-calendar"></i>
+              {{ JobDetails?.StartDate | date : "yyyy-MM-dd" }}
+            </div>
+          </li>
+          <li *ngIf="JobDetails?.EndDate">
+            <div class="date">
+              <i class="fas fa-calendar"></i>
+              {{ JobDetails?.EndDate | date : "yyyy-MM-dd" }}
+            </div>
+          </li>
+          <li *ngIf="JobDetails?.JobLocation">
+            <div class="location">
+              <i class="fas fa-map-marker-alt"></i>
+              {{ JobDetails?.JobLocation }}
+            </div>
+          </li>
+          <li *ngIf="JobDetails?.HoursAWeek">
+            <div class="time">
+              <i class="fas fa-clock"></i> {{ JobDetails?.HoursAWeek }}HR
+            </div>
+          </li>
+          <li *ngIf="JobDetails?.HourlyRate">
+            <div class="time">
+              <i class="fas fa-money-bill-wave-alt"></i>
+              {{ JobDetails?.HourlyRate }}/HR
+            </div>
+          </li>
+        </ul>
+
+        <hr />
+
+        <div class="display-info" *ngIf="JobDetails?.JobDescription">
+          <h3 class="title">Job description</h3>
+          <div [innerHTML]="JobDetails?.JobDescription" class="body">
+            <!-- <ul class="mb-0">
+                <li>
+                  Demonstrate deep engineering and architectural expertise on
+                  Microsoft Azure PAAS, FAAS and IAAS stack of services on
+                  multiple Consulting and Delivery engagements
+                </li>
+                <li>
+                  Minimum of 8 to 10+ years’ experience in Architect / Design /
+                  Develop various web applications using .NET Framework / .NET
+                  Core / Java or any other programming frameworks.
+                </li>
+                <li>
+                  Minimum 2+ years of experience in Microsoft Azure PaaS Services
+                  mentioned in the skills sets. Experience in implementation of
+                  best practices using various Design Patterns.
+                </li>
+                <li>
+                  Must have strong team and interpersonal skills, and the ability
+                  to multi-task, when required.
+                </li>
+                <li>
+                  Curious self-starter willing to learn and stay current with
+                  emerging technologies required.
+                </li>
+                <li>High customer orientation and quality awareness.</li>
+              </ul> -->
+            <!-- {{ JobDetails?.JobDescription }} -->
+          </div>
+        </div>
+
+        <hr />
+
+        <div class="display-info">
+          <h3 class="title">Experience</h3>
+          <div [innerHTML]="JobDetails?.JobExperience" class="body"></div>
+        </div>
+
+        <hr />
+
+        <div class="display-info" *ngIf="JobSkills">
+          <h3 class="title">Skills</h3>
+          <div class="body">
+            <ul class="skills list-style-none pl-0 mb-0">
+              <li class="skill-item" *ngFor="let skill of JobSkills">
+                <span>{{ skill }}</span>
+              </li>
+              <!-- <li class="skill-item">
+                  <span>Javascript</span>
+                </li>
+                <li class="skill-item">
+                  <span>PHP</span>
+                </li>
+                <li class="skill-item">
+                  <span>Mpmgo DB</span>
+                </li> -->
+            </ul>
+          </div>
+
+          <hr />
+        </div>
+
+        <div class="display-info">
+          <h3 class="title">Certifications</h3>
+          <div class="body">{{ JobDetails?.Certification }}</div>
+        </div>
+
+        <hr />
+
+        <div class="display-info">
+          <h3 class="title">Languages</h3>
+          <div class="body">{{ JobLanguages }}</div>
+        </div>
+
+        <hr />
+
+        <div class="display-info" *ngIf="CompanyDetails?.Description">
+          <h3 class="title">About the company</h3>
+          <div class="body">
+            <div class="d-flex align-items-center py-1">
+              <div class="logo-img-wrap">
+                <img
+                  *ngIf="!CompanyDetails?.LogoUrl"
+                  src="../../../../../../assets/images/sample-company-logo.png"
+                  alt=""
+                  class="img-fluid"
+                />
+                <img
+                  *ngIf="CompanyDetails?.LogoUrl"
+                  src="{{ CompanyDetails?.LogoUrl }}"
+                  alt=""
+                  class="img-fluid"
+                />
+              </div>
+              <div>{{ CompanyDetails?.Name }}</div>
+            </div>
+            {{ CompanyDetails?.Description }}
+            <!-- Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tortor
+              eleifend nullam vestibulum scelerisque. Consectetur pretium eu
+              pulvinar nunc. Et nisi tristique porta leo sed odio mattis. Sagittis
+              libero consequat, nulla magna etiam ornare scelerisque. Mauris, amet
+              felis in mi non. Ullamcorper nisl, tristique ut lacus, nibh
+              blaVndit. -->
+          </div>
+          <hr />
+        </div>
+
+        <div class="display-info mb-3">
+          <h3 class="title">Contact Person</h3>
+          <div class="body">
+            <ng-template #noCompanyContactList>
+              <div class="text-center alert alert-info">No Contact</div>
+            </ng-template>
+            <ul
+              class="list-style-none pl-0 mb-0"
+              *ngIf="companyContactList?.length; else noCompanyContactList"
+            >
+              <li
+                class="contact-person"
+                *ngFor="let contact of companyContactList"
+              >
+                <div class="name text-bold">
+                  {{ contact.FirstName }}&nbsp;{{ contact.LastName }}
+                </div>
+                <ul class="list-style-none d-flex align-items-center pl-0 mb-0">
+                  <li class="mr-3" *ngIf="contact.Email">
+                    Email: {{ contact.Email }}
+                  </li>
+                  <li *ngIf="contact.PhoneNumber">
+                    Mobile no.: {{ contact.PhoneNumber }}
+                  </li>
+                </ul>
+              </li>
+              <!-- <li class="contact-person">
+                  <div class="name text-bold">Esther Howard</div>
+                  <ul class="list-style-none d-flex align-items-center pl-0 mb-0">
+                    <li class="mr-3">Email: debra.holt@example.com</li>
+                    <li>Mobile no.: +234 (307) 555-0133</li>
+                  </ul>
+                </li> -->
+            </ul>
+          </div>
+        </div>
+        <!--  -->
+        <div class="display-info">
+          <h3 class="title">Sales Person</h3>
+          <div class="body">
+            <ul class="list-style-none pl-0 mb-0">
+              <li class="contact-person">
+                <div class="name text-bold">
+                  {{
+                    JobDetails?.SalePerson.FirstName +
+                      " " +
+                      JobDetails?.SalePerson.Lastname
+                  }}
+                </div>
+                <ul class="list-style-none d-flex align-items-center pl-0 mb-0">
+                  <li class="mr-3">
+                    Email: {{ JobDetails?.SalePerson.Email }}
+                  </li>
+                  <li>Mobile no.: {{ JobDetails?.SalePerson.PhoneNumber }}</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <hr />
+
+        <div class="display-info">
+          <div class="d-flex align-items-center justify-content-between">
+            <h3 class="title">Company Process</h3>
+            <div>
+              <!-- <button class="btn btn-default edit-btn-link" (click)="openAddProcessDialog(companyId)">Add Process</button> -->
+              <!-- <button
+                class="btn btn-default edit-btn-link"
+                (click)="openAddProcessDialog(jobId)"
+              >
+                Add Process
+              </button> -->
+              <button
+                class="btn btn-default edit-btn-link"
+                (click)="openEditProcessDialog()"
+              >
+                Edit
+              </button>
+            </div>
+          </div>
+          <div class="body">
+            <!-- {{jobId}} -->
+            <!-- {{CompanyDetails | json}} -->
+
+            <app-preview-interview-process
+              [CompanyId]="companyId"
+              [VacancyId]="jobId"
+              [CompanyProcess]="JobDetails?.interviewStages"
+            ></app-preview-interview-process>
+            <!-- <app-job-interview-process [CompanyId]="CompanyDetails?.CompanyId"></app-job-interview-process> -->
+          </div>
+        </div>
+
+        <hr />
+
+        <!-- <div class="display-info">
+                      <div class="d-flex align-items-center justify-content-between">
+                          <h3 class="title">Job Questions</h3>
+                          <div>
+                              <button class="btn btn-default edit-btn-link" (click)="openAddJobQuestionDialog(jobId)">Add Question</button>
+                          </div>
+                      </div>
+                      <div class="body">                        
+                          <app-preview-job-question></app-preview-job-question>
+                      </div>
+                  </div> -->
+
+        <!-- Application -->
+        <!-- <button
+          class="btn success-btn mt-5 mb-3"
+          (click)="onOpenApplyForJobDialog(JobDetails?.Id)"
+        >
+          APPLY
+        </button> -->
+        <!-- <button class="btn success-btn mt-5 mb-3" (click)="onOpenMultiSelectApplicationDialog()">Apply for candidates</button> -->
+      </section>
+    </div>
+    <div class="col-12 col-xl-4">
+      <div *ngIf="JobDetails">
+        <!-- <app-related-jobs [JobDetails]="JobDetails"></app-related-jobs>                 -->
+        <!-- <app-related-candidates></app-related-candidates> -->
+        <app-matched-candidates
+          [JobSkills]="JobSkills"
+          [JobDetails]="JobDetails"
+        ></app-matched-candidates>
+      </div>
+    </div>
+  </div>
+</div>

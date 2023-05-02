@@ -1,0 +1,462 @@
+<!-- <p>company-details works!</p> -->
+
+<div class="dashboard-page-Wrapper">
+  <div class="d-flex align-items-center justify-content-between flex-wrap">
+    <h1 class="page-title mb-4">Company Details</h1>
+    <!-- <div class="btn-group">
+    <button class="btn primary-border-btn rounded mr-2" (click)="openGenerateContactPasswordDialog()">
+      <img
+        src="../../../../../../assets/images/icons/replay-icon.svg"
+        alt=""
+        class="img-fluid mr-1"
+      />
+      &nbsp;Generate Password
+    </button>
+    <button class="btn primary-border-btn rounded" (click)="openResetContactPasswordDialog()">
+      <img
+        src="../../../../../../assets/images/icons/cross-dash-icon.svg"
+        alt=""
+        class="img-fluid mr-1"
+      />&nbsp;Reset Password
+    </button>
+  </div> -->
+  </div>
+
+  <!--  -->
+  <div class="card border-0" id="company-details">
+    <div class="row no-gutters">
+      <div class="col-md-2">
+        <img
+          *ngIf="!companyDetails?.LogoUrl"
+          src="../../../../../../assets/images/sample-company-logo.png"
+          alt="..."
+          class="img-fluid"
+        />
+        <img
+          *ngIf="companyDetails?.LogoUrl"
+          src="{{ companyDetails?.LogoUrl }}"
+          alt="..."
+          class="img-fluid"
+        />
+      </div>
+      <div class="col-md-10">
+        <div class="card-body">
+          <h5 class="card-title">{{ companyDetails?.Name | titlecase }}</h5>
+          <div id="contact-address">
+            <ul class="list-style-none pl-0 mb-0">
+              <li *ngIf="companyDetails?.EmailAddress">
+                <div class="email">
+                  <div class="icon">
+                    <!-- <img
+                    src="../../../../../../assets/images/icons/envelope-green-icon.svg"
+                    alt=""
+                    class="img-fluid"
+                  /> -->
+                    <img
+                      src="../../../../../../assets/images/icons/envelope-green-icon.svg"
+                      alt=""
+                      class="img-fluid"
+                    />
+                  </div>
+                  {{ companyDetails?.EmailAddress }}
+                </div>
+                <div class="phone-number">
+                  <div class="icon">
+                    <!-- <img
+                    src="../../../../../../assets/images/icons/phone-green-icon.svg"
+                    alt=""
+                    class="img-fluid"
+                  /> -->
+                    <img
+                      src="../../../../../../assets/images/icons/phone-green-icon.svg"
+                      alt=""
+                      class="img-fluid"
+                    />
+                  </div>
+                  {{ companyDetails?.PhoneNumber }}
+                </div>
+              </li>
+              <li *ngIf="companyDetails?.Location">
+                <div class="address">
+                  <div class="icon">
+                    <!-- <img
+                    src="../../../../../../assets/images/icons/location-green-icon.svg"
+                    alt=""
+                    class="img-fluid"
+                  /> -->
+                    <img
+                      src="../../../../../../assets/images/icons/location-green-icon.svg"
+                      alt=""
+                      class="img-fluid"
+                    />
+                  </div>
+                  {{ companyDetails?.Location | titlecase }}
+                </div>
+                <div class="company-size">
+                  <small class="label">Campany Size</small>
+                  <div>{{ companyDetails?.Size }}</div>
+                </div>
+              </li>
+              <li *ngIf="companyDetails?.Website">
+                <div class="website">
+                  <div class="icon">
+                    <!-- <img
+                    src="../../../../../../assets/images/icons/website-globe-green-icon.svg"
+                    alt=""
+                    class="img-fluid"
+                  /> -->
+                    <img
+                      src="../../../../../../assets/images/icons/website-globe-green-icon.svg"
+                      alt=""
+                      class="img-fluid"
+                    />
+                  </div>
+                  <!-- http://www.konmatfix.com -->
+                  {{ companyDetails?.Website }}
+                </div>
+                <div class="vat-reg-number">
+                  <small class="label">VAT registration</small>
+                  <div>
+                    {{ companyDetails?.VATReistration }}
+                    <!-- RA 826 67390 -->
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <hr />
+          <p *ngIf="companyDetails?.Description">
+            {{ companyDetails?.Description }}
+            <!-- Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tortor
+          eleifend nullam vestibulum scelerisque. Consectetur pretium eu
+          pulvinar nunc. Et nisi tristique porta leo sed odio mattis. Sagittis
+          libero consequat, nulla magna etiam ornare scelerisque. Mauris, amet
+          felis in mi non. Ullamcorper nisl, tristique ut lacus, nibh
+          blaVndit. -->
+          </p>
+          <section class="row mb-3" id="candidate-action-section">
+            <div class="col-12">
+              <!-- Recruiter actions -->
+              <ul id="recruiter-actions" class="list-style-none pl-0 mb-0">
+                <li>
+                  <button class="action-btn btn btn-sm edit-cv-btn" (click)="onEditCompany(companyDetails.CompanyId)">Edit</button>
+                </li>
+                <li>
+                  <a
+                    class="action-btn btn btn-sm call-btn"
+                    href="tel:{{ companyDetails?.ContactPerson1_Mobile }}"
+                    >Call</a
+                  >
+                  <!-- <button class="action-btn btn btn-sm call-btn">Call</button> -->
+                </li>
+                <li>
+                  <button
+                    class="action-btn btn btn-sm attachment-doc-btn"
+                    [routerLink]="[
+                      '/recruiter/crm/companies/attached-documents/',
+                      companyDetails?.CompanyId
+                    ]"
+                  >
+                    Attach Document
+                  </button>
+                </li>
+                <!-- <li>
+                                  <button class="action-btn btn btn-sm message-btn" [routerLink]="['/recruiter/crm/companies/messenger/', companyId]">Message</button>
+                              </li> -->
+              </ul>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="my-5" />
+
+  <section>
+    <div class="d-flex align-item-center justify-content-between flex-wrap">
+      <h2 class="block-title">Primary Contact Details</h2>
+      <button class="btn text-green-btn" (click)="openAddContactDialog()">
+        +&nbsp;Add Contact
+      </button>
+    </div>
+    <ng-template #noContact>
+      <div class="alert text-center alert-info">No company contact</div>
+    </ng-template>
+    <div
+      class="dashboard-table table-responsive border-rounded-md"
+      *ngIf="CompanyContactList?.length; else noContact"
+    >
+      <table class="table">
+        <thead class="thead">
+          <tr>
+            <th scope="col">Contact Name</th>
+            <th scope="col">Username</th>
+            <th scope="col">email</th>
+            <th scope="col">Mobile No.</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let Contact of CompanyContactList">
+            <th scope="row">
+              {{ Contact?.FirstName }}&nbsp;{{ Contact?.LastName }}
+            </th>
+            <td>{{ Contact?.EmailAddress }}</td>
+            <td>{{ Contact?.EmailAddress }}</td>
+            <td>{{ Contact?.PhoneNumber }}</td>
+            <td class="text-right">
+              <div class="btn-group inline-flex">
+                <!-- <button type="button" class="btn">
+                  <img src="../../../../../../assets/images/icons/pencil-line-green-icon.svg" alt="edit contact button" />
+                </button> -->
+                <button
+                  type="button"
+                  class="btn"
+                  (click)="removeContact(Contact?.Id)"
+                >
+                  <img
+                    src="../../../../../assets/images/icons/trash-bin-red-icon.svg"
+                    alt="delete"
+                  />
+                </button>
+                <!-- <button type="button" class="btn"><img src="../../../../../../assets/images/icons/replay-icon.svg"
+                    alt="reset password button" /></button> -->
+              </div>
+            </td>
+            <!-- <td class="text-right">
+            <div
+              class="btn-group"
+              role="group"
+              aria-label="Basic example"
+            >
+              <button type="button" class="btn btn-sm" (click)="openEditContactDialog()">
+                <img
+                  src="../../../../../../assets/images/icons/pencil-line-green-icon.svg"
+                  alt="view cv button"
+                />
+              </button>
+              <button type="button" class="btn btn-sm">
+                <img
+                  src="../../../../../assets/images/icons/trash-bin-red-icon.svg"
+                  alt="interview candidate button"
+                />
+              </button>
+              <button type="button" class="btn btn-sm">
+                <img
+                  src="../../../../../../assets/images/icons/replay-icon.svg"
+                  alt="view candidate details button"
+                />
+              </button>
+            </div>
+          </td> -->
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+  <hr class="my-5" />
+
+  <!-- {{isZarttech}}
+<hr class="my-5"/> -->
+  <section>
+    <ng-template #noJobVacancy>
+      <div class="alert alert-info text-center">No Job Vacancy</div>
+    </ng-template>
+    <div class="d-flex align-item-center justify-content-between flex-wrap">
+      <h2 class="block-title">Job Vacancies</h2>
+      <button
+        class="btn text-green-btn"
+        [routerLink]="['/recruiter/employee-management/job-board/post-job']"
+      >
+        +&nbsp;Create Job
+      </button>
+    </div>
+    <!-- /recruiter/employee-management/job-board/job-details/51deddd8-af35-43a5-495e-08da331b0525/2d482523-00b6-4845-9206-08da3913e6de -->
+    <div
+      class="row no-gutters"
+      *ngIf="jobVacancyList?.length; else noJobVacancy"
+    >
+      <div class="col-12 col-md-4" *ngFor="let Job of jobVacancyList">
+        <a
+          [routerLink]="[
+            '/recruiter/employee-management/job-board/job-details/',
+            companyId,
+            Job.Id
+          ]"
+          class="job-post-card mr-4 mb-4"
+          [ngClass]="{ ongoing: !Job?.IsClosed, closed: Job?.IsClosed }"
+        >
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title" title="{{ Job?.JobTitle }}">
+                {{ Job?.JobTitle }}
+              </h5>
+              <div class="tag"></div>
+              <ul
+                class="list-style-none pl-0 mb-0 d-flex align-item-center justify-content-between"
+              >
+                <li>
+                  <div class="job-type">
+                    <i class="fas fa-briefcase"></i> {{ Job?.JobType }}
+                  </div>
+                </li>
+                <li>
+                  <div class="date">
+                    <i class="fas fa-calendar"></i> {{ Job?.EndDate }}
+                  </div>
+                </li>
+                <li>
+                  <div class="location">
+                    <i class="fas fa-map-marker-alt"></i> {{ Job?.JobLocation }}
+                  </div>
+                </li>
+              </ul>
+              <hr />
+              <app-job-applicants [JobId]="Job?.Id"></app-job-applicants>
+            </div>
+          </div>
+        </a>
+      </div>
+      <!-- <div class="col-12 col-md-4">
+        <a href="#" class="job-post-card ongoing">
+          <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Sales Representative</h5>
+                <div class="tag"></div>
+              <ul
+                class="list-style-none pl-0 mb-0 d-flex align-item-center justify-content-between"
+              >
+                <li>
+                  <div class="job-type">
+                    <i class="fas fa-briefcase"></i>
+                    Part-time
+                  </div>
+                </li>
+                <li>
+                  <div class="date">
+                    <i class="fas fa-calendar"></i>
+                    2022-03-31
+                  </div>
+                </li>
+                <li>
+                  <div class="location">
+                    <i class="fas fa-map-marker-alt"></i>
+                    Nigeria
+                  </div>
+                </li>
+              </ul>
+              <hr />
+              <div class="d-flex align-items-center justify-content-between">
+                <div class="candidate-count">Total Candidates 50</div>
+                <div class="candidates-avatar">
+                    <div class="avatar-wrap">
+                        <img src="../../../../../../assets/images/image-placeholder.jpg" alt="" class="img-fluid">
+                    </div>
+                    <div class="avatar-wrap">
+                        <img src="../../../../../../assets/images/candidate-test-avatar-1.png" alt="" class="img-fluid">
+                    </div>
+                    <div class="avatar-wrap">
+                        <img src="../../../../../../assets/images/image-placeholder.jpg" alt="" class="img-fluid">
+                    </div>
+                    <div class="avatar-wrap">
+                        47+
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-12 col-md-4">
+        <a href="#" class="job-post-card closed">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Sales Representative</h5>
+              <div class="tag"></div>
+              <ul
+                class="list-style-none pl-0 mb-0 d-flex align-item-center justify-content-between"
+              >
+                <li>
+                  <div class="job-type">
+                    <i class="fas fa-briefcase"></i>
+                    Part-time
+                  </div>
+                </li>
+                <li>
+                  <div class="date">
+                    <i class="fas fa-calendar"></i>
+                    2022-03-31
+                  </div>
+                </li>
+                <li>
+                  <div class="location">
+                    <i class="fas fa-map-marker-alt"></i>
+                    Nigeria
+                  </div>
+                </li>
+              </ul>
+              <hr />
+              <div class="d-flex align-items-center justify-content-between">
+                <div class="candidate-count">Total Candidates 50</div>
+                <div class="candidates-avatar">
+                    <div class="avatar-wrap">
+                        <img src="../../../../../../assets/images/image-placeholder.jpg" alt="" class="img-fluid">
+                    </div>
+                    <div class="avatar-wrap">
+                        <img src="../../../../../../assets/images/candidate-test-avatar-1.png" alt="" class="img-fluid">
+                    </div>
+                    <div class="avatar-wrap">
+                        <img src="../../../../../../assets/images/image-placeholder.jpg" alt="" class="img-fluid">
+                    </div>
+                    <div class="avatar-wrap">
+                        47+
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div> -->
+    </div>
+  </section>
+  <hr class="my-5" />
+
+  <section class="mb-4">
+    <div class="row">
+      <div class="col-12 col-md-6" id="application-history">
+        <div class="h-100">
+          <h1 class="block-title">History</h1>
+          <div class="card display-content-card">
+            <div class="card-body">
+              <app-company-vacancy-history
+                [jobVacancyList]="jobVacancyList"
+              ></app-company-vacancy-history>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 entry-card">
+        <div class="h-100">
+          <h1 class="block-title">Placement</h1>
+          <div class="card display-content-card">
+            <div class="card-body">
+              <div class="inner">
+                <div class="intro-feature-image mb-5">
+                  <img
+                    src="../../../../../../../assets/images/placement-intro-feature-image.svg"
+                    alt="placement-infograph"
+                    class="img-fluid"
+                  />
+                </div>
+                <div>
+                  <a href="#" class="btn btn-md success-btn">View Placement</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,12 @@
+<!-- <p>deal-job-shortlisted-candidates works!</p> -->
+
+<ul class="row no-gutters list-style-none pl-0 mb-0"
+    *ngIf="shortlistedApplicantList.length; else noShortlistedApplicant">
+    <li class="col-12 col-sm-6 col-xl-4" *ngFor="let item of shortlistedApplicantList">
+        <app-shortlisted-candidate [Candidate]="item"></app-shortlisted-candidate>
+    </li>
+</ul>
+
+<ng-template #noShortlistedApplicant>
+    <small class="text-info">No shortlisted applicant</small>
+</ng-template>

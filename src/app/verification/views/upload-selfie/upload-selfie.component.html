@@ -1,0 +1,91 @@
+<!-- <p>upload-selfie works!</p> -->
+<div class="verification-form-wrapper">
+    <div class="inner">
+        <div class="form-step-indicator text-center">
+            <ul class="steps">
+                <li class="step active">
+                    <div>
+                        <!-- <div class="number">01</div> -->
+                        <div class="heading">
+                            <span class="number">01</span>
+                            <span class="step-title">Picture upload</span>
+                        </div>
+                        <div class="bulb">
+                        </div>
+                    </div>
+                </li>
+                <li class="step">
+                    <div>
+                        <!-- <div class="number">02</div> -->
+                        <div class="heading">
+                            <span class="number">02</span>
+                            <span class="step-title">Government ID</span>
+                        </div>
+                        <div class="bulb">
+                        </div>
+                    </div>
+                </li>
+                <li class="step">
+                    <!-- <div class="number">03</div> -->
+                    <div>
+                        <div class="heading">
+                            <span class="number">03</span>
+                            <span class="step-title">Address Verification</span>
+                        </div>
+                        <div class="bulb">
+                        </div>
+                    </div>
+                </li>
+                <li class="step">
+                    <!-- <div class="number">04</div> -->
+                    <div>
+                        <div class="heading">
+                            <span class="number">04</span>
+                            <span class="step-title">Proof of Expertise</span>
+                        </div>
+                        <div class="bulb">
+                        </div>
+                    </div>
+                </li>
+                <li class="step">
+                    <!-- <div class="number">05</div> -->
+                    <div>
+                        <div class="heading">
+                            <span class="number">05</span>
+                            <span class="step-title">Gaurantor</span>
+                        </div>
+                        <div class="bulb">
+                        </div>
+                    </div>
+                </li>
+                <li class="step">
+                    <!-- <div class="number">06</div> -->
+                    <div>
+                        <div class="heading">
+                            <span class="number">06</span>
+                            <span class="step-title">Success</span>
+                        </div>
+                        <div class="bulb">
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <h1 class="title">Picture Upload</h1>
+        <h2 class="sub-title">Capture or Upload a selfie picture showing your face, shoulder, and ears.</h2>
+
+        <div class="card border-0 bg-none mb-4">
+            <form #UploadSelfieForm="ngForm" (ngSubmit)="onSubmit(UploadSelfieForm)">
+                <div class="fieldset card-body text-center">
+                    <app-webcam></app-webcam>
+                </div>
+            </form>
+        </div>
+        <div class="text-right">
+            <div class="d-flex align-items-start">
+                <button class="btn white-btn-green-border back-icon mr-4 ml-auto">Back</button>
+                <button class="btn success-btn">Continue</button>
+            </div>
+        </div>
+    </div>
+</div>

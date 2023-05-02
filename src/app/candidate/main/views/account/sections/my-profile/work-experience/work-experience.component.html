@@ -1,0 +1,27 @@
+<!-- <p>work-experience works!</p> -->
+<ng-template #noExperience>
+    <div class="alert alert-info text-center">
+        No Experience
+    </div>
+</ng-template>
+<!-- {{experience | json}} -->
+<ul class="professional-info-list list-style-none pl-0 mb-0" *ngIf="experience?.length; else noExperience">
+    <li class="item" *ngFor="let item of experience">
+        <div class="inner">
+            <h5 class="title" *ngIf="item?.JobTitle && item?.EmployerName">
+                <!-- Product designer, Zwarttech&nbsp;&nbsp;Netherlands -->
+                {{item?.JobTitle}}, {{item?.EmployerName}}&nbsp;&nbsp;{{item?.Location}}
+            </h5>
+            <div class="light-title" *ngIf="item?.StartDate && item?.EndDate">
+                <!-- June, 2020 - present -->
+                {{item?.StartDate}}&nbsp;&nbsp;-&nbsp;&nbsp; {{item?.EndDate}}
+            </div>
+
+            <div *ngIf="item?.Description">
+                <!-- Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
+                sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur. -->
+                <div [innerHTML]="item?.Description"></div>
+            </div>
+        </div>
+    </li>
+</ul>

@@ -1,0 +1,36 @@
+@use "../../../../../../../../sass/_partials/mixins";
+.list-card {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #053f63;
+    border: 1px solid #c7c7c7;
+    border-radius: 10px;
+    cursor: pointer;
+    .card-control {
+        // display: none;
+        opacity: 0;
+        @include mixins.transition(opacity 300ms ease-in-out);
+    }
+    &:hover {
+        .card-control {
+            // display: block;
+            opacity: 1;
+        }
+    }
+    .title {
+        font-weight: 600;
+        line-height: 24px;
+        color: #14323e;
+        margin-bottom: 8px;
+        text-transform: capitalize;
+    }
+    .light-title {
+        font-weight: 400;
+        line-height: 24px;
+        color: #4f656e;
+        margin-bottom: 8px;
+    }
+}

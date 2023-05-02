@@ -1,0 +1,155 @@
+<div
+  *ngIf="isLoading"
+  style="
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5000;
+    background-color: rgba(0, 0, 0, 0.2);
+  "
+>
+  <img src="assets/images/animated-loader.gif" alt="animated loader" />
+</div>
+<ul class="list-container" style="margin-bottom: 120px">
+  <li
+    *ngFor="let step of steps; let stepIdx = index"
+    [ngClass]="{
+      list: true,
+      pdr: stepIdx !== steps.length - 1
+    }"
+  >
+    <ng-container *ngIf="step?.status === 'passed'">
+      <div class="top" aria-hidden="true">
+        <div class="d-line"></div>
+        <div class="step-name">
+          <span class="date">3 April 2022</span>
+          <span class="name">{{ step?.name }}</span>
+          <span class="status">{{ step?.status }}</span>
+        </div>
+      </div>
+      <div class="circle">
+        <div aria-hidden="true">
+          <img
+            src="assets/images/icons/completed-tick.svg"
+            class="center-img"
+            alt="check-icon"
+          />
+        </div>
+        <span class="sr-only">{{ step.name }}</span>
+      </div>
+    </ng-container>
+
+    <!-- Current -->
+    <ng-container *ngIf="step?.status === 'current'">
+      <div class="top" aria-hidden="true">
+        <div class="d-line current"></div>
+        <div class="step-name">
+          <span class="date">3 April 2022</span>
+          <span class="name">{{ step?.name }}</span>
+          <!-- <span class="status">{{ step?.status }}</span> -->
+        </div>
+      </div>
+      <div class="circle" aria-current="step">
+        <div aria-hidden="true">
+          <img
+            src="assets/images/icons/upcoming-tick.svg"
+            class="center-img"
+            alt="check-icon"
+          />
+        </div>
+        <span class="sr-only">{{ step.name }}</span>
+      </div>
+    </ng-container>
+    <!-- Pending -->
+    <ng-container *ngIf="step?.status === 'pending'">
+      <div class="top" aria-hidden="true">
+        <div class="d-line upcoming"></div>
+        <div class="step-name">
+          <span class="date">3 April 2022</span>
+          <span class="name">{{ step?.name }}</span>
+          <!-- <span class="status">{{ step?.status }}</span> -->
+        </div>
+      </div>
+      <div class="circle upcoming">
+        <span class="circle-inner upcoming" aria-hidden="true"></span>
+        <span class="sr-only">{{ step.name }}</span>
+      </div>
+    </ng-container>
+  </li>
+</ul>
+<!-- Recruiter Actions -->
+<div class="text-right">
+  <ul id="recruiter-actions" class="list-style-none pl-0">
+    <li>
+      <app-reject-candidate-button
+        [application]="application"
+      ></app-reject-candidate-button>
+    </li>
+
+    <!-- <li
+      *ngIf="
+        currentProcess === 'Recruiter Interview' ||
+        currentProcess === 'Technical Interview'
+      "
+    >
+      <button
+        class="action-btn"
+        [routerLink]="['/recruiter/employee-management/recruitment/create-score']"
+      >
+        <img
+          class="btn-img"
+          src="assets/images/icons/scorecard-icon.svg"
+          alt="reject icon"
+        /><span>Create Scorecard</span>
+      </button>
+    </li> -->
+    <!-- <li *ngIf="currentProcess === 'Technical Interview'">
+      <app-schedule-interview-button
+        [application]="application"
+      ></app-schedule-interview-button>
+    </li> -->
+    <li *ngIf="processStage_ !== numberOfStages + 1">
+      <!-- <button
+        class="action-btn"
+        (click)="
+          openProcessorDialog(application, ZarttechProcesses)
+        "
+      > -->
+      <button class="action-btn" (click)="updateExternalApplicantStage()">
+        <img
+          class="btn-img"
+          src="assets/images/icons/tick-circle-icon.svg"
+          alt="reject icon"
+        /><span>Proceed to the next stage</span>
+      </button>
+    </li>
+    <li>
+      <button
+        class="action-btn"
+        [routerLink]="[
+          '/recruiter/candidates/cv-preview',
+          application?.Candidate.Id
+        ]"
+      >
+        <img
+          class="btn-img"
+          src="assets/images/icons/attach-doc-icon-alt.svg"
+          alt="reject icon"
+        /><span>View CV</span>
+      </button>
+    </li>
+    <!-- <li>
+      <app-hire-application-button
+        [application]="application"
+      ></app-hire-application-button>
+    </li> -->
+    <!-- <li *ngIf="currentProcess === 'Hired'">
+      <button class="action-btn">Submit to client</button>
+    </li> -->
+  </ul>
+</div>

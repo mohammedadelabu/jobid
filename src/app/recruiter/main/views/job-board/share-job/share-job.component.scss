@@ -1,0 +1,14 @@
+.page-title {
+  line-height: unset !important;
+  margin-bottom: 0;
+  font-size: 2.5rem;
+  font-family: "Poppins" !important;
+}
+
+#page-top {
+  .inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}

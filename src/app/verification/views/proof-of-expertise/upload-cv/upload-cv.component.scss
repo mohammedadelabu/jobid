@@ -1,0 +1,9 @@
+@use "../../../../../sass/_abstracts/colors";
+    .save-action {
+        .btn {
+            color: colors.$PrimaryColorGreen75;
+        }
+        i {
+            font-size: 24px;
+        }
+    }

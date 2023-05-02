@@ -1,0 +1,79 @@
+<div
+  class="row example-list"
+  cdkDropList
+  [cdkDropListData]="todoTasks"
+  (cdkDropListDropped)="drop($event)"
+>
+  <div class="col-12" *ngFor="let item of todoTasks">
+    <mat-menu #menu="matMenu">
+      <button (click)="openEditDialog(item)" mat-menu-item>Edit Task</button>
+      <button (click)="deleteProjectTask(item.Id)" mat-menu-item>
+        Remove Task
+      </button>
+    </mat-menu>
+    <div class="box">
+      <a class="placement-grid-card">
+        <div class="card mx-0" cdkDrag>
+          <div class="card-body">
+            <div class="card-title d-flex justify-content-between">
+              <div
+                (click)="
+                  data.sidenav.toggle();
+                  setTodoInfo(item);
+                  getTodoDetails(todoInfo)
+                "
+                class="company-name"
+              >
+                {{ item.TaskName }}
+                <!-- <app-project-tasks-list [categoryId]='cat?.Id'> </app-project-tasks-list> -->
+              </div>
+              <div mat-button [matMenuTriggerFor]="menu">
+                <i class="p-1 fas fa-ellipsis-h"></i>
+              </div>
+            </div>
+            <ul class="body-content list-style-none pl-0">
+              <li>
+                <div class="value">{{ item.DueDate }}</div>
+              </li>
+            </ul>
+            <ul class="body-content list-style-none pl-0 mb-0">
+              <li>
+                <div class="value">
+                  <div
+                    class="candidates-avatar cursor-pointer"
+                    [routerLink]="[
+                      '/recruiter/employee-management/recruitment/job-applicants/applicant-list'
+                    ]"
+                  >
+                    <div class="avatar-wrap">
+                      <img
+                        src="../../../../../../assets/images/image-placeholder.jpg"
+                        alt=""
+                        class="img-fluid"
+                      />
+                    </div>
+                    <div class="avatar-wrap">
+                      <img
+                        src="../../../../../../assets/images/candidate-test-avatar-1.png"
+                        alt=""
+                        class="img-fluid"
+                      />
+                    </div>
+                    <div class="avatar-wrap">
+                      <img
+                        src="../../../../../../assets/images/image-placeholder.jpg"
+                        alt=""
+                        class="img-fluid"
+                      />
+                    </div>
+                    <div class="avatar-wrap">47+</div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>

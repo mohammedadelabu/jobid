@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>JobPro</title>
+  <!-- <base href="/cv/"> -->
+  <base href="/">
+  <!-- ng build --base-href=/cv/ -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- <link rel="icon" type="image/x-icon" href="favicon.ico"> -->
+  <meta name="google-site-verification" content="Y-RLyU6fan_K_v293jcWoGkKJl_yDcE_jtsxWmDI0nA" />
+  <link rel="icon" type="image/x-icon" href="./assets/images/Logo-200.svg">
+  <!--  -->
+  <meta name=”viewport” content=”width=device-width, initial-scale=1">
+  <link rel=”icon” type=”image/x-icon” href=”favicon.ico">
+  <meta name=”title” property=”og:title” content=”Title you want on thumbnail” />
+  <meta name=”image” property=”og:image” content=”https://some-image-u-want-on-thumbnail" />
+  <meta property=”og:url” content=”https://some-url" />
+  <meta property=”og:description” content=”Content Description” />
+  <meta property=”og:locale” content=”en_GB” />
+  <meta property=”og:type” content=”website” />
+  <meta property=”og:image:height” content=”885">
+  <meta property=”og:site_name” content=”WebsiteName”>
+
+  <!--  -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- fontawesome 5.15.3 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+    crossorigin="anonymous" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <!-- <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet"> -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <app-root></app-root>
+
+  <!-- Download MsWord Format JS Script -->
+  <script type="text/javascript">
+    // const mswordCvTemplate = document.querySelector("#msword-cv-template");
+    // mswordCvTemplate.classList.add("d-none");
+    const customFileName = `zartcv-${new Date().getTime().toString()}.doc`;
+    const Export2Doc = (element, filename = "") => {
+      // alert("hello world!");
+      var html =
+        "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'><head><meta><title>Export HTML To Doc</title></head><body>";
+      var footer = "</body></html>";
+      var html = html + document.getElementById(element).innerHTML + footer;
+
+      //link url
+      var url =
+        "data:application/vnd.ms-word;charset=utf-8," +
+        encodeURIComponent(html);
+
+      //file name
+      filename = filename ? filename + ".doc" : customFileName;
+
+      // Creates the  download link element dynamically
+      var downloadLink = document.createElement("a");
+
+      document.body.appendChild(downloadLink);
+
+      //Link to the file
+      downloadLink.href = url;
+
+      //Setting up file name
+      downloadLink.download = filename;
+
+      //triggering the function
+      downloadLink.click();
+      //Remove the a tag after donwload starts.
+      document.body.removeChild(downloadLink);
+    };
+  </script>
+</body>
+
+</html>

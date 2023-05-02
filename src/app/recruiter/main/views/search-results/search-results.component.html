@@ -1,0 +1,226 @@
+<!-- <p>search-results works!</p> -->
+<div class="dashboard-page-Wrapper">
+  <!-- <section id="filter">
+        <div id="filter-list">
+            <app-filter></app-filter>
+        </div>
+    </section> -->
+  <!-- {{searchTerm}} -->
+  <ng-template #contentLoading>
+    <!-- <div>
+            <small class="text-info">Loading...</small>
+        </div> -->
+    <app-simple-component-loader></app-simple-component-loader>
+  </ng-template>
+
+  <!-- {{(globalSearchResult$ | async)  | json}} -->
+  <!-- <div *ngIf="(globalSearchResult$ | async) && !(isGlobalSearchResultLoading$ | async); else contentLoading"> -->
+  <ng-container *ngIf="candidateSearchResult?.length">
+    <section id=" candidate-cards">
+      <div class="row">
+        <div class="col-12">
+          <!-- <h5 class="page-title mb-2">Candidates</h5> -->
+          <ul class="list-style-none pl-0 mb-0">
+            <!-- *ngFor="let item of [1, 2, 3, 4, 5]"  -->
+            <ng-container
+              *ngFor="
+                let candidate of candidateSearchResult
+                  | paginate
+                    : {
+                        itemsPerPage: ItemsPerPage,
+                        currentPage: page,
+                        totalItems: totalRecords
+                      }
+              "
+            >
+              <li>
+                <!-- <li *ngFor="let candidate of CandidateList"> -->
+                <div class="card mb-3 search-card">
+                  <div class="card-body">
+                    <!-- {{candidate | json}} -->
+                    <div class="d-flex align-items-start">
+                      <div class="image-container">
+                        <div class="img-wrap">
+                          <img
+                            *ngIf="!candidate?.ProfileImageUrl"
+                            src="../../../../../assets/images/image-placeholder.jpg"
+                            alt="..."
+                            class="img-fluid"
+                          />
+                          <img
+                            *ngIf="candidate?.ProfileImageUrl"
+                            src="{{ candidate?.ProfileImageUrl }}"
+                            alt="..."
+                            class="img-fluid"
+                          />
+                        </div>
+                      </div>
+                      <div class="">
+                        <h5 class="card-title">
+                          <a
+                            [routerLink]="[
+                              '/recruiter/candidates/details/',
+                              candidate?.Id
+                            ]"
+                            >{{ candidate?.FirstName }}&nbsp;{{
+                              candidate?.LastName
+                            }}</a
+                          >
+                        </h5>
+                        <p class="mb-0">{{ candidate?.Email }}</p>
+                        <p class="card-text">
+                          <app-candidate-profile
+                            [candidateId]="candidate?.Id"
+                            [ngStyle]="candidateProfessionGridStyle"
+                          >
+                          </app-candidate-profile>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ng-container>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </ng-container>
+
+  <!-- company: => {{companySearchResult | json}} -->
+  <ng-container *ngIf="companySearchResult?.length">
+    <section id="company-cards">
+      <div class="row">
+        <div class="col-12">
+          <!-- <h5 class="page-title mb-2">Companies</h5> -->
+          <ul class="list-style-none pl-0 mb-0">
+            <li
+              *ngFor="
+                let Company of companySearchResult
+                  | paginate
+                    : {
+                        itemsPerPage: ItemsPerPage,
+                        currentPage: page,
+                        totalItems: totalRecords
+                      }
+              "
+            >
+              <div class="card mb-3 search-card">
+                <div class="card-body">
+                  <div class="d-flex align-items-start">
+                    <div class="image-container">
+                      <div class="img-wrap">
+                        <img
+                          *ngIf="!Company?.LogoUrl"
+                          src="../../../../../assets/images/image-placeholder.jpg"
+                          alt="..."
+                          class="img-fluid"
+                        />
+                        <img
+                          *ngIf="Company?.logoUrl"
+                          src="{{ Company?.LogoUrl }}"
+                          alt="..."
+                          class="img-fluid"
+                        />
+                      </div>
+                    </div>
+                    <div class="">
+                      <h5 class="card-title">
+                        <a
+                          [routerLink]="[
+                            '/recruiter/crm/companies/company-details/',
+                            Company.CompanyId
+                          ]"
+                          >{{ Company.Name }}</a
+                        >
+                      </h5>
+                      <p class="card-text">
+                        This is a wider card with supporting text below as a
+                        natural lead-in to additional content. This content is a
+                        little bit longer.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </ng-container>
+
+  <!-- skill:=> {{skillSearchResult | json}} -->
+  <ng-container *ngIf="skillSearchResult?.length">
+    <section id="candidate-by-skills">
+      <!-- <h5 class="page-title mb-2">Skills</h5> -->
+      <ul class="list-style-none pl-0 mb-0">
+        <!-- *ngFor="let item of [1, 2, 3, 4, 5]"  -->
+        <!-- {{candidateBySkillsList | json}} -->
+        <ng-container
+          *ngFor="
+            let candidate of skillSearchResult
+              | paginate
+                : {
+                    itemsPerPage: ItemsPerPage,
+                    currentPage: page,
+                    totalItems: totalRecords
+                  }
+          "
+        >
+          <li *ngIf="candidate?.User">
+            <!-- <li *ngFor="let candidate of CandidateList"> -->
+            <div class="card mb-3 search-card">
+              <div class="card-body">
+                <div class="d-flex align-items-start">
+                  <div class="image-container">
+                    <div class="img-wrap">
+                      <img
+                        *ngIf="!candidate?.User?.ProfileImageUrl"
+                        src="../../../../../assets/images/image-placeholder.jpg"
+                        alt="..."
+                        class="img-fluid"
+                      />
+                      <img
+                        *ngIf="candidate?.user?.ProfileImageUrl"
+                        src="{{ candidate?.user?.ProfileImageUrl }}"
+                        alt="..."
+                        class="img-fluid"
+                      />
+                    </div>
+                  </div>
+                  <div class="">
+                    <h5 class="card-title">
+                      <a
+                        [routerLink]="[
+                          '/recruiter/candidates/details/',
+                          candidate?.UserId
+                        ]"
+                        >{{ candidate?.User?.FirstName }}&nbsp;{{
+                          candidate?.User?.LastName
+                        }}</a
+                      >
+                    </h5>
+                    <p class="card-text" *ngIf="candidate?.Skills">
+                      {{ candidate?.Skills }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ng-container>
+      </ul>
+    </section>
+  </ng-container>
+  <!--  -->
+
+  <!-- PAGINATION -->
+  <div class="text-right" *ngIf="globalSearchResult$ | async" id="pagination">
+    <!-- <pagination-controls (pageChange)="page = $event"></pagination-controls> -->
+    <pagination-controls
+      (pageChange)="pageChangeEvent($event)"
+    ></pagination-controls>
+  </div>
+  <!-- </div> -->
+</div>

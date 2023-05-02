@@ -1,0 +1,40 @@
+<!-- <p>landing-page works!</p> -->
+<div id="page-wrapper">
+  <div class="inner">
+    <section class="section-1">
+      <div class="image-wrapper">
+        <!-- <img src="../../../../assets/images/verification-landing-page-image.svg" alt="" class="img-fluid"> -->
+        <img src="{{ imgUrl }}" alt="" class="img-fluid" />
+      </div>
+      <!-- <div class="content-wrapper">
+                <div class="img-wrap-1">
+                    <img src="../../../../assets/images/verification-landing-page-assets/human-posture-kyc-desc-image.svg" alt="" class="img-fluid">
+                </div>
+                <div class="img-wrap-2">
+                    <img src="../../../../assets/images/verification-landing-page-assets/face-detection-print-kyc-desc-image.svg" alt="" class="img-fluid">
+                </div>
+                <div class="img-wrap-3">
+                    <img src="../../../../assets/images/verification-landing-page-assets/lock-print-kyc-desc-image.svg" alt="" class="img-fluid">
+                </div>
+                <div class="img-wrap-4">
+                    <img src="../../../../assets/images/verification-landing-page-assets/message-print-kyc-desc-image.jpg.svg" alt="" class="img-fluid">
+                </div>
+                <div class="img-wrap-5">
+                    <img src="../../../../assets/images/verification-landing-page-assets/thumb-print-kyc-desc-image.svg" alt="" class="img-fluid">
+                </div>
+            </div> -->
+    </section>
+    <section class="section-2">
+      <h1 class="page-title">Verify Your Identity</h1>
+      <p>To continue verifying your identity, click on the button below</p>
+      <button
+        [routerLink]="['/verification/basic-information']"
+        class="btn success-btn"
+      >
+        Get Started
+      </button>
+      <!-- <button [routerLink]="['/verification/upload-selfie']" class="btn success-btn">Get Started</button> -->
+      <!-- <div *ngIf="CONDITION" [@fadeInOnEnter] [@fadeOutOnLeave]></div> -->
+    </section>
+  </div>
+</div>

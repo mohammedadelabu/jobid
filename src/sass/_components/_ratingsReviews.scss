@@ -1,0 +1,38 @@
+.rating-review-list {
+    border-bottom: 1px solid #c7c7c7;
+    padding: 48px 0;
+    &:last-child {
+        border-bottom: none;
+    }
+    .review-title-wrap {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        > div {
+            flex-basis: calc(100% / 3);
+        }
+    }
+    .review-title {
+        font-family: "Poppins";
+        font-style: normal;
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 30px;
+        /* identical to box height */
+
+        /* Secondary color/Dark Green 75% */
+
+        color: #4f656e;
+    }
+
+    p {
+        font-family: "Poppins";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+        color: #000000;
+        margin-bottom: 0;
+    }
+}

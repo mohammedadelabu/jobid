@@ -1,0 +1,211 @@
+<!-- <p>personal-profile works!</p> -->
+<!-- <header>
+    <div class="inner d-flex align-items-start justify-content-between">
+        <div> -->
+<h1 class="page-title">Let’s get you started</h1>
+<p class="title-tagline">Please enter some personal details</p>
+<!-- </div>
+    </div>
+</header> -->
+<div class="alert alert-info text-center" *ngIf="responseMsg">{{responseMsg}}</div>
+
+<div class="form-wrapper pb-5">
+    <!-- PROFILE IMAGE -->
+    <section>
+        <form (ngSubmit)="uploadImage()" novalidate>
+            <div class="featured-img" id="uploaded-image">
+                <img [src]="imgUrl" alt="" class="img-fluid">
+            </div>
+            <div class="form-row">
+                <div class="form-group col-12">
+                    <div class="form-control-wrapper">
+                        <label id="ui-temp" for="UserImage">
+                            <div id="file-name">{{label}}</div>
+                        </label>
+                        <input type="file" accept="image/png, image/jpg" (change)="onSelectFile($event)"
+                            name="UserImage" id="UserImage" class="form-control cursor-pointer" required>
+                    </div>
+                    <div class="btn btn-sm text-success" [ngClass]="{'d-none': !isFile}"><i class="fas fa-check"></i>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+
+
+
+
+    <!-- PERSONAL INFORMATION FORM -->
+    <form class="mb-5" [formGroup]="personalInformationForm" (ngSubmit)="savePersonalInformation()">
+        <div class="form-row">
+            <div class="form-group col-12 col-md-6">
+                <label for="FirstName" class="required-field-label">First Name</label>
+                <input type="text" class="form-control" name="FirstName" id="FirstName" aria-describedby="FirstNameHelp"
+                    formControlName="FirstName" [ngClass]="{
+            'is-invalid':
+              personalInformationForm.get('FirstName')?.touched &&
+              personalInformationForm.get('FirstName')?.invalid
+          }" required />
+                <small class="form-text text-danger invalid-feedback">First Name is required.</small>
+            </div>
+            <div class="form-group col-12 col-md-6">
+                <label for="MiddleName">Middle Name</label>
+                <input type="text" class="form-control" id="MiddleName" aria-describedby="MiddleNameHelp"
+                    formControlName="MiddleName" />
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-12 col-md-6">
+                <label for="LastName" class="required-field-label">Last Name</label>
+                <input type="text" class="form-control" id="LastName" aria-describedby="LastNameHelp"
+                    formControlName="LastName" [ngClass]="{
+            'is-invalid':
+              personalInformationForm.get('LastName')?.touched &&
+              personalInformationForm.get('LastName')?.invalid
+          }" required />
+                <small class="form-text text-danger invalid-feedback">Last Name is required.</small>
+            </div>
+
+            <div class="form-group col-12 col-md-6">
+                <label for="Region" class="required-field-label">Recruitment Region</label>
+                <select name="Region" id="Region" class="form-control" formControlName="Region"
+                    [ngClass]="{'is-invalid': personalInformationForm.get('Region')?.touched && personalInformationForm.get('Region')?.invalid}"
+                    required>
+                    <option value="" selected="selected">Select region</option>
+                    <option value="{{region}}" *ngFor="let region of regionList">
+                        {{region}}</option>
+                </select>
+                <small id="firtsNameErrorMsg" class="form-text text-danger invalid-feedback">Select a
+                    region</small>
+            </div>
+
+        </div>
+        <div class="form-row">
+            <div class="form-group col-12 col-md-6">
+                <label for="Email" class="required-field-label">Email address</label>
+                <input type="email" class="form-control" id="Email" aria-describedby="emailHelp" formControlName="Email"
+                    readonly />
+            </div>
+            <div class="form-group col-12 col-md-6">
+                <label for="PhoneNumber" class="required-field-label">Phone Number</label>
+                <ngx-intl-tel-input [enableAutoCountrySelect]="true" [enablePlaceholder]="true" [preferredCountries]="['nl']" 
+                    [searchCountryFlag]="true" [selectFirstCountry]="true" [phoneValidation]="true"
+                    [searchCountryFlag]="true" [phoneValidation]="true" formControlName="PhoneNumber">
+                </ngx-intl-tel-input>
+                <small id="phoneNumberErrorMsg" class="form-text text-danger"
+                    [ngClass]="{'d-none': !isphoneNumberError}">Phone number is
+                    required.</small>
+            </div>
+        </div>
+        <button type="submit" class="btn white-btn-green-border px-md-4">
+            Update
+        </button>
+    </form>
+
+    <!-- PROFILE INFORMATION FORM -->
+    <div class="alert alert-info text-center" *ngIf="profileResponseMsg">{{profileResponseMsg}}</div>
+    <form [formGroup]="personalProfileForm" (ngSubmit)="onSaveProfileData()" *ngIf="!profileResponseMsg">
+        <div class="form-row">
+            <div class="form-group col-12">
+                <label for="Profession" class="required-field-label">Profession</label>
+                <input type="text" name="Profession" id="Profession" class="form-control" formControlName="Profession"
+                    [ngClass]="{'is-invalid': personalProfileForm.get('Profession')?.touched && personalProfileForm.get('Profession')?.invalid}"
+                    required>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-12 col-sm-6">
+                <label for="PortfolioPlatform">Portfolio Platform</label>
+                <input type="text" name="PortfolioPlatform" id="PortfolioPlatform" class="form-control"
+                    formControlName="PortfolioPlatform">
+            </div>
+            <div class="form-group col-12 col-sm-6">
+                <label for="LinkedinPlatform">Linkedin Platform</label>
+                <input type="text" name="LinkedinPlatform" id="LinkedinPlatform" class="form-control"
+                    formControlName="LinkedinPlatform">
+            </div>
+        </div>
+        <div class="form-row">
+            <!-- <div class="form-group col-12 col-sm-5">
+                            <label for="City">City</label>
+                            <input type="text" name="City" id="City" class="form-control" formControlName="City"
+                            [ngClass]="{'is-invalid': personalProfileForm.get('City')?.touched && personalProfileForm.get('City')?.invalid}" required>
+                        </div>
+                        <div class="form-group col-12 col-sm-4">
+                            <label for="State">State</label>
+                            <input type="text" name="State" id="State" class="form-control" formControlName="State"
+                            [ngClass]="{'is-invalid': personalProfileForm.get('State')?.touched && personalProfileForm.get('State')?.invalid}" required>
+                        </div>
+                        <div class="form-group col-12 col-sm-3">
+                            <label for="PostalCode">Postal Code</label>
+                            <input type="text" name="PostalCode" id="PostalCode" class="form-control"
+                                formControlName="PostalCode" [ngClass]="{'is-invalid': personalProfileForm.get('PostalCode')?.touched && personalProfileForm.get('PostalCode')?.invalid}" required>
+                        </div> -->
+
+            <div class="form-group col-12 col-sm-4">
+                <label for="Country">Country</label>
+                <!-- <input type="text" name="Country" id="Country" class="form-control" formControlName="Country"
+                            [ngClass]="{'is-invalid': personalProfileForm.get('Country')?.touched && personalProfileForm.get('Country')?.invalid}" required> -->
+
+                <select name="Country" id="Country" class="form-control" formControlName="Country">
+                    <option value="" selected="selected">Select country</option>
+                    <option value={{country.Value}} *ngFor="let country of countryList">{{country.Name}}</option>
+                </select>
+            </div>
+
+            <div class="form-group col-12 col-sm-4">
+                <label for="State">State</label>
+                <input type="text" name="State" id="State" class="form-control" formControlName="State"
+                    [ngClass]="{'is-invalid': personalProfileForm.get('State')?.touched && personalProfileForm.get('State')?.invalid}"
+                    required>
+            </div>
+            <div class="form-group col-12 col-sm-4">
+                <label for="PostalCode">Postal Code</label>
+                <input type="text" name="PostalCode" id="PostalCode" class="form-control" formControlName="PostalCode"
+                    [ngClass]="{'is-invalid': personalProfileForm.get('PostalCode')?.touched && personalProfileForm.get('PostalCode')?.invalid}"
+                    required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-12 col-sm-8">
+                <label for="Street">Street</label>
+                <input type="text" name="Street" id="Street" class="form-control" formControlName="Street"
+                    [ngClass]="{'is-invalid': personalProfileForm.get('Street')?.touched && personalProfileForm.get('Street')?.invalid}"
+                    required>
+            </div>
+            <div class="form-group col-12 col-sm-4">
+                <label for="City">City</label>
+                <input type="text" name="City" id="City" class="form-control" formControlName="City"
+                    [ngClass]="{'is-invalid': personalProfileForm.get('City')?.touched && personalProfileForm.get('City')?.invalid}"
+                    required>
+            </div>
+        </div>
+
+
+
+        <div class="d-flex align-items-center justify-content-between">
+            <button type="submit" class="btn white-btn-green-border px-md-4">
+                Update
+            </button>
+            <button type="button" class="btn success-btn px-md-4 next-btn" (click)="onSaveProfileData()">NEXT</button>
+        </div>
+
+
+        <div class="py-2 d-flex align-items-center justify-content-between">
+
+            <!-- <div>
+                            <button type="submit" class="btn btn-outline-success px-5" *ngIf="!isProfileExist"
+                                [disabled]="personalProfileForm.invalid">SAVE</button>
+                            <button type="button" class="btn btn-outline-success px-5" *ngIf="isProfileExist"
+                                (click)="updatePersonalProfile()">UPDATE</button>
+                        </div>
+                        <div>
+                            <button type="button" class="btn form-btn px-md-5" *ngIf="!isProfileExist"
+                                [disabled]="personalProfileForm.invalid" (click)="nextRouting()">NEXT</button>
+                            <button type="button" class="btn form-btn px-md-5" *ngIf="isProfileExist"
+                                (click)="updateNextRouting()">NEXT</button>
+                        </div> -->
+        </div>
+    </form>
+</div>

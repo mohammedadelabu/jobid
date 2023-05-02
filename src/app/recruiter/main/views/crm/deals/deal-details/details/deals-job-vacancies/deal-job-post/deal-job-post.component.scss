@@ -1,0 +1,62 @@
+// .example-accordion-item{
+//     margin-bottom: 0.3em;
+//     background: #f0f0f0;
+//     border: 1px solid #dadada;
+//     border-radius: 10px;
+//     display: block;
+//     padding: 9px 20px;
+// }
+
+
+
+#job-details {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #4f656e;
+
+    #job-preview-details-row {
+        border-bottom: 1px solid #c7c7c7;
+        padding-bottom: 1em;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-bottom: 1.5em;
+        padding-left: 0;
+
+        li {
+            margin-right: 3em;
+
+            i {
+                color: #4fb278;
+                margin-right: 0.3em;
+            }
+        }
+    }
+
+    #job-detailed-information {
+        >li {
+            border-bottom: 1px solid #c7c7c7;
+            padding-bottom: 2em;
+            margin-bottom: 2em;
+
+            &:last-child {
+                border-bottom: none;
+                padding-bottom: 0;
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    .content-title {
+        font-family: "Poppins";
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 24px;
+        color: #4f656e;
+    }
+}
+

@@ -1,0 +1,289 @@
+<!-- <p>convert-lead-to-deal works!</p> -->
+
+<!-- <div id="top-action">
+    <div class="d-flex align-items-center">
+        <button class="btn btn-default mr-3" (click)="back()">
+            <img src="../../../../../../../assets/images/icons/angle-left-icon.svg" alt="" class="img-fluid" />
+        </button>
+        <h1 class="page-title">Convert to Deal</h1>
+    </div>
+
+</div> -->
+<div id="convert-lead-to-deal-page">
+    <app-page-title></app-page-title>
+    <!-- {{CompanyInformationForm.value | json}}
+    <hr />
+    {{CompanyInformationForm.valid | json}}
+    <hr/> -->
+    <ng-container *ngIf="isphoneNumberError">
+        <small class="text-danger text-center">Provide a valid Phone numbers!</small>
+    </ng-container>
+    <div class="form-wrapper pb-4">
+        <!-- <form [formGroup]="ConvertLeadToDealForm" (ngSubmit)="onSubmitForm()">
+    
+            <div class="form-row">
+                <div class="form-group col-12 col-md-6">
+                    <label for="CompanyName" class="required-field-label">Company Name</label>
+                    <input type="text" class="form-control" id="CompanyName" aria-describedby="CompanyNameHelp" formControlName="CompanyName" />
+                </div>
+                <div class="form-group col-12 col-md-6">
+                    <label for="CompanyEmail" class="required-field-label">Company Email</label>
+                    <input type="email" class="form-control" id="CompanyEmail" aria-describedby="CompanyEmailHelp" formControlName="CompanyEmail" />
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group col-12 col-md-6">
+                    <label for="Address" class="required-field-label">Address</label>
+                    <input type="text" class="form-control" id="Address" aria-describedby="AddressHelp" formControlName="Address" />
+                </div>
+                <div class="form-group col-12 col-md-6">
+                    <label for="Location" class="required-field-label">Location</label>
+                    <select name="Location" id="Location" class="form-control" formControlName="Location" required>
+                        <option value="" selected="selected">Select a Location</option>
+                        <option value="location.Value" *ngFor="let location of LocationList">{{location.Name}}</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group col-12 col-md-6">
+                    <label for="CompanySize" class="required-field-label">Company Size</label>
+                    <input type="text" class="form-control" id="CompanySize" aria-describedby="CompanySizeHelp" formControlName="CompanySize" />
+                </div>
+                <div class="form-group col-12 col-md-6">
+                    <label for="Website" class="required-field-label">Website</label>
+                    <input type="text" class="form-control" id="Website" aria-describedby="WebsiteHelp" formControlName="Website" />
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group col-12 col-md-6">
+                    <label for="VATReistration" class="required-field-label">VATReistration</label>
+                    <input type="text" class="form-control" id="VATReistration" aria-describedby="VATReistrationHelp" formControlName="VATReistration" />
+                </div>
+                <div class="form-group col-12 col-md-6">
+                    <label for="PhoneNumber" class="required-field-label">PhoneNumber</label>
+                    <input type="text" class="form-control" id="PhoneNumber" aria-describedby="PhoneNumberHelp" formControlName="PhoneNumber" />
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group col-12 col-md-6">
+                    <label for="Description" class="required-field-label">Description</label>
+                    <input type="text" class="form-control" id="Description" aria-describedby="DescriptionHelp" formControlName="Description" />
+                </div>
+                <div class="form-group col-12 col-md-6">
+                    
+                </div>
+            </div>
+        </form> -->
+        <mat-stepper linear #stepper>
+            <mat-step [stepControl]="CompanyInformationForm">
+                <form [formGroup]="CompanyInformationForm" (ngSubmit)="onSubmitCompanyInfoForm()"
+                    class="wide-form-controls-grid">
+                    <div class="form-row">
+                        <div class="form-group col-12 col-md-6">
+                            <label for="CompanyName" class="required-field-label">Company Name</label>
+                            <input type="text" class="form-control" id="CompanyName" aria-describedby="CompanyNameHelp"
+                                formControlName="CompanyName" [ngClass]="{
+                  'is-invalid':
+                    CompanyInformationForm.get('CompanyName')?.touched &&
+                    CompanyInformationForm.get('CompanyName')?.invalid
+                }" required />
+                        </div>
+                        <div class="form-group col-12 col-md-6">
+                            <label for="CompanyEmail" class="required-field-label">Company Email</label>
+                            <input type="email" class="form-control" id="CompanyEmail"
+                                aria-describedby="CompanyEmailHelp" formControlName="CompanyEmail" [ngClass]="{
+                  'is-invalid':
+                    CompanyInformationForm.get('CompanyEmail')?.touched &&
+                    CompanyInformationForm.get('CompanyEmail')?.invalid
+                }" required />
+                        </div>
+                    </div>
+
+                    <!-- <div class="form-row">
+                        <div class="form-group col-12 col-md-6">
+                            <label for="CompanyName" class="required-field-label">Select Company</label>
+                            <select name="CompanySelector" id="CompanySelector" class="form-control cursor-pointer"
+                                [(ngModel)]="CompanySelector" [ngClass]="{'is-invalid':
+                                CompanyInformationForm.get('CompanySelector')?.touched
+                                &&
+                                CompanyInformationForm.get('CompanySelector')?.invalid}" required
+                                (change)="onCompanySelected()" [ngModelOptions]="{standalone: true}">
+                                <option [value]="NEW_COMPANY" class="text-primary-link">Add company</option>
+                                <option [value]="company?.CompanyId" *ngFor="let company of companyList$ | async">
+                                    {{company?.Name}}</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-12 col-md-6">
+                            <label for="CompanyEmail" class="required-field-label">Company Email</label>
+                            <input type="email" class="form-control" id="CompanyEmail"
+                                aria-describedby="CompanyEmailHelp" formControlName="CompanyEmail" [ngClass]="{'is-invalid':
+                                CompanyInformationForm.get('CompanyEmail')?.touched
+                                &&
+                                CompanyInformationForm.get('CompanyEmail')?.invalid}" required />
+                        </div>
+                    </div> -->
+                    <div class="form-row" *ngIf="!isExistingCompany">
+                        <div class="form-group col-12">
+                            <label for="CompanyName" class="required-field-label">Company Name</label>
+                            <input type="text" class="form-control" id="CompanyName" aria-describedby="CompanyNameHelp"
+                                formControlName="CompanyName" [ngClass]="{'is-invalid':
+                            CompanyInformationForm.get('CompanyName')?.touched
+                            &&
+                            CompanyInformationForm.get('CompanyName')?.invalid}" required />
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-12 col-md-6">
+                            <label for="Address" class="required-field-label">Address</label>
+                            <input type="text" class="form-control" id="Address" aria-describedby="AddressHelp"
+                                formControlName="Address" [ngClass]="{'is-invalid':
+                                CompanyInformationForm.get('Address')?.touched
+                                &&
+                                CompanyInformationForm.get('Address')?.invalid}" required />
+                        </div>
+                        <div class="form-group col-12 col-md-6">
+                            <label for="Location" class="required-field-label">Location</label>
+                            <select name="Location" id="Location" class="form-control" formControlName="Location"
+                                [ngClass]="{'is-invalid':
+                                CompanyInformationForm.get('Location')?.touched
+                                &&
+                                CompanyInformationForm.get('Location')?.invalid}" required>
+                                <option value="" selected="selected">Select a
+                                    Location</option>
+                                <option [value]="location.Value" *ngFor="let
+                                    location of LocationList">{{location.Name}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-12 col-md-6">
+                            <label for="CompanySize">Company Size</label>
+                            <input type="number" class="form-control" id="CompanySize"
+                                aria-describedby="CompanySizeHelp" formControlName="CompanySize" />
+                        </div>
+                        <div class="form-group col-12 col-md-6">
+                            <label for="Website">Website</label>
+                            <input type="text" class="form-control" id="Website" aria-describedby="WebsiteHelp"
+                                formControlName="Website" />
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-12 col-md-6">
+                            <label for="VATReistration" class="required-field-label">VATReistration
+                                Registration</label>
+                            <input type="text" class="form-control" id="VATReistration"
+                                aria-describedby="VATReistrationHelp" formControlName="VATReistration" [ngClass]="{'is-invalid':
+                                CompanyInformationForm.get('VATReistration')?.touched &&
+                                CompanyInformationForm.get('VATReistration')?.invalid}" required />
+                        </div>
+                        <div class="form-group col-12 col-md-6">
+                            <label for="PhoneNumber" class="required-field-label">PhoneNumber</label>
+                            <!-- <input type="text" class="form-control" id="PhoneNumber" aria-describedby="PhoneNumberHelp"
+                                formControlName="PhoneNumber"
+                                [ngClass]="{'is-invalid': CompanyInformationForm.get('PhoneNumber')?.touched && CompanyInformationForm.get('PhoneNumber')?.invalid}" required/> -->
+                            <ngx-intl-tel-input [enableAutoCountrySelect]="true" [enablePlaceholder]="true"
+                                [preferredCountries]="['nl']" [searchCountryFlag]="true" [selectFirstCountry]="true"
+                                [phoneValidation]="true" name="PhoneNumber" [(ngModel)]="PhoneNumber"
+                                [ngModelOptions]="{ standalone: true }" required>
+                            </ngx-intl-tel-input>
+                            <small id="phoneNumberErrorMsg" class="form-text text-danger"
+                                [ngClass]="{ 'd-none': !isphoneNumberError }">Phone number is required.</small>
+                        </div>
+                    </div>
+
+                    <div class="form-row align-items-end">
+                        <div class="form-group col-12 col-md-6">
+                            <label for="Description">Description</label>
+                            <!-- <input type="text" class="form-control" id="Description" aria-describedby="DescriptionHelp"
+                                formControlName="Description" /> -->
+                            <textarea class="form-control" name="Description" id="" cols="30" rows="4"
+                                formControlName="Description"></textarea>
+                        </div>
+                        <div class="form-group col-12 col-md-6">
+                            <!-- <div class="company-brand-logo-wrapper" *ngIf="logoImgSrc || isExistingCompany">
+                                <img [src]="logoImgSrc" alt="" class="img-fluid">
+                            </div> -->
+                            <ng-container>
+                                <label for="CompanyLogo" class="file-label">{{
+                                    CompanyLogoLabel
+                                    }}</label>
+                                <input type="file" class="form-control" id="CompanyLogo" hidden
+                                    (change)="onSelectFile($event)" />
+                            </ng-container>
+                            <ng-container *ngIf="uploadCompanyLogoError">
+                                <div>
+                                    <small class="text-danger text-center">
+                                        {{uploadCompanyLogoError}}</small>
+                                </div>
+                            </ng-container>
+                            <ng-container *ngIf="isDoneUploadingImage">
+                                <div>
+                                    <small class="text-info text-center">
+                                    Uploading...    
+                                    </small>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                    <div>
+                        <button class="btn success-btn" matStepperNext
+                            [disabled]="CompanyInformationForm.invalid">Next</button>
+                    </div>
+                </form>
+            </mat-step>
+
+            <mat-step [stepControl]="AddCompanyContactForm">
+                <form [formGroup]="AddCompanyContactForm" (ngSubmit)="onSubmitCompanyContactsForm()">
+                    <fieldset>
+                        <legend class="mb-4">Contact DetailS</legend>
+                        <div class="form-row">
+                            <div class="form-group col-12 col-md-6">
+                                <label for="ContactFirstName" class="required-field-label">First Name</label>
+                                <input type="text" class="form-control" id="ContactFirstName"
+                                    aria-describedby="ContactFirstNameHelp" formControlName="ContactFirstName" />
+                            </div>
+                            <div class="form-group col-12 col-md-6">
+                                <label for="ContactLastName" class="required-field-label">Last Name</label>
+                                <input type="text" class="form-control" id="ContactLastName"
+                                    aria-describedby="ContactLastNameHelp" formControlName="ContactLastName" />
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-12 col-md-6">
+                                <label for="ContactEmail" class="required-field-label">Email</label>
+                                <input type="text" class="form-control" id="ContactEmail"
+                                    aria-describedby="ContactEmailHelp" formControlName="ContactEmail" />
+                            </div>
+                            <div class="form-group col-12 col-md-6">
+                                <label for="ContactPhoneNumber" class="required-field-label">Mobile No</label>
+                                <!-- <input type="text" class="form-control" id="ContactPhoneNumber"
+                                aria-describedby="ContactPhoneNumberHelp"
+                                formControlName="ContactPhoneNumber" /> -->
+                                <ngx-intl-tel-input [enableAutoCountrySelect]="true" [enablePlaceholder]="true"
+                                    [preferredCountries]="['nl']" [searchCountryFlag]="true" [selectFirstCountry]="true"
+                                    [phoneValidation]="true" name="ContactPhoneNumber"
+                                    formControlName="ContactPhoneNumber" required>
+                                </ngx-intl-tel-input>
+                                <small id="phoneNumberErrorMsg" class="form-text
+                                text-danger" [ngClass]="{'d-none': !isContactPhoneNumberError}">Phone
+                                    number is
+                                    required.</small>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="d-flex align-items-center">
+                        <button mat-button matStepperPrevious class="white-btn-green-border mr-3">Back</button>
+                        <button class="btn success-btn">Finish</button>
+                    </div>
+                </form>
+            </mat-step>
+        </mat-stepper>
+    </div>
+</div>

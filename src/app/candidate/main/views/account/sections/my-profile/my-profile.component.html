@@ -1,0 +1,288 @@
+<!-- <p>my-profile works!</p> -->
+<div class="dashboard-page-Wrapper pb-3">
+  <div
+    id="top-action"
+    class="d-flex align-items-center justify-content-between flex-wrap mb-4"
+  >
+    <div class="d-flex align-items-center">
+      <h1 class="page-title py-0">My Profile</h1>
+    </div>
+    <!-- Recruiter actions -->
+    <ul id="recruiter-actions" class="list-style-none pl-0 py-3">
+      <!-- <li>
+                <button class="action-btn btn btn-sm attachment-doc-btn" [routerLink]="['/recruiter/candidates/attached-documents/', userInformation?.Id]"> Attach Document</button>
+            </li> -->
+      <li>
+        <button class="action-btn btn btn-sm attachment-doc-btn">
+          Attach Document
+        </button>
+      </li>
+      <li>
+        <button class="action-btn btn btn-sm view-cv-btn">View CV</button>
+      </li>
+      <li>
+        <button class="action-btn btn btn-sm call-btn">Call Recruiter</button>
+      </li>
+      <li>
+        <button
+          class="action-btn btn btn-sm"
+          (click)="onUpdateProfile(userInformation?.Id)"
+        >
+          <i class="fas fa-pen text-white"></i>
+          Update Profile
+        </button>
+      </li>
+    </ul>
+  </div>
+
+  <section id="basic-information" class="mb-5">
+    <div class="inner">
+      <div class="card bg-none border-0">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-12 col-md-4 text-center">
+              <!-- <div class="profile-image">
+                                <div class="inner">
+
+                                </div>
+                            </div> -->
+
+              <div id="profile-image" class="verified">
+                <div class="inner">
+                  <img
+                    src="../../../../../../../assets/images/image-placeholder.jpg"
+                    alt=""
+                    class="img-fluid"
+                  />
+                  <!-- <img src="../../../../../../../assets/images/candidate-test-avatar-1.png" alt=""
+                                        class="img-fluid"> -->
+                  <!-- <img src="{{candidateProfileDetails?.User.ProfileImageUrl}}" alt="" class="img-fluid" *ngIf="candidateProfileDetails?.User.ProfileImageUrl; else noProfileImage">
+                                    <ng-template #noProfileImage>
+                                        <img src="../../../../../../../assets/images/image-placeholder.jpg" alt="" class="img-fluid" *ngIf="!candidateProfileDetails?.User.ProfileImageUrl">
+                                    </ng-template> -->
+                </div>
+                <img
+                  src="../../../../../../../assets/images/icons/verified-icon.svg"
+                  alt=""
+                  class="img-fluid"
+                  id="verified-icon"
+                />
+              </div>
+              <!-- <div class="ref-number">REF: NU509RO46</div> -->
+              <div class="ref-number">
+                REF:
+                <span *ngIf="userInformation?.NewReference; else noRef">{{
+                  userInformation?.NewReference
+                }}</span>
+              </div>
+              <ng-template #noRef> No Reference number issued </ng-template>
+              <div id="star-ratings" class="justify-content-center">
+                <div class="star-score">4.6</div>
+                <ul class="list-style-none pl-0 d-flex align-items-center">
+                  <li>
+                    <i class="fas fa-star"></i>
+                  </li>
+                  <li>
+                    <i class="fas fa-star"></i>
+                  </li>
+                  <li>
+                    <i class="fas fa-star"></i>
+                  </li>
+                  <li>
+                    <i class="fas fa-star"></i>
+                  </li>
+                  <li>
+                    <i class="fas fa-star null"></i>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-12 col-md-8">
+              <div>
+                <ul id="info-blocks">
+                  <li>
+                    <div class="candidate-name">
+                      <!-- Ali Raheed -->
+                      {{ userInformation?.LastName }}&nbsp;{{
+                        userInformation?.MiddleName
+                      }}&nbsp;{{ userInformation?.FIrstName }}
+                    </div>
+                    <ul class="list-style-none pl-0 mb-0">
+                      <li *ngIf="userProfile?.Profession">
+                        <!-- Full stack Developer -->
+                        {{ userProfile?.Profession }}
+                      </li>
+                      <li *ngIf="userInformation?.Email">
+                        <div class="icon">
+                          <img
+                            src="../../../../../../../assets/images/icons/envelope-green-icon.svg"
+                            alt="e-mail"
+                            class="img-fluid"
+                          />
+                        </div>
+                        <!-- danghoang87hl@gmail.com -->
+                        {{ userInformation?.Email }}
+                      </li>
+                      <li *ngIf="userProfile?.Country">
+                        <div class="icon">
+                          <img
+                            src="../../../../../../../assets/images/icons/location-green-icon.svg"
+                            alt="location"
+                            class="img-fluid"
+                          />
+                        </div>
+                        <!-- Nigeria -->
+                        {{ userProfile?.Country }}
+                      </li>
+
+                      <li
+                        *ngIf="
+                          userProfile?.LinkedinPlatform ||
+                          userProfile?.GithubPlatform
+                        "
+                      >
+                        <ul class="social-icons list-style-none pl-0 d-flex">
+                          <li *ngIf="userProfile?.LinkedinPlatform">
+                            <a href="userProfile?.LinkedinPlatform">
+                              <i class="fab fa-linkedin"></i>
+                            </a>
+                          </li>
+                          <li *ngIf="userProfile?.GithubPlatform">
+                            <a href="userProfile?.GithubPlatform">
+                              <i class="fab fa-github"></i>
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <div
+                      class="d-flex justify-content-between align-items-center"
+                    >
+                      <div class="candidate-salary">
+                        <!-- €60/hr -->
+                        €{{ userProfile?.SalaryExpectationPerHour }}/Hour
+                      </div>
+
+                      <div [ngSwitch]="userInformation?.Status">
+                        <div *ngSwitchCase="'Registered' || 'registered'">
+                          <div
+                            class="status badge badge-pill badge-registered py-1 px-3"
+                          >
+                            {{ userInformation?.Status }}
+                          </div>
+                        </div>
+                        <div *ngSwitchCase="'Blocked' || 'blocked'">
+                          <div
+                            class="status badge badge-pill badge-blocked py-1 px-3"
+                          >
+                            {{ userInformation?.Status }}
+                          </div>
+                        </div>
+                        <div *ngSwitchCase="'Flagged' || 'flagged'">
+                          <div
+                            class="status badge badge-pill badge-flagged py-1 px-3"
+                          >
+                            {{ userInformation?.Status }}
+                          </div>
+                        </div>
+                        <div *ngSwitchDefault>
+                          <div
+                            class="status badge badge-pill badge-registered py-1 px-3"
+                          >
+                            <!-- {{userInformation?.Status}} -->
+                            Registered
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <ul class="list-style-none pl-0 mb-0">
+                      <li class="capitalize">
+                        <!-- 5 Years Experience -->
+                        {{ userProfile?.YearsOfExperience }} years experience
+                      </li>
+                      <li *ngIf="userInformation?.PhoneNumber">
+                        <div class="icon">
+                          <img
+                            src="../../../../../../../assets/images/icons/phone-green-icon.svg"
+                            alt="phone"
+                            class="img-fluid"
+                          />
+                        </div>
+                        <!-- +234 70 5465 8785  -->
+                        {{ userInformation?.PhoneNumber }}
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <!--  -->
+    <!--  -->
+    <div class="card display-content-card mb-4" id="professional-info-tab">
+      <div class="card-body">
+        <!--  -->
+        <!-- {{userInformation?.Id}}
+                <p>{{workExperience | json}}</p> -->
+        <mat-tab-group animationDuration="0ms">
+          <mat-tab label="Experience">
+            <div class="wrapper">
+              <app-work-experience
+                [workExperience]="workExperience"
+              ></app-work-experience>
+            </div>
+          </mat-tab>
+          <mat-tab label="Education">
+            <div class="wrapper">
+              <app-education [education]="education"></app-education>
+            </div>
+          </mat-tab>
+          <mat-tab label="Skills">
+            <div class="wrapper">
+              <app-skills [skills]="skills"></app-skills>
+            </div>
+          </mat-tab>
+        </mat-tab-group>
+        <!--  -->
+        <!-- <ng-template #noCandidateSkillSet>
+                    Loading tabs...
+                </ng-template>
+                <div *ngIf="candidateSkillset; else noCandidateSkillSet">
+                    <mat-tab-group>
+                        <mat-tab *ngFor="let skill of candidateSkillset">
+                            <ng-template mat-tab-label>
+                                <app-skill-title [skillCategoryId]="skill?.CategoryId"></app-skill-title>
+                            </ng-template>
+                            <ul class="skills list-style-none pl-0 py-3">
+                                <li class="skill-item" *ngFor="let item of skill?.Skills | stringToArray">
+                                    <span>{{item}}</span>
+                                </li>
+                            </ul>
+                        </mat-tab>
+                    </mat-tab-group>
+                </div> -->
+      </div>
+    </div>
+  </section>
+
+  <section class="pb-4" id="ratings-reviews">
+    <h3 class="block-title">Ratings / Reviews</h3>
+    <div class="card display-content-card">
+      <div class="card-body">
+        <app-ratings-and-reviews-list
+          [candidateId]="candidateId"
+        ></app-ratings-and-reviews-list>
+        <!-- <app-ratings-and-reviews [candidateId]="candidateId"></app-ratings-and-reviews>
+                <button class="btn success-btn" (click)="openReviewDialog()">Give a Review</button> -->
+      </div>
+    </div>
+  </section>
+</div>

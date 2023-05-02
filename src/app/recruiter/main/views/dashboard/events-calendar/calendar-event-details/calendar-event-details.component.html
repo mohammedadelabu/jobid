@@ -1,0 +1,21 @@
+<!-- <p>calendar-event-details works!</p> -->
+<div class="card">
+    <div class="card-body">
+        <div class="text-right">
+            <button class="btn btn-sm" (click)="closeDialog()">
+                <i class="fas fa-times text-danger"></i>
+            </button>
+        </div>
+        <div class="text-center text-bold">
+            {{Event?.title}}
+        </div>
+        <div>
+            <small>
+                {{Event?.start | date}}
+            </small>
+        </div>
+        <div class="text-right">
+            <button class="btn btn-default btn-sm text-danger" (click)="onRemoveEvent()">Remove</button>
+        </div>
+    </div>
+</div>

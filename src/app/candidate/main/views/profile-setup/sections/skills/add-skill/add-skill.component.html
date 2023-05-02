@@ -1,0 +1,54 @@
+<!-- <p>add-skill works!</p> -->
+<div class="alert alert-info text-center mb-0" *ngIf="responseMsg">
+    {{responseMsg}}</div>
+<div class="alert alert-danger text-center" *ngIf="errorMsg">{{errorMsg}}</div>
+<div *ngIf="!responseMsg">
+
+    <form [formGroup]="skillsetForm" (ngSubmit)="addSkills()" *ngIf="isAvailable" novalidate>
+        <div class="text-right">
+            <button type="button" class="btn btn-sm px-0" (click)="onCloseForm()">
+                <i class="fas fa-times text-danger"></i>
+            </button>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-12 col-md-6">
+                <label for="category">Category</label>
+                <select class="form-control" name="CategoryName" id="category" formControlName="SkillCategoryId" [ngClass]="{'is-invalid': skillsetForm.get('SkillCategoryId')?.touched && skillsetForm.get('SkillCategoryId')?.invalid}" required>
+                        <option value={{item.CategoryId}} *ngFor="let item of categories | orderBy:'CategoryName'">{{item?.CategoryName}}</option>
+                    </select>
+            </div>
+            <div class="form-group col-12 col-md-6">
+                <label for="skillset">Skill set (e.g PHP, Javascript, C#)</label>
+                <input type="text" class="form-control" id="skillset" formControlName="Skills" [ngClass]="{'is-invalid': skillsetForm.get('Skills')?.touched && skillsetForm.get('Skills')?.invalid}" required>
+            </div>
+        </div>
+        <div>
+            <button type="submit" class="btn btn-outline-success px-5" [disabled]="skillsetForm.invalid">SAVE</button>
+        </div>
+        <button type="button" class="btn text-success px-0 text-bold" (click)="handleIsAvailable()">Enter your prefered category +</button>
+    </form>
+    <!--  -->
+    <form [formGroup]="skillsetFormAlt" (ngSubmit)="addSkillsAlt()" *ngIf="!isAvailable" novalidate>
+        <div class="text-right">
+            <button type="button" class="btn btn-sm px-0" [routerLink]="['/edit-candidate-cv/skills']">
+                    <i class="fas fa-times text-danger"></i>
+                </button>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-12 col-md-6">
+                <label for="category">Category Name</label>
+                <input type="text" class="form-control" id="category" formControlName="CategoryName" [ngClass]="{'is-invalid': skillsetFormAlt.get('CategoryName')?.touched && skillsetFormAlt.get('CategoryName')?.invalid}" required/>
+            </div>
+            <div class="form-group col-12 col-md-6">
+                <label for="skillset">Skill set (e.g PHP, Javascript, C#)</label>
+                <input type="text" class="form-control" id="skillset" formControlName="Skills" [ngClass]="{'is-invalid': skillsetFormAlt.get('Skills')?.touched && skillsetFormAlt.get('Skills')?.invalid}" required>
+            </div>
+        </div>
+        <div>
+            <button type="submit" class="btn btn-outline-success px-5" [disabled]="skillsetFormAlt.invalid">SAVE</button>
+        </div>
+        <button type="button" class="btn text-success px-0 text-bold" (click)="handleIsAvailable()">Select category from the list +</button>
+    </form>
+
+</div>
+

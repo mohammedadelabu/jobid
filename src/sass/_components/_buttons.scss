@@ -1,0 +1,579 @@
+@use "../_abstracts/typography";
+@use "../_partials/mixins";
+@use "../_abstracts/colors";
+
+.btn {
+    border: none;
+    border-radius: 10px;
+    transition: all 300ms ease-in-out;
+
+    &:focus {
+        // border: none;
+        outline: 0 !important;
+        box-shadow: none !important;
+    }
+}
+
+.sort-btn {
+    &::before {
+        content: url(../../assets/images/icons/sorting-icon.svg);
+    }
+
+    &::after {
+        display: none !important;
+        content: "";
+    }
+}
+
+.dropdown-btn {
+    display: flex !important;
+    align-items: center;
+    // background: #dadada !important;
+    border-radius: 5px;
+
+    &::after {
+        margin-left: 0.5em;
+        // content: url(../../assets/images/icons/angle-down-icon.svg);
+        content: "";
+        display: block;
+        width: 11px;
+        height: 11px;
+        background-image: url(../../assets/images/icons/angle-down-icon.svg);
+        background-size: contain;
+
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+    }
+}
+
+.menu-dots-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &::before {
+        content: url(../../assets/images/icons/menu-green-dots-icon.svg);
+    }
+}
+
+.white-btn-green-border {
+    color: colors.$PrimaryColorGreen !important;
+    background-color: #ffffff !important;
+    font-weight: 500 !important;
+    border: 1px solid colors.$PrimaryColorGreen !important;
+    @include mixins.transition(all 300ms ease-in-out);
+    &:hover {
+        background-color: colors.$PrimaryColorGreen !important;
+        color: #ffffff !important;
+    }
+
+    &.back-icon {
+        display: flex;
+        align-items: center;
+
+        &::before {
+            // content: url(../../assets/images/icons/back-green-icon.svg);
+            @include mixins.before("\f060", inherit);
+            margin-right: 15px;
+        }
+    }
+}
+
+.primary-border-btn {
+    border: 1px solid colors.$PrimaryColorGreen !important;
+    color: colors.$PrimaryColorGreen !important;
+
+    display: flex;
+    align-items: center;
+
+    // height: 40px;
+    &::before {
+        margin-right: 0.5em;
+        // margin-top: 0.3em;
+    }
+
+    &.shortlisted-applicant-white-primary-border-btn {
+        display: flex;
+        align-items: center;
+
+        &::before {
+            content: url(../../assets/images/icons/tick-circle-green-icon.svg);
+        }
+    }
+
+    &.add-applicant-btn {
+        display: flex;
+        align-items: center;
+
+        &::before {
+            content: "+";
+            font-weight: 900;
+        }
+    }
+
+    &.upload-btn {
+        display: flex;
+        align-items: center;
+
+        &::before {
+            content: url(../../assets/images/icons/upload-green-icon.svg);
+        }
+    }
+}
+
+.add-btn {
+    display: flex;
+    align-items: center;
+
+    &::before {
+        content: "+";
+        font-weight: 900;
+        margin-right: 10px;
+    }
+}
+
+.add-more-btn {
+    border: 2px solid colors.$PrimaryColorGreen !important;
+    border-radius: 5px !important;
+    height: 55px;
+    font-weight: 500 !important;
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 21px;
+    color: colors.$PrimaryColorGreen !important;
+    @include mixins.transition(all 300ms ease-in-out);
+
+    &:hover {
+        // background-color: colors.$PrimaryColorGreen !important;
+        background-color: #e8faf1 !important;
+    }
+}
+
+.add-more-block-btn {
+    border: 2px solid colors.$PrimaryColorGreen !important;
+    border-radius: 5px;
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 21px;
+    color: colors.$PrimaryColorGreen !important;
+
+    &::before {
+        content: "+";
+        margin-right: 1em;
+    }
+}
+
+.success-btn {
+    background-color: colors.$PrimaryColorGreen !important;
+    border: 2px solid colors.$PrimaryColorGreen !important;
+    color: #ffffff !important;
+
+    &.edit-btn {
+        &::before {
+            margin-right: .5em;
+            background-image: url(../../assets/images/icons/pen-white-icon.png);
+        }
+    }
+
+    &.add-btn {
+        &::before {
+            @include mixins.before("\f067", inherit)
+        }
+    }
+}
+
+// .outline-danger-btn {
+// color: #c13f2c !important;
+// border: 2px solid #c13f2c !important;
+//     border: 1px solid #c13f2c !important;
+// }
+
+.outline-danger-btn {
+    color: #ff4444 !important;
+    // border: 2px solid #FF4444 !important;
+    border: 1px solid #ff4444 !important;
+
+    display: flex;
+    align-items: center;
+
+    // height: 40px;
+    &::before {
+        margin-right: 0.5em;
+        margin-top: 0.3em;
+    }
+
+    &.reject-applicant-btn {
+        display: flex;
+        align-items: center;
+
+        &::before {
+            content: url(../../assets/images/icons/stop-red-icon.svg);
+        }
+    }
+}
+
+.outline-success-btn {
+    color: colors.$PrimaryColorGreen !important;
+    border: 2px solid colors.$PrimaryColorGreen !important;
+}
+
+// .edit-btn {
+//     // color: colors.$grey-100- !important;
+//     &::before {
+//         @include mixins.before('\f304', inherit);
+//         margin-right: .5em;
+//     }
+// }
+
+#recruiter-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+
+    li {
+        margin-right: 0.5em;
+        margin-bottom: 0.5em;
+    }
+}
+
+.action-danger-btn {
+    background-color: #ff4444 !important;
+    color: #ffffff !important;
+    border: 1px solid #ff4444 !important;
+    @include mixins.transition(all 300ms ease-in-out);
+    font-style: normal;
+    font-weight: 500 !important;
+    font-size: 12px;
+    line-height: 18px;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+
+    // height: 40px;
+    &::before {
+        margin-right: 0.5em;
+        margin-top: 0.3em;
+    }
+
+    &.reject-applicant-btn {
+        display: flex;
+        align-items: center;
+
+        &::before {
+            // content: url(../../assets/images/icons/sstop-white-icon.svg);
+            content: url(../../assets/images/icons/stop-white-icon.svg);
+        }
+    }
+}
+
+.action-btn {
+    background-color: colors.$PrimaryColorGreen !important;
+    color: #ffffff !important;
+    border: 1px solid colors.$PrimaryColorGreen !important;
+    @include mixins.transition(all 300ms ease-in-out);
+    font-style: normal;
+    font-weight: 500 !important;
+    font-size: 12px;
+    line-height: 18px;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+
+    // height: 40px;
+    &::before {
+        margin-right: 0.5em;
+        margin-top: 0.3em;
+    }
+
+    &.attachment-btn {
+        display: flex;
+        align-items: center;
+
+        &::before {
+            content: url(../../assets/images/icons/attach-doc-icon-alt.svg);
+        }
+    }
+
+    &.attachment-doc-btn {
+        display: flex;
+        align-items: center;
+
+        &::before {
+            content: url(../../assets/images/icons/attach-doc-icon-alt.svg);
+        }
+    }
+
+    &.schedule-interview-btn {
+        display: flex;
+        align-items: center;
+
+        &::before {
+            content: url(../../assets/images/icons/schedule-interview-icon-alt.svg);
+        }
+    }
+
+    &.message-btn {
+        display: flex;
+        align-items: center;
+
+        &::before {
+            content: url(../../assets/images/icons/message-icon-alt.svg);
+        }
+    }
+
+    &.mail-btn {
+        display: flex;
+        align-items: center;
+
+        &::before {
+            content: url(../../assets/images/icons/paper-plane-icon.svg);
+        }
+    }
+
+    &.call-btn {
+        display: flex;
+        align-items: center;
+
+        &::before {
+            content: url(../../assets/images/icons/phone-icon-alt.svg);
+        }
+    }
+
+    &.download-cv-btn {
+        display: flex;
+        align-items: center;
+
+        &::before {
+            content: url(../../assets/images/icons/download-icon-alt.svg);
+        }
+    }
+
+    &.edit-cv-btn {
+        display: flex;
+        align-items: center;
+
+        &::before {
+            content: url(../../assets/images/icons/edit-pen-icon.svg);
+        }
+    }
+
+    &.view-cv-btn {
+        display: flex;
+        align-items: center;
+
+        &::before {
+            content: url(../../assets/images/icons/attach-doc-icon-alt.svg);
+        }
+    }
+
+    &.next-stage-btn {
+        display: flex;
+        align-items: center;
+
+        &::before {
+            content: url(../../assets/images/icons/tick-circle-icon.svg);
+        }
+    }
+
+    &.shortlisted-btn {
+        display: flex;
+        align-items: center;
+
+        &::before {
+            content: url(../../assets/images/icons/tick-circle-icon.svg);
+        }
+    }
+
+    &.scorecard-btn {
+        display: flex;
+        align-items: center;
+
+        &::before {
+            content: url(../../assets/images/icons/scorecard-icon.svg);
+        }
+    }
+
+    &.hire-candidate-btn {
+        display: flex;
+        align-items: center;
+
+        &::before {
+            content: url(../../assets/images/icons/briefcase-green-icon.svg);
+        }
+    }
+}
+
+.next-btn {
+    &::after {
+        @include mixins.after("\f105", inherit);
+        margin-left: 0.5em;
+    }
+}
+
+.previous-btn {
+    &::before {
+        @include mixins.after("\f104", inherit);
+        margin-right: 0.5em;
+    }
+}
+
+.text-green-btn {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 21px;
+    color: colors.$PrimaryColorGreen !important;
+}
+
+// .btn-icon {
+//     img {
+//         max-width: 20px;
+//     }
+// }
+
+.form-btn {
+    height: 50px;
+}
+
+.eye-icon-btn {
+    &::before {
+        content: url(../../assets/images/icons/eye-icon.svg);
+    }
+}
+
+.email-icon-btn {
+    display: flex;
+    align-items: center;
+
+    &.green-bordered-icon {
+        &::before {
+            content: url(../../assets/images/icons/envelope-icon.svg);
+        }
+    }
+
+    &.black-bordered-icon {
+        &::before {
+            content: url(../../assets/images/icons/envelope-black-bordered-icon.png);
+        }
+    }
+}
+
+.trash-icon-btn {
+    display: flex;
+    align-items: center;
+
+    &.green-bordered-icon {
+        &::before {
+            content: url(../../assets/images/icons/trash-bin-red-icon.svg);
+        }
+    }
+
+    &.black-bordered-icon {
+        &::before {
+            content: url(../../assets/images/icons/trash-black-bordered-icon.png);
+        }
+    }
+}
+
+.reply-black-icon-btn {
+    &::before {
+        content: url(../../assets/images/icons/reply-black-icon.png);
+    }
+}
+
+.star-black-icon-btn {
+    &::before {
+        content: url(../../assets/images/icons/star-black-icon.png);
+    }
+}
+
+.conversion-btn,
+.trash-btn,
+.edit-btn,
+.reset-btn {
+    display: flex !important;
+    align-items: center;
+
+    &::before {
+        content: "";
+        display: block;
+        height: 17px;
+        width: 20px;
+        background-image: url(../../assets/images/icons/conversion-icon.svg);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        margin-right: 0.5em;
+    }
+}
+
+.conversion-btn {
+    &::before {
+        background-image: url(../../assets/images/icons/conversion-icon.svg);
+    }
+}
+
+
+
+.delete-btn {
+    display: flex !important;
+    align-items: center !important;
+
+    &::before {
+        // background-image: url(../../assets/images/icons/trash-dark-icon.svg);
+        content: "";
+        display: block;
+        height: 1rem;
+        width: 1rem;
+        margin-right: .5em;
+        background-image: url(../../assets/images/icons/trash-green-icon.svg);
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+}
+
+.edit-btn {
+    &::before {
+        background-image: url(../../assets/images/icons/pen-dark-icon.svg);
+    }
+}
+
+
+#top-buttons {
+    margin-top: .5em;
+    margin-bottom: .5em;
+
+    >div {
+        display: flex;
+        align-items: center;
+
+        button {
+            margin-right: 10px;
+
+            // height: 50px;
+            &:last-child {
+                margin-right: 0;
+            }
+
+            @include mixins.maxmq(500px) {
+                font-size: 0.8rem !important;
+            }
+        }
+    }
+
+    @include mixins.maxmq(500px) {
+
+        .btn-group>.btn:not(:first-child),
+        .btn-group>.btn-group:not(:first-child)>.btn {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            font-size: 0.8rem !important;
+        }
+    }
+}

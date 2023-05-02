@@ -1,0 +1,36 @@
+<!-- <p>projects works!</p> -->
+
+<h1 class="page-title">Add projects</h1>
+<div class="page-tagline pb-5">Include relevant projects</div>
+
+
+<div class="mb-5">
+    <!-- <p>Id: {{candidateId}}</p> -->
+    <!-- PREVIEW PROJECTS -->
+    <app-preview-projects [candidateId]="candidateId" *ngIf="!isAddProject"></app-preview-projects>
+    <!-- ADD PROJECT -->
+    <div *ngIf="isAddProject">
+        <!-- <div class="text-right">
+        <button type="button" class="btn btn-sm px-0" (click)="isAddProject=false">
+            <i class="fas fa-times text-danger"></i>
+        </button>
+    </div> -->
+        <app-add-project [candidateId]="candidateId" (closeIsAddProject)="onCloseIsAddProject()"></app-add-project>
+    </div>
+    <!-- UPDATE PROJECT -->
+    <div *ngIf="isUpdateProject">
+        <!-- <div class="text-right">
+            <button type="button" class="btn btn-sm px-0" (click)="isAddProject=false">
+                <i class="fas fa-times text-danger"></i>
+            </button>
+        </div> -->
+        <app-update-project (closeIsUpdateProject)="onCloseIsUpdateProject()"></app-update-project>
+    </div>
+    <div class="mb-4">
+        <button class="btn btn-lg btn-block text-uppercase add-more-block-btn" *ngIf="!isAddProject" (click)="isAddProject=true">Add Project</button>
+    </div>
+    <div class="d-flex justify-content-between align-items-center " *ngIf="!isAddProject">
+        <button type="button " class="btn btn-outline-success px-md-4 previous-btn" [routerLink]="['/candidate/profile-setup/skills']">BACK</button>
+        <button type="submit" class="btn success-btn px-md-4 next-btn" [routerLink]="['/candidate/profile-setup/others']">NEXT</button>
+    </div>
+</div>

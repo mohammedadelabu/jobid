@@ -1,0 +1,43 @@
+<div class="dashboard-page-Wrapper">
+  <div id="todo">
+    <div id="top-action" class="py-3">
+      <div class="d-flex align-items-center justify-content-between flex-wrap">
+        <h1 class="page-title">To-Do</h1>
+        <button type="button" class="btn white-btn-green-border" (click)="openDialog()">
+          +&nbsp; Create Todo
+        </button>
+      </div>
+    </div>
+
+    <div id="todo-list-tabs">
+      <mat-tab-group>
+        <mat-tab label="Upcoming">
+          <app-upcoming-todos></app-upcoming-todos>
+        </mat-tab>
+        <mat-tab label="Completed">
+          <app-completed-todos></app-completed-todos>
+        </mat-tab>
+        <mat-tab label="Over Due">
+          <app-over-due-todos></app-over-due-todos>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+
+  </div>
+</div>
+
+<!-- 
+<mat-tab-group>
+  <mat-tab *ngFor="let skill of candidateSkillset">
+      <ng-template mat-tab-label>
+          <app-skill-title [skillCategoryId]="skill?.CategoryId">
+          </app-skill-title>
+      </ng-template>
+      <ul class="skills list-style-none pl-0 py-3">
+          <li class="skill-item"
+              *ngFor="let item of skill?.Skills | stringToArray">
+              <span>{{item}}</span>
+          </li>
+      </ul>
+  </mat-tab>
+</mat-tab-group> -->

@@ -1,0 +1,263 @@
+<!-- <p>edit-company works!</p> -->
+
+<div class="dashboard-page-Wrapper">
+  <div id="top-action" class="d-flex align-items-start justify-content-between mb-4">
+    <div class="d-flex align-items-center">
+      <button class="btn mr-3 px-0" (click)="goBack()">
+        <img src="../../../../../../../assets/images/icons/angle-left-icon.svg" alt="" class="img-fluid" />
+      </button>
+      <h1 class="page-title mb-0">Edit Company</h1>
+    </div>
+  </div>
+  <div class="form-wrapper mb-5">
+    <form [formGroup]="EditCompanyForm" (ngSubmit)="onSubmit()">
+      <fieldset>
+        <div class="form-row">
+          <div class="form-group col-12 col-md-6">
+            <label for="CompanyName" class="required-field-label">Company Name</label>
+            <input type="text" class="form-control" id="CompanyName" formControlName="CompanyName" [ngClass]="{
+              'is-invalid':
+                EditCompanyForm.get('CompanyName')?.touched &&
+                EditCompanyForm.get('CompanyName')?.invalid
+            }" required />
+            <small id="nameErrorMsg" class="form-text text-danger invalid-feedback">Company name is required.</small>
+          </div>
+          <div class="form-group col-12 col-md-6">
+            <!-- <label for="EmailAddress" class="required-field-label">Email Address</label> -->
+            <label for="EmailAddress">Email Address</label>
+            <!-- <input type="email" class="form-control" id="EmailAddress" formControlName="EmailAddress" [ngClass]="{
+              'is-invalid':
+                EditCompanyForm.get('EmailAddress')?.touched &&
+                EditCompanyForm.get('EmailAddress')?.invalid
+            }" required /> -->
+            <input type="email" class="form-control" id="EmailAddress" formControlName="EmailAddress" />
+            <small id="nameErrorMsg" class="form-text text-danger invalid-feedback">Company email is required.</small>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-12 col-md-6">
+            <label for="Address">Address</label>
+            <input type="text" class="form-control" id="Address" formControlName="Address" />
+          </div>
+          <div class="form-group col-12 col-md-6">
+            <label for="Location">Location</label>
+            <select name="Location" id="Location" class="form-control" formControlName="Location">
+              <option value="" selected="selected">Select country</option>
+              <option value="{{ country.Value }}" *ngFor="let country of countryList">
+                {{ country.Name }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-12 col-md-6">
+            <label for="CompanySize">Company Size</label>
+            <input type="text" class="form-control" id="CompanySize" formControlName="CompanySize" />
+          </div>
+          <div class="form-group col-12 col-md-6">
+            <label for="Website">Website</label>
+            <input type="text" class="form-control" id="Website" formControlName="Website" />
+          </div>
+        </div>
+        <div class="form-row align-items-end">
+          <div class="form-group col-12 col-md-6">
+            <!-- <label for="VATRegistration" class="required-field-label">VAT Registration</label> -->
+            <label for="VATRegistration">VAT Registration</label>
+            <!-- <input type="text" class="form-control" id="VATRegistration" formControlName="VATRegistration" [ngClass]="{
+              'is-invalid':
+                EditCompanyForm.get('VATRegistration')?.touched &&
+                EditCompanyForm.get('VATRegistration')?.invalid
+            }" required /> -->
+            <input type="text" class="form-control" id="VATRegistration" formControlName="VATRegistration"  />
+            <small id="nameErrorMsg" class="form-text text-danger invalid-feedback">Provide company VAT
+              Registration number</small>
+          </div>
+          <div class="form-group col-12 col-md-6">
+            <!-- <label for="PhoneNumber" class="required-field-label">Phone Number</label> -->
+            <label for="PhoneNumber">Phone Number</label>
+            <!-- <input type="text" class="form-control" id="PhoneNumber" /> -->
+            <!-- <ngx-intl-tel-input [enableAutoCountrySelect]="true" [enablePlaceholder]="true"
+              [preferredCountries]="['nl']" [searchCountryFlag]="true" [selectFirstCountry]="true"
+              [phoneValidation]="true" [searchCountryFlag]="true" [phoneValidation]="true" [(ngModel)]="PhoneNumber"
+              [ngModelOptions]="{ standalone: true }" required>
+            </ngx-intl-tel-input>
+            <small id="phoneNumberErrorMsg" class="form-text text-danger"
+              [ngClass]="{'d-none': !isphoneNumberError}">Phone number is
+              required.</small> -->
+            <ngx-intl-tel-input [enableAutoCountrySelect]="true" [enablePlaceholder]="true"
+              [preferredCountries]="['nl']" [searchCountryFlag]="true" [selectFirstCountry]="true"
+              [searchCountryFlag]="true" [phoneValidation]="false" formControlName="PhoneNumber">
+            </ngx-intl-tel-input>
+            <small id="phoneNumberErrorMsg" class="form-text text-danger"
+              [ngClass]="{'d-none': !isphoneNumberError}">Phone number is
+              required.</small>
+          </div>
+        </div>
+        <div class="form-row align-items-end">
+          <div class="form-group col-12 col-md-6">
+            <label for="Description">Description</label>
+            <textarea type="text" class="form-control" id="Description" rows="5"
+              formControlName="Description"></textarea>
+          </div>
+          <div class="form-group col-12 col-md-6">
+
+
+            <!-- {{ EditCompanyForm.value | json }} -->
+            <div class="logo-image-wrapper">
+              <!-- <img src="../../../../../../assets/images/sample-company-logo.png" alt="" class="img-fluid"> -->
+              <img *ngIf="!companyDetails?.LogoUrl" src="../../../../../../assets/images/sample-company-logo.png"
+                alt="..." class="img-fluid" />
+              <img *ngIf="companyDetails?.LogoUrl" src="{{companyDetails?.LogoUrl}}" alt="..." class="img-fluid" />
+            </div>
+            <label for="CompanyLogo" class="file-label">{{CompanyLogoLabel}}</label>
+            <input type="file" class="form-control" id="CompanyLogo" hidden formControlName="CompanyLogo"
+              (change)="onSelectFile($event);" />
+          </div>
+        </div>
+      </fieldset>
+
+      <div class="d-flex align-items-center">
+        <button class="btn success-btn mr-3" [disabled]="EditCompanyForm.invalid || isSending">
+          <ng-container *ngIf="!isSending">
+            Save
+          </ng-container>
+          <ng-container *ngIf="isSending">Saving...</ng-container>
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <!-- <form>
+      <div class="d-flex justify-content-between">
+        <div class="form-group mr-5">
+          <label for="companyName">Company Name <span class="redStar">*</span></label>
+          <input type="text" class="form-control" id="companyName" required />
+        </div>
+
+        <div class="form-group">
+          <label for="emailAddress">Email Address <span class="redStar">*</span></label>
+          <input type="email" class="form-control" id="emailAddress" required
+          />
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-between">
+        <div class="form-group mr-5">
+          <label for="address">Address</label>
+          <input type="text" class="form-control" id="address" />
+        </div>
+
+        <div class="form-group">
+          <label for="location">Location</label>
+          <select type="text" class="form-select form-control" id="location" placeholder="Select a location"></select>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-between">
+        <div class="form-group mr-5">
+          <label for="companySize">Company Size</label>
+          <input type="text" class="form-control" id="companySize" />
+        </div>
+
+        <div class="form-group">
+          <label for="website">Website</label>
+          <input type="text" class="form-control" id="website" required />
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="form-group mr-5">
+          <label for="vat">VAT Registration <span class="redStar">*</span></label>
+          <input type="text" class="form-control" id="vat" required />
+        </div>
+
+        <div class="custom-file form-group mt-4">
+          <input type="file" name="filename" class="form" id="upload" hidden>
+
+          <div class="upload p-2 d-flex justify-content-between align-items-center">
+            <i class="bi bi-box-arrow-in-down"></i>
+            <label for="upload" class="text-upload">Upload Company Logo</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-between">
+        <div class="form-group mr-5">
+          <label for="description">Description</label>
+          <textarea type="text" class="form-control" id="description" rows="5"></textarea>
+        </div>
+
+        <div class="form-group"></div>
+      </div>
+
+
+      <hr />
+
+
+      <div class="contact_details d-flex justify-content-between mt-5 mb-4">
+        <h3>Contact Detail</h3>
+        <a href="#">+ Add Contact</a>
+      </div>
+
+      <div class="d-flex justify-content-between">
+        <div class="form-group mr-5">
+          <label for="firstName">First Name <span class="redStar">*</span></label>
+          <input type="text" class="form-control" id="firstName" required />
+        </div>
+
+        <div class="form-group">
+          <label for="lastName">Last Name <span class="redStar">*</span></label>
+          <input type="text" class="form-control" id="lastName" required />
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-between mb-4">
+        <div class="form-group mr-5">
+          <label for="email">Email <span class="redStar">*</span></label>
+          <input type="email" class="form-control" id="email" required />
+        </div>
+
+        <div class="form-group">
+          <label for="mobile">Mobile No. <span class="redStar">*</span></label>
+          <input type="text" class="form-control" id="mobile" required />
+        </div>
+      </div>
+
+
+      <hr />
+
+
+      <div class="d-flex justify-content-between mt-5">
+        <div class="form-group mr-5">
+          <label for="firstName">First Name <span class="redStar">*</span></label>
+          <input type="text" class="form-control" id="firstName" required />
+        </div>
+
+        <div class="form-group">
+          <label for="lastName">Last Name <span class="redStar">*</span></label>
+          <input type="text" class="form-control" id="lastName" required />
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-between">
+        <div class="form-group mr-5">
+          <label for="email">Email <span class="redStar">*</span></label>
+          <input type="email" class="form-control" id="email" required />
+        </div>
+
+        <div class="form-group">
+          <label for="mobile">Mobile No. <span class="redStar">*</span></label>
+          <input type="text" class="form-control" id="mobile" required />
+        </div>
+      </div>
+
+      <div class="d-flex mt-4 mb-5 align-items-center">
+        <button type="submit" class="btn btn-primary">Add Company</button>
+        <div class="form-group form-check ml-5 mb-0">
+          <input type="checkbox" class="form-check-input" />
+          <label class="form-check-label" for="check">Invite Company</label>
+        </div>
+      </div>
+
+    </form> -->
+</div>

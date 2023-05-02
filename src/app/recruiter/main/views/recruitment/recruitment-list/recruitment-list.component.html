@@ -1,0 +1,213 @@
+<!-- <ng-http-loader></ng-http-loader> -->
+<div class="dashboard-page-Wrapper">
+  <div
+    id="top-action"
+    class="d-flex align-items-center justify-content-between mb-4 flex-wrap"
+  >
+    <h1 class="page-title">Recruitment</h1>
+    <div class="d-flex align-items-center">
+      <mat-form-field appearance="fill">
+        <mat-label>Enter a date range</mat-label>
+        <mat-date-range-input [rangePicker]="picker">
+          <input
+            matStartDate
+            [(ngModel)]="dateFrom"
+            placeholder="Start date"
+            (dateChange)="onDateChange()"
+          />
+          <input
+            matEndDate
+            [(ngModel)]="dateTo"
+            placeholder="End date"
+            (dateChange)="onDateChange()"
+          />
+        </mat-date-range-input>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+      </mat-form-field>
+      <!-- <div class="mr-3">
+        <label class="d-block date-label" for="dateFrom">Date From</label>
+        <input
+          [(ngModel)]="dateFrom"
+          class="mr-2 form-control"
+          type="date"
+          name="dateFrom"
+          id="dateFrom"
+        />
+      </div>
+      <div>
+        <label class="d-block date-label" for="dateTo">Date To</label>
+        <input
+          [(ngModel)]="dateTo"
+          (change)="onDateToChange()"
+          class="mr-2 form-control"
+          type="date"
+          name="dateTo"
+          id="dateTo"
+        />
+      </div> -->
+      <button class="btn sort-btn py-0" [matMenuTriggerFor]="filters"></button>
+      <mat-menu #filters="matMenu">
+        <button (click)="filterByMostRecent()" mat-menu-item>
+          By Most Recent
+        </button>
+        <button (click)="filterByOldest()" mat-menu-item>By oldest</button>
+        <button (click)="filterByAlphabeticalOrder()" mat-menu-item>
+          In Alphabetical order
+        </button>
+        <button mat-menu-item [matMenuTriggerFor]="status">By Status</button>
+        <button (click)="clearFilters()" mat-menu-item>Clear Filters</button>
+      </mat-menu>
+
+      <mat-menu #status="matMenu">
+        <button (click)="filterByStatus('Ongoing')" mat-menu-item>
+          Ongoing
+        </button>
+        <button (click)="filterByStatus('New')" mat-menu-item>New</button>
+        <button (click)="filterByStatus('Rejected')" mat-menu-item>
+          Rejected
+        </button>
+        <button (click)="filterByStatus('OnHold')" mat-menu-item>
+          On hold
+        </button>
+        <button (click)="filterByStatus('Closed')" mat-menu-item>Closed</button>
+        <button (click)="filterByStatus('Rollover')" mat-menu-item>
+          Rollover
+        </button>
+        <button
+          (click)="filterByStatus('ProfileSubmittedAwaitingFeedBack')"
+          mat-menu-item
+        >
+          Profile Submitted Awaiting feedback
+        </button>
+      </mat-menu>
+    </div>
+  </div>
+  <div class="d-flex">
+    <a
+      [routerLink]="['/recruiter/employee-management/recruitment/requisitions']"
+      class="btn success-btn btn-sm rounded requisitions-btn"
+      >Requisitions</a
+    >
+  </div>
+
+  <!-- <section id="recruitment-table">
+        <mat-tab-group animationDuration="0ms">
+            <mat-tab label="Ongoing">
+                <app-ongoing-recruitment [onGoingJobs]="onGoingJobs"></app-ongoing-recruitment>
+            </mat-tab>
+            <mat-tab label="Closed">
+                <app-closed-recruitment [closedJobs]="closedJobs"></app-closed-recruitment>
+            </mat-tab>
+        </mat-tab-group>
+    </section> -->
+
+  <!--  -->
+
+  <!--  -->
+
+  <!--  -->
+  <div class="mt-5" *ngIf="isLoading">
+    <app-simple-component-loader-with-spinner></app-simple-component-loader-with-spinner>
+  </div>
+
+  <ng-container *ngIf="!isLoading"
+    ><ng-template #noJobs>
+      <div class="alert alert-info text-center mt-5">No job post</div>
+    </ng-template>
+    <div
+      class="job-list-table table-responsive border-rounded-md mt-5"
+      *ngIf="jobVacancyList?.length && !isLoading; else noJobs"
+    >
+      <table class="table">
+        <thead class="thead">
+          <tr>
+            <th scope="col">Company Name</th>
+            <th scope="col">Position</th>
+            <th scope="col">Created by</th>
+            <th scope="col">Contact Person</th>
+            <th scope="col">Applicants</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="
+              let job of jobVacancyList
+                | paginate
+                  : {
+                      itemsPerPage: pageSize,
+                      currentPage: page,
+                      totalItems: totalPosts
+                    }
+            "
+          >
+            <th
+              scope="row"
+              [routerLink]="[
+                '/recruiter/employee-management/recruitment/job-applicants/',
+                job.Id,
+                job.Company.CompanyId
+              ]"
+              class="cursor-pointer"
+            >
+              <div class="d-flex align-items-center">
+                <div class="company-logo">
+                  <img
+                    src="assets/images/sample-company-logo.png"
+                    alt=""
+                    class="img-fluid"
+                  />
+                </div>
+                <div>{{ job.Company.Name }}</div>
+              </div>
+            </th>
+            <td>{{ job.JobTitle }}</td>
+            <td>
+              {{ job.JobPosterFirstName }}&nbsp;{{ job.JobPosterLastName }}
+            </td>
+            <!-- <td>Esther Howard</td> -->
+            <td>
+              <app-get-company-contact
+                [companyId]="job.Company.CompanyId"
+              ></app-get-company-contact>
+            </td>
+            <td>
+              <!-- {{job.Id}} -->
+              <app-get-job-applicants
+                [vacancyId]="job.Id"
+                [companyId]="job.Company.CompanyId"
+              ></app-get-job-applicants>
+            </td>
+            <td class="status-row">
+              <select
+                [ngModel]="job.Status"
+                (change)="onStatusChange($event, job.Id)"
+                [ngClass]="{
+                  ongoing: job.Status === StatusList.Ongoing,
+                  rejected: job.Status === StatusList.Rejected,
+                  'on-hold': job.Status === StatusList.OnHold,
+                  closed: job.Status === StatusList.Closed,
+                  rollover: job.Status === StatusList.Rollover,
+                  'awaiting-feedback':
+                    job.Status === StatusList.ProfileSubmittedAwaitingFeedback
+                }"
+              >
+                <option *ngFor="let status of statuses">
+                  {{ status }}
+                </option>
+              </select>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div></ng-container
+  >
+  <!-- PAGINATION -->
+  <div *ngIf="jobVacancyList?.length" class="text-right" id="pagination">
+    <pagination-controls
+      (pageChange)="pageChangeEvent($event)"
+    ></pagination-controls>
+  </div>
+</div>
+<!-- [ngClass]="{ statusClass: true }" -->

@@ -1,0 +1,77 @@
+<!-- <p>activity works!</p> -->
+<ng-template>
+  <div class="alert alert-info text-center">No Activity</div>
+</ng-template>
+<div id="deals-activity">
+  <cdk-accordion class="example-accordion pt-3">
+    <cdk-accordion-item *ngFor="let item of items; let index = index;" #accordionItem="cdkAccordionItem"
+      class="example-accordion-item" role="button" tabindex="0" [attr.id]="'accordion-header-' + index"
+      [attr.aria-expanded]="accordionItem.expanded" [attr.aria-controls]="'accordion-body-' + index">
+      <div class="example-accordion-item-header" (click)="accordionItem.toggle()">
+        <span class="activity-date"> {{ item?.date }}</span>
+        <span class="example-accordion-item-description control" [ngClass]="{'rotate': accordionItem.expanded}">
+          <!-- {{ accordionItem.expanded}}
+          Click to {{ accordionItem.expanded ? 'close' : 'open' }} -->
+          <!-- <img src="../../../../../../../../assets/images/icons/angle-down-icon.svg" alt="" class="img-fluid"> -->
+        </span>
+      </div>
+      <div class="example-accordion-item-body" role="region" [style.display]="accordionItem.expanded ? '' : 'none'"
+        [attr.id]="'accordion-body-' + index" [attr.aria-labelledby]="'accordion-header-' + index">
+
+        <div class="activity-item-content-wrapper">
+          <div class="activity-item-content border-rounded-lg">
+            <ul class="list-style-none pl-0 mb-0">
+              <!-- <li class="track-item" *ngFor="let itemContent of item?.activityList"> -->
+              <li class="track-item" *ngFor="let itemContent of activityList">
+                <div class="card-label-icon">
+                  <ng-container [ngSwitch]="itemContent?.type">
+                    <ng-container *ngSwitchCase="EMAIL_ACTIVITY">
+                      <img src="../../../../../../../../assets/images/icons/envelope-white-icon.png" alt=""
+                        class="img-fluid">
+                    </ng-container>
+                    <ng-container *ngSwitchCase="ASSIGN_TASK_ACTIVITY">
+                      <img src="../../../../../../../../assets/images/icons/task-check-file-white-icon.png" alt=""
+                        class="img-fluid">
+                    </ng-container>
+                    <ng-container *ngSwitchCase="MESSAGE_ACTIVITY">
+                      <img src="../../../../../../../../assets/images/icons/simple-file-white-icon.png" alt=""
+                        class="img-fluid">
+                    </ng-container>
+                    <!-- <div *ngSwitchCase="match_expresson_3">...</div> -->
+                    <ng-container *ngSwitchDefault>
+
+                    </ng-container>
+                  </ng-container>
+                </div>
+                <div class="activity-content-card">
+                  <ul class="activity-content-list list-style-none pl-0 mb-0">
+                    <li class="activity-content-list-item">
+                      <!-- activity-email-card -->
+                      <ng-container [ngSwitch]="itemContent?.type">
+                        <ng-container *ngSwitchCase="EMAIL_ACTIVITY">
+                          <app-activity-email-card [itemContent]="itemContent"></app-activity-email-card>
+                        </ng-container>
+                        <ng-container *ngSwitchCase="ASSIGN_TASK_ACTIVITY">
+                          <app-activity-task-card [itemContent]="itemContent"></app-activity-task-card>
+                        </ng-container>
+                        <ng-container *ngSwitchCase="MESSAGE_ACTIVITY">
+                          <app-activity-simple-message-card [itemContent]="itemContent">
+                          </app-activity-simple-message-card>
+                        </ng-container>
+                        <!-- <div *ngSwitchCase="match_expresson_3">...</div> -->
+                        <ng-container *ngSwitchDefault>
+
+                        </ng-container>
+                      </ng-container>
+
+                    </li>
+                  </ul>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </cdk-accordion-item>
+  </cdk-accordion>
+</div>

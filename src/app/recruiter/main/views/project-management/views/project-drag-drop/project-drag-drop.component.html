@@ -1,0 +1,398 @@
+<mat-sidenav-container class="drag-main-div" hasBackdrop="false">
+  <mat-sidenav
+    #sidenav
+    position="end"
+    mode="over"
+    fixedInViewport="{{ comments.length > 4 ? false : true }}"
+    class="side-nav"
+  >
+    <div class="task-details-div mb-3">
+      <div class="d-flex justify-content-between">
+        <h6 class="task-title">{{ todoInfo.TaskName }}</h6>
+        <div>
+          <i (click)="sidenav.close()" class="fas fa-times cursor-pointer"></i>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <p>Due Date</p>
+        </div>
+        <div class="col-md-4">{{ todoInfo.DueDate }}</div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <p></p>
+          <p>Assigned to</p>
+        </div>
+        <div class="col-md-4 d-flex">
+          <div *ngFor="let user of assignees" class="side-assignees-container">
+            <div class="side-assignee-img">
+              <img src="{{ user }}" alt=".." />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex">
+        <p></p>
+      </div>
+      <div>
+        <p>Description</p>
+        <p>
+          {{ todoInfo.Description ? todoInfo.Description : "No Description" }}
+        </p>
+      </div>
+    </div>
+    <p *ngIf="comments.length === 0" class="text-center">No Comments</p>
+    <div>
+      <div *ngFor="let comment of comments">
+        <!-- comment dropdown options -->
+        <mat-menu #menu="matMenu">
+          <button (click)="onEditComment(comment)" mat-menu-item>
+            Edit Comment
+          </button>
+          <button (click)="onDeleteComment(comment)" mat-menu-item>
+            Remove Comment
+          </button>
+        </mat-menu>
+
+        <div class="row mb-3">
+          <div class="col-md-2">
+            <div class="side-assignee-img">
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGa62tLVqw_JcO15Ljact1pHO9_5tH0ggvbw&usqp=CAU"
+                alt=".."
+              />
+            </div>
+          </div>
+          <div class="col-md-8 comment">{{ comment.Comment }}</div>
+          <div
+            class="col-md-2 comment-ellipsis"
+            mat-button
+            [matMenuTriggerFor]="menu"
+          >
+            <span class=""><i class="fas fa-ellipsis-h"></i></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add comment form -->
+    <form
+      *ngIf="!updateCommentTrigger"
+      [formGroup]="AddCommentForm"
+      (ngSubmit)="onSubmitComment(todoInfo.Id)"
+      class="task-details-div"
+    >
+      <div class="row">
+        <div class="col-md-12 mb-4">
+          <label for="comment" class="required-field-label form-label"
+            >Comment</label
+          >
+          <textarea
+            formControlName="Comment"
+            [ngClass]="{
+              'is-invalid':
+                AddCommentForm.get('Comment')?.touched &&
+                AddCommentForm.get('Comment')?.invalid
+            }"
+            required
+            name="Comment"
+            class="form-control"
+            id="comment"
+          ></textarea>
+        </div>
+      </div>
+      <div class="mt-3">
+        <button type="submit" class="btn btn-success">Save</button>
+      </div>
+    </form>
+
+    <!-- Update comment form-->
+    <form
+      *ngIf="updateCommentTrigger"
+      [formGroup]="EditCommentForm"
+      (ngSubmit)="onSubmitEditComment(commentInfo)"
+      class="task-details-div"
+    >
+      <div class="row">
+        <div class="col-md-12 mb-4">
+          <label for="comment" class="required-field-label form-label"
+            >Comment</label
+          >
+          <textarea
+            formControlName="Comment"
+            [ngClass]="{
+              'is-invalid':
+                EditCommentForm.get('Comment')?.touched &&
+                EditCommentForm.get('Comment')?.invalid
+            }"
+            required
+            name="Comment"
+            class="form-control"
+            id="comment"
+          ></textarea>
+        </div>
+      </div>
+      <div class="mt-3">
+        <button type="submit" class="btn btn-success">Update</button>
+      </div>
+    </form>
+  </mat-sidenav>
+  <!-- <app-side-menu [data]=""></app-side-menu> -->
+  <mat-sidenav-content cdkScrollable>
+    <div
+      class="project-header d-flex align-items-center justify-content-between px-4 py-4"
+    >
+      <!-- <button (click)="playAudio()" >click me</button> -->
+      <!-- <h1>hello</h1> -->
+
+      <div>
+        <h1 class="page-title">
+          {{ projectData ? projectData.ProjectName : "" }}
+        </h1>
+      </div>
+      <div>
+        <div class="d-flex align-items-center">
+          <p class="header-trigger">
+            <a class="trigger-link">Set Trigger</a>
+            <span class="px-3"><i class="fas fa-clock header-clock"></i></span>
+          </p>
+        </div>
+      </div>
+
+      <!-- <div class="header-assignees">
+        <div *ngIf="assignees.length > 4" class="d-flex assignees-wrapper">
+          <div
+            *ngFor="let user of assignees.slice(0, 4)"
+            class="assignees-container"
+          >
+            <div class="assignee-img"><img src="{{ user }}" alt=".." /></div>
+          </div>
+          <div class="assignee-extra-count">
+            + {{ assignees.length - assignees.slice(0, 4).length }}
+          </div>
+        </div>
+
+        <div
+          *ngIf="assignees.length <= 4"
+          class="d-flex justify-content-center"
+        >
+          <div
+            *ngFor="let user of assignees.slice(0, 4)"
+            class="assignees-container"
+          >
+            <div class="assignee-img"><img src="{{ user }}" alt=".." /></div>
+          </div>
+        </div>
+      </div> -->
+      <ul class="body-content list-style-none d-flex pl-0 mb-0">
+        <li>
+          <div class="value">
+            <div
+              class="candidates-avatar cursor-pointer"
+              [routerLink]="[
+                '/recruiter/employee-management/recruitment/job-applicants/applicant-list'
+              ]"
+            >
+              <div class="avatar-wrap">
+                commentDetails
+                <img
+                  src="../../../../../../assets/images/image-placeholder.jpg"
+                  alt=""
+                  class="img-fluid"
+                />
+              </div>
+              <div class="avatar-wrap">
+                <img
+                  src="../../../../../../assets/images/candidate-test-avatar-1.png"
+                  alt=""
+                  class="img-fluid"
+                />
+              </div>
+              <div class="avatar-wrap">
+                <img
+                  src="../../../../../../assets/images/image-placeholder.jpg"
+                  alt=""
+                  class="img-fluid"
+                />
+              </div>
+              <div class="avatar-wrap">47+</div>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <div *ngIf="categoryData.length > 0">
+        <button
+          type="button"
+          class="btn btn-sm white-btn-green-border mr-5 mb-2 mb-sm-0"
+          (click)="openDialog()"
+        >
+          +&nbsp; Create Task
+        </button>
+      </div>
+    </div>
+
+    <div class="header-times-container d-flex py-4">
+      <div class="px-5">
+        <p>Total Time Tracked</p>
+        <h6 *ngIf="projectData; else loading">
+          <app-project-hours [data]="projectData"></app-project-hours>
+        </h6>
+      </div>
+      <div class="px-5">
+        <p>Total Time Left</p>
+        <h6 *ngIf="projectData; else loading">
+          <app-project-remaining-hours
+            [data]="projectData"
+          ></app-project-remaining-hours>
+        </h6>
+      </div>
+      <div class="px-5">
+        <p>Time Line</p>
+        <div class="progress header-progress-bar" style="height: 2px">
+          <div
+            class="progress-bar"
+            role="progressbar"
+            style="width: 50%"
+            aria-valuenow="50"
+            aria-valuemin="0"
+            aria-valuemax="100"
+          ></div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="container-fluid cards-div d-flex px-4"
+      cdkDropListGroup
+      cdkScrollable
+    >
+      <div *ngFor="let cat of categories" class="col example-container">
+        <mat-menu #menu="matMenu">
+          <button (click)="openEditCategoryDialog(cat)" mat-menu-item>
+            Edit Section
+          </button>
+          <button (click)="deleteProjectCategory(cat.Id)" mat-menu-item>
+            Remove Section
+          </button>
+        </mat-menu>
+
+        <div class="d-flex justify-content-between align-items-center py-4">
+          <div class="d-flex align-items-center justify-content-center">
+            <h6 class="mb-0">{{ cat.Name }}</h6>
+          </div>
+          <div class="d-flex">
+            <div>
+              <!-- <span class="plus-icon"><i class="fas fa-plus"></i></span> -->
+            </div>
+
+            <div
+              class="ml-2 ellipsis-icon"
+              mat-button
+              [matMenuTriggerFor]="menu"
+            >
+              <span class=""><i class="fas fa-ellipsis-h"></i></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- {{data.tasks.length}} -->
+
+        <app-project-tasks-list
+          [data]="{ sidenav: sidenav, category: cat }"
+          (todoDetails)="getTodoDetails($event)"
+        >
+        </app-project-tasks-list>
+        <!-- <div
+          class="row example-list"
+          cdkDropList
+          [cdkDropListData]="cat.tasks"
+          (cdkDropListDropped)="drop($event)"
+        >
+          <div class="col-12" *ngFor="let item of cat.tasks">
+            <mat-menu #menu="matMenu">
+              <button (click)="openEditDialog(item)" mat-menu-item>
+                Edit Task
+              </button>
+              <button (click)="deleteProjectTask(item.Id)" mat-menu-item>
+                Remove Task
+              </button>
+            </mat-menu>
+            <div class="box">
+              <a class="placement-grid-card">
+                <div class="card mx-0" cdkDrag>
+                  <div class="card-body">
+                    <div class="card-title d-flex justify-content-between">
+                      <div
+                        (click)="sidenav.toggle(); setTodoInfo(item)"
+                        class="company-name"
+                      >
+                        {{ item.TaskName }}
+                        <app-project-tasks-list [categoryId]='cat?.Id'> </app-project-tasks-list>
+                      </div>
+                      <div mat-button [matMenuTriggerFor]="menu">
+                        <i class="p-1 fas fa-ellipsis-h"></i>
+                      </div>
+                    </div>
+                    <ul class="body-content list-style-none pl-0">
+                      <li>
+                        <div class="value">{{ item.DueDate }}</div>
+                      </li>
+                    </ul>
+                    <ul class="body-content list-style-none pl-0 mb-0">
+                      <li>
+                        <div class="value">
+                          <div
+                            class="candidates-avatar cursor-pointer"
+                            [routerLink]="[
+                              '/recruiter/employee-management/recruitment/job-applicants/applicant-list'
+                            ]"
+                          >
+                            <div class="avatar-wrap">
+                              <img
+                                src="../../../../../../assets/images/image-placeholder.jpg"
+                                alt=""
+                                class="img-fluid"
+                              />
+                            </div>
+                            <div class="avatar-wrap">
+                              <img
+                                src="../../../../../../assets/images/candidate-test-avatar-1.png"
+                                alt=""
+                                class="img-fluid"
+                              />
+                            </div>
+                            <div class="avatar-wrap">
+                              <img
+                                src="../../../../../../assets/images/image-placeholder.jpg"
+                                alt=""
+                                class="img-fluid"
+                              />
+                            </div>
+                            <div class="avatar-wrap">47+</div>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div> -->
+      </div>
+      <div *ngIf="categoryData.length === 0" class="col-md-5 mt-4 text-info">
+        You Have No Task Sections Added
+      </div>
+      <div class="col-md-5 mt-4">
+        <button
+          type="button"
+          (click)="openAddCategoryDialog()"
+          class="btn btn-sm white-btn-green-border mr-5 mb-2 mb-sm-0"
+        >
+          +&nbsp; Add section
+        </button>
+      </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

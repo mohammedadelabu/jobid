@@ -1,0 +1,313 @@
+<!-- <p>candidates works!</p> -->
+<div class="dashboard-page-Wrapper">
+  <div id="top-action" class="d-flex align-items-center justify-content-between mb-4 flex-wrap">
+    <h1 class="page-title">Candidates</h1>
+
+    <div class="d-flex align-items-center flex-wrap justify-content-between">
+      <!-- <div class="btn-group d-flex"> -->
+      <div class="d-flex d-md-none">
+        <button type="button" class="btn btn-sm white-btn-green-border mr-2 mb-2 mb-sm-0"
+          (click)="openInvitationDialog()">
+          +&nbsp; Invite Candidate
+        </button>
+        <div ngbDropdown class="d-inline-block">
+          <button type="button" class="btn btn-sm white-btn-green-border" id="dropdownBasic1" ngbDropdownToggle>
+            Add Resume
+          </button>
+          <div class="dropdown-content" ngbDropdownMenu aria-labelledby="dropdownBasic1">
+            <button class="btn-sm" ngbDropdownItem (click)="onCreateResume()">
+              Create Resume
+            </button>
+            <div class="dropdown-divider"></div>
+            <button class="btn-sm" ngbDropdownItem (click)="onUploadResume()">
+              Upload Resume
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="d-none d-md-flex">
+        <button type="button" class="btn white-btn-green-border mr-2 mb-2 mb-sm-0" (click)="openInvitationDialog()">
+          +&nbsp; Invite Candidate
+        </button>
+        <div ngbDropdown class="d-inline-block">
+          <button type="button" class="btn white-btn-green-border" id="dropdownBasic1" ngbDropdownToggle>
+            Add Resume
+          </button>
+          <div class="dropdown-content" ngbDropdownMenu aria-labelledby="dropdownBasic1">
+            <button ngbDropdownItem (click)="onCreateResume()">
+              Create Resume
+            </button>
+            <div class="dropdown-divider"></div>
+            <button ngbDropdownItem (click)="onUploadResume()">
+              Upload Resume
+            </button>
+          </div>
+        </div>
+      </div>
+      <!--  -->
+
+
+      <div>
+        <div ngbDropdown class="d-inline-block">
+          <button class="btn sort-btn py-0" ngbDropdownToggle></button>
+          <div class="dropdown-content" ngbDropdownMenu aria-labelledby="dropdownBasic1">
+            <button ngbDropdownItem (click)="onSortByMostRecent('Created_At')">
+              By Most Recent
+            </button>
+            <div class="dropdown-divider"></div>
+            <button ngbDropdownItem (click)="onSortByOldest('Created_At')">
+              By oldest
+            </button>
+            <div class="dropdown-divider"></div>
+            <button ngbDropdownItem (click)="onSortByAphabeticalOrder('FirstName')">
+              In Alphabetical order
+            </button>
+            <div class="dropdown-divider"></div>
+            <button ngbDropdownItem (click)="onItemsPerPage(50)">1 - 50</button>
+            <div class="dropdown-divider"></div>
+            <button ngbDropdownItem (click)="onItemsPerPage(100)">
+              1 - 100
+            </button>
+            <div class="dropdown-divider"></div>
+            <button ngbDropdownItem (click)="onItemsPerPage(200)">
+              1 - 200
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div id="grid-switch">
+        <!-- list effect -->
+        <button class="btn p-0" [ngClass]="{ 'd-none': listCandidateCards }" (click)="toggleCards()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="30.803" height="20.716" viewBox="0 0 37.803 24.716">
+            <g id="Icon_ionic-ios-list" data-name="Icon ionic-ios-list" transform="translate(-4.5 -7.313)">
+              <path id="Path_3850" data-name="Path 3850"
+                d="M10.013,18.788a2.757,2.757,0,1,1-2.757-2.757A2.757,2.757,0,0,1,10.013,18.788Z"
+                transform="translate(0 0.883)" fill="#c7d0db" />
+              <path id="Path_3851" data-name="Path 3851"
+                d="M10.013,10.069A2.757,2.757,0,1,1,7.257,7.313,2.757,2.757,0,0,1,10.013,10.069Z" fill="#c7d0db" />
+              <path id="Path_3852" data-name="Path 3852"
+                d="M10.013,27.507A2.757,2.757,0,1,1,7.257,24.75a2.757,2.757,0,0,1,2.757,2.756Z"
+                transform="translate(0 1.766)" fill="#c7d0db" />
+              <path id="Path_3853" data-name="Path 3853"
+                d="M37.591,16.875H13.915a1.575,1.575,0,1,0,0,3.15H37.591a1.575,1.575,0,0,0,0-3.15Z"
+                transform="translate(3.137 1.22)" fill="#c7d0db" />
+              <path id="Path_3854" data-name="Path 3854"
+                d="M37.591,25.594H13.915a1.575,1.575,0,0,0,0,3.15H37.591a1.575,1.575,0,0,0,0-3.15Z"
+                transform="translate(3.137 2.103)" fill="#c7d0db" />
+              <path id="Path_3855" data-name="Path 3855"
+                d="M13.915,11.307H37.591a1.575,1.575,0,0,0,0-3.15H13.915a1.575,1.575,0,1,0,0,3.15Z"
+                transform="translate(3.137 0.338)" fill="#c7d0db" />
+            </g>
+          </svg>
+        </button>
+        <!-- grid effect -->
+        <button class="btn p-0" [ngClass]="{ 'd-none': !listCandidateCards }" (click)="toggleCards()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20.368" height="20.368" viewBox="0 0 26.368 26.368">
+            <path id="Icon_open-grid-two-up" data-name="Icon open-grid-two-up"
+              d="M0,0V9.888H9.888V0ZM16.48,0V9.888h9.888V0ZM0,16.48v9.888H9.888V16.48Zm16.48,0v9.888h9.888V16.48Z"
+              fill="#c7d0db" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- {{candidatesList$ | async | json}} -->
+  <ng-template #isLoading>
+    <!-- <small class="text-info">Loading...</small> -->
+    <app-simple-component-loader-with-spinner></app-simple-component-loader-with-spinner>
+  </ng-template>
+  <!-- isCandidatesListLoading$ -->
+  <ng-template #noCandidate>
+    <div class="alert alert-info text-center">No candidate</div>
+  </ng-template>
+  <!-- <div>
+        {{UserList | json}}
+    </div> -->
+  <div *ngIf="!(isCandidatesListLoading$ | async) || UserList; else isLoading">
+    <div class="card-list-gutter" *ngIf="UserList?.length; else noCandidate">
+      <!-- CANDIDATE GRID LISTING -->
+      <div class="row no-gutters" *ngIf="!listCandidateCards; else listingTable">
+        <!-- <app-candidate-listing></app-candidate-listing> -->
+        <div class="card-wrapper col-12 col-sm-6 col-xl-4" *ngFor="
+            let Candidate of UserList
+              | paginate
+                : {
+                    itemsPerPage: ItemsPerPage,
+                    currentPage: page,
+                    totalItems: totalRecords
+                  }
+          ">
+          <div class="candidate-list-card card border-0">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-12 col-lg-3">
+                  <div class="card-profile-img">
+                    <!-- <img src="../../../../../assets/images/candidate-test-avatar-1.png" class="img-fluid"
+                                        alt="..."> -->
+                    <img src="../../../../../assets/images/image-placeholder.jpg" alt="candidate image"
+                      class="img-fluid" *ngIf="!Candidate?.ProfileImageUrl" />
+                    <img src="{{ Candidate?.ProfileImageUrl }}" alt="candidate image" class="img-fluid"
+                      *ngIf="Candidate?.ProfileImageUrl" />
+                  </div>
+                </div>
+                <div class="col-12 col-lg-9">
+                  <h5 class="card-title mb-1 cursor-pointer" [routerLink]="[
+                      '/recruiter/candidates/details/',
+                      Candidate?.Id
+                    ]" title="{{ Candidate?.FirstName }}&nbsp;{{
+                      Candidate?.MiddleName
+                    }}&nbsp;{{ Candidate?.LastName }}">
+                    {{ Candidate?.FirstName | lowercase }}&nbsp;{{
+                    Candidate?.MiddleName | lowercase
+                    }}&nbsp;{{ Candidate?.LastName | lowercase }}
+                  </h5>
+                  <!-- PROFILE PREVIEW -->
+                  <app-candidate-profile [candidateId]="Candidate?.Id" [ngStyle]="candidateProfessionGridStyle">
+                  </app-candidate-profile>
+                  <app-candidate-portfolio-linkedin [candidateId]="Candidate?.Id"
+                    [ngStyle]="candidateProfessionGridStyle"></app-candidate-portfolio-linkedin>
+                  <!--  -->
+                  <div class="candidate-btn-container">
+                    <button class="candidate-btn" [routerLink]="[
+                        '/recruiter/candidates/cv-preview/',
+                        Candidate?.Id
+                      ]">
+                      <img src="assets/images/icons/view-cv-btn-icon.svg" alt="" class="img-fluid mr-2" />View CV
+                    </button>
+                    <span class="mx-2"></span>
+                    <button class="candidate-btn" (click)="
+                        openScheduleInterviewDialog(
+                          Candidate?.Email,
+                          Candidate?.Id
+                        )
+                      ">
+                      <img src="assets/images/icons/interview-icon-alt.svg" alt="" class="img-fluid mr-2" />Interview
+                    </button>
+                  </div>
+                  <!-- <div
+                    class="card-action btn-group btn-block"
+                    role="group"
+                    aria-label="card action"
+                  >
+                    <a
+                      [routerLink]="[
+                        '/recruiter/candidates/cv-preview/',
+                        Candidate?.Id
+                      ]"
+                      type="button"
+                      class="btn"
+                    >
+                      <img
+                        src="../../../../../assets/images/icons/view-cv-btn-icon.svg"
+                        alt=""
+                        class="img-fluid mr-1"
+                      />
+                      View CV</a
+                    >
+                    <button
+                      type="button"
+                      class="btn"
+                      (click)="
+                        openScheduleInterviewDialog(
+                          Candidate?.Email,
+                          Candidate?.Id
+                        )
+                      "
+                    >
+                      <img
+                        src="../../../../../assets/images/icons/interview-icon-alt.svg"
+                        alt=""
+                        class="img-fluid mr-1"
+                      />
+                      Interview
+                    </button>
+                  </div> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CANDIDATE TABLE LISTING -->
+      <ng-template #listingTable>
+        <div class="row" *ngIf="UserList">
+          <div class="col-12">
+            <div class="dashboard-table table-responsive border-rounded-md">
+              <table class="table">
+                <thead class="thead">
+                  <tr>
+                    <th scope="col">s/N</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Position</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Mobile No</th>
+                    <th scope="col" class="column-action"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="
+                      let Candidate of UserList
+                        | paginate
+                          : {
+                              itemsPerPage: ItemsPerPage,
+                              currentPage: page,
+                              totalItems: totalRecords
+                            };
+                      let i = index
+                    " [routerLink]="[
+                      '/recruiter/candidates/cv-preview/',
+                      Candidate?.Id
+                    ]">
+                    <th scope="row">
+                      {{ i + 1 }}
+                    </th>
+                    <th scope="row">
+                      {{ Candidate?.FirstName }}&nbsp;{{
+                      Candidate?.MiddleName
+                      }}&nbsp;{{ Candidate?.LastName }}
+                    </th>
+                    <td>
+                      <!-- PROFILE PREVIEW -->
+                      <app-candidate-profile [candidateId]="Candidate?.Id" [ngStyle]="candidateProfessionListStyle">
+                      </app-candidate-profile>
+                    </td>
+                    <td>{{ Candidate?.Email }}</td>
+                    <td>{{ Candidate?.PhoneNumber }}</td>
+                    <td>
+                      <div class="btn-group w-100" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-sm" [routerLink]="[
+                            '/recruiter/candidates/cv-preview/',
+                            Candidate?.Id
+                          ]">
+                          <img src="../../../../../assets/images/icons/view-cv-table-icon.svg" alt="view" />
+                        </button>
+                        <button type="button" class="btn btn-sm">
+                          <img src="../../../../../assets/images/icons/interview-table-icon.svg" alt="interview" />
+                        </button>
+                        <button type="button" class="btn btn-sm" [routerLink]="[
+                            '/recruiter/candidates/details/',
+                            Candidate?.Id
+                          ]">
+                          <img src="../../../../../assets/images/icons/green-eye-icon.svg" alt="view" />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+
+      <!-- PAGINATION -->
+      <div class="text-right" *ngIf="UserList" id="pagination">
+        <!-- <pagination-controls (pageChange)="page = $event"></pagination-controls> -->
+        <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+.page-title {
+  line-height: normal !important;
+  margin-bottom: 0 !important;
+}
+
+.cursor-pointer{
+  cursor: pointer
+}
+
+.content-wrapper {
+  margin: 40px auto 40px auto !important;
+}
+
+.za-text-primary {
+  color: rgba(20, 152, 75, 1);
+}
+
+.za-border {
+  border: 1px solid #dadada;
+  background-color: rgba(218, 218, 218, 0.5);
+  border-radius: 10px;
+}
+
+.za-task-des {
+  color: #8a999f;
+  text-align: left;
+  font-size: 0.875rem;
+  font-weight: 300;
+  margin-top: 10px;
+}
+
+.primary-color {
+  color: rgba(20, 152, 75, 1);
+}
+
+mat-form-field.mat-form-field {
+  font-size: 14px;
+}

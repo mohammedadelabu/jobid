@@ -1,0 +1,30 @@
+<!-- <p>upcoming works!</p> -->
+<div id="upcoming-todos">
+    <ul id="todo-list" class="list-style-none pl-0 mb-0">
+        <!-- <li class="todo-item" *ngFor="let item of items; let i = index">
+            <div class="todo-card">
+                <div class="inner-wrapper">
+                    <label for="item{{i}}" class="content">
+                        <h5 class="todo-title">Invite all candidates</h5>
+                        <div class="todo-date-time">
+                            <span class="date">25 May</span>
+                            <span class="time">7am</span>
+                        </div>
+                        <div class="todo-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Congue aliquam,
+                            eu
+                            diam
+                            volutpat sem nisl magna nunc.</div>
+                    </label>
+                    <div class="todo-check-control">
+                        <input type="checkbox" name="" id="item{{i}}">
+                        <span class="ui-check"></span>
+                    </div>
+                </div>
+            </div>
+        </li> -->
+        <li class="todo-item" *ngFor="let todo of todoList; let i = index">
+            <app-todo-list-card [todo]="todo" [indexNumber]="i" (onUpdateIsCompleted)="UpdateIsCompleted(todo)">
+            </app-todo-list-card>
+        </li>
+    </ul>
+</div>

@@ -1,0 +1,18 @@
+<!-- <p>create-new-tag works!</p> -->
+
+<form action="">
+    <div class="form-group">
+        <input type="text" class="form-control" placeholder="Enter tag name" aria-label="Enter tag"
+            aria-describedby="button-addon2" [(ngModel)]="tag" [ngModelOptions]="{ standalone: true }" />
+    </div>
+    <div class="form-group">
+        <button class="btn success-btn" type="button" id="button-addon2" (click)="onAddNewTag()" [disabled]="isSending">
+            <ng-container *ngIf="isSending">Adding...</ng-container>
+            <ng-container *ngIf="!isSending">Add</ng-container>
+        </button>
+        <span class="mx-1"></span>
+        <button class="btn outline-danger-btn" type="button" id="button-addon2" (click)="toggleaddNewTag()">
+            Cancel
+        </button>
+    </div>
+</form>

@@ -1,0 +1,25 @@
+<!-- <p>education works!</p> -->
+<h1 class="page-title">Tell us about your education</h1>
+<p class="title-tagline">Include every school, even if you’re still there or didn’t graduate</p>
+
+<div class="mb-5">
+    <!-- <p>Id: {{candidateId}}</p> -->
+    <!-- PREVIEW EDUCATION -->
+    <app-preview-education [candidateId]="candidateId" *ngIf="!isAddEducation"></app-preview-education>
+    <!-- ADD EDUCATION -->
+    <div *ngIf="isAddEducation">
+        <app-add-education [candidateId]="candidateId" (closeIsAddEducation)="onCloseIsAddEducation()"></app-add-education>
+    </div>
+
+    <!-- UPDATE EDUCATION -->
+    <div *ngIf="isUpdateEducation">
+        <app-update-education (closeIsUpdateEducation)="onCloseIsUpdateEducation()"></app-update-education>
+    </div>
+    <div class="mb-4">
+        <button class="btn btn-lg btn-block text-uppercase add-more-block-btn" *ngIf="!isAddEducation" (click)="isAddEducation=true">Add Education</button>
+    </div>
+    <div class="d-flex justify-content-between align-items-center" *ngIf="!isAddEducation">
+        <button type="button " class="btn btn-outline-success px-md-4 previous-btn" [routerLink]="['/candidate/profile-setup/work-history']">BACK</button>
+        <button type="submit" class="btn success-btn px-md-4 next-btn" [routerLink]="['/candidate/profile-setup/skills']">NEXT</button>
+    </div>
+</div>

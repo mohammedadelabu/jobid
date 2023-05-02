@@ -1,0 +1,78 @@
+<div class="todo-container">
+  <nav class="todo-nav">
+    <div class="todo-div mb-5">
+      <h2>Projects</h2>
+      <div>
+        <button
+          type="button"
+          class="btn btn-sm white-btn-green-border mr-5 mb-2 mb-sm-0"
+          (click)="openDialog()"
+        >
+          +&nbsp; Create Project
+        </button>
+      </div>
+    </div>
+    <div class="table-div">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Project Name</th>
+            <th scope="col">Company</th>
+            <th scope="col">Time Tracked(hh:mm)</th>
+            <th scope="col">Time Left(hh:mm)</th>
+            <th scope="col">Timeline</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let project of projectList">
+            <!-- Drop down -->
+            <mat-menu #menu="matMenu">
+              <button (click)="openEditDialog(project)" mat-menu-item>
+                Edit Project
+              </button>
+              <button (click)="deleteProject(project.ProjectId)" mat-menu-item>
+                Remove Project
+              </button>
+            </mat-menu>
+            <td>
+              <a
+                [routerLink]="[project.ProjectId + '/' + 'project-drag-drop']"
+                class="text-secondary"
+              >
+                {{ project.ProjectName }}
+              </a>
+            </td>
+            <td>Johnson & Johnson</td>
+            <td><app-project-hours [data]="project"></app-project-hours></td>
+            <td>
+              <app-project-remaining-hours
+                [data]="project"
+              ></app-project-remaining-hours>
+            </td>
+            <td>
+              <div class="progress" style="height: 3px">
+                <div
+                  class="progress-bar bg-success"
+                  role="progressbar"
+                  style="width: 40%"
+                  aria-valuenow="40"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                ></div>
+              </div>
+            </td>
+            <td>
+              <span>Set Trigger</span>
+              <i
+                mat-button
+                [matMenuTriggerFor]="menu"
+                class="p-1 fas fa-ellipsis-h ml-2"
+              ></i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </nav>
+</div>

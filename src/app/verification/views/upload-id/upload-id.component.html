@@ -1,0 +1,114 @@
+<!-- <p>upload-id works!</p> -->
+<!-- <p>basic-information works!</p> -->
+<div class="verification-form-wrapper">
+    <div class="inner">
+        <div class="form-step-indicator text-center">
+            <ul class="steps">
+                <li class="step done">
+                    <div>
+                        <!-- <div class="number">01</div> -->
+                        <div class="heading">
+                            <span class="number">01</span>
+                            <span class="step-title">Picture upload</span>
+                        </div>
+                        <div class="bulb">
+                        </div>
+                    </div>
+                </li>
+                <li class="step active">
+                    <div>
+                        <!-- <div class="number">02</div> -->
+                        <div class="heading">
+                            <span class="number">02</span>
+                            <span class="step-title">Government ID</span>
+                        </div>
+                        <div class="bulb">
+                        </div>
+                    </div>
+                </li>
+                <li class="step">
+                    <!-- <div class="number">03</div> -->
+                    <div>
+                        <div class="heading">
+                            <span class="number">03</span>
+                            <span class="step-title">Address Verification</span>
+                        </div>
+                        <div class="bulb">
+                        </div>
+                    </div>
+                </li>
+                <li class="step">
+                    <!-- <div class="number">04</div> -->
+                    <div>
+                        <div class="heading">
+                            <span class="number">04</span>
+                            <span class="step-title">Proof of Expertise</span>
+                        </div>
+                        <div class="bulb">
+                        </div>
+                    </div>
+                </li>
+                <li class="step">
+                    <!-- <div class="number">05</div> -->
+                    <div>
+                        <div class="heading">
+                            <span class="number">05</span>
+                            <span class="step-title">Gaurantor</span>
+                        </div>
+                        <div class="bulb">
+                        </div>
+                    </div>
+                </li>
+                <li class="step">
+                    <!-- <div class="number">06</div> -->
+                    <div>
+                        <div class="heading">
+                            <span class="number">06</span>
+                            <span class="step-title">Success</span>
+                        </div>
+                        <div class="bulb">
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <h1 class="title">We need a photo of your Government ID</h1>
+        <h2 class="sub-title">Your document should not be more than 2MB in size and should be in PDF or Word Document format</h2>
+
+
+        <form [formGroup]="identityDocumentForm" (ngSubmit)="onSubmit()">
+            <div class="card mb-4 verification-from-wrap">
+                <!-- <form #verifyPasswordForm="ngForm" (ngSubmit)="onSubmit(verifyPasswordForm)"> -->
+                <div class="fieldset card-body border-0">
+                    <div class="form-row align-items-center">
+                        <div class="form-group col-12 col-md-7">
+                            <h3 class="">Means of Identification</h3>
+                            <aside>Please choose a means of Identification</aside>
+                            <div class="radio-options pl-md-5">
+                                <mat-radio-group aria-label="Select an option" formControlName="DocumentType">
+                                    <mat-radio-button value="Driver’s Licence">Driver’s Licence</mat-radio-button>
+                                    <mat-radio-button value="International Passport">International Passport</mat-radio-button>
+                                    <mat-radio-button value="Other Government Issued ID Card">Other Government Issued ID Card</mat-radio-button>
+                                </mat-radio-group>
+                            </div>
+                        </div>
+                        <div class="form-group col-12 col-md-5 text-center">
+                            <label id="file-label" for="idDocument">
+                                Click here to select a file 2MB max
+                                <p class="mb-0 text-center" *ngIf="label">{{label}}</p>
+                                <input type="file" id="idDocument" class="form-control" hidden (change)="onSelectFile($event)">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-right">
+                <div class="d-flex align-items-start">
+                    <button class="btn white-btn-green-border back-icon mr-4 ml-auto">Back</button>
+                    <button class="btn success-btn">Save & Continue</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>

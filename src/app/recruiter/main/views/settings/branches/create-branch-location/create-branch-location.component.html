@@ -1,0 +1,59 @@
+<!-- <p>create-branch-location works!</p> -->
+
+<div class="branch-content-container">
+    <div class="container-fluid py-3">
+        <div class="card border-rounded-lg ">
+            <div class="card-body">
+                <h5 class="form-title">Create Branch</h5>
+                <!-- {{CreateBranchLocationForm.valid | json}} -->
+                <form [formGroup]="CreateBranchLocationForm" (ngSubmit)="onSubmit()">
+                    <div class="form-row">
+                        <div class="form-group col-12 col-lg-6">
+                            <label for="BranchName" class="required-field-label">Branch Name</label>
+                            <input type="text" id="BranchName" class="form-control" formControlName="BranchName"
+                                [ngClass]="{'is-invalid': CreateBranchLocationForm.get('BranchName')?.touched && CreateBranchLocationForm.get('BranchName')?.invalid}"
+                                required>
+                        </div>
+                        <div class="form-group col-12 col-lg-6">
+                            <label for="BranchType" class="required-field-label">Branch Type</label>
+                            <select id="BranchType" class="form-control" formControlName="BranchType"
+                                [ngClass]="{'is-invalid': CreateBranchLocationForm.get('BranchType')?.touched && CreateBranchLocationForm.get('BranchType')?.invalid}">
+                                <option value="" disabled>Select a branch</option>
+                                <option [value]="item.Value" *ngFor="let item of BranchTypeList">{{item.Name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-12 col-lg-6">
+                            <label for="Street">Street</label>
+                            <input type="text" id="Street" class="form-control" formControlName="Street">
+                        </div>
+                        <div class="form-group col-12 col-lg-6">
+                            <label for="City">City</label>
+                            <input type="text" id="City" class="form-control" formControlName="City">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-12 col-lg-6">
+                            <label for="Country">Country</label>
+                            <select class="form-control" formControlName="Country">
+                                <option *ngFor="let item of (LocationList$ | async)" [value]="item?.Name">{{item?.Name}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="form-group col-12 col-lg-6">
+                            <label for="PostalCode">Postal Code</label>
+                            <input type="text" id="PostalCode" class="form-control" formControlName="PostalCode">
+                        </div>
+                    </div>
+                    <button class="btn success-btn mb-5" [disabled]="CreateBranchLocationForm.invalid || isSending">
+                        <ng-container *ngIf="isSending">Creating...</ng-container>
+                        <ng-container *ngIf="!isSending">Creating</ng-container>
+                    </button>
+                    <span class="mx-1"></span>
+                    <button type="button" class="btn outline-danger-btn mb-5" (click)="cancelDialog()">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,129 @@
+@use "../../../../../../sass/_abstracts/typography";
+@use "../../../../../../sass/_partials/mixins";
+
+.main-page-wrapper {
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+.page-title {
+    font-family: typography.$rubikFontFamily;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 40px;
+    letter-spacing: -0.03em;
+    color: #303030;
+    // text-align: center;
+}
+
+.step-check-icon {
+    background: #a1a1a1;
+    width: 45.83px;
+    height: 45.83px;
+    border-radius: 50%;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: -75px;
+    margin-bottom: -45.83px;
+    &.done {
+        background: #008cfe;
+    }
+    &::after {
+        @include mixins.after("\f00c", 1.7rem);
+        color: #ffffff;
+    }
+    &::before {
+        content: "";
+        // height: ;
+    }
+}
+
+#account-setup-steps {
+    li {
+        border-left: 4px solid #F2F2F2;
+        padding-left: 50px;
+    }
+}
+
+.step {
+    .step-content {
+        background: #ffffff;
+        border: 1px solid #cacaca;
+        border-radius: 16px;
+        display: inline-block;
+        padding: 1.2em 1.35em;
+        min-width: 500px;
+
+        .step-title {
+            .title {
+                font-family: typography.$rubikFontFamily;
+                font-style: normal;
+                font-weight: 400;
+                font-size: 20px;
+                line-height: 150%;
+                letter-spacing: -0.02em;
+                color: #545454;
+                min-width: 500px;
+
+                .label-note {
+                    color: #797979;
+                }
+            }
+        }
+
+        .step-form-container {
+        }
+
+        .example-accordion-item-body {
+            padding-top: 2.2em;
+        }
+    }
+}
+
+.example-accordion {
+    display: block;
+    // max-width: 500px;
+}
+
+// .example-accordion-item {
+//     display: block;
+//     border: solid 1px #ccc;
+// }
+
+// .example-accordion-item+.example-accordion-item {
+//     border-top: none;
+// }
+
+// .example-accordion-item-header {
+//     display: flex;
+//     align-content: center;
+//     justify-content: space-between;
+// }
+
+// .example-accordion-item-description {
+//     font-size: 0.85em;
+//     color: #999;
+// }
+
+// .example-accordion-item-header,
+// .example-accordion-item-body {
+//     padding: 16px;
+// }
+
+// .example-accordion-item-header:hover {
+//     cursor: pointer;
+//     background-color: #eee;
+// }
+
+// .example-accordion-item:first-child {
+//     border-top-left-radius: 4px;
+//     border-top-right-radius: 4px;
+// }
+
+// .example-accordion-item:last-child {
+//     border-bottom-left-radius: 4px;
+//     border-bottom-right-radius: 4px;
+// }

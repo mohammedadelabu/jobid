@@ -1,0 +1,151 @@
+<div class="container">
+  <h3 class="text-center mb-4">Edit Task Task</h3>
+  <mat-dialog-content class="mat-typography">
+    <form [formGroup]="EditTaskForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-md-6 mb-4">
+          <label for="TaskName" class="required-field-label form-label"
+            >Task Title</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            id="TaskName"
+            formControlName="TaskName"
+            [ngClass]="{
+              'is-invalid':
+                EditTaskForm.get('TaskName')?.touched &&
+                EditTaskForm.get('TaskName')?.invalid
+            }"
+            required
+          />
+          <small
+            id="nameErrorMsg"
+            class="form-text text-danger invalid-feedback"
+            >Task Title is required.</small
+          >
+        </div>
+        <div class="col-md-6 mb-4">
+          <!-- <label for="company-field" class="form-label"
+            >Company<span>*</span></label
+          > -->
+          <label for="DueDate" class="required-field-label">Due Date</label>
+
+          <input
+            type="date"
+            name="DueDate"
+            id="DueDate"
+            class="form-control"
+            formControlName="DueDate"
+            [ngClass]="{
+              'is-invalid':
+                EditTaskForm.get('DueDate')?.touched &&
+                EditTaskForm.get('DueDate')?.invalid
+            }"
+            required
+          />
+        </div>
+
+        <!-- <div class="form-group col-md-6 mb-4">
+          <label for="name">Assign a Candidate</label>
+          <mat-chip-list #chipList aria-label="Assignee selection">
+            <mat-chip *ngFor="let assignee of assignees" (removed)="remove(assignee)">
+              {{ assignee }}
+              <button matChipRemove>
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </mat-chip>
+            <input
+              #assigneeInput
+              [formControl]="assigneeControl"
+              [matAutocomplete]="auto"
+              [matChipInputFor]="chipList"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+              (matChipInputTokenEnd)="add($event)"
+              class="form-control"
+              formControlName="DueDate"
+              [ngClass]="{
+                'is-invalid':
+                  EditTaskForm.get('DueDate')?.touched &&
+                  EditTaskForm.get('DueDate')?.invalid
+              }"
+              required
+            />
+          </mat-chip-list>
+          <mat-autocomplete
+            #auto="matAutocomplete"
+            (optionSelected)="selected($event)"
+          >
+            <mat-option
+              *ngFor="let assignee of filteredAssignees | async"
+              [value]="assignee"
+            >
+              {{ assignee }}
+            </mat-option>
+          </mat-autocomplete>
+        </div> -->
+
+        <div class="col-md-6 mb-4">
+          <label for="time-field" class="required-field-label form-label"
+            >Start Time</label
+          >
+          <input
+            type="time"
+            name="StartTime"
+            class="form-control"
+            placeholder="HH:MM"
+            id="time-field"
+            formControlName="StartTime"
+            [ngClass]="{
+              'is-invalid':
+                EditTaskForm.get('StartTime')?.touched &&
+                EditTaskForm.get('StartTime')?.invalid
+            }"
+            required
+          />
+        </div>
+        <div class="col-md-6 mb-4">
+          <label for="end-time" class="required-field-label form-label"
+            >End Time</label
+          >
+          <input
+            type="time"
+            name="EndTime"
+            class="form-control"
+            id="end-time"
+            value=""
+            placeholder="HH:MM"
+            formControlName="EndTime"
+            [ngClass]="{
+              'is-invalid':
+                EditTaskForm.get('EndTime')?.touched &&
+                EditTaskForm.get('EndTime')?.invalid
+            }"
+            required
+          />
+        </div>
+
+        <div class="col-md-12 mb-4">
+          <label for="description" class="required-field-label form-label"
+            >Description</label
+          >
+          <textarea
+            formControlName="Description"
+            [ngClass]="{
+              'is-invalid':
+                EditTaskForm.get('Description')?.touched &&
+                EditTaskForm.get('Description')?.invalid
+            }"
+            required
+            name="Description"
+            class="form-control"
+            id="description"
+          ></textarea>
+        </div>
+      </div>
+      <div class="mt-3">
+        <button type="submit" class="btn btn-success">Save</button>
+      </div>
+    </form>
+  </mat-dialog-content>
+</div>

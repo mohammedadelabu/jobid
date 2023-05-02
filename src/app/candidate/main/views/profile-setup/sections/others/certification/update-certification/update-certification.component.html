@@ -1,0 +1,63 @@
+<!-- <p>update-certification works!</p> -->
+<div class="alert alert-info text-center" *ngIf="responseMessage">{{responseMessage}}</div>
+
+<div class="text-right">
+    <button class="btn btn-sm" (click)="onCloseForm()">
+        <i class="fas fa-times text-danger"></i>
+    </button>
+</div>
+<div class="text-right">
+    <button class="btn btn-sm btn-default text-bold text-info" (click)="onPreviewUploadedCV(doc)">Preview certificate</button>
+</div>
+<form class="mb-5" [formGroup]="certificationUpdateForm" (ngSubmit)="saveCertification()" novalidate>
+    <div class="form-row">
+        <div class="form-group col-12 col-sm-6">
+            <label for="CertificationName">Certification Name</label>
+            <input type="text" name="CertificationName" id="CertificationName" class="form-control" formControlName="CertificationName">
+        </div>
+        <div class="form-group col-12 col-sm-6">
+            <label for="IssuingOrganisation">Issuing Organisation</label>
+            <input type="text" name="IssuingOrganisation" id="IssuingOrganisation" class="form-control" formControlName="IssuingOrganisation">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-12 col-sm-6">
+            <label for="IssueYear">Issue Year</label>
+            <!-- <input type="text" name="IssueYear" id="IssueYear" class="form-control" placeholder="Issue Date" formControlName="IssueYear" ngbDatepicker #IssueYear="ngbDatepicker" (click)="IssueYear.toggle()"> -->
+            <input type="month" name="IssueYear" id="IssueYear" class="form-control" formControlName="IssueYear">
+        </div>
+        <div class="form-group col-12 col-sm-6">
+            <label for="ExpirationYear">Expiration Year</label>
+            <!-- <input type="text" name="ExpirationYear" id="ExpirationYear" class="form-control" placeholder="ExpirationYear" formControlName="ExpirationYear" ngbDatepicker #ExpirationYear="ngbDatepicker" (click)="ExpirationYear.toggle()"> -->
+            <input type="month" name="ExpirationYear" id="ExpirationYear" class="form-control" formControlName="ExpirationYear">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-12">
+            <label for="CredentialsID">Credentials ID</label>
+            <input type="text" name="CredentialsID" id="CredentialsID" class="form-control" formControlName="CredentialsID">
+        </div>
+        <!-- <div class="form-group col-12 col-sm-6">
+            <label for="CredentialsUrl">Credentials Url</label>
+            <input type="text" name="CredentialsUrl" id="CredentialsUrl" class="form-control" formControlName="CredentialsUrl">
+        </div> -->
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-12">
+            <div class="form-control-wrapper mb-4">
+                <div id="ui-temp">
+                    <div id="file-name">{{label}}</div>
+                </div>
+                <input type="file" (change)="onSelectFile($event)" name="Image" id="Image" class="form-control">
+            </div>
+        </div>
+    </div>
+    <!-- <div>
+        <button class="btn form-btn px-md-5">UPDATE</button>
+    </div> -->
+    <div>
+        <button type="submit" class="btn btn-outline-success px-5">UPDATE</button>
+    </div>
+
+</form>

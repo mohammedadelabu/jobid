@@ -1,0 +1,170 @@
+@use "../../../../../../../../sass/_partials/mixins";
+
+section{
+    &:last-child{
+        margin-bottom: 3em !important;
+    }
+}
+.section-wrapper,
+.section-wrapper-alt {
+    background: #f0f0f0;
+    border: 1px solid #dadada;
+    border-radius: 10px;
+}
+.section-wrapper {
+    min-height: 200px;
+}
+
+.tab-title {
+    font-family: 'Poppins';
+    font-style: 'normal';
+    font-weight: '700';
+    font-size: '20px';
+    line-height: '30px';
+    color: '#4F656E';
+}
+
+.section-title {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 30px;
+    color: #4f656e;
+}
+
+#company-information {
+    font-family: "Poppins";
+    font-style: normal;
+
+    .brand-logo {
+        max-width: 150px;
+        // background-color: #FFFFFF;
+        display: inline-flex;
+    }
+}
+
+.section{
+    margin-top: 2em;
+    &:last-child{
+        margin-bottom: 3em;
+    }
+}
+
+// .listing {
+//     display: flex;
+//     flex-wrap: wrap;
+//     li {
+//         flex-basis: 50%;
+//         margin-bottom: 2em;
+//         &:first-child {
+//             &.logo-item {
+//                 flex-basis: 100%;
+//             }
+//         }
+//         &:last-child {
+//             margin-bottom: 0;
+//         }
+//         @include mixins.maxmq(500px){
+//             flex-basis: 100%;
+//         }
+//     }
+// }
+// .list-title {
+//     font-weight: 400;
+//     font-size: 12px;
+//     line-height: 18px;
+//     color: #8a999f;
+// }
+
+// .list-value {
+//     font-weight: 400;
+//     font-size: 16px;
+//     line-height: 24px;
+//     color: #14323e;
+//     &.phone, &.email{
+//         white-space: nowrap;
+//     }
+// }
+
+#company-contacts {
+    .item {
+        border-bottom: 1px solid #c7c7c7;
+        padding-top: 1.2em;
+        padding-bottom: 1.2em;
+
+        &:first-child {
+            padding-top: 0;
+        }
+
+        &:last-child {
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+    }
+}
+
+.text-primary-title-sm {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    color: #14984b;
+}
+
+#job-details {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #4f656e;
+
+    #job-preview-details-row {
+        border-bottom: 1px solid #c7c7c7;
+        padding-bottom: 1em;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-bottom: 1.5em;
+        padding-left: 0;
+
+        li {
+            margin-right: 3em;
+
+            i {
+                color: #4fb278;
+                margin-right: 0.3em;
+            }
+        }
+    }
+
+    #job-detailed-information {
+        >li {
+            border-bottom: 1px solid #c7c7c7;
+            padding-bottom: 2em;
+            margin-bottom: 2em;
+
+            &:last-child {
+                border-bottom: none;
+                padding-bottom: 0;
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    .content-title {
+        font-family: "Poppins";
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 24px;
+        color: #4f656e;
+    }
+}
+
+
+.shortlisted-candidate-card {
+    margin: 1em;
+}

@@ -1,0 +1,113 @@
+@use "../../../../../../../sass/_abstracts/colors";
+@use "../../../../../../../sass/_abstracts/typography";
+@use "../../../../../../../sass/_partials/mixins";
+
+.color-pallete{
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    max-width: 100%;
+    overflow: auto;
+    li{
+        // margin: 10px;
+    }
+}
+.custom-check {
+    input[type="radio"] {
+        position: absolute;
+        cursor: pointer;
+        &:checked + label {
+            // color: red;
+        }
+    }
+    label {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        &.color-1 {
+            // color: #b2b3d5 !important;
+            .ui-radio {
+                // background-color: #b2b3d5 !important;
+                background-color: #e9d5eb !important;
+            }
+        }
+        &.color-2 {
+            // color: #4c6f35;
+            .ui-radio {
+                // background-color: #e0d2c1 !important;
+                background-color: #eddeeb69 !important;
+            }
+        }
+        &.color-3 {
+            // color: #dcea21;
+            .ui-radio {
+                // background-color: #d0eadb !important;
+                background-color: #d0eadb !important;
+            }
+        }
+        &.color-4 {
+            // color: #dcea21;
+            .ui-radio {
+                // background-color: #d0eadb !important;
+                background-color: #e0c1c4 !important;
+            }
+        }
+        &.color-5 {
+            // color: #dcea21;
+            .ui-radio {
+                // background-color: #d0eadb !important;
+                background-color: #edd7d7 !important;
+            }
+        }
+        &.color-6 {
+            // color: #dcea21;
+            .ui-radio {
+                // background-color: #d0eadb !important;
+                background-color: #e2eed4 !important;
+            }
+        }
+        &.color-7 {
+            // color: #dcea21;
+            .ui-radio {
+                // background-color: #d0eadb !important;
+                background-color: #daeaec !important;
+            }
+        }
+    }
+    .ui-radio,
+    .ui-check {
+        display: block;
+        width: 1.2rem;
+        min-width: 1.2rem;
+        height: 1.2rem;
+        left: 409px;
+        top: 450px;
+        // border: 2px solid colors.$Grey;
+        border: none;
+        box-sizing: border-box;
+        // margin-right: 1em;
+    }
+    .ui-radio {
+        // border-radius: 50%;
+        // border-radius: 3px;
+        border-radius: 0;
+    }
+    input[type="radio"] {
+        position: absolute;
+        opacity: 0;
+        &:checked + label {
+            .ui-radio {
+                padding: 1px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border: none;
+                // background-color: colors.$PrimaryColorGreen;
+                &::before {
+                    @include mixins.before("\f00c", 12px);
+                    color: #ffffff;
+                }
+            }
+        }
+    }
+}

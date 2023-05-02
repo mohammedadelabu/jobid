@@ -1,0 +1,99 @@
+<!-- <p>preview-skill works!</p> -->
+<div *ngIf="!candidateSkillList?.length">
+    <div class="alert alert-info text-center my-4">No Skill</div>
+</div>
+<ul class="list-style-none pl-0" id="skills-listing" *ngIf="candidateSkillList?.length">
+    <li *ngFor="let skill of candidateSkillList">
+        <div class="d-flex align-items-center justify-content-between">
+            <h5 class="list-title">
+                <app-skill-title [skillCategoryId]="skill?.CategoryId"></app-skill-title>
+            </h5>
+            <div class="card-control d-flex">
+                <button class="btn text-info" (click)="updateSkill(skill.Id, candidateId)">
+            <i class="fas fa-pen"></i>
+          </button>
+
+                <button class="btn text-danger" (click)="removeSkill(skill?.Id)">
+            <i class="fas fa-trash"></i>
+          </button>
+            </div>
+        </div>
+        <div class="display-content-card">
+            <div class="px-3 pt-2">
+                <!-- <ul class="skills list-style-none pl-0 py-3">
+                  <li class="skill-item" *ngFor="let item of skill?.Skills | stringToArray">
+                      <span>{{item}}</span>
+                  </li>
+              </ul> -->
+
+                <!-- <ul class="skills list-style-none pl-0 py-3">
+                  <li class="skill-item" *ngFor="let item of skill?.Skills | stringToArray">
+                      <span>{{item}}</span>
+                  </li>
+              </ul> -->
+                <ul class="skills interact list-style-none pl-0 mb-0">
+                    <li class="skill-item" *ngFor="let item of skill?.Skills | stringToArray">
+                        <span>{{ item }}
+                <button
+                  class="btn btn-sm pr-0"
+                  (click)="removeSkillItem(item, skill)"
+                ></button
+              ></span>
+                    </li>
+                </ul>
+                <!-- <ul class="skills interact list-style-none pl-0  mb-0">
+            <li class="skill-item">
+              <span>WEB API <button class="btn btn-sm pr-0"></button></span>
+            </li>
+            <li class="skill-item">
+              <span>Dynamics CRM 365</span>
+            </li>
+            <li class="skill-item">
+              <span>JavaScript (XRM Libraries)</span>
+            </li>
+            <li class="skill-item">
+              <span>WEB API</span>
+            </li>
+            <li class="skill-item">
+              <span>Dynamics CRM 365</span>
+            </li>
+            <li class="skill-item">
+              <span>JavaScript (XRM Libraries)</span>
+            </li>
+            <li class="skill-item">
+              <span>WEB API</span>
+            </li>
+            <li class="skill-item">
+              <span>Dynamics CRM 365</span>
+            </li>
+            <li class="skill-item">
+              <span>JavaScript (XRM Libraries)</span>
+            </li>
+            <li class="skill-item">
+              <span>WEB API</span>
+            </li>
+            <li class="skill-item">
+              <span>Dynamics CRM 365</span>
+            </li>
+            <li class="skill-item">
+              <span>JavaScript (XRM Libraries)</span>
+            </li>
+          </ul> -->
+            </div>
+        </div>
+    </li>
+</ul>
+
+<!-- <div>
+    <button type="button" class="btn btn-block add-more-btn mb-5" [routerLink]="['/edit-candidate-cv/skills/add-skill']">
+      <span>+</span> ADD SKILL
+    </button>
+</div>
+<div class="d-flex justify-content-between align-items-center">
+    <button type="button" class="btn success-btn previous-btn px-md-4" [routerLink]="['/edit-candidate-cv/education']" (click)="onGoBack()">
+      BACK
+    </button>
+    <button type="button" class="btn success-btn next-btn px-md-4" [routerLink]="['/edit-candidate-cv/projects']">
+      PROCEED
+    </button>
+</div> -->

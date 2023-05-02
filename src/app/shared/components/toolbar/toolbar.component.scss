@@ -1,0 +1,60 @@
+@use "../../../../sass/_abstracts/colors";
+@use "../../../../sass/_partials/mixins";
+
+#toolbar {
+    border-bottom: 1px solid rgba(199, 199, 199, 1);
+}
+#search-input-wrapper {
+    width: 100%;
+    max-width: 400px;
+    + div {
+        width: 100%;
+        // background-color: red;
+        @include mixins.minmq(765px) {
+            max-width: 160px;
+        }
+    }
+}
+#search-input {
+    border: 1px solid rgba(199, 199, 199, 1);
+    border-radius: 5px;
+    input {
+        border: none;
+        &:focus {
+            border: none !important;
+        }
+    }
+}
+
+
+.profile-image {
+    max-width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    overflow: hidden;
+    img {
+        border-radius: 50%;
+    }
+}
+
+#notification-bell {
+    position: relative;
+    .notice {
+        height: 8px;
+        border-radius: 50%;
+        width: 8px;
+        border: 1px solid #ffffff;
+        background-color: colors.$PrimaryColorGreen;
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+}
+
+
+#filter-list {
+    .dropdown-content {
+        height: 300px;
+        overflow-y: scroll;
+    }
+}

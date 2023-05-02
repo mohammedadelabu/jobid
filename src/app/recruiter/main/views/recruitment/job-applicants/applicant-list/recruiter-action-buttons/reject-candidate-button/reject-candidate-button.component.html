@@ -1,0 +1,17 @@
+<!-- <p>reject-candidate-button works!</p> -->
+<button
+  [disabled]="application.Status === 'Rejected'"
+  class="rejection-btn"
+  (click)="onRejectApplication()"
+>
+  <!-- {{ application.Status === "Rejected" ? "Rejected" : "Reject candidate" }} -->
+  <img
+    class="btn-img"
+    src="assets/images/icons/reject-icon.svg"
+    alt="reject icon"
+  /><span>{{
+    application.Status === "Rejected" ? "Rejected" : "Reject candidate"
+  }}</span>
+</button>
+
+<!-- class="action-danger-btn btn btn-sm reject-applicant-btn" -->

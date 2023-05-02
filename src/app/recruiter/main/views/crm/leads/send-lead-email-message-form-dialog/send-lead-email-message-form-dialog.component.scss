@@ -1,0 +1,41 @@
+// .form-control {
+//     min-height: 40px;
+// }
+button.action-btn {
+    display: flex;
+    align-items: center;
+    &::before {
+        content: url(../../../../../../../assets/images/icons/paper-plane-icon.svg);
+    }
+}
+
+.email-list-container {
+    border: 1px solid #c4c4c4;
+    padding: 0.5em 0.6em;
+    min-height: 50px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+}
+
+#email-list {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    overflow-x: hidden;
+    li {
+        background: #d0eadb;
+        border: 1px solid #4fb278;
+        border-radius: 15.5px;
+        padding: 0.2em;
+        font-size: 12px;
+        line-height: 18px;
+        color: #4fb278;
+        margin-right: 0.5em;
+        margin-top: .3em;
+        margin-bottom: .3em;
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+}

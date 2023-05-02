@@ -1,0 +1,119 @@
+<!-- <p>ongoing-recruitment works!</p> -->
+<!-- cASF -->
+
+<ng-template #noOnGoingJobs>
+  <div class="alert alert-info text-center mt-5">No Ongoing Job</div>
+</ng-template>
+<<<<<<< HEAD
+<div
+  class="dashboard-table table-responsive border-rounded-md mt-5"
+  *ngIf="onGoingJobs?.length; else noOnGoingJobs"
+>
+  <table class="table">
+    <thead class="thead">
+      <tr>
+        <th scope="col">Company Name</th>
+        <th scope="col">Position</th>
+        <th scope="col">Created by</th>
+        <th scope="col">Contact Person</th>
+        <th scope="col">Applicants</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let job of onGoingJobs">
+        <th
+          scope="row"
+          [routerLink]="[
+            '/recruiter/employee-management/recruitment/job-applicants/',
+            job.Id,
+            job.Company.CompanyId
+          ]"
+          class="cursor-pointer"
+        >
+          <div class="d-flex align-items-center">
+            <div class="company-logo">
+              <img
+                src="../../../../../../assets/images/sample-company-logo.png"
+                alt=""
+                class="img-fluid"
+              />
+            </div>
+            <div>{{ job.Company.Name }}</div>
+          </div>
+        </th>
+        <td>{{ job.JobTitle }}</td>
+        <td>{{ job.JobPoster.FirstName }}&nbsp;{{ job.JobPoster.LastName }}</td>
+        <!-- <td>Esther Howard</td> -->
+        <td>
+          <app-get-company-contact
+            [companyId]="job.Company.CompanyId"
+          ></app-get-company-contact>
+        </td>
+        <td>
+          <!-- {{job.Id}} -->
+          <app-get-job-applicants
+            [vacancyId]="job.Id"
+            [companyId]="job.Company.CompanyId"
+          ></app-get-job-applicants>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+=======
+<div
+  class="dashboard-table table-responsive border-rounded-md mt-5"
+  *ngIf="onGoingJobs?.length; else noOnGoingJobs"
+>
+  <table class="table">
+    <thead class="thead">
+      <tr>
+        <th scope="col">Company Name</th>
+        <th scope="col">Position</th>
+        <th scope="col">Created by</th>
+        <th scope="col">Contact Person</th>
+        <th scope="col">Applicants</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let job of onGoingJobs">
+        <th
+          scope="row"
+          [routerLink]="[
+            '/recruiter/employee-management/recruitment/job-applicants/',
+            job.Id,
+            job.Company.CompanyId
+          ]"
+          class="cursor-pointer"
+        >
+          <div class="d-flex align-items-center">
+            <div class="company-logo">
+              <img
+                src="../../../../../../assets/images/sample-company-logo.png"
+                alt=""
+                class="img-fluid"
+              />
+            </div>
+            <div>{{ job.Company.Name }}</div>
+          </div>
+        </th>
+        <td>{{ job.JobTitle }}</td>
+        <td>{{ job.JobPoster.FirstName }}&nbsp;{{ job.JobPoster.LastName }}</td>
+        <!-- <td>Esther Howard</td> -->
+        <td>
+          <app-get-company-contact
+            [companyId]="job.Company.CompanyId"
+          ></app-get-company-contact>
+        </td>
+        <td>
+          <!-- {{job.Id}} -->
+          <app-get-job-applicants
+            [vacancyId]="job.Id"
+            [companyId]="job.Company.CompanyId"
+          ></app-get-job-applicants>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+>>>>>>> main

@@ -1,0 +1,64 @@
+@use "../../../../../sass/_abstracts/colors";
+@use "../../../../../sass/_partials/mixins";
+.wrap {
+    width: 100%;
+    max-width: 500px;
+}
+.custom-file-group {
+    display: flex;
+    align-items: center;
+
+    &:first-child {
+        .delete-action {
+            display: none;
+        }
+    }
+    .inner {
+        display: flex;
+        align-items: center;
+        border: none;
+        background: #f6f6f6;
+        border-radius: 5px;
+        padding: 15px 23px;
+        flex-basis: 85%;
+        border-radius: 5px;
+        .icon {
+            width: 30px;
+            + label {
+                width: calc((100% - 30px));
+                padding-right: 1em;
+                padding-left: 1em;
+                font-family: "Poppins";
+                font-style: normal;
+                font-weight: 400;
+                font-size: 12px;
+                line-height: 18px;
+                display: flex;
+                align-items: center;
+                color: #c7c7c7;
+            }
+        }
+    }
+    .save-action {
+        flex-basis: 15%;
+        padding-right: 1em;
+        .btn {
+            color: colors.$PrimaryColorGreen75;
+        }
+        i {
+            font-size: 24px;
+        }
+        // &::before{
+        //     @include mixins.before('\f0c7', 30px);
+        // }
+    }
+    // input{
+    //     border: none;
+    //     background: #F6F6F6;
+    //     border-radius: 5px;
+    // }
+    // .btn{
+    //     border: none;
+    //     background-color: unset;
+    // }
+}

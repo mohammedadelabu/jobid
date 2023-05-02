@@ -1,0 +1,97 @@
+
+#template-container {
+    font-size: 18px;
+    // background-color: red;
+    width: 100%;
+    // max-width: 1440px;
+    // max-width: 807px;
+    margin: 0 auto;
+    // height: 1000px;
+    padding-right: .5em;
+    padding-left: .5em;
+
+    .template-header {
+        .inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            .zarttech-logo-wrapper {
+                max-width: 250px;
+            }
+            .box-pattern {
+                // background-color: red;
+                background-image: url(../../../../../assets/images/cv-job-template-bg.png);
+                height: 150px;
+                width: calc(100% - 300px);
+            }
+        }
+    }
+
+    .intro {
+        background: #14323e;
+        padding: 3em;
+        font-family: "Poppins";
+        font-style: normal;
+        h1 {
+            font-weight: 700;
+            font-size: 40px;
+            line-height: 60px;
+            /* identical to box height */
+
+            text-align: center;
+
+            color: #ffffff;
+        }
+        h2 {
+            font-weight: 700;
+            font-size: 20px;
+            line-height: 30px;
+            text-align: center;
+            color: #f0f0f0;
+        }
+        p {
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 24px;
+            text-align: center;
+            color: #f0f0f0;
+        }
+    }
+
+    .section-heading {
+        font-family: "Poppins";
+        font-style: normal;
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 30px;
+        color: #4f656e;
+        padding: 10px 30px;
+        margin-bottom: 0;
+    }
+    .section-body {
+        background: #f0f0f0;
+        padding: 50px 30px;
+        .list-item{
+            margin-bottom: 1em;
+        }
+        .title {
+            font-weight: 700;
+            font-size: 20px;
+            line-height: 30px;
+            color: #14323e;
+        }
+        .value {
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 24px;
+            color: #14323e;
+        }
+    }
+    &.undisclosedCv {
+        .intro{
+            .company-name, .company-description{
+                display: none;
+            }
+        }
+    }
+}

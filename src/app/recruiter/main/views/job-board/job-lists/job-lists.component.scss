@@ -1,0 +1,22 @@
+.job-board {
+    font-family: "Poppins";
+  }
+  
+  .page-title {
+    font-size: 2rem;
+    margin-bottom: 0 !important;
+    font-family: "Poppins" !important;
+  }
+  
+  .tabs {
+    a {
+      color: #b5b5b5;
+      text-decoration: none;
+  
+      &.active {
+        color: #14984b;
+        border-bottom: 3px solid #14984b;
+      }
+    }
+  }
+  

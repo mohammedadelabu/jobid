@@ -1,0 +1,18 @@
+#skills-listing {
+    li {
+        margin-bottom: 1em;
+        .list-title {
+            font-family: "Poppins";
+            font-style: normal;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 24px;
+            /* identical to box height */
+
+            color: #000000;
+        }
+    }
+}
+.btn .fas{
+    font-size: 12px;
+}

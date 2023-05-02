@@ -1,0 +1,53 @@
+<nav
+  [ngClass]="{ nav: true, collapsed: collapsed }"
+  [style.width.px]="sbService.subnavWidth | async"
+  [style.left.px]="sbService.sidebarWidth | async"
+>
+  <!-- Collapse icon -->
+  <div class="collapse-icon">
+    <img
+      (click)="toggleCollapse()"
+      src="assets/new-sidebar/icons/sidebar/collapse-icon.svg"
+      alt="collapse sidebar icon"
+    />
+  </div>
+  <div>
+    <div [ngClass]="{ 'lucid-logo': true, collapsed: collapsed }">
+      <img
+        src="assets/new-sidebar/icons/subnav/lucid-logo.svg"
+        alt="lucid logo"
+      />
+    </div>
+  </div>
+  <div class="main">
+    <div [ngClass]="{ title: true, collapsed: collapsed }">
+      <span *ngIf="!collapsed" class="nav-title">{{ activeNav?.title }}</span>
+    </div>
+    <ng-container
+      *ngFor="let navItem of activeNav?.secondaryNav; let i = index"
+    >
+      <div
+        [ngClass]="{ 'nav-item': true, collapsed: collapsed }"
+        [routerLink]="['/recruiter', activeNav.path, navItem.path]"
+        routerLinkActive="active"
+        queryParamsHandling="preserve"
+        (click)="setActiveSecondaryNav(navItem)"
+      >
+        <span *ngIf="!collapsed" class="nav-title">{{ navItem?.title }}</span>
+        <img
+          *ngIf="navItem.subNavs"
+          (click)="toggleShowSubNav(i)"
+          class="chevron"
+          src="assets/new-sidebar/icons/chevron-down.svg"
+          alt="chevron down"
+        />
+      </div>
+      <ul
+        *ngIf="navItem.subNavs"
+        [ngClass]="{ 'sub-nav': true, show: navItem.showSubNav }"
+      >
+        <li *ngFor="let subNav of navItem.subNavs">{{ subNav.title }}</li>
+      </ul>
+    </ng-container>
+  </div>
+</nav>

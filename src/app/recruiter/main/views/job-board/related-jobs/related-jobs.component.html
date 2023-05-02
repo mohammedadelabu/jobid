@@ -1,0 +1,88 @@
+<!-- <p>related-jobs works!</p> -->
+<!-- <div id="related-jobs-block" *ngIf="relatedJobList?.length"> -->
+<div id="related-items-block">
+    <div class="card display-content-card">
+        <div class="card-body">
+            <h1 class="block-title">Related Jobs</h1>
+            <ul class="list-group">
+                <li class="list-group-item" *ngFor="let job of relatedJobList">
+                    <a href="#">
+                        <div class="card bg-none border-0">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col-12">
+                                    <div>
+                                        <h6 class="card-title job-title">{{job.JobTitle}}</h6>
+                                        <p class="card-text"><small class="company-name">{{job.Company.Name}}</small>
+                                        </p>
+                                    </div>
+                                </div>
+                                <!-- <div class="col-md-8">
+                            <div>
+                                <h6 class="card-title job-title">{{job.JobTitle}}</h6>
+                                <p class="card-text"><small class="company-name">{{job.Company.Name}}</small>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 text-right">
+                            <small class="card-body time-remaining">17 days ago</small>
+                        </div> -->
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="total-applicants">Total Candidates 35</div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                <!--  -->
+                <!-- <li class="list-group-item">
+                    <a href="#">
+                        <div class="card bg-none border-0">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col-md-8">
+                                    <div>
+                                        <h6 class="card-title job-title">UI/UX Designer</h6>
+                                        <p class="card-text"><small class="company-name">Tech Group</small>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 text-right">
+                                    <small class="card-body time-remaining">17 days ago</small>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="total-applicants">Total Candidates 35</div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    <a href="#">
+                        <div class="card bg-none border-0">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col-md-8">
+                                    <div>
+                                        <h6 class="card-title job-title">UI/UX Designer</h6>
+                                        <p class="card-text"><small class="company-name">Tech Group</small>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 text-right">
+                                    <small class="card-body time-remaining">17 days ago</small>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="total-applicants">Total Candidates 35</div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </li> -->
+            </ul>
+        </div>
+    </div>
+</div>

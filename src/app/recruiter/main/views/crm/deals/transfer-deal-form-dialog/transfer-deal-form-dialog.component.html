@@ -1,0 +1,42 @@
+<!-- <p>transfer-deal-form-dialog works!</p> -->
+
+<div class="container-fluid">
+    <div class="card border-rounded-lg">
+        <div class="card-body">
+
+          <ng-container *ngIf="fetchingRecruiters">
+            <div class="d-flex justify-content-center">
+              <!-- <div class="spinner-border" role="status" style="color: #781496;">
+                <span class="visually-hidden"></span>
+              </div> -->
+                <app-simple-component-loader-with-spinner></app-simple-component-loader-with-spinner>
+                </div>
+          </ng-container>
+
+          <ng-container *ngIf="!fetchingRecruiters">
+            <h5 class="text-center form-title">Transfer Deal</h5>
+            <form #TransferDealForm="ngForm" (ngSubmit)="onTransferDeal(TransferDealForm)">
+                <div class="select-control-wrapper">
+                    <div class="form-group text-left">
+                        <label for="UserId" class="field-label">Colleague</label>
+                        <div class="form-group">
+                            <select name="UserId" id="UserId" class="form-control cursor-pointer"
+                                [(ngModel)]="SelectedColleague" (change)="onSelectColleague()">
+                                <option value="" selected="selected" selected>Select a colleague</option>
+                                <option [value]="recruiter?.Id" *ngFor="let recruiter of recruiterList">
+                                    {{recruiter?.FirstName}}&nbsp;{{recruiter?.LastName}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <button class="btn action-btn">Tranfer</button>
+                            <span class="mx-1"></span>
+                            <button type="button" class="btn outline-danger-btn" (click)="closeDialog()">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+          </ng-container>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,34 @@
+<!-- <p>candidate-summary works!</p> -->
+<h5 class="section-title">Candidate summary</h5>
+<div class="alert alert-info text-center" *ngIf="responseMessage">{{responseMessage}}</div>
+<!-- <div class="alert text-info text-center" *ngIf="responseMessage">{{responseMessage}}</div> -->
+<!-- PREVIEW CANDIDATE SUMMARY -->
+<app-preview-candidate-summary [candidateId]="candidateId" *ngIf="!isAddCandidateSummary"></app-preview-candidate-summary>
+<!-- ADD CANDIDATE SUMMARY -->
+<div *ngIf="isAddCandidateSummary">
+    <!-- <div class="text-right">
+        <button type="button" class="btn btn-sm px-0" (click)="isAddCandidateSummary=false">
+            <i class="fas fa-times text-danger"></i>
+        </button>
+    </div> -->
+    <app-add-candidate-summary [candidateId]="candidateId" (closeIsAddCandidateSummary)="onCloseIsAddCandidateSummary()"></app-add-candidate-summary>
+</div>
+<!-- UPDATE CANDIDATE SUMMARY -->
+<div *ngIf="isUpdateCandidateSummary">
+    <!-- <div class="text-right">
+            <button type="button" class="btn btn-sm px-0" (click)="isAddCandidateSummary=false">
+                <i class="fas fa-times text-danger"></i>
+            </button>
+        </div> -->
+    <app-update-candidate-summary (closeIsUpdateCandidateSummary)="onCloseIsUpdateCandidateSummary()"></app-update-candidate-summary>
+</div>
+<div class="mb-4">
+    <!-- <button class="btn btn-lg btn-block text-uppercase add-more-block-btn" *ngIf="!isAddCandidateSummary" (click)="isAddCandidateSummary=true">Add Candidate Summary</button> -->
+    <button class="btn btn-lg btn-block text-uppercase add-more-block-btn" *ngIf="!isAddCandidateSummary" (click)="onCheckIfCandidateSummaryExist()">Add Candidate Summary</button>
+    <!-- <button class="btn btn-lg btn-block text-uppercase add-more-block-btn" *ngIf="!isAddCandidateSummary">Add Candidate Summary</button> -->
+</div>
+
+<div class="py-2 d-flex align-items-center justify-content-between">
+    <button type="submit" class="btn success-btn px-md-5" class="btn success-btn px-md-5" [routerLink]="['/candidate/profile-setup/projects']">BACK</button>
+    <button type="submit" class="btn success-btn px-md-5" [routerLink]="['/candidate/profile-setup/finish']">PREVIEW</button>
+</div>

@@ -1,0 +1,298 @@
+<!-- <p>msword-template works!</p> -->
+<div id="msword-cv-template" class="page-wrapper">
+  <style>
+    .page-wrapper {
+      font-size: 16px;
+    }
+
+    table thead th {
+      width: calc(100% / 12);
+    }
+
+    .content-name {
+      /* font-size: 2rem;
+            font-weight: 600; */
+    }
+
+    .content-section {
+      margin-bottom: 20px;
+    }
+    /* Classes */
+
+    .text-center {
+      text-align: center;
+    }
+
+    .text-capitalize {
+      text-transform: capitalize;
+    }
+
+    .img-fluid {
+      width: 100%;
+    }
+
+    .zarttech-logo-wrapper {
+      max-width: 160px;
+    }
+
+    table {
+      width: 100%;
+    }
+  </style>
+  <table>
+    <thead>
+      <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th colspan="2">
+          <div class="zarttech-logo-wrapper">
+            <img
+              src="../../../../assets/images/zarttech-brand-logo.svg"
+              class="img-fluid"
+              alt=""
+            />
+          </div>
+        </th>
+        <th colspan="10"></th>
+      </tr>
+      <tr *ngIf="candidateProfileUserInfo?.ProfileImageUrl">
+        <td colspan="11"></td>
+        <th scope="row" colspan="1">
+          <div
+            class="profile-image"
+            *ngIf="candidateProfileUserInfo?.ProfileImageUrl"
+          >
+            <div class="image-container mx-auto">
+              <img
+                src="{{ candidateProfileUserInfo?.ProfileImageUrl }}"
+                alt=""
+                class="img-fluid"
+              />
+            </div>
+          </div>
+        </th>
+      </tr>
+      <tr>
+        <th colspan="12">
+          <div class="content-section">
+            <!-- <div class="profile-image" *ngIf="candidateProfileUserInfo?.ProfileImageUrl">
+                            <div class="image-container mx-auto">
+                                <img src={{candidateProfileUserInfo?.ProfileImageUrl}} alt="" class="img-fluid">
+                            </div>
+                        </div> -->
+            <h1 class="content-name text-capitalize text-center">
+              <!-- DADA BELLO -->
+              {{ candidateProfileUserInfo?.LastName }}&nbsp;
+              <span *ngIf="candidateProfileUserInfo?.MiddleName"
+                >{{
+                  candidateProfileUserInfo?.MiddleName | slice: 0:1
+                }}.&nbsp;</span
+              >
+              {{ candidateProfileUserInfo?.FirstName }}
+            </h1>
+            <div
+              class="content-profession text-capitalize text-center"
+              *ngIf="candidateProfile?.Profession"
+            >
+              <!-- frontend developer -->
+              {{ candidateProfile?.Profession }}
+            </div>
+            <div class="candidate-ref-number text-center">
+              <!-- 000AA00BB -->
+              <ng-template #notUserInformationNewReference
+                >No Ref No</ng-template
+              >
+              <!-- {{candidateProfile | json}} -->
+              <span
+                *ngIf="
+                  candidateProfileUserInfo?.NewReference;
+                  else notUserInformationNewReference
+                "
+                >{{ candidateProfileUserInfo?.NewReference }}</span
+              >
+            </div>
+
+            <div
+              id="portfolio-section"
+              *ngIf="candidateProfile?.PortfolioPlatform"
+            >
+              <div class="column-header text-center">Portfolio</div>
+              <div class="column-content text-center">
+                <ng-template #noPortfolioMsg
+                  >No portfolio link provided</ng-template
+                >
+                <div id="portfolio-url">
+                  <div
+                    *ngIf="
+                      candidateProfile?.PortfolioPlatform;
+                      else noPortfolioMsg
+                    "
+                  >
+                    <a
+                      href="{{ candidateProfile?.PortfolioPlatform }}"
+                      target="_blank"
+                      >{{ candidateProfile?.PortfolioPlatform }}</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </th>
+      </tr>
+      <tr *ngIf="candidateSummary">
+        <td colspan="12">
+          <div class="content-section">
+            <h4>CANDIDATE SUMMARY</h4>
+            <div class="column-content py-3">
+              <div *ngFor="let item of candidateSummary">
+                <div [innerHTML]="item?.Summary"></div>
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr *ngIf="recruiterOpinion">
+        <td colspan="12">
+          <div class="content-section">
+            <h4>RECRUITER SUMMARY</h4>
+            <div class="column-content py-3">
+              <div *ngFor="let item of recruiterOpinion">
+                <div [innerHTML]="item?.opinion"></div>
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- {{projectList | json}} -->
+
+  <div class="content-section" *ngIf="projectList?.length">
+    <h4>PROJECTS</h4>
+    <div>
+      <ul class="pl-0">
+        <li class="list-item" *ngFor="let project of projectList">
+          <ul>
+            <li>
+              <div class="">
+                <strong>Project Name:</strong>
+              </div>
+              <div>
+                <a
+                  href="{{ project?.ProjectUrl }}"
+                  target="_blank"
+                  style="text-transform: uppercase"
+                  >{{ project?.ProjectName }}</a
+                >
+              </div>
+            </li>
+            <li>
+              <div class="">
+                <strong>Involvement Duration:</strong>
+              </div>
+              <div>
+                <div><strong>From:</strong> {{ project?.StartDate }}</div>
+                <div><strong>To:</strong> {{ project?.StopDate }}</div>
+              </div>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="content-section" *ngIf="workHistory?.length">
+    <h4>WORK EXPERIENCE</h4>
+    <div class="">
+      <ul class="list-style-none pl-0">
+        <li class="" *ngFor="let item of workHistory">
+          <div class="list-content">
+            <ul class="list-style-none pl-0">
+              <li class="mb-3" *ngIf="item?.EmployerName">
+                <div><strong>Company Name:</strong></div>
+                <div class="work-history-company-name">
+                  {{ item?.EmployerName }}
+                </div>
+              </li>
+              <li class="mb-3" *ngIf="item?.Location">
+                <div><strong>Location:</strong></div>
+                <div>{{ item?.Location }}</div>
+              </li>
+              <li class="mb-3" *ngIf="item?.Description">
+                <div><strong>Description:</strong></div>
+                <div [innerHTML]="item?.Description"></div>
+              </li>
+              <li class="mb-3" *ngIf="item?.JobTitle">
+                <div>
+                  <strong>Project Role:</strong>
+                </div>
+                <div>{{ item?.JobTitle }}</div>
+              </li>
+              <li class="mb-3" *ngIf="item?.TechStack">
+                <div>
+                  <strong>Tech Stack:</strong>
+                </div>
+                <div>{{ item?.TechStack }}</div>
+              </li>
+              <li class="mb-3" *ngIf="item?.StartDate || item?.EndDate">
+                <div>Involvement Duration:</div>
+
+                <div>
+                  <div *ngIf="item?.StartDate">
+                    <strong>From:</strong> {{ item?.StartDate }}
+                  </div>
+                  <div *ngIf="item?.EndDate">
+                    <strong>To:</strong>
+                    <!-- {{item?.EndDate}} -->
+                    <span *ngIf="!item?.Currently"
+                      >&nbsp;{{ item?.EndDate }}</span
+                    >
+                    <span *ngIf="item?.Currently"
+                      >&nbsp;Currently works here</span
+                    >
+                  </div>
+                </div>
+              </li>
+              <li class="mb-3" *ngIf="item?.TeamSize">
+                <div><strong>Team size:</strong></div>
+                <div>{{ item?.TeamSize }}</div>
+              </li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="content-section" *ngIf="candidateSkillList?.length">
+    <h4>SKILLS</h4>
+    <ul>
+      <li *ngFor="let item of candidateSkillList">
+        <td colspan="12">
+          <app-skill-title [skillCategoryId]="item?.CategoryId">
+          </app-skill-title>
+          <ul class="pl-0">
+            <li *ngFor="let catItem of item?.Skills | stringToArray">
+              {{ catItem }}
+            </li>
+          </ul>
+        </td>
+      </li>
+    </ul>
+  </div>
+</div>

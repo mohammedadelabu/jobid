@@ -1,0 +1,393 @@
+@use "../../sass/_partials/mixins";
+
+.process-monitor {
+    width: 100%;
+    overflow-x: auto;
+    text-align: center;
+    --size: 200px;
+    ul {
+        display: inline-flex;
+        align-items: flex-start;
+        // justify-content: space-between;
+        li {
+            .inner {
+                text-align: center;
+                width: var(--size);
+                .bulb {
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    background-color: #dadada;
+                    border: 10px solid #ffffff;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin: 0 auto;
+                    cursor: pointer;
+                    i {
+                        font-size: 0.7rem;
+                        color: #ffffff;
+                    }
+                    display: flex;
+                    position: relative;
+                    z-index: 0;
+                    &::after {
+                        content: "";
+                        display: inline-block;
+                        // background-color: red;
+                        border-top: 1px dashed #b5b5b5;
+                        height: 5px;
+                        width: var(--size);
+                        position: absolute;
+                        left: calc(100% + 10px);
+                        z-index: 1;
+                    }
+
+                    &.trophy {
+                        background-color: #ffffff;
+                        .default-trophy {
+                            display: block;
+                        }
+                        .passed-trophy {
+                            display: none;
+                        }
+                    }
+                    .label {
+                        &::before {
+                            @include mixins.before("\f00c", inherit);
+                            color: #ffffff;
+                        }
+                    }
+                }
+                .process-status {
+                    display: none;
+                }
+            }
+            &:last-child {
+                .inner {
+                    .bulb {
+                        &::after {
+                            display: none;
+                        }
+                    }
+                }
+            }
+
+            &.active {
+                .inner {
+                    .bulb {
+                        background-color: #14984b;
+                        &::after {
+                            border-top: 1px dashed #14984b;
+                        }
+
+                        &.trophy {
+                            background-color: #ffffff;
+                            .default-trophy {
+                                display: none;
+                            }
+                            .passed-trophy {
+                                display: block;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .current{
+                .bulb {
+                    background-color: #14984b;
+                    &::after {
+                        border-top: 1px dashed #14984b;
+                    }
+
+                    &.trophy {
+                        background-color: #ffffff;
+                        .default-trophy {
+                            display: none;
+                        }
+                        .passed-trophy {
+                            display: block;
+                        }
+                    }
+                }
+            }
+
+            .passed {
+                // .inner {
+                    .bulb {
+                        background-color: #14984b;
+                        &::after {
+                            border-top: 1px dashed #14984b;
+                        }
+
+                        &.trophy {
+                            background-color: #ffffff;
+                            .default-trophy {
+                                display: none;
+                            }
+                            .passed-trophy {
+                                display: block;
+                            }
+                        }
+                    }
+                    .process-status {
+                        display: inline-block;
+                    }
+                // }
+            }
+        }
+    }
+
+    &#external {
+        ul {
+            li {
+                margin-right: 100px;
+                .inner {
+                    .bulb {
+                        &::after {
+                            // width: 400px;
+                            width: calc(var(--size) + 100px);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .process-date {
+        font-family: "Poppins";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 18px;
+        text-align: center;
+        color: #b5b5b5;
+    }
+
+    .process-title {
+        font-family: "Poppins";
+        font-style: normal;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 21px;
+        text-align: center;
+        color: #14323e;
+    }
+
+    .process-status {
+        display: inline-block;
+        // display: flex;
+        // flex-direction: column;
+        // align-items: flex-start;
+        padding: 3px 20px;
+
+        // position: absolute;
+        // width: 122px;
+        // height: 24px;
+        // left: 790px;
+        // top: 662px;
+        /* Primary Color/Green 20% */
+        background: #d0eadb;
+        /* Primary Color/Green 75% */
+        border: 1px solid #4fb278;
+        box-sizing: border-box;
+        border-radius: 15.5px;
+        //
+        /* Body 2/Left */
+        font-family: "Poppins";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 18px;
+        /* Primary Color/Green 75% */
+        color: #4fb278;
+    }
+}
+
+
+// .process-monitor {
+//     width: 100%;
+//     overflow-x: auto;
+//     text-align: center;
+//     --size: 200px;
+//     ul {
+//         display: inline-flex;
+//         align-items: flex-start;
+//         // justify-content: space-between;
+//         li {
+//             .inner {
+//                 text-align: center;
+//                 width: var(--size);
+//                 .bulb {
+//                     width: 40px;
+//                     height: 40px;
+//                     border-radius: 50%;
+//                     background-color: #dadada;
+//                     border: 10px solid #ffffff;
+//                     display: flex;
+//                     align-items: center;
+//                     justify-content: center;
+//                     margin: 0 auto;
+//                     cursor: pointer;
+//                     i {
+//                         font-size: 0.7rem;
+//                         color: #ffffff;
+//                     }
+//                     display: flex;
+//                     position: relative;
+//                     z-index: 0;
+//                     &::after {
+//                         content: "";
+//                         display: inline-block;
+//                         // background-color: red;
+//                         border-top: 1px dashed #b5b5b5;
+//                         height: 5px;
+//                         width: var(--size);
+//                         position: absolute;
+//                         left: calc(100% + 10px);
+//                         z-index: 1;
+//                     }
+
+//                     &.trophy {
+//                         background-color: #ffffff;
+//                         .default-trophy {
+//                             display: block;
+//                         }
+//                         .passed-trophy {
+//                             display: none;
+//                         }
+//                     }
+//                     .label {
+//                         &::before {
+//                             @include mixins.before("\f00c", inherit);
+//                             color: #ffffff;
+//                         }
+//                     }
+//                 }
+//                 .process-status {
+//                     display: none;
+//                 }
+//             }
+//             &:last-child {
+//                 .inner {
+//                     .bulb {
+//                         &::after {
+//                             display: none;
+//                         }
+//                     }
+//                 }
+//             }
+
+//             &.active {
+//                 .inner {
+//                     .bulb {
+//                         background-color: #14984b;
+//                         &::after {
+//                             border-top: 1px dashed #14984b;
+//                         }
+
+//                         &.trophy {
+//                             background-color: #ffffff;
+//                             .default-trophy {
+//                                 display: none;
+//                             }
+//                             .passed-trophy {
+//                                 display: block;
+//                             }
+//                         }
+//                     }
+//                 }
+//             }
+
+//             &.passed {
+//                 .inner {
+//                     .bulb {
+//                         background-color: #14984b;
+//                         &::after {
+//                             border-top: 1px dashed #14984b;
+//                         }
+
+//                         &.trophy {
+//                             background-color: #ffffff;
+//                             .default-trophy {
+//                                 display: none;
+//                             }
+//                             .passed-trophy {
+//                                 display: block;
+//                             }
+//                         }
+//                     }
+//                     .process-status {
+//                         display: inline-block;
+//                     }
+//                 }
+//             }
+//         }
+//     }
+
+//     &#external {
+//         ul {
+//             li {
+//                 margin-right: 100px;
+//                 .inner {
+//                     .bulb {
+//                         &::after {
+//                             // width: 400px;
+//                             width: calc(var(--size) + 100px);
+//                         }
+//                     }
+//                 }
+//             }
+//         }
+//     }
+
+//     .process-date {
+//         font-family: "Poppins";
+//         font-style: normal;
+//         font-weight: 400;
+//         font-size: 12px;
+//         line-height: 18px;
+//         text-align: center;
+//         color: #b5b5b5;
+//     }
+
+//     .process-title {
+//         font-family: "Poppins";
+//         font-style: normal;
+//         font-weight: 500;
+//         font-size: 14px;
+//         line-height: 21px;
+//         text-align: center;
+//         color: #14323e;
+//     }
+
+//     .process-status {
+//         display: inline-block;
+//         // display: flex;
+//         // flex-direction: column;
+//         // align-items: flex-start;
+//         padding: 3px 20px;
+
+//         // position: absolute;
+//         // width: 122px;
+//         // height: 24px;
+//         // left: 790px;
+//         // top: 662px;
+//         /* Primary Color/Green 20% */
+//         background: #d0eadb;
+//         /* Primary Color/Green 75% */
+//         border: 1px solid #4fb278;
+//         box-sizing: border-box;
+//         border-radius: 15.5px;
+//         //
+//         /* Body 2/Left */
+//         font-family: "Poppins";
+//         font-style: normal;
+//         font-weight: 400;
+//         font-size: 12px;
+//         line-height: 18px;
+//         /* Primary Color/Green 75% */
+//         color: #4fb278;
+//     }
+// }

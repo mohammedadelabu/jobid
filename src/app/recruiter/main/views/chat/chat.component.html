@@ -1,0 +1,35 @@
+<div class="mt-4 chat">
+  <div class="d-flex align-items-center justify-content-between flex-wrap mb-5">
+    <h1 class="page-title py-0">Chat</h1>
+    <div class="d-flex align-items-end flex-wrap">
+      <div class="d-flex align-items-end mr-2">
+        <button class="chat-btn">
+          <img
+            class="mr-3"
+            src="assets/images/icons/video-icon.svg"
+            alt="camera icon"
+          />
+          <span>Video call</span>
+        </button>
+      </div>
+      <div class="d-flex align-items-end">
+        <button class="chat-btn">
+          <img
+            class="mr-2"
+            src="assets/images/icons/call-icon.svg"
+            alt="call icon"
+          />
+          <span>Call</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row mb-5 chat-main">
+  <div class="col-3 border mr-2 chat-container" style="height: 100%">
+    <app-chat-sidebar></app-chat-sidebar>
+  </div>
+  <div class="col border chat-container">
+    <app-chat-body></app-chat-body>
+  </div>
+</div>

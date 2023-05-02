@@ -1,0 +1,487 @@
+// custom styles BEGINS
+@use "./sass/_partials";
+@use "./sass/_components";
+@use "./sass/_pages";
+@use "./sass/_abstracts/colors";
+// @use "./sass/_ngmaterial";
+// custom styles ENDS
+
+/* You can add global styles to this file, and also import other style files */
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use "@angular/material" as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$jobid-primary: mat.define-palette(mat.$indigo-palette);
+$jobid-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$jobid-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$jobid-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $jobid-primary,
+      accent: $jobid-accent,
+      warn: $jobid-warn,
+    ),
+  )
+);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($jobid-theme);
+
+// @include mat.core();
+
+/* Importing Bootstrap SCSS file. */
+@import "~bootstrap/scss/bootstrap";
+
+// html, body { height: 100%; }
+// body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+// @import "./sass/_components/ngMaterial";
+/* Importing Bootstrap SCSS file. */
+@import "~bootstrap/scss/bootstrap";
+
+/* Importing Datepicker SCSS file. */
+@import "node_modules/ngx-bootstrap/datepicker/bs-datepicker";
+
+// NgSelect Default CSS
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
+// Ngx Toastr
+@import "ngx-toastr/toastr";
+
+/* NgxIntlTelInputModule */
+@import "intl-tel-input/build/css/intlTelInput.css";
+
+.iti {
+  width: 100%;
+
+  input[type="tel"] {
+    background-color: unset;
+    height: 50px;
+    // padding-bottom: 1.5em !important;
+    // padding-top: 1.2em !important;
+  }
+}
+
+#placement-table {
+  .mat-tab-label {
+    opacity: 1;
+    background: #f0f0f0;
+    border: 1px solid #dadada;
+    border-radius: 10px 10px 0px 0px;
+  }
+
+  .mat-tab-label-active {
+    background: #14323e;
+    border: 1px solid #dadada;
+    border-radius: 10px 10px 0px 0px;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    color: #ffffff;
+  }
+
+  .mat-tab-group.mat-primary .mat-ink-bar,
+  .mat-tab-nav-bar.mat-primary .mat-ink-bar {
+    background-color: #14323e;
+  }
+}
+
+.mat-slider.mat-accent .mat-slider-thumb {
+  background-color: #4f656e;
+  // border: 3px solid #FFFFFF;
+}
+
+.mat-slider.mat-accent .mat-slider-focus-ring {
+  background-color: rgba(79, 101, 110, 0.2);
+}
+
+.mat-slider-thumb-label {
+  background-color: #4f656e !important;
+}
+
+#custom-nav-tabs {
+  .mat-tab-label {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    color: #b5b5b5;
+  }
+
+  .mat-tab-label-active {
+    color: #14984b;
+  }
+
+  .mat-tab-group.mat-primary .mat-ink-bar,
+  .mat-tab-nav-bar.mat-primary .mat-ink-bar {
+    background-color: #14984b;
+  }
+}
+
+.simple-tabs {
+  .mat-tab-group.mat-primary .mat-ink-bar {
+    background-color: #14984b !important;
+  }
+}
+
+.verification-from-wrap {
+  .mat-radio-button ~ .mat-radio-button {
+    display: block;
+  }
+
+  .mat-radio-button.mat-accent .mat-radio-inner-circle,
+  .mat-radio-button.mat-accent
+    .mat-radio-ripple
+    .mat-ripple-element:not(.mat-radio-persistent-ripple),
+  .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-persistent-ripple,
+  .mat-radio-button.mat-accent:active .mat-radio-persistent-ripple {
+    background-color: #14984b;
+  }
+
+  .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+    border-color: #14984b;
+  }
+}
+
+#messenger-text-editor {
+  &.hide-header {
+    .tox-editor-header {
+      display: none !important;
+    }
+  }
+}
+
+.mat-snack-bar-container {
+  color: #202020;
+  background: #d0eadb;
+}
+
+#convert-lead-to-deal-page {
+  .mat-horizontal-stepper-header-container {
+    display: none;
+  }
+
+  .mat-horizontal-content-container {
+    padding: 0;
+  }
+}
+
+#mailing-form {
+  .multiselect-dropdown .dropdown-btn .selected-item-container .selected-item {
+    border: 1px solid #4fb278;
+    margin-right: 4px;
+    background: #d0eadb;
+    padding: 0 5px;
+    color: #4fb278;
+    border-radius: 15.5px !important;
+    float: left;
+    max-width: 100px;
+    font-size: 0.9rem;
+
+    a {
+      color: #4fb278 !important;
+    }
+  }
+
+  .multiselect-dropdown .dropdown-btn {
+    display: inline-block;
+    border: 1px solid #adadad;
+    width: 100%;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-weight: 400;
+    line-height: 1.52857143;
+    text-align: left;
+    vertical-align: middle;
+    cursor: pointer;
+    background-image: none;
+    border-radius: 4px;
+    background: none !important;
+  }
+
+  .dropdown-multiselect--active {
+    &::after {
+      display: none !important;
+    }
+  }
+
+  .dropdown-btn::after {
+    display: none !important;
+  }
+
+  .multiselect-item-checkbox input[type="checkbox"]:checked + div:before {
+    -webkit-animation: 0.2s ease-in borderscale;
+    animation: 0.2s ease-in borderscale;
+    background: #4fb278 !important;
+  }
+
+  .multiselect-item-checkbox input[type="checkbox"] + div:before {
+    box-sizing: content-box;
+    content: "";
+    color: #4fb278;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 14px;
+    height: 14px;
+    margin-top: -9px;
+    border: 2px solid #4fb278 !important;
+    text-align: center;
+    transition: 0.4s;
+  }
+}
+
+// DATE PICKER ****************** START
+.mat-form-field-wrapper {
+  padding-bottom: 0 !important;
+}
+
+.mat-form-field-appearance-fill .mat-form-field-underline::before {
+  background-color: unset !important;
+  border: 1px solid #c4c4c4 !important;
+  height: 45px !important;
+}
+
+.mat-form-field-appearance-fill .mat-form-field-flex {
+  background-color: unset !important;
+  border: 1px solid #c4c4c4 !important;
+  // height: 45px !important;
+}
+
+.mat-form-field-underline {
+  display: none;
+}
+
+.mat-calendar-content {
+  table th,
+  table td {
+    vertical-align: middle !important;
+    border-top: unset !important;
+  }
+}
+
+.mat-form-field-appearance-fill .mat-form-field-flex {
+  border-radius: 4px !important;
+}
+
+// DATE PICKER ****************** END
+
+#action-tool {
+  .mat-form-field {
+    width: 100% !important;
+  }
+
+  .mat-form-field-infix {
+    width: 100% !important;
+    max-width: unset;
+
+    // border-radius: 4px 4px 0 0;
+    // padding: 0.75em 0.75em 0 0.75em;
+    border-radius: 4px !important;
+  }
+}
+
+.date-range-wrap,
+.mat-select-wrap {
+  // .mat-form-field-flex {
+  //   // display: inline-flex;
+  //   // align-items: baseline;
+  //   // box-sizing: border-box;
+  //   // width: 100%;
+  //   align-items: center;
+  // }
+  // .mat-date-range-input-start-wrapper {
+  //   // position: relative;
+  //   // overflow: hidden;
+  //   // max-width: calc(50% - 4px);
+  //   height: 50px !important;
+  // }
+
+  .mat-form-field-appearance-fill .mat-form-field-flex {
+    // padding: 0.75em 0.75em 0 0.75em;
+    padding: 0.45em 0.55em 0 0.55em;
+  }
+}
+
+.mat-calendar-body-in-range::before {
+  background: colors.$PrimaryColorGreen20;
+}
+
+.mat-calendar-body-selected {
+  background-color: colors.$PrimaryColorGreen75;
+  color: white;
+}
+
+.mat-datepicker-toggle-active {
+  color: colors.$PrimaryColorGreen75;
+}
+
+.mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+  color: colors.$PrimaryColorGreen75;
+}
+
+.mat-select-arrow {
+  // width: 0;
+  // height: 0;
+  // border-left: 5px solid transparent;
+  // border-right: 5px solid transparent;
+  // border-top: 5px solid;
+  // margin: 0 4px;
+  border: none !important;
+  display: flex;
+  height: 12px !important;
+  width: 12px !important;
+  align-items: center;
+
+  &::before {
+    content: "";
+    display: block;
+    height: 100%;
+    width: 100%;
+    background-image: url(./assets/images/icons/angle-down-icon.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}
+
+.mat-dialog-container {
+  box-shadow: unset !important;
+  // remove ng-material background color from dialog boxes
+  background: unset !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  overflow: unset !important;
+}
+
+.form-multiselect-dropdown-btn {
+  .dropdown-btn {
+    &::after {
+      display: none !important;
+    }
+  }
+
+  .multiselect-dropdown {
+    .dropdown-btn {
+      background: unset !important;
+      // border: none !important;
+      border: 1px solid #c4c4c4 !important;
+      padding: 0.5em 0.6em !important;
+      height: 50px !important;
+      border-radius: 5px !important;
+
+      .selected-item-container {
+        .selected-item {
+          border: 1px solid #4fb278 !important;
+          margin-right: 4px;
+          background: #d0eadb !important;
+          padding: 0 5px;
+          color: #4fb278 !important;
+          border-radius: 2px;
+          float: left;
+          // max-width: 100px;
+          max-width: unset !important;
+
+          a {
+            color: #4fb278 !important;
+          }
+        }
+      }
+
+      .dropdown-multiselect__caret:before {
+        position: relative;
+        right: 0;
+        top: 90% !important;
+        color: #999;
+        margin-top: 31px;
+        border-style: solid;
+        border-width: 8px 8px 0;
+        border-color: #999 transparent;
+        content: "";
+      }
+    }
+  }
+}
+
+// Set height for ng select
+.ng-select .ng-select-container {
+  min-height: 50px !important;
+}
+
+.ng-select.ng-select-multiple
+  .ng-select-container
+  .ng-value-container
+  .ng-value {
+  background: #d0eadb;
+  border: 1px solid #4fb278;
+  border-radius: 15.5px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.ng-select.ng-select-multiple
+  .ng-select-container
+  .ng-value-container
+  .ng-value
+  .ng-value-icon:hover {
+  // background-color: #d1e8ff;
+  background-color: unset;
+}
+
+.ng-select {
+  position: relative;
+  display: block;
+  box-sizing: border-box;
+  outline: 0;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  background: transparent;
+  bottom: 0;
+  color: transparent;
+  cursor: pointer;
+  height: auto;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: auto;
+}
+
+mat-form-field.mat-form-field-type-mat-date-range-input {
+  .mat-form-field-suffix {
+    position: absolute;
+    background: transparent;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+
+    .mat-icon-button {
+      width: 100% !important;
+      height: 100% !important;
+      border: 1px solid green;
+      border-radius: 0;
+      opacity: 0;
+  }
+  }
+}

@@ -1,0 +1,164 @@
+<!-- <p>download-job-template works!</p> -->
+<div id="template-container" [ngClass]="{ undisclosedCv: isUndisclosed }">
+  <!-- <div class="template-header">
+        <div class="inner">
+            <div class="zarttech-logo-wrapper">
+                <img src="../../../../../../assets/ges/zarttech-brand-logo.svg" class="img-fluid" alt="">
+            </div>
+            <div class="box-pattern">
+                <ul class="boxes list-style-none mb-0 pl-0">
+                    <li class="box-1"></li>
+                    <li class="box-2"></li>
+                    <li class="box-3"></li>
+                </ul>
+            </div>
+        </div>
+    </div> -->
+
+  <div class="template-header">
+    <div class="inner">
+      <div class="zarttech-logo-wrapper">
+        <img
+          src="../../../../../../assets/ges/zarttech-brand-logo.svg"
+          class="img-fluid"
+          alt=""
+        />
+      </div>
+      <div class="box-pattern"></div>
+    </div>
+  </div>
+
+  <section>
+    <div class="intro">
+      <!-- <h1>Azure Architect 8+ Years</h1> -->
+      <h1>{{ JobDetails?.JobTitle | titlecase }}</h1>
+      <h2 class="company-name">{{ CompanyDetails?.Name | titlecase }}</h2>
+      <p class="company-description">
+        {{ CompanyDetails?.Description | titlecase }}
+
+        <!-- Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tortor eleifend nullam vestibulum scelerisque. Consectetur pretium eu pulvinar nunc. Et nisi tristique porta leo sed odio mattis. Sagittis libero consequat, nulla magna etiam ornare
+                scelerisque. Mauris, amet felis in mi non. Ullamcorper nisl, tristique ut lacus, nibh blaVndit. -->
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <h3 class="section-heading">Job Details</h3>
+    <div class="section-body">
+      <!-- <div class="row list-item">
+                <div class="col-12 col-sm-3">
+                    <div class="title">Industry</div>
+                </div>
+                <div class="col-12 col-sm-9">
+                    <div class="value">Banking</div>
+                </div>
+            </div> -->
+      <div class="row list-item">
+        <div class="col-12 col-sm-3">
+          <div class="title">Job type</div>
+        </div>
+        <div class="col-12 col-sm-9">
+          <div class="value">{{ JobDetails?.JobType | titlecase }}</div>
+        </div>
+      </div>
+      <div class="row list-item">
+        <div class="col-12 col-sm-3">
+          <div class="title">Job description</div>
+        </div>
+        <div class="col-12 col-sm-9">
+          <div class="value">
+            Must have :
+            <div>
+              {{ JobDetails?.JobDescription }}
+            </div>
+            <!-- <ul class="pl-0">
+                            <li>
+                                Demonstrate deep engineering and architectural expertise on Microsoft Azure PAAS, FAAS and IAAS stack of services on multiple Consulting and Delivery engagements</li>
+                            <li>
+                                Minimum of 8 to 10+ years’ experience in Architect / Design / Develop various web applications using .NET Framework / .NET Core / Java or any other programming frameworks.</li>
+                            <li>
+                                Minimum 2+ years of experience in Microsoft Azure PaaS Services mentioned in the skills sets.</li>
+                            <li> Experience in implementation of best practices using various Design Patterns.</li>
+                            <li> Must have strong team and interpersonal skills, and the ability to multi-task, when required.</li>
+                            <li> Curious self-starter willing to learn and stay current with emerging technologies required.</li>
+                            <li> High customer orientation and quality awareness.</li>
+                        </ul> -->
+          </div>
+        </div>
+      </div>
+      <div class="row list-item">
+        <div class="col-12 col-sm-3">
+          <div class="title">Skills</div>
+        </div>
+        <div class="col-12 col-sm-9">
+          <div class="value">
+            <div>Good to have:</div>
+            <ul class="pl-0">
+              <li *ngFor="let skill of JobSkills">{{ skill | titlecase }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--  -->
+
+    <h3 class="section-heading">Avialibility and Work type</h3>
+    <div class="section-body">
+      <div class="row list-item">
+        <div class="col-12 col-sm-3">
+          <div class="title">Start date</div>
+        </div>
+        <div class="col-12 col-sm-9">
+          <div class="value">{{ JobDetails?.StartDate | date }}</div>
+        </div>
+      </div>
+    </div>
+    <!--  -->
+
+    <h3 class="section-heading">Our Internal Process</h3>
+    <div class="section-body">
+      <div class="row list-item">
+        <div class="col-12 col-sm-3">
+          <div class="title">Code challenge</div>
+        </div>
+        <div class="col-12 col-sm-9">
+          <div class="value">
+            Attempt our code challenge which is based on your specialty. Perform
+            brilliantly and you are ready to be hired.
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--  -->
+
+    <h3 class="section-heading">Privacy Policy</h3>
+    <div class="section-body">
+      <div>
+        If you are a resident of the European Union (EU) and European Economic
+        Area (EEA), you have certain data protection rights, covered by GDPR. We
+        aim to take reasonable steps to allow you to correct, amend, delete, or
+        limit the use of your Personal Data. If you wish to be informed what
+        Personal Data we hold about you and if you want it to be removed from
+        our systems, please email us at info@zwarttech.com. In certain
+        circumstances, you have the following data protection rights: 0.1. the
+        right to access, update or to delete the information we have on you;
+        0.2. the right of rectification. You have the right to have your
+        information rectified if that information is inaccurate or incomplete;
+        0.3. the right to object. You have the right to object to our processing
+        of your Personal Data; 0.4. the right of restriction. You have the right
+        to request that we restrict the processing of your personal information;
+        0.5. the right to data portability. You have the right to be provided
+        with a copy of your Personal Data in a structured, machine-readable and
+        commonly used format; 0.6. the right to withdraw consent. You also have
+        the right to withdraw your consent at any time where we rely on your
+        consent to process your personal information; Please note that we may
+        ask you to verify your identity before responding to such requests.
+        Please note, we may not able to provide Service without some necessary
+        data. You have the right to complain to a Data Protection Authority
+        about our collection and use of your Personal Data. For more
+        information, please contact your local data protection authority in the
+        European Economic Area (EEA).
+      </div>
+    </div>
+  </section>
+</div>

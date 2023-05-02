@@ -1,0 +1,45 @@
+<nav id="toolbar">
+  <!-- {{searchTerm}} -->
+  <div class="d-flex align-items-center justify-content-between flex-wrap p-2">
+    <div id="search-input-wrapper" class="order-2 order-md-1">
+      <div id="search-input" class="form-inline flex-nowrap my-2 my-lg-0">
+        <button class="btn" type="submit" (click)="onSearch()">
+          <img src="../../../../../assets/images/icons/search-lens-icon.svg" alt="search icon" class="img-fluid" />
+        </button>
+        <input class="form-control mr-sm-2 w-100" type="search" aria-label="Search" [(ngModel)]="searchTerm"
+          (change)="onSearch()" />
+      </div>
+    </div>
+    <div class="order-1 order-md-2 d-flex align-items-center justify-content-between flex-nowrap">
+      <div id="side-menu-toggler" class="d-md-none">
+        <button class="btn" (click)="OpenSidenav()">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+
+      <ul class="nav justify-content-end align-items-center flex-nowrap">
+        <li class="nav-item" id="role-tag" *ngIf="userRole">
+          <span class="badge badge-dark">{{userRole}}</span>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="#">
+            <div id="notification-bell">
+              <img src="../../../../../assets/images/icons/notification-bell-icon.svg" alt="" class="img-fluid">
+              <div class="notice"></div>
+            </div>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/recruiter/settings/account-settings']">
+            <div class="profile-image border">
+              <ng-template #noProfileImage>
+                <img src="../../../../../assets/images/image-placeholder.jpg" alt="" class="img-fluid">
+              </ng-template>
+              <img src="{{ProfileImageUrl}}" alt="" class="img-fluid" *ngIf="this.ProfileImageUrl; else noProfileImage">
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

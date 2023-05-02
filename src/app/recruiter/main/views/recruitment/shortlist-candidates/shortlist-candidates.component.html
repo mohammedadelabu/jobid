@@ -1,0 +1,189 @@
+<div class="pb-5 mt-4 job-details">
+  <div class="d-flex align-items-center justify-content-between flex-wrap mb-5">
+    <div class="d-flex align-items-center">
+      <img
+        (click)="back()"
+        src="assets/images/icons/angle-left-icon.svg"
+        alt=""
+        class="img-fluid back-icon cursor-pointer mr-4"
+      />
+      <h1 class="page-title py-0">Candidates</h1>
+    </div>
+    <div class="d-flex align-items-end flex-wrap">
+      <div class="d-flex align-items-center" style="gap: 16px">
+        <!-- <button
+          class="mr-2 share-button"
+          (click)="candidatesToSelect(page, itemsPerPage)"
+        > -->
+        <button class="mr-2 share-button" (click)="candidatesToSelect()">
+          Select All
+        </button>
+        <button class="mr-2 share-button" (click)="applyToSelectedCandidates()">
+          <i class="fa fa-plus mr-2" aria-hidden="true"></i> Add
+        </button>
+        <img src="assets/images/icons/toggler-icon.svg" alt="toggler" />
+      </div>
+    </div>
+  </div>
+  <!-- Show Loader -->
+  <div *ngIf="loading">
+    <app-simple-component-loader-with-spinner></app-simple-component-loader-with-spinner>
+  </div>
+  <div *ngIf="matchedCandidatesList?.length">
+    <!-- CANDIDATE GRID LISTING -->
+    <form [formGroup]="form" class="row no-gutters">
+      <!-- <app-candidate-listing></app-candidate-listing> -->
+      <div
+        class="card-wrapper col-12 col-sm-6 col-xl-4"
+        *ngFor="
+          let Candidate of matchedCandidatesList
+            | paginate
+              : {
+                  itemsPerPage: pageSize,
+                  currentPage: page,
+                  totalItems: totalPosts
+                }
+        "
+      >
+        <div class="candidate-list-card card border-0">
+          <div class="card-body position-relative">
+            <div
+              class="position-absolute"
+              style="top: 20px; right: 20px; z-index: 100"
+            >
+              <input
+                type="checkbox"
+                [value]="Candidate?.User?.Id"
+                (change)="onCheckboxChange($event)"
+                [checked]="setChecked(Candidate?.User?.Id)"
+              />
+              <!-- {{ data.name }} -->
+            </div>
+            <div class="row">
+              <div class="col-12 col-lg-3">
+                <div class="card-profile-img">
+                  <!-- <img src="../../../../../assets/images/candidate-test-avatar-1.png" class="img-fluid"
+                                      alt="..."> -->
+                  <img
+                    src="assets/images/image-placeholder.jpg"
+                    alt="candidate image"
+                    class="img-fluid"
+                    *ngIf="!Candidate?.User?.ProfileImageUrl"
+                  />
+                  <img
+                    src="{{ Candidate?.User?.ProfileImageUrl }}"
+                    alt="candidate image"
+                    class="img-fluid"
+                    *ngIf="Candidate?.User?.ProfileImageUrl"
+                  />
+                </div>
+              </div>
+              <div class="col-12 col-lg-9">
+                <h5
+                  class="card-title mb-1 cursor-pointer"
+                  [routerLink]="[
+                    '/recruiter/candidates/details/',
+                    Candidate?.User?.Id
+                  ]"
+                  title="{{ Candidate?.User?.FirstName }}&nbsp;{{
+                    Candidate?.User?.MiddleName
+                  }}&nbsp;{{ Candidate?.User?.LastName }}"
+                >
+                  {{ Candidate?.User?.FirstName | lowercase }}&nbsp;{{
+                    Candidate?.User?.MiddleName | lowercase
+                  }}&nbsp;{{ Candidate?.User?.LastName | lowercase }}
+                </h5>
+                <!-- PROFILE PREVIEW -->
+                <app-candidate-profile
+                  [candidateId]="Candidate?.User?.Id"
+                  [ngStyle]="candidateProfessionGridStyle"
+                ></app-candidate-profile>
+                <app-candidate-portfolio-linkedin
+                  [candidateId]="Candidate?.User?.Id"
+                  [ngStyle]="candidateProfessionGridStyle"
+                ></app-candidate-portfolio-linkedin>
+                <!--  -->
+                <div class="candidate-btn-container">
+                  <button
+                    class="candidate-btn"
+                    [routerLink]="[
+                      '/recruiter/candidates/cv-preview/',
+                      Candidate?.User?.Id
+                    ]"
+                  >
+                    <img
+                      src="assets/images/icons/view-cv-btn-icon.svg"
+                      alt=""
+                      class="img-fluid mr-2"
+                    />View CV
+                  </button>
+                  <button
+                    class="candidate-btn"
+                    (click)="
+                      openScheduleInterviewDialog(
+                        Candidate?.User?.Email,
+                        Candidate?.User?.Id
+                      )
+                    "
+                  >
+                    <img
+                      src="assets/images/icons/interview-icon-alt.svg"
+                      alt=""
+                      class="img-fluid mr-2"
+                    />Interview
+                  </button>
+                </div>
+                <!-- <div
+                  class="card-action btn-group btn-block"
+                  role="group"
+                  aria-label="card action"
+                >
+                  <a
+                    [routerLink]="[
+                      '/recruiter/candidates/cv-preview/',
+                      Candidate?.User?.Id
+                    ]"
+                    type="button"
+                    class="btn"
+                  >
+                    <img
+                      src="../../../../../assets/images/icons/view-cv-btn-icon.svg"
+                      alt=""
+                      class="img-fluid mr-1"
+                    />
+                    View CV</a
+                  >
+                  <button
+                    type="button"
+                    class="btn"
+                    (click)="
+                      openScheduleInterviewDialog(
+                        Candidate?.User?.Email,
+                        Candidate?.User?.Id
+                      )
+                    "
+                  >
+                    <img
+                      src="../../../../../assets/images/icons/interview-icon-alt.svg"
+                      alt=""
+                      class="img-fluid mr-1"
+                    />
+                    Interview
+                  </button>
+                </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <!-- PAGINATION -->
+    <div class="text-right py-2">
+      <pagination-controls
+        (pageChange)="pageChangeEvent($event)"
+      ></pagination-controls>
+    </div>
+  </div>
+</div>
+<!-- {{ form.value | json }} -->

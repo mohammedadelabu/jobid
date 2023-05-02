@@ -1,0 +1,115 @@
+<!-- <p>steppers works!</p> -->
+<div id="setup-your-account" class="main-page-wrapper">
+    <div class="inner">
+        <h1 class="page-title">Set up your account</h1>
+
+        <ul id="account-setup-steps" class="list-style-none pl-0 mb-4">
+            <li>
+                <div class="step-check-icon" [ngClass]="{'done': moduleSelectionFormDone}"></div>
+                <!-- Module Selection -->
+                <cdk-accordion class="example-accordion">
+                    <cdk-accordion-item *ngFor="let item of moduleSection; let index = index;"
+                        #accordionItem="cdkAccordionItem" class="example-accordion-item" role="button" tabindex="0"
+                        [attr.id]="'accordion-header-' + index" [attr.aria-expanded]="accordionItem.expanded"
+                        [attr.aria-controls]="'accordion-body-' + index">
+                        <div class="step">
+                            <div class="step-content card">
+                                <div class="card-body">
+                                    <div class="example-accordion-item-header step-title" (click)="toggle(item)">
+                                        <div class="title"> {{ item ?.title}} <span class="label-note"
+                                                *ngIf="item.instruction">*{{item.instruction}}</span>
+                                        </div>
+                                        <!-- <span class="example-accordion-item-description">
+                                            Click to {{ accordionItem.expanded ? 'close' : 'open' }}
+                                        </span> -->
+                                    </div>
+
+                                    <div class="example-accordion-item-body" role="region"
+                                        [style.display]="item.expanded ? '' : 'none'"
+                                        [attr.id]="'accordion-body-' + index"
+                                        [attr.aria-labelledby]="'accordion-header-' + index">
+                                        <div class="step-form-container">
+                                            <app-module-selection-form (onModuleSelectionDone)="onModuleSelectionDone()"></app-module-selection-form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </cdk-accordion-item>
+                </cdk-accordion>
+            </li>
+            <li>
+                <div class="step-check-icon" [ngClass]="{'done': numberOfEmployeesFormDone}"></div>
+
+                <!-- Number of employees to be onboarded -->
+                <cdk-accordion class="example-accordion">
+                    <cdk-accordion-item *ngFor="let item of numberOfEmployees; let index = index;"
+                        #accordionItem="cdkAccordionItem" class="example-accordion-item" role="button" tabindex="0"
+                        [attr.id]="'accordion-header-' + index" [attr.aria-expanded]="accordionItem.expanded"
+                        [attr.aria-controls]="'accordion-body-' + index">
+                        <div class="step">
+                            <div class="step-content card">
+                                <div class="card-body">
+                                    <div class="example-accordion-item-header step-title" (click)="toggle(item)">
+                                        <div class="title"> {{ item ?.title}} <span class="label-note"
+                                                *ngIf="item.instruction">*{{item.instruction}}</span>
+                                        </div>
+                                        <!-- <span class="example-accordion-item-description">
+                                            Click to {{ accordionItem.expanded ? 'close' : 'open' }}
+                                        </span> -->
+                                    </div>
+
+                                    <div class="example-accordion-item-body" role="region"
+                                        [style.display]="item.expanded ? '' : 'none'"
+                                        [attr.id]="'accordion-body-' + index"
+                                        [attr.aria-labelledby]="'accordion-header-' + index">
+                                        <div class="step-form-container">
+                                            <app-number-of-employees-form (onNumberOfEmployeesDone)="onNumberOfEmployeesDone()"></app-number-of-employees-form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </cdk-accordion-item>
+                </cdk-accordion>
+            </li>
+
+            <li>
+                <div class="step-check-icon" [ngClass]="{'done': subscriptionPlanFormDone}"></div>
+                <!-- Subscription plan -->
+                <cdk-accordion class="example-accordion">
+                    <cdk-accordion-item *ngFor="let item of subscriptionPlan; let index = index;"
+                        #accordionItem="cdkAccordionItem" class="example-accordion-item" role="button" tabindex="0"
+                        [attr.id]="'accordion-header-' + index" [attr.aria-expanded]="accordionItem.expanded"
+                        [attr.aria-controls]="'accordion-body-' + index">
+                        <div class="step">
+                            <div class="step-content card">
+                                <div class="card-body">
+                                    <div class="example-accordion-item-header step-title" (click)="toggle(item)">
+                                        <div class="title"> {{ item ?.title}} <span class="label-note"
+                                                *ngIf="item.instruction">*{{item.instruction}}</span>
+                                        </div>
+                                        <!-- <span class="example-accordion-item-description">
+                                            Click to {{ accordionItem.expanded ? 'close' : 'open' }}
+                                        </span> -->
+                                    </div>
+
+                                    <div class="example-accordion-item-body" role="region"
+                                        [style.display]="item.expanded ? '' : 'none'"
+                                        [attr.id]="'accordion-body-' + index"
+                                        [attr.aria-labelledby]="'accordion-header-' + index">
+                                        <div class="step-form-container">
+                                            <app-subscription-plan-form (onSubscriptionPlanDone)="onSubscriptionPlanDone()"></app-subscription-plan-form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </cdk-accordion-item>
+                </cdk-accordion>
+            </li>
+        </ul>
+
+
+    </div>
+</div>

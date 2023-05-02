@@ -1,0 +1,168 @@
+<!-- <p>register works!</p> -->
+<div id="login-authentication-page">
+    <div class="inner py-4">
+        <div class="card form-wrapper">
+            <div class="card-body">
+                <h1 class="text-center form-title">CREATE ACCOUNT!</h1>
+          
+                <form [formGroup]="RegisterUserForm" (ngSubmit)="register()" novalidate>
+                    <div class="form-row">
+                        <div class="form-group col-12 col-sm-4">
+                            <label for="FirstName" class="required-field-label">First Name</label>
+                            <input type="text" class="form-control" id="FirstName" aria-describedby="FirstName"
+                                formControlName="FirstName"
+                                [ngClass]="{'is-invalid': RegisterUserForm.get('FirstName')?.touched && RegisterUserForm.get('FirstName')?.invalid}"
+                                required>
+                            <small id="nameErrorMsg" class="form-text text-danger invalid-feedback">First Name
+                                is
+                                required.</small>
+                        </div>
+                        <div class="form-group col-12 col-sm-4">
+                            <label for="MiddleName">Middle Name</label>
+                            <input type="text" class="form-control" id="MiddleName" aria-describedby="MiddleName"
+                                formControlName="MiddleName">
+                        </div>
+                        <div class="form-group col-12 col-sm-4">
+                            <label for="LastName" class="required-field-label">Last Name</label>
+                            <input type="text" class="form-control" id="LastName" aria-describedby="LastName"
+                                formControlName="LastName"
+                                [ngClass]="{'is-invalid': RegisterUserForm.get('LastName')?.touched && RegisterUserForm.get('LastName')?.invalid}"
+                                required>
+                            <small id="firtsNameErrorMsg" class="form-text text-danger invalid-feedback">Last
+                                name is
+                                required.</small>
+                        </div>
+                    </div>
+
+
+                    <div class="form-row">
+                        <div class="form-group col-12 col-md-6">
+                            <label for="exampleInputEmail1" class="required-field-label">Email address</label>
+                            <input type="email" class="form-control"
+                                [ngClass]="{'is-invalid': RegisterUserForm.get('Email')?.touched && RegisterUserForm.get('Email')?.invalid}"
+                                id="exampleInputEmail" aria-describedby="EmailHelp" name="Email"
+                                formControlName="Email" required>
+
+                            <span class="invalid-feedback">
+                                <small class="form-text text-danger"
+                                    *ngIf="RegisterUserForm.get('Email')?.hasError('required')">Email is
+                                    required.
+                                </small>
+                                <small class="form-text text-danger"
+                                    *ngIf="RegisterUserForm.get('Email')?.hasError('email')">You entered an
+                                    invalid
+                                    Email.
+                                </small>
+                            </span>
+                        </div>
+                        <div class="form-group col-12 col-md-6">
+                            <label for="PhoneNumber" class="required-field-label">Phone Number</label>
+                            <!-- <input type="text" class="form-control"
+                                [ngClass]="{'is-invalid': RegisterUserForm.get('PhoneNumber')?.touched && RegisterUserForm.get('PhoneNumber')?.invalid}"
+                                id="PhoneNumber" aria-describedby="PhoneNumberHelp" name="PhoneNumber"
+                                formControlName="PhoneNumber"> -->
+                            <ngx-intl-tel-input [enableAutoCountrySelect]="true" [enablePlaceholder]="true" [preferredCountries]="['nl']" 
+                                [searchCountryFlag]="true" [selectFirstCountry]="true" [phoneValidation]="true" name="PhoneNumber" formControlName="PhoneNumber">
+                            </ngx-intl-tel-input>
+                            <small id="phoneNumberErrorMsg" class="form-text text-danger"
+                                [ngClass]="{'d-none': !isphoneNumberError}">Phone number is
+                                required.</small>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group col-12 col-sm-6">
+                            <label for="InvitedBy">Invited By</label>
+                            <input type="email" class="form-control" id="InvitedBy" formControlName="InvitedBy" placeholder="Enter email address"
+                                [ngClass]="{'is-invalid': RegisterUserForm.get('InvitedBy')?.touched && RegisterUserForm.get('InvitedBy')?.invalid}">
+                            <small id="InvitedByErrorMsg" class="form-text text-danger invalid-feedback">Please provide referrer email</small>
+                            <span class="invalid-feedback">
+                                <small class="form-text text-danger"
+                                    *ngIf="RegisterUserForm.get('InvitedBy')?.hasError('required')">Email is
+                                    required.
+                                </small>
+                                <small class="form-text text-danger"
+                                    *ngIf="RegisterUserForm.get('InvitedBy')?.hasError('email')">You entered an
+                                    invalid
+                                    Email.
+                                </small>
+                            </span>
+                        </div>
+                        <div class="form-group col-12 col-md-6">
+                            <label for="Region" class="required-field-label">Recruitment Region</label>
+                            <select name="Region" id="Region" class="form-control" formControlName="Region"
+                                [ngClass]="{'is-invalid': RegisterUserForm.get('Region')?.touched && RegisterUserForm.get('Region')?.invalid}"
+                                required>
+                                <option value="" selected="selected">Select region</option>
+                                <option value="{{region}}" *ngFor="let region of regionList">
+                                    {{region}}</option>
+                            </select>
+                            <small id="firtsNameErrorMsg" class="form-text text-danger invalid-feedback">Select a
+                                region</small>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-12 col-sm-6">
+                            <label for="Password" class="required-field-label">Password</label>
+                            <input type="password" class="form-control" id="Password"
+                                [ngClass]="{'is-invalid': RegisterUserForm.get('Password')?.touched && RegisterUserForm.get('Password')?.invalid}"
+                                name="Password" formControlName="Password"
+                                pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$">
+                            <span class="invalid-feedback">
+                                <small id="PasswordErrorMsg" class="form-text text-danger"
+                                    *ngIf="RegisterUserForm.get('Password')?.hasError('required')">Password is
+                                    required.
+                                </small>
+                                <small id="PasswordErrorMsg" class="form-text text-danger"
+                                    *ngIf="RegisterUserForm.get('Password')?.hasError('symbol')">Password must
+                                    contain
+                                    at least a number, capital letter and special character.
+                                </small>
+                                <small id="PasswordErrorMsg" class="form-text text-danger"
+                                    *ngIf="RegisterUserForm.get('Password')?.hasError('minlength')">Password
+                                    must
+                                    contain a minimum of 8 characters.
+                                </small>
+                            </span>
+                            <small id="PasswordErrorMsg" class="text-muted"  *ngIf="RegisterUserForm.get('Password')?.hasError('required') || RegisterUserForm.get('Password')?.hasError('minlength')">Your password must not be less
+                                than 8 characters with atleast an uppercase text, number and a
+                                special character</small>
+                            <!-- <small class="text-muted d-none"
+                                [ngClass]="{'d-block': RegisterUserForm.invalid}">Your password must not be less
+                                than 8 characters with atleast an uppercase text, number and a
+                                special character</small> -->
+                            <small class="text-muted"  *ngIf="RegisterUserForm.get('Password')?.hasError('required') && RegisterUserForm.get('Password')?.hasError('minlength')">Your password must not be less
+                                than 8 characters with atleast an uppercase text, number and a
+                                special character</small>
+                        </div>
+                        <div class="form-group col-12 col-sm-6">
+                            <div class="field">
+                                <label for="ConfirmPassword" class="required-field-label">Confirm Password</label>
+                                <input type="password" class="form-control" id="ConfirmPassword"
+                                    [ngClass]="{'is-invalid': RegisterUserForm.get('ConfirmPassword')?.touched && RegisterUserForm.get('ConfirmPassword')?.invalid}"
+                                    name="ConfirmPassword" formControlName="ConfirmPassword"
+                                    pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$">
+                                <small id="ConfirmPasswordErrorMsg"
+                                    class="form-text text-danger invalid-feedback">Passwords
+                                    must
+                                    match.</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-block form-btn success-btn px-md-5" [disabled]="(isLoading$ | async)">
+                            <span *ngIf="!(isLoading$ | async)">  SIGN UP</span>
+                            <span *ngIf="(isLoading$ | async)">PROCESSING...</span>
+                          </button>
+                    </div>
+                    <div class="text-center">
+                        <span>Have an account? </span>&nbsp;
+                        <span><a [routerLink]="['/auth']" class="text-link text-bold">Login</a></span>
+                    </div>
+                  </form>
+                  
+            </div>
+          </div>
+    </div>
+</div>

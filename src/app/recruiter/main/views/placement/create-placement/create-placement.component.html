@@ -1,0 +1,114 @@
+<!-- <p>create-placement works!</p> -->
+<div class="d-flex align-items-center">
+  <img
+    src="assets/images/icons/angle-left-icon.svg"
+    alt=""
+    class="img-fluid mr-3"
+    (click)="back()"
+  />
+
+  <h1 class="page-title py-0 mb-0">Create Placement</h1>
+</div>
+
+<div class="form-wrapper">
+  <form [formGroup]="CreatePlacementForm" (ngSubmit)="onSubmit()">
+    <div class="form-row">
+      <div class="form-group col-12 col-md-6">
+        <label for="JobTitle" class="required-field-label">Job Title</label>
+        <input
+          type="text"
+          id="JobTitle"
+          class="form-control"
+          formControlName="JobTitle"
+          required
+        />
+      </div>
+      <div class="form-group col-12 col-md-6">
+        <label for="Company" class="required-field-label">Company</label>
+        <input
+          type="text"
+          id="Company"
+          class="form-control"
+          formControlName="Company"
+          required
+        />
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-12 col-md-6">
+        <label for="JobType" class="required-field-label">Job Type</label>
+        <select
+          name="JobType"
+          id="JobType"
+          class="form-control"
+          formControlName="JobType"
+          required
+        >
+          <option value="" selected="selected">Select a Job Type</option>
+          <option value="JobType.Name" *ngFor="let jobType of JobTypeList">
+            {{ jobType.Name }}
+          </option>
+        </select>
+      </div>
+      <div class="form-group col-12 col-md-6">
+        <label for="Location" class="required-field-label">Location</label>
+        <select
+          name="Location"
+          id="Location"
+          class="form-control"
+          formControlName="Location"
+          required
+        >
+          <option value="" selected="selected">Select a Location</option>
+          <option value="location.Value" *ngFor="let location of LocationList">
+            {{ location.Name }}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-12 col-md-6">
+        <label for="StartDate" class="required-field-label">Start Date</label>
+        <input type="date" class="form-control" id="StartDate" />
+      </div>
+      <div class="form-group col-12 col-md-6">
+        <label for="EndDate" class="required-field-label">End Date</label>
+        <input type="date" class="form-control" id="EndDate" />
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-12 col-md-6">
+        <label for="HoursPerWeek" class="required-field-label"
+          >Hours a week</label
+        >
+        <input
+          type="text"
+          id="HoursPerWeek"
+          class="form-control"
+          formControlName="HoursPerWeek"
+          required
+        />
+      </div>
+      <div class="form-group col-12 col-md-6">
+        <label for="HourlyRate" class="required-field-label">Hourly Rate</label>
+        <!-- <input type="text" id="HourlyRate" class="form-control" formControlName="HourlyRate" required> -->
+        <div class="input-group mb-3">
+          <input
+            type="text"
+            class="form-control"
+            aria-label="Hourly Rate"
+            aria-describedby="basic-addon2"
+            id="HourlyRate"
+            formControlName="HourlyRate"
+          />
+          <div class="input-group-append">
+            <span class="input-group-text text-bold bg-none" id="basic-addon2"
+              >$</span
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="btn success-btn">Submit</button>
+  </form>
+</div>

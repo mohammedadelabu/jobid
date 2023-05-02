@@ -1,0 +1,240 @@
+<!-- <p>deals works!</p> -->
+<h1 class="page-title">Deals</h1>
+
+<div class="counter-wrapper">
+    <ul id="counter" class="list-style-none pl-0" *ngFor="let items of dealsListArray" style="margin-right: 10px;">
+        <li>
+            <div class="count">{{items?.dealsCount}}</div>
+            <div class="label">All {{items?.stage}}</div>
+        </li>
+        <!-- <li>
+            <div class="count">0</div>
+            <div class="label">All Accounts</div>
+        </li> -->
+        <!-- <li>
+            <div class="count">0</div>
+            <div class="label">All Discovery</div>
+        </li>
+        <li>
+            <div class="count">0</div>
+            <div class="label">All Handovers</div>
+        </li>
+        <li>
+            <div class="count">0</div>
+            <div class="label">All Sold</div>
+        </li>
+        <li>
+            <div class="count">0</div>
+            <div class="label">All Lost</div>
+        </li> -->
+    </ul>
+</div>
+
+<!-- ########################### -->
+
+<!--  -->
+<div class="sticky-top width-100 pb-3 mb-3" id="horizon-control-wrapper">
+    <div class="text-right">
+        <div class="inline-flex align-items-center nowrap">
+            <button class="btn btn-sm" (click)="onScrollLeft()">
+                <i class="fas fa-angle-left"></i>
+            </button>
+            <button class="btn btn-sm" (click)="onScrollRight()">
+                <i class="fas fa-angle-right"></i>
+            </button>
+        </div>
+    </div>
+
+</div>
+<!-- {{dealsListArray | json}} -->
+<section id="progress-space" class="table-responsive">
+    <ul cdkDropListGroup class="column-list list-style-none pl-0">
+        <li class="example-container stage-column" *ngFor="let items of dealsListArray">
+            <div class="top">
+                <div class="d-flex align-items-center">
+                    <div class="stage-title" title="{{items?.stage}}">{{items?.stage}}</div>
+                    <div class="deals-count">{{items?.dealsCount}}</div>
+                </div>
+                <div class="control">
+                    <!-- <div class="btn-group">
+                        <div class="jid-dropdown">
+                            <div class="btn btn-sm menu-alt-btn py-0 px-1 jid-dropdown-btn"
+                                (click)="doSomething($event)"></div>
+                            <ul class="dropdown-content list-style-none mb-0">
+                                <li>
+
+                                    <button mat-button [matMenuTriggerFor]="menu"
+                                        class="dropdown-btn btn-block">Location</button>
+                                    <mat-menu #menu="matMenu">
+                                        <button mat-menu-item>Item 1</button>
+                                        <button mat-menu-item>Item 2</button>
+                                    </mat-menu>
+                                </li>
+                                <li>
+                                    <button mat-button [matMenuTriggerFor]="menu" class="dropdown-btn btn-block">Sales
+                                        Person</button>
+                                    <mat-menu #menu="matMenu">
+                                        <button mat-menu-item>Item 1</button>
+                                        <button mat-menu-item>Item 2</button>
+                                    </mat-menu>
+                                </li>
+                            </ul>
+                        </div>
+                        <button class="btn btn-sm edit-btn py-0 px-1"></button>
+                    </div> -->
+                </div>
+            </div>
+
+
+            <div class="column-inner-wrap">
+                <!-- <h2>{{items?.title}}</h2>
+                <div class="alert alert-info">
+                    listRef: {{items?.listRef}}
+                </div>
+                <div class="alert alert-success">
+                   connectedTo: {{items?.connectedTo}}
+                </div>
+                <div class="alert alert-success">
+                   list: {{items?.deals | json}}
+                </div> -->
+
+                <!--  -->
+                <ul class="example-list list-style-none pl-0 deal-card-container" cdkDropList
+                    [cdkDropListData]="items?.deals" (cdkDropListDropped)="drop($event, items)">
+                    <li *ngIf="!(items?.dealsCount > 0)">
+                        <ng-container class="text-center">
+                            <small>No Deal</small>
+                        </ng-container>
+                    </li>
+                    <!-- <li class="example-box deal-card" *ngFor="let deal of items?.deals" cdkDrag>
+                        <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+                        <div class="inner">
+                            <div>
+                                <div class="text-danger">test</div>
+                                <div class="name">{{deal?.name}}</div>
+                                <div class="phone">{{deal?.phone}}</div>
+                            </div>
+                            <div class="d-flex justify-content-between align-deals-start">
+                                <div class="date">{{deal?.date}}</div>
+                            </div>
+                        </div>
+                    </li> -->
+                    <li class="example-box deal-card" *ngFor="let deal of items?.deals" cdkDrag cdkDrag
+                        [cdkDragData]="deal">
+                        <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+                        <div class="inner">
+                            <!-- <div class="company-info">
+                                <div class="d-flex justify-content-between align-flex-start">
+                                    <div class="company-name">Henderson cO.</div>
+                                    <div class="date">07/70/2022</div>
+                                </div>
+                                <div class="company-email">alma.lawson@example.com</div>
+                            </div>
+                            <hr class="horizontal-line">
+                            <div class="contact-info">
+                                <div class="contact-name">Dianne Russell</div>
+                                <div class="contact-email">debra.holt@example.com</div>
+                                <div class="contact-phone">(307) 555-0133</div>
+                            </div> -->
+
+
+
+                            <!-- NEW CARD UPDATE -->
+
+                            <div class="company-info">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="company-name"
+                                    (click)="onViewDetails(deal)">{{deal?.Companies?.Name}}</div>
+                                    <div class="date">{{deal?.DateCreated | date}}
+
+                                        <button class="btn btn-sm pr-0" [matMenuTriggerFor]="menu"><i class="fas fa-ellipsis-v"></i></button>
+                                        <!-- <button mat-button [matMenuTriggerFor]="menu"><i class="fas fa-ellipsis-v"></i></button> -->
+                                        <mat-menu #menu="matMenu">
+                                            <button mat-menu-item class="text-center" (click)="onViewDetails(deal)">View</button>
+                                            <button mat-menu-item class="text-center" (click)="onRemoveDeal(deal, items)">Revert</button>
+                                        </mat-menu>
+
+
+                                    </div>
+                                </div>
+                                <div class="company-email"
+                                (click)="onViewDetails(deal)">{{deal?.Companies?.EmailAddress}}</div>
+                            </div>
+                            <hr class="horizontal-line">
+                            <div class="contact-info"
+                            (click)="onViewDetails(deal)">
+                                <div class="contact-name">
+                                    <div class="inner">
+                                        <div>
+                                            {{deal?.ContactFirstName}}&nbsp;
+                                            {{deal?.ContactLastName}}
+                                        </div>
+                                        <div class="card-tag">{{deal?.Lead?.Status}}</div>
+                                    </div>
+                                </div>
+                                <div class="contact-email"> {{deal?.ContactEmail}}</div>
+                                <div class="contact-phone">{{deal?.ContactPhoneNumber}}</div>
+                            </div>
+
+                            <!--  -->
+
+                            <!-- <hr class="horizontal-line">
+                            <div class="company-info">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="company-name cursor-pointer" (click)="onViewDetails(items, deal)">
+                                        {{deal?.CompanyName}}</div>
+                                    <div class="d-flex align-items-center">
+                                        <div class="date">07/70/2022</div>
+                                        <button class="btn btn-sm py-0 pr-0 menu-dots-btn"></button>
+                                        <button [matMenuTriggerFor]="menu"
+                                            class="menu-dots-btn btn btn-sm p-1 py-0 pr-0"></button>
+                                        <mat-menu #menu="matMenu">
+                                            <button mat-menu-item>Convert to
+                                                deal</button>
+                                            <button mat-menu-item>Edit</button>
+                                            <button mat-menu-item (click)="onRemoveDeal(deal)">Delete</button>
+                                        </mat-menu>
+                                    </div>
+                                </div>
+                                <div class="company-email">{{deal?.CompanyEmail}}</div>
+                            </div>
+                            <hr class="horizontal-line">
+                            <div class="contact-info">
+                                <div class="contact-name">
+                                    <div class="inner">
+                                        <div>
+                                            {{deal?.PrimaryContactFirstName}}&nbsp;{{deal?.PrimaryContactLastName}}
+                                        </div>
+                                        <div class="card-tag">Accepted</div>
+                                    </div>
+                                </div>
+                                <div class="contact-email">{{deal?.PrimaryContactEmail}}</div>
+                                <div class="contact-phone">{{deal?.PrimaryContactMobileNumber}}</div>
+                            </div> -->
+
+                            <!--  -->
+                            <!-- <div>
+                                <div class="name">{{deal?.name}}</div>
+                                <div class="phone">{{deal?.phone}}</div>
+                            </div>
+                            <div class="d-flex justify-content-between align-deals-start">
+                                <div class="date">{{deal?.date}}</div>
+                            </div> -->
+                        </div>
+                        <!-- {{deal | json}} -->
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <!-- <li class="example-container stage-column border-0">
+            <button class="btn btn-lg btn-primary">Add section</button>
+        </li> -->
+    </ul>
+</section>
+
+
+<!-- <ng-container *ngIf="(isLoading$ | async)">
+    <app-spinner></app-spinner>
+</ng-container> -->
+
+<!-- <pre>{{dealsList$ | async | json}}</pre> -->

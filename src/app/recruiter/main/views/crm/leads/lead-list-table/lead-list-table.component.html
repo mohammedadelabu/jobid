@@ -1,0 +1,113 @@
+<ng-container *ngIf="!leadsListArray">
+    <ng-container *ngIf="isLoadingData">
+        <app-simple-component-loader-with-spinner></app-simple-component-loader-with-spinner>
+    </ng-container>
+</ng-container>
+
+<!-- =>>: {{SelectedLeadList | json}} -->
+
+
+<ng-container *ngIf="leadsListArray?.length">
+    <div class="dashboard-table table-responsive border-rounded-md">
+        <!-- *ngIf="!(isCandidatesListLoading$ | async) || UserList?.length != 0; else isLoading" -->
+        <table class="table table-hover">
+            <thead class="thead">
+                <tr>
+                    <th scope="col" *ngIf="leadsListArray?.length">
+                        <div class="custom-check">
+                            <input type="checkbox" name="selectAllCheckbox" id="selectAllCheckbox"
+                                [(ngModel)]="selectAllCheckbox" (change)="onSelectLeadAll()">
+                            <label for="selectAllCheckbox">
+                                <span class="ui-check"></span>
+                            </label>
+                        </div>
+                    </th>
+                    <th scope="col">Account Name</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Date created</th>
+                    <th scope="col">Tags</th>
+                    <!-- <th scope="col">Lead Source</th> -->
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <!-- | paginate : {
+            itemsPerPage: ItemsPerPage,
+            currentPage: page,
+            totalItems: totalRecords
+          }; -->
+            <!-- paginationData -->
+            <tbody>
+                <!-- <tr *ngFor="let item of requisitionsList | async"> -->
+                <tr *ngFor="let item of leadsListArray | paginate : {
+                    itemsPerPage: paginationData?.ItemsPerPage,
+                    currentPage: paginationData?.page,
+                    totalItems: paginationData?.totalRecords
+                  };">
+                    <th class="cursor-pointer">
+                        <div class="custom-check">
+                            <input type="checkbox" [name]="item?.EmailAddress" [id]="item?.EmailAddress"
+                                [(ngModel)]="item.isChecked" (change)="onSelectLead(item)">
+                            <label [for]="item?.EmailAddress">
+                                <span class="ui-check"></span>
+                            </label>
+                        </div>
+                    </th>
+                    <td class="cursor-pointer" (click)="openUpdateLeadFormDialog(item)">
+                        <div class="account-name">{{item?.AccountName}}</div>
+                        <!-- <div>{{item?.PhoneNumber}}</div> -->
+                    </td>
+                    <td class="cursor-pointer" (click)="openUpdateLeadFormDialog(item)">
+                        {{item?.PhoneNumber}}
+                        <!-- <app-requisition-status-button [requisition]="item"></app-requisition-status-button> -->
+                    </td>
+                    <td class="cursor-pointer" (click)="openUpdateLeadFormDialog(item)">{{item?.EmailAddress}}</td>
+                    <!-- <td>{{item?.LeadSource}}</td> -->
+                    <td class="cursor-pointer" (click)="openUpdateLeadFormDialog(item)">{{item?.DateCreated | date}}
+                    </td>
+                    <td class="cursor-pointer" (click)="openUpdateLeadFormDialog(item)">
+                        <ul class="list-style-none pl-0 mb-0 tagList">
+                            <li *ngFor="let item of item?.Tag">
+                                <div class="tag">{{item.Name}}</div>
+                            </li>
+                            <!-- <li>
+                                <div class="tag">{{item.Name}}</div>
+                            </li> -->
+                        </ul>
+                    </td>
+                    <td>
+                        <!-- <div class="btn-group">
+                            <button class="btn btn-sm btn-default" (click)="openUpdateLeadFormDialog(item)">
+                                <i class="fas fa-pen text-info"></i>
+                            </button>
+                            <button class="btn btn-sm btn-default">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                            <button class="btn btn-sm btn-default" (click)="onRemoveLead(item?.Id)">
+                                <i class="fas fa-trash text-danger"></i>
+                            </button>
+                        </div> -->
+                        <button mat-button [matMenuTriggerFor]="menu" class="menu-dots-btn"></button>
+                        <mat-menu #menu="matMenu">
+                            <button mat-menu-item (click)="onConvertLeadToDeal(item)" class="conversion-btn">Convert to
+                                deal</button>
+                            <button mat-menu-item (click)="openUpdateLeadFormDialog(item)"
+                                class="edit-btn">Edit</button>
+                            <button mat-menu-item (click)="onRemoveLead(item?.Id)" class="trash-btn">Delete</button>
+                        </mat-menu>
+                    </td>
+                </tr>
+
+                <ng-container *ngIf="!isLoadingData && !leadsListArray">
+                    <tr>
+                        <td colspan="7">
+                            <div class="alert alert-info text-center">No lead available</div>
+                        </td>
+                    </tr>
+                    <!-- <div class="alert alert-info text-center">No Item</div> -->
+                </ng-container>
+            </tbody>
+        </table>
+
+    </div>
+</ng-container>

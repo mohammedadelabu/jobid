@@ -1,0 +1,15 @@
+<div class="collapsed-chat">
+  <div class="left">
+    <img class="avatar" [src]="chat.imgUrl" alt="avatar" />
+    <span>Chat</span>
+  </div>
+  <div class="right">
+    <span>Go to Chat</span>
+    <img
+      class="arrow"
+      src="assets/images/icons/chevron-up-icon.svg"
+      alt="chevron up"
+      (click)="onToggleCollapse()"
+    />
+  </div>
+</div>

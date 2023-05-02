@@ -1,0 +1,48 @@
+<!-- <p>task-list works!</p> -->
+
+<div *ngIf="!(taskList$ | async)">
+    <div *ngIf="(isTaskListLoading$ | async)">
+        <app-simple-component-loader-with-spinner></app-simple-component-loader-with-spinner>
+    </div>
+</div>
+<div *ngIf="!(isTaskListLoading$ | async) && !(taskList$ | async)">
+  <div class="alert alert-info text-center">No task</div>
+</div>
+<div id="upcoming-todos">
+    <ul id="todo-list" class="list-style-none pl-0 mb-0">
+        <li class="todo-item" *ngFor="let item of (taskList$ | async); let i = index">
+            <div class="todo-card">
+                <div class="inner-wrapper">
+                    <label for="item{{i}}" class="content">
+                        <h5 class="todo-title">{{item.TaskName}}</h5>
+                        <div class="todo-date-time">
+                            <!-- <span class="date">25 May</span>
+                            <span class="time">7am</span> -->
+                            <span class="date">{{item.DueDate | date}}</span>
+                        </div>
+                        <div class="todo-body">{{item.Description}}</div>
+                    </label>
+                    <div class="todo-check-control">
+                        <input type="checkbox" name="" id="item{{i}}">
+                        <span class="ui-check"></span>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <!-- <li class="todo-item" *ngFor="let todo of todoList; let i = index">
+            <app-todo-list-card [todo]="todo" [indexNumber]="i" (onUpdateIsCompleted)="UpdateIsCompleted(todo)">
+            </app-todo-list-card>
+        </li> -->
+    </ul>
+</div>
+
+
+
+<ng-template #isLoading>
+    <!-- <small class="text-info">Loading...</small> -->
+    <app-simple-component-loader-with-spinner></app-simple-component-loader-with-spinner>
+  </ng-template>
+  <!-- isContactListLoading$ -->
+  <ng-template #noContact>
+    <div class="alert alert-info text-center">No contact</div>
+  </ng-template>

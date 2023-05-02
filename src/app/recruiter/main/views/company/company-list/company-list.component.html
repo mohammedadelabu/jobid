@@ -1,0 +1,111 @@
+<!-- <p>company-list works!</p> -->
+<div class="dashboard-page-Wrapper">
+  <div class="d-flex align-items-center justify-content-between flex-wrap mb-4">
+    <h1 class="page-title">Company</h1>
+    <div class="btn-group">
+      <button class="btn white-btn-green-border rounded" (click)="openDialog()">
+        <img src="../../../../../../assets/images/icons/envelope-icon.svg" alt="" class="img-fluid" />
+        &nbsp;Invite Company
+      </button>
+      <span class="mx-1"></span>
+      <button class="btn white-btn-green-border rounded" [routerLink]="['/recruiter/crm/companies/add-company']">
+        +&nbsp;Add Company
+      </button>
+      <span class="mx-1"></span>
+      <button type="button" class="btn white-btn-green-border rounded" (click)="onDeleteMultipleCompany()" *appCrm="Delete"
+        [disabled]="!SelectedCompanyList.length|| isDeleting">
+        <ng-container *ngIf="!isDeleting"><i class="fas fa fa-trash"></i>&nbsp; Delete</ng-container>
+        <ng-container *ngIf="isDeleting">Deleting...</ng-container>
+      </button>
+    </div>
+  </div>
+
+
+  <ng-container *ngIf="!(companyListForUser$ | async)">
+    <ng-container *ngIf="(isCompanyListForUserLoading$ | async)">
+      <app-simple-component-loader-with-spinner></app-simple-component-loader-with-spinner>
+    </ng-container>
+  </ng-container>
+  <ng-container *ngIf="!(isCompanyListForUserLoading$ | async) && !(companyListForUser$ | async)">
+    <div class="alert alert-info text-center">No company available</div>
+  </ng-container>
+
+  <div *ngIf="companyList?.length">
+    <div class="dashboard-table table-responsive border-rounded-md">
+      <table class="table table-hover">
+        <thead class="thead">
+          <tr>
+            <th scope="col" *ngIf="companyList?.length">
+              <div class="custom-check">
+                <input type="checkbox" name="selectAllCheckbox" id="selectAllCheckbox" [(ngModel)]="selectAllCheckbox"
+                  (change)="onSelectAllCompany()">
+                <label for="selectAllCheckbox">
+                  <span class="ui-check"></span>
+                </label>
+              </div>
+            </th>
+            <th scope="col">Name</th>
+            <th scope="col">Location</th>
+            <th scope="col">Website</th>
+            <th scope="col">Size</th>
+            <th scope="col">Contact Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Mobile No</th>
+            <th scope="col" class="column-action"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="
+              let Company of companyList
+                | paginate
+                  : {
+                      itemsPerPage: pageSize,
+                      currentPage: page,
+                      totalItems: totalPosts
+                    }
+            ">
+            <th scope="row" class="cursor-pointer">
+              <div class="custom-check">
+                <input type="checkbox" [name]="Company?.EmailAddress" [id]="Company?.EmailAddress"
+                  [(ngModel)]="Company.isChecked" (change)="onSelectCompany(Company)">
+                <label [for]="Company?.EmailAddress">
+                  <span class="ui-check"></span>
+                </label>
+              </div>
+            </th>
+            <td class="cursor-pointer" (click)="onRouteToDetailsPage(Company.CompanyId)">
+              {{ Company.Name }}
+            </td>
+            <td>{{ Company.Location | titlecase }}</td>
+            <td>{{ Company.Website }}</td>
+            <td>{{ Company.Size }}</td>
+            <td>
+              <app-get-company-contact [companyId]="Company.CompanyId"></app-get-company-contact>
+              <!-- {{Company.ContactPerson1_LastName}}&nbsp;
+                          {{Company.ContactPerson1_FirstName}} -->
+            </td>
+            <td>{{ Company.EmailAddress }}</td>
+            <td>{{ Company.PhoneNumber }}</td>
+            <td class="text-right">
+              <div class="btn-group" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-sm" (click)="onEditCompany(Company.CompanyId)">
+                  <img src="../../../../../../assets/images/icons/pencil-line-green-icon.svg" alt="edit" />
+                </button>
+                <button type="button" class="btn btn-sm" (click)="deleteCompany(Company.CompanyId)">
+                  <img src="../../../../../../assets/images/icons/trash-bin-red-icon.svg" alt="remove" />
+                </button>
+                <button type="button" class="btn btn-sm" (click)="onRouteToDetailsPage(Company.CompanyId)">
+                  <img src="../../../../../assets/images/icons/green-eye-icon.svg" alt="view" />
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- PAGINATION -->
+    <div class="text-center" *ngIf="companyList" id="pagination">
+      <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
+    </div>
+  </div>

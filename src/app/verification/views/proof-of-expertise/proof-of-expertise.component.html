@@ -1,0 +1,160 @@
+<!-- <p>proof-of-expertise works!</p> -->
+<div class="verification-form-wrapper">
+  <div class="inner">
+    <div class="form-step-indicator text-center">
+      <ul class="steps">
+        <li class="step done">
+          <div>
+            <!-- <div class="number">01</div> -->
+            <div class="heading">
+              <span class="number">01</span>
+              <span class="step-title">Picture upload</span>
+            </div>
+            <div class="bulb"></div>
+          </div>
+        </li>
+        <li class="step done">
+          <div>
+            <!-- <div class="number">02</div> -->
+            <div class="heading">
+              <span class="number">02</span>
+              <span class="step-title">Government ID</span>
+            </div>
+            <div class="bulb"></div>
+          </div>
+        </li>
+        <li class="step done">
+          <!-- <div class="number">03</div> -->
+          <div>
+            <div class="heading">
+              <span class="number">03</span>
+              <span class="step-title">Address Verification</span>
+            </div>
+            <div class="bulb"></div>
+          </div>
+        </li>
+        <li class="step active">
+          <!-- <div class="number">04</div> -->
+          <div>
+            <div class="heading">
+              <span class="number">04</span>
+              <span class="step-title">Proof of Expertise</span>
+            </div>
+            <div class="bulb"></div>
+          </div>
+        </li>
+        <li class="step">
+          <!-- <div class="number">05</div> -->
+          <div>
+            <div class="heading">
+              <span class="number">05</span>
+              <span class="step-title">Gaurantor</span>
+            </div>
+            <div class="bulb"></div>
+          </div>
+        </li>
+        <li class="step">
+          <!-- <div class="number">06</div> -->
+          <div>
+            <div class="heading">
+              <span class="number">06</span>
+              <span class="step-title">Success</span>
+            </div>
+            <div class="bulb"></div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <h1 class="title">Proof of Expertise</h1>
+    <h2 class="sub-title">
+      Upload PDF copies of your Academic and Professional Certicate
+    </h2>
+
+    <!-- <form #verifyPasswordForm="ngForm" (ngSubmit)="onSubmit(verifyPasswordForm)">
+
+        </form> -->
+
+    <div class="card mb-4 verification-from-wrap border-0">
+      <div class="fieldset card-body">
+        <div class="row">
+          <div class="col-12 col-md-6">
+            <h3>Address</h3>
+            <p>
+              Upload PDF copies of your Academic and Professional Certicates
+            </p>
+            <app-upload-academic-professional-certificate></app-upload-academic-professional-certificate>
+          </div>
+          <div class="col-12 col-md-6">
+            <h3>Upload CV</h3>
+            <p>Upload PDF copy of your CV</p>
+            <app-upload-cv></app-upload-cv>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-right">
+      <div class="d-flex align-items-start">
+        <button class="btn white-btn-green-border back-icon mr-4 ml-auto">
+          Back
+        </button>
+        <button class="btn success-btn">Continue</button>
+      </div>
+    </div>
+
+    <!-- <form [formGroup]="proofOfExpertiseForm" (ngSubmit)="onSubmit()">
+            <div class="card mb-4 verification-from-wrap">
+                <div class="fieldset card-body">
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            <h3>Address</h3>
+                            <p>Upload PDF copies of your Academic and Professional Certicates</p>
+                            <div formArrayName="itemRows">
+                                <div class="wrap">
+                                    <ng-container *ngFor="let itemRow of formArray?.controls; let i = index;" [formGroupName]="i">
+                                        <div class="custom-file-group">
+                                            <div class="inner">
+                                                <div class="icon">
+                                                    <img src="../../../../assets/images/icons/edge-wheel-icon.svg" alt="" class="img-fluid">
+                                                </div>
+                                                <label for="CertificateFile{{i}}" class="mb-0">
+                                                    Select a file
+                                                    <input type="file" id="CertificateFile{{i}}" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" hidden formControlName="CertificateFile" (change)="onSelectFile($event)">
+                                                </label>
+                                            </div>
+                                            <div class="delete-action">
+                                                <button class="btn" (click)="deleteRow(i)"><i class="fas fa-trash"></i></button>
+                                            </div>
+                                        </div>
+                                    </ng-container>
+                                    <div class="text-right">
+                                        <button class="btn text-green-btn" (click)="addNewRow()">+&nbsp;Add more</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <h3>Upload CV</h3>
+                            <p>Upload PDF copy of your CV</p>
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    <label id="file-label" for="idDocument">
+                                        <aside class="mb-0">Click here to select a file 2MB max</aside>
+                                        <p class="mb-0 text-center" *ngIf="label">{{label}}</p>
+                                        <input type="file" id="idDocument" class="form-control" hidden (change)="onSelectFile($event)" formControlName="CV">
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-right">
+                <div class="d-flex align-items-start">
+                    <button class="btn white-btn-green-border back-icon mr-4 ml-auto">Back</button>
+                    <button class="btn success-btn">Save & Continue</button>
+                </div>
+            </div>
+        </form> -->
+  </div>
+</div>

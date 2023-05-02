@@ -1,0 +1,85 @@
+<nav
+  [ngClass]="{ nav: true, collapsed: collapsed }"
+  [style.width.px]="sbService.sidebarWidth | async"
+>
+  <div>
+    <div
+      [ngClass]="{
+        'collapse-icon': true,
+        collapsed: collapsed,
+        hide: !(sbService.secSidebarCollapsed | async)
+      }"
+    >
+      <img
+        (click)="toggleCollapse()"
+        *ngIf="!collapsed"
+        src="assets/new-sidebar/icons/sidebar/collapse-icon.svg"
+        alt="collapse sidebar icon"
+      />
+      <img
+        (click)="toggleCollapse()"
+        *ngIf="collapsed"
+        src="assets/new-sidebar/icons/sidebar/expand-icon.svg"
+        alt="expand sidebar icon"
+      />
+    </div>
+    <div [ngClass]="{ 'jobid-logo': true, collapsed: collapsed }">
+      <img src="assets/new-sidebar/images/jobid-logo.svg" alt="jobid logo" />
+    </div>
+  </div>
+  <div class="main">
+    <ng-container *ngFor="let navItem of nav"
+      ><div
+        *appHasModule="navItem.module"
+        [ngClass]="{ 'nav-item': true, collapsed: collapsed }"
+        routerLinkActive="active"
+        [routerLink]="['/recruiter', navItem.path]"
+        (click)="setActiveSubNav(navItem)"
+      >
+        <img
+          *ngIf="!collapsed"
+          class="nav-icon"
+          src="assets/new-sidebar/icons/sidebar/{{ navItem.icon }}.svg"
+          alt="{{ navItem.icon }}"
+        />
+        <img
+          *ngIf="collapsed"
+          class="nav-icon"
+          src="assets/new-sidebar/icons/sidebar/{{ navItem.icon }}.svg"
+          alt="{{ navItem.icon }}"
+          matTooltip="{{ navItem.title }}"
+          [matTooltipPosition]="'right'"
+          aria-label="Button that displays a tooltip when focused or hovered over"
+        />
+        <span *ngIf="!collapsed" class="nav-title">{{ navItem.title }}</span>
+      </div></ng-container
+    >
+  </div>
+  <div class="bottom">
+    <div class="left">
+      <img
+        src="assets/images/image-placeholder.jpg"
+        alt="collapse sidebar icon"
+      />
+      <div *ngIf="!collapsed" class="user-info">
+        <span class="name"
+          >{{ (userInfo$ | async)?.FirstName }}
+          {{ (userInfo$ | async)?.LastName }}</span
+        >
+        <span class="role">{{ userRole }}</span>
+      </div>
+    </div>
+    <div class="right">
+      <img
+        src="assets/new-sidebar/icons/sidebar/more-icon.svg"
+        alt="more icon"
+        [matMenuTriggerFor]="menu"
+      />
+      <mat-menu #menu="matMenu">
+        <button (click)="logoutUser()" mat-menu-item>
+          <span>Sign Out</span>
+        </button>
+      </mat-menu>
+    </div>
+  </div>
+</nav>

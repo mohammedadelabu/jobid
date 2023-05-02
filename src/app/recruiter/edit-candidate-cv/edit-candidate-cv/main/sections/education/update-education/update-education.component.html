@@ -1,0 +1,94 @@
+<!-- <p>update-education works!</p> -->
+<div class="alert alert-info text-center" *ngIf="responseMsg">
+    {{responseMsg}}</div>
+
+
+<form [formGroup]="updateEducationForm" (ngSubmit)="saveData()" *ngIf="!responseMsg">
+    <div class="single-form-list-item">
+        <div class="text-right">
+            <button type="button" class="btn btn-sm px-0"
+                [routerLink]="['/edit-candidate-cv/education/']">
+                <i class="fas fa-times text-danger"></i>
+            </button>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-12 col-sm-6">
+                <label for="SchoolName">School Name</label>
+                <input type="text" id="SchoolName" class="form-control" formControlName="SchoolName">
+            </div>
+            <div class="form-group col-12 col-sm-6">
+                <label for="SchoolLocation">School Location</label>
+                <!-- <select name="SchoolLocation" id="SchoolLocation" class="form-control" formControlName="SchoolLocation">
+                    <option value={{country.name}} *ngFor="let country of countryList">{{country.name}}</option>
+                </select> -->       
+             
+                <select name="SchoolLocation" id="SchoolLocation" class="form-control" formControlName="SchoolLocation">
+                    <option value="" selected="selected">Select country</option>
+                    <option value={{country.Value}} *ngFor="let country of countryList">{{country.Name}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-12">
+                <!-- <label for="Degree">Degree</label>
+                <input type="text" id="Degree" class="form-control" formControlName="Degree"> -->
+                    <label>Education Type</label>
+                    <select class="form-control dropdown" id="education" name="education" formControlName="Degree">
+                      <option value="" selected="selected" disabled="disabled">-- select one --</option>
+                      <option value="No formal education">No formal education</option>
+                      <option value="Primary education">Primary education</option>
+                      <option value="Secondary education">Secondary education or high school</option>
+                      <option value="GED">GED</option>
+                      <option value="OND">OND</option>
+                      <option value="HND">HND</option>
+                      <option value="Diploma">Diploma</option>
+                      <option value="Associate degree">Associate degree</option>
+                      <option value="Vocational qualification">Vocational qualification</option>
+                      <option value="Bachelor's degree">Bachelor's degree</option>
+                      <option value="Master's degree">Master's degree</option>
+                      <option value="Doctorate or higher">Doctorate or higher</option>
+                    </select>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-12">
+                <label for="Field">Field</label>
+                <input type="text" id="Field" class="form-control" formControlName="Field">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-12 col-sm-6">
+                <label for="StartDate">Start Date</label>
+                <!-- <input type="date" name="StartDate" id="StartDate" class="form-control" placeholder="Start Date" formControlName="StartDate"> -->
+                <!-- <input type="text" name="StartDate" id="StartDate" class="form-control" formControlName="StartDate" ngbDatepicker #StartDate="ngbDatepicker" (click)="StartDate.toggle()"> -->
+                <input type="month" name="StartDate" id="StartDate" class="form-control" formControlName="StartDate">
+                <!--  -->
+                <!-- <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button">
+                                            
+                                        </button>
+                                    </div> -->
+                <!--  -->
+            </div>
+            <div class="form-group col-12 col-sm-6">
+                <label for="StopDate">Stop Date</label>
+                <!-- <input type="date" id="StopDate" class="form-control" placeholder="Stop Date" formControlName="StopDate"> -->
+                <!-- <input type="text" id="StopDate" class="form-control" formControlName="StopDate" ngbDatepicker #StopDate="ngbDatepicker" (click)="StopDate.toggle()"> -->
+                <input type="month" id="StopDate" class="form-control" formControlName="StopDate">
+            </div>
+        </div>
+
+        <!-- <button class="btn form-btn px-md-5 ">UPDATE</button> -->
+        <div>
+            <button type="submit" class="btn btn-outline-success px-5">UPDATE</button>
+        </div>
+    </div>
+    <!-- <div>
+                        <button class="btn btn-block add-more-btn mb-5" (click)="addNewItem()"> <span>+</span> ADD EDUCATION</button>
+                    </div> -->
+    <!-- <div class="d-flex justify-content-between align-items-center">
+        <button class="btn white-btn-green-border px-5">BACK</button>
+        <button class="btn form-btn px-md-5">PROCEED</button>
+    </div> -->
+</form>

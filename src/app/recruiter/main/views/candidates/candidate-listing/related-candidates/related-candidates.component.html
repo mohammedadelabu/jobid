@@ -1,0 +1,113 @@
+<!-- <p>related-candidates works!</p> -->
+<div id="related-items-block">
+  <div class="card display-content-card">
+    <div class="card-body">
+      <h1 class="block-title">Related Candidates</h1>
+      <ul class="list-group">
+        <li
+          class="list-group-item pb-2"
+          *ngFor="
+            let candidate of relatedCandidateList
+              | paginate
+                : {
+                    itemsPerPage: 6,
+                    currentPage: page,
+                    totalItems: totalRecords
+                  }
+          "
+        >
+          <a
+            [routerLink]="['/recruiter/candidates/details', candidate?.User.Id]"
+          >
+            <div class="card bg-none border-0">
+              <div class="row no-gutters align-items-center">
+                <div class="col-md-2">
+                  <div class="img-wrap mr-2">
+                    <img
+                      src="../../../../../../../assets/images/image-placeholder.jpg"
+                      alt="..."
+                      class="img-fluid"
+                      *ngIf="!candidate?.User?.ProfileImageUrl"
+                    />
+                    <img
+                      class="img-fluid"
+                      src="{{ candidate?.User?.ProfileImageUrl }}"
+                      *ngIf="candidate?.User?.ProfileImageUrl"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-10">
+                  <div class="card-body">
+                    <h6 class="card-title mb-0">
+                      {{ candidate?.User?.FirstName }}&nbsp;{{
+                        candidate?.User?.LastName
+                      }}
+                    </h6>
+                    <!-- <p class="card-text"><small class="text-muted">Product Designer</small>
+                                        </p> -->
+                    <app-candidate-profession
+                      [relatedCandidateId]="candidate?.User?.Id"
+                    >
+                    </app-candidate-profession>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+        </li>
+        <!-- <li class="list-group-item">
+                    <a href="#">
+                        <div class="card bg-none border-0">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col-md-2">
+                                    <div class="img-wrap">
+                                        <img src="../../../../../../../assets/images/image-placeholder.jpg"
+                                            alt="..." class="img-fluid">
+                                    </div>
+                                </div>
+                                <div class="col-md-10">
+                                    <div class="card-body">
+                                        <h6 class="card-title">Brooklyn Simmons</h6>
+                                        <p class="card-text"><small class="text-muted">Product Designer</small>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    <a href="#">
+                        <div class="card bg-none border-0">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col-md-2">
+                                    <div class="img-wrap">
+                                        <img src="../../../../../../../assets/images/candidate-test-avatar-1.png"
+                                            alt="..." class="img-fluid">
+                                    </div>
+                                </div>
+                                <div class="col-md-10">
+                                    <div class="card-body">
+                                        <h6 class="card-title">Brooklyn Simmons</h6>
+                                        <p class="card-text"><small class="text-muted">Product Designer</small>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </li> -->
+      </ul>
+    </div>
+  </div>
+
+  <!-- PAGINATION -->
+  <div class="text-center py-2">
+    <pagination-controls
+      (pageChange)="page = $event"
+      previousLabel=""
+      nextLabel=""
+      screenReaderPaginationLabel="Pagination"
+    ></pagination-controls>
+  </div>
+</div>

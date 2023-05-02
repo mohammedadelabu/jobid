@@ -1,0 +1,25 @@
+<!-- <p>get-company-contact works!</p> -->
+<!-- <ul
+  class="list-style-none pl-0 mb-0 contact-avatar"
+  *ngIf="companyContactList?.length; else noCompanyContactList"
+> -->
+<ul
+  class="list-style-none pl-0 mb-0"
+  *ngIf="companyContactList?.length; else noCompanyContactList"
+>
+  <li *ngFor="let avatar of uiList">
+    <div class="cursor-pointer" (click)="onOpenContactListDialog()">
+      <!-- {{ avatar.FirstName | slice: 0:1 }} -->
+      {{ avatar.FirstName + " " + avatar.LastName | titlecase }}
+    </div>
+  </li>
+  <li *ngIf="uiList?.length < companyContactList?.length">
+    <div>
+      {{ uiList?.length
+      }}<span *ngIf="uiList?.length < companyContactList?.length">+</span>
+    </div>
+  </li>
+</ul>
+<ng-template #noCompanyContactList>
+  <small>No contact</small>
+</ng-template>

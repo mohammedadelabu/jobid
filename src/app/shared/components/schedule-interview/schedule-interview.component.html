@@ -1,0 +1,74 @@
+<div class="card">
+  <div class="card-body">
+    <!-- <p>schedule-interview works!</p> -->
+    <div class="text-right">
+      <button class="btn btn-sm" (click)="closeDialog()">
+        <i class="fas fa-times text-danger"></i>
+      </button>
+    </div>
+
+    <h1 class="form-title text-center">Interview Shedule</h1>
+    <!-- <div>
+  <iframe src="https://calendar.google.com/calendar/embed?src=sk2d5bta2eva61q4hvsaf0n3eg%40group.calendar.google.com&ctz=Africa%2FLagos" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+</div> -->
+    <form [formGroup]="ScheduleInterviewForm" (ngSubmit)="onSubmit()">
+      <div class="form-row">
+        <div class="form-group col-6">
+          <label for="date">Date</label>
+          <input
+            type="date"
+            class="form-control"
+            id="date"
+            aria-describedby="emailHelp"
+            formControlName="Date"
+          />
+          <!-- <small id="dateHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+        </div>
+        <div class="form-group col-6">
+          <label for="time">Time</label>
+          <input
+            type="time"
+            class="form-control"
+            id="time"
+            formControlName="Time"
+          />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-12">
+          <div id="message-sample">
+            Dear Ali,<br /><br />
+            we are pleased to inform you that you have been shortlisted to take
+            an interview in regards to the position of a Full stack developer
+            you applied for.
+            <br /><br />
+            Below is the link to your interview:
+            <br /><br />
+            To join the video meeting, click this link:
+            <a href="https://meet.google.com/mrc-vqwk-jar" class="text-link"
+              >https://meet.google.com/mrc-vqwk-jar</a
+            >
+            Otherwise, to join by phone, dial +27 10 823 0574 and enter this
+            PIN: 811 110 949# To view more phone numbers, click this link:
+            <a href="#" class="text-link">https://tel.meet/mrc-vqwk-jar?hs=5</a>
+            <br /><br />
+            Best regards<br />
+            HR Team
+          </div>
+        </div>
+      </div>
+      <button
+        type="submit"
+        class="btn success-btn"
+        [disabled]="ScheduleInterviewForm.invalid"
+      >
+        <img
+          src="../../../../assets/images/icons/paper-plane-icon.svg"
+          alt=""
+          class="img-fluid"
+        />
+        Send Invite
+      </button>
+    </form>
+  </div>
+</div>

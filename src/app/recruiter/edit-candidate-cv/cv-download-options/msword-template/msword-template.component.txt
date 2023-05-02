@@ -1,0 +1,263 @@
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CandidateSummaryService } from 'src/app/services/candidate-summary.service';
+import { CertificationService } from 'src/app/services/certification.service';
+import { EditCandidateCvService } from 'src/app/services/edit-candidate-cv.service';
+import { EducationService } from 'src/app/services/education.service';
+import { ExperienceService } from 'src/app/services/experience.service';
+import { LanguageSpokenService } from 'src/app/services/language-spoken.service';
+import { ProfileService } from 'src/app/services/profile.service';
+import { ProjectService } from 'src/app/services/project.service';
+import { RecruiterOpinionService } from 'src/app/services/recruiter-opinion.service';
+import { SkillService } from 'src/app/services/skill.service';
+
+@Component({
+  selector: 'app-msword-template',
+  templateUrl: './msword-template.component.html',
+  styleUrls: ['./msword-template.component.scss'],
+})
+export class MswordTemplateComponent implements OnInit {
+  // @Input('candidateProfileUserInfo') candidateProfileUserInfo: any;
+  // @Input('candidateSummary') candidateSummary: any;
+  // @Input('recruiterOpinion') recruiterOpinion: any;
+  // @Input('candidateProfile') candidateProfile: any;
+  // @Input('candidateSkillList') candidateSkillList: any;
+  // @Input('workHistory') workHistory: any;
+  // @Input('projectList') projectList: any;
+  educationList: any;
+  languagesSpoken: any;
+  candidateId: any;
+  //
+
+  candidateSkillList: any;
+  userInformation: any;
+  workHistory: any;
+  recruiterOpinion: any;
+  infoMessage = 'No opinion provided yet!';
+  candidateSummary: any;
+  user: any;
+  projectList: any;
+  candidateProfile: any;
+  candidateProfileUserInfo: any;
+  certificationList: any;
+
+  constructor(
+    private _skillSvc: SkillService,
+    private _languageSvc: LanguageSpokenService,
+    // private _userSvc: UserService,
+    private _editCandidateCvSvc: EditCandidateCvService,
+    private _experienceSvc: ExperienceService,
+    // private _authSvc: AuthenticationService,
+    private _recruiterOpinionSvc: RecruiterOpinionService,
+    private _profileSvc: ProfileService,
+    private _candidateSummarySvc: CandidateSummaryService,
+    private _projectSvc: ProjectService,
+    private _educationSvc: EducationService,
+    private _certificationSvc: CertificationService,
+    private _router: Router,
+    private _route: ActivatedRoute
+  ) {}
+
+  ngOnInit(): void {
+    this.getUserData();
+    this.getCandidateData();
+  }
+
+  ngAfterContentChecked() {
+    console.log('candidateProfileUserInfo: ', this.candidateProfileUserInfo);
+  }
+
+  getUserData() {
+    this.onGetCandidateId();
+    this.getCandidateSkill(this.candidateId);
+    this.getLanguages(this.candidateId);
+    this.getWorkExperience(this.candidateId);
+    // this.getUserInformation(this.candidateId);
+    this.getPersonalProfile(this.candidateId);
+    this.getCandidateSummary(this.candidateId);
+    this.getProjects(this.candidateId);
+    this.getEducation(this.candidateId);
+    this.getCertifications(this.candidateId);
+  }
+
+  onGetCandidateId() {
+    this.getParams();
+    this.candidateId = this._editCandidateCvSvc.getCandidateToEditCvId();
+    
+  }
+
+  getParams() {
+    this._route.paramMap.subscribe({
+      next: (params: any) => {
+        
+        let candidateId = params.get('candidateId');
+        if (candidateId) {
+          localStorage.setItem('CANDIDATE_TO_EDIT_CV_ID', candidateId);
+        } else {
+          return;
+        }
+      },
+      error: (err: any) => {
+        console.warn('Error: ', err);
+      },
+    });
+  }
+
+  getCandidateData() {
+    this.onGetCandidateId();
+    
+    this.getRecruiterOpinion(this.candidateId);
+  }
+
+  getRecruiterOpinion(id: any) {
+    this._recruiterOpinionSvc.getRecruiterOpinion(id).subscribe({
+      next: (response: any) => {
+        if (response) {
+          // console.log('test data raw: ', response);
+          // console.log('test data: ', response.Data);
+          this.recruiterOpinion = response.Data;
+          this.infoMessage = response.ResponseMessage;
+        }
+      },
+      error: (err: any) => {
+        console.warn('Error: ', err);
+      },
+    });
+  }
+
+  getCandidateSummary(candidateId: any) {
+    this._candidateSummarySvc.getCandidateSummary(candidateId).subscribe({
+      next: (response: any) => {
+        if (response) {
+          // console.log('candidate summary**: ', response);
+          this.candidateSummary = response.Data;
+        }
+      },
+      error: (err: any) => {
+        console.warn(err);
+      },
+    });
+  }
+
+  // getUserInformation(id: string) {
+  //   // console.log('testId: ', id);
+  //   this._authSvc.getAUthUserDetails(id).subscribe({
+  //     next: (response: any) => {
+  //       if (response) {
+  //         console.log('getUserInformation: ', response);
+  //         this.userInformation = response;
+  //       }
+  //     },
+  //     error: (err:any) => {
+  //       console.warn(err);
+  //     },
+  //   });
+  // }
+
+  getCandidateSkill(id: string) {
+    this._skillSvc.getCandidateSkillSet(id).subscribe({
+      next: (response: any) => {
+        if (response) {
+          // console.log('skillset: ', response.Data);
+          this.candidateSkillList = response.Data;
+        }
+      },
+      error: (err: any) => {
+        console.warn(err);
+      },
+    });
+  }
+
+  getLanguages(id: string) {
+    this._languageSvc.getLanguagesSpoken(id).subscribe({
+      next: (response: any) => {
+        if (response) {
+          // console.log('language: ', this.languagesSpoken);
+          this.languagesSpoken = response.Data;
+        }
+      },
+      error: (err) => {
+        console.warn(err);
+      },
+    });
+  }
+
+  getWorkExperience(id: string) {
+    this._experienceSvc.getCandidateWorkHistory(id).subscribe({
+      next: (response: any) => {
+        if (response) {
+          this.workHistory = response.Data;
+        }
+      },
+      error: (err: any) => {
+        console.warn(err);
+      },
+    });
+  }
+
+  getPersonalProfile(candidateId: any) {
+    this._profileSvc.getCandidateProfile(candidateId).subscribe(
+      {
+        next: (response: any) => {
+          if (response.Data) {
+            this.candidateProfile = response.Data[0];
+            this.candidateProfileUserInfo = this.candidateProfile.User;
+          }
+        },
+        error: (err) => {
+          console.warn(err);
+        },
+      }
+    );
+  }
+
+  getProjects(candidateId: any) {
+    this._projectSvc.getCandidateProjects(candidateId).subscribe({
+      next: (response: any) => {
+        if (response) {
+          this.projectList = response.Data;
+        }
+      },
+      error: (err: any) => {
+        console.warn(err);
+      },
+    });
+  }
+
+  getEducation(candidateId: any) {
+    this._educationSvc.getCandidateEducation(candidateId).subscribe({
+      next: (response: any) => {
+        if (response) {
+          this.educationList = response.Data;
+        }
+      },
+      error: (err: any) => {
+        console.warn(err);
+      },
+    });
+  }
+
+  getCertifications(candidateId: any) {
+    this._certificationSvc.getCandidateCertification(candidateId).subscribe({
+      next: (response: any) => {
+        if (response) {
+          this._certificationSvc = response.Data;
+        }
+      },
+      error: (err: any) => {
+        console.warn('Error: ', err);
+      },
+    });
+  }
+
+  /* print page */
+  printResume() {
+    const cvSaveBtn = document.querySelector('#cv-save-btn');
+    cvSaveBtn?.classList.add('d-none');
+    setTimeout(() => {
+      cvSaveBtn?.classList.remove('d-none');
+    }, 2000);
+
+    window.print();
+  }
+}

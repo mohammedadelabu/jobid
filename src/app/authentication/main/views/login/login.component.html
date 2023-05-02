@@ -1,0 +1,66 @@
+<!-- <p>login works!</p> -->
+
+<div id="login-authentication-page">
+    <div class="inner container">
+        <div class="card form-wrapper">
+            <div class="card-body">
+                <h1 class="text-center form-title">Sign In</h1>
+                <div class="alert alert-danger text-center" *ngIf="errorMsg">
+                    <small>{{errorMsg}}</small>
+                </div>
+
+                <form [formGroup]="loginUserForm" (ngSubmit)="handleLoginUser()" novalidate>
+                    <div class="form-group">
+                        <div class="form-group">
+                            <label for="Email">Email Address</label>
+                            <input class="form-control" type="email" name="Email" id="Email" formControlName="Email"
+                                required
+                                [ngClass]="{'is-invalid': loginUserForm.get('Email')?.touched && loginUserForm.get('Email')?.invalid}">
+                            <span class="invalid-feedback">
+                                <small class="form-text text-danger"
+                                    *ngIf="loginUserForm.get('Email')?.hasError('required')">Email is
+                                    required.
+                                </small>
+                                <small class="form-text text-danger"
+                                    *ngIf="loginUserForm.get('Email')?.hasError('Email')">You entered an
+                                    invalid
+                                    Email.
+                                </small>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="Password">Password</label>
+                        <input class="form-control" type="password" name="Password" id="Password"
+                            formControlName="Password"
+                            [ngClass]="{'is-invalid': loginUserForm.get('Password')?.touched && loginUserForm.get('Password')?.invalid}"
+                            required>
+                        <small class="mt-1">
+                            <a [routerLink]="['/auth/forgot-password']" class="text-link">Forgot Password?</a>
+                        </small>
+                    </div>
+                    <div class="form-group custom-check">
+                        <input type="checkbox" name="RememberMe" id="RememberMe" formControlName="RememberMe">
+                        <label for="RememberMe">
+                            <span class="ui-check"></span>
+                            Remember me
+                        </label>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-block form-btn success-btn px-md-5" [disabled]="(isLoading$ | async)">
+                   <span *ngIf="!(isLoading$ | async); else isLoading">{{formBtnLabel}}</span>
+                </button>
+            </div>
+            <div class="text-center">
+                <span>Don’t have an account? </span>&nbsp;<span>
+                    <a [routerLink]="['/auth/register']" class="text-link text-bold">Register</a></span>
+            </div>
+            </form>
+
+            </div>
+        </div>
+
+</div>
+<ng-template #isLoading>
+    <span>Processing...</span>
+</ng-template>

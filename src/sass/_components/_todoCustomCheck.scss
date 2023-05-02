@@ -1,0 +1,92 @@
+@use "../_abstracts/colors";
+@use "../_partials/mixins";
+
+.todo-check-control {
+    input[type="checkbox"] {
+        position: absolute;
+        opacity: 0;
+        &:checked {
+            display: none;
+        }
+        &:checked + .ui-check {
+            padding: 1px;
+            background-color: colors.$PrimaryColorGreen;
+            &::before {
+                @include mixins.before("\f00c", 12px);
+                color: #ffffff;
+            }
+        }
+    }
+    .ui-check {
+        display: block;
+        width: 1.6rem;
+        min-width: 1.6rem;
+        height: 1.6rem;
+        border-radius: 50%;
+        background: #B5B5B5;
+        border: 2px solid colors.$Grey;
+        box-sizing: border-box;
+        margin-right: 1em;
+        // 
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        &::before {
+            @include mixins.before("\f00c", 12px);
+            color: #ffffff;
+        }
+    }
+}
+.todo-custom-check {
+    input[type="radio"] {
+        position: absolute;
+        &:checked + label {
+            // color: red;
+        }
+    }
+    label {
+        display: flex;
+        align-items: center;
+    }
+    .ui-radio,
+    .ui-check {
+        display: block;
+        width: 1.2rem;
+        min-width: 1.2rem;
+        height: 1.2rem;
+        left: 409px;
+        top: 450px;
+        background: #ffffff;
+        border: 2px solid colors.$Grey;
+        box-sizing: border-box;
+        margin-right: 1em;
+    }
+    .ui-check {
+        border-radius: 3px;
+    }
+    .ui-radio {
+        border-radius: 50%;
+    }
+    input[type="checkbox"],
+    input[type="radio"] {
+        position: absolute;
+        opacity: 0;
+        &:checked + label {
+            color: rgba(76, 111, 53, 1);
+            .ui-radio,
+            .ui-check {
+                padding: 1px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border: none;
+                background-color: colors.$PrimaryColorGreen;
+                &::before {
+                    @include mixins.before("\f00c", 12px);
+                    color: #ffffff;
+                }
+            }
+        }
+    }
+}

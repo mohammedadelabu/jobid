@@ -1,0 +1,112 @@
+.job-details {
+    font-family: "Poppins" !important;
+  }
+  
+  .text-green {
+    color: #14984b;
+  }
+  
+  .page-title {
+    line-height: unset !important;
+    margin-bottom: 0;
+    font-size: 2rem;
+    font-family: "Poppins" !important;
+  }
+  
+  .back-icon {
+    width: 11px;
+  }
+  
+  // .block-title {
+  //     font-weight: 600;
+  //     font-size: 16px;
+  //     line-height: 24px;
+  //     color: #4f656e;
+  // }
+  .share-button {
+    border: 1px solid #14984b;
+    border-radius: 5px;
+    color: #14984b;
+    background-color: transparent;
+    padding: 5px 15px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+  
+    &:hover {
+      color: #fff;
+      background: #14984b;
+    }
+  }
+  
+  #job-details-section {
+    .job-title {
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 30px;
+      color: #14323e;
+      margin-bottom: 0;
+    }
+  
+    .time-remaining {
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 18px;
+      color: #c7c7c7;
+    }
+  
+    .company {
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 24px;
+      color: #4fb278;
+    }
+  
+    .job-info {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      grid-gap: 10px;
+      li {
+        margin-right: 2em;
+      }
+      i {
+        color: #4fb278;
+        margin-right: 0.3em;
+      }
+    }
+  
+    .display-info {
+      font-family: "Poppins";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 24px;
+      color: #4f656e;
+  
+      .title {
+        font-weight: 600;
+        font-size: inherit;
+      }
+  
+      .body {
+        font-size: inherit;
+        font-size: 14px;
+      }
+    }
+  
+    .logo-img-wrap {
+      max-width: 50px;
+      margin-right: 1.5em;
+    }
+  
+    .edit-btn-link {
+      font-family: "Poppins";
+      font-style: normal;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 21px;
+      text-align: right;
+      color: #14984b;
+    }
+  }
+  

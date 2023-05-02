@@ -1,0 +1,111 @@
+
+
+.form-step-indicator {
+    padding-top: 3em;
+    overflow: auto;
+    .steps {
+        list-style: none;
+        padding-left: 0;
+        display: inline-flex;
+        li {
+            text-align: center;
+            display: inline;
+            .bulb {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                // border: 4px solid #14984B;
+                border: 4px solid rgba(20, 152, 75, 0.4);
+                background-color: #ffffff;
+                // opacity: .3;
+                position: relative;
+                z-index: 4;
+                // text-align: center;
+                margin: 0 auto;
+            }
+            .heading {
+                position: relative;
+                text-align: center;
+                // display: inline-block;
+                // top: -30px;
+                font-family: "Poppins";
+                font-style: normal;
+                color: rgba(20, 50, 62, 0.4);
+                display: flex;
+                flex-direction: column;
+                .number {
+                    font-weight: 600;
+                    font-size: 16px;
+                    line-height: 24px;
+                    text-align: center;
+                }
+                .step-title {
+                    font-weight: 400;
+                    font-size: 12px;
+                    line-height: 18px;
+                    white-space: nowrap;
+                    display: inline-block;
+                    text-align: center;
+                }
+            }
+            display: inline-flex;
+            align-items: flex-end;
+            &::after {
+                content: "";
+                display: block;
+                position: relative;
+                z-index: -1;
+                // width: 300px;
+                width: 80px;
+                height: 2px;
+                // position: relative;
+                bottom: 20px;
+                // right: 100%;
+                // border-top: 2px solid #14984B;
+                border-top: 2px solid rgba(20, 152, 75, 0.4);
+            }
+            &:last-child {
+                &::after {
+                    display: none;
+                }
+            }
+
+            &.active {
+                // &::after {
+                //     border-top: 2px solid #14984B;
+                // }
+                .bulb {
+                    border: 4px solid #14984b;
+                }
+                .heading {
+                    color: #14323e;
+                }
+            }
+
+            &.done {
+                // &::after {
+                //     border-top: 2px solid #14984B;
+                // }
+                .bulb {
+                    border: 4px solid #14984b;
+                    background-color: #14984b;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    &::before {
+                        content: url(../../assets/images/icons/tick-icon.svg);
+                    }
+                }
+
+                .heading {
+                    color: #14323e;
+                }
+
+                &::after {
+                    border-top: 2px dashed rgba(20, 152, 75) !important;
+                }
+            }
+        }
+    }
+}

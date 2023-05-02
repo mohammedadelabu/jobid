@@ -1,0 +1,44 @@
+<!-- <p>profile-setup works!</p> -->
+<div
+  class="container-fluid page-colored-wrapper"
+  id="admin-dashboard-container"
+>
+  <div class="row no-gutters">
+    <!-- <nav id="sidebarMenu" class="col-lg-2 d-none d-md-block sidebar"> -->
+    <!-- <nav id="sidebarMenu" class="col-lg-2 sidebar" [ngClass]="{'open': isOpen}"> -->
+    <!-- <div id="overlay" [ngClass]="{'collapse': !isOpen}" (click)="CloseSidenav()"></div> -->
+    <nav
+      id="sidebarMenu"
+      class="col-md-3 col-lg-2 d-md-block sidebar"
+      [ngClass]="{ show: isShowSideNav }"
+    >
+      <div class="brandlogo-wrapper nav-link">
+        <img
+          src="../../../../../assets/images/zart-brand-logo.svg"
+          alt=""
+          class="img-fluid"
+        />
+      </div>
+      <!--   <div>
+                <button id="sideNavToggler" class="btn" (click)="CloseSidenav()">
+                    <i class="fas fa-times text-white"></i>
+                </button>
+            </div> -->
+      <app-progress-navigation></app-progress-navigation>
+    </nav>
+    <!-- <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-0"> -->
+    <main
+      role="main"
+      class="col-md-9 ml-sm-auto col-lg-10 px-md-4"
+      id="profile-setup-page"
+    >
+      <div id="main-content-wrapper">
+        <recruiter-toolbar></recruiter-toolbar>
+        <div class="mt-2 px-xl-3">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+<app-custom-overlay></app-custom-overlay>

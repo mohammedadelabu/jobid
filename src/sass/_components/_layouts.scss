@@ -1,0 +1,29 @@
+@use "../_abstracts/typography";
+@use "../_partials/mixins";
+@use "../_abstracts/colors";
+.inner-pg-container {
+    min-height: 100vh;
+    // display: flex;
+    // align-items: center;
+    // justify-content: center;
+}
+
+.form-wrapper-sm {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    .card {
+        border-radius: 20px;
+    }
+    .tagline {
+        font-size: .77rem;
+    }
+    .form-card-title {
+        margin-bottom: 2em;
+    }
+    .form-btn {
+        @include mixins.maxmq(500px) {
+            width: 100%;
+        }
+    }
+}

@@ -1,0 +1,11 @@
+<!-- <p>disclosed works!</p> -->
+<div class="text-right py-2" id="template-nav">
+    <div ngbDropdown class="d-inline-block">
+        <button type="button" class="btn btn-outline-success px-2" id="dropdownBasic1" ngbDropdownToggle>Download</button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+            <!-- <button ngbDropdownItem onclick="Export2Doc('content-to-pdf')" (click)="onMsWord()">Download as word</button> -->
+            <button ngbDropdownItem (click)="onPrint()">Download as PDF</button>
+        </div>
+    </div>
+</div>
+<app-download-job-template></app-download-job-template>

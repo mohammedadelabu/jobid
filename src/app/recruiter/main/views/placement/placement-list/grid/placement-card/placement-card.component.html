@@ -1,0 +1,61 @@
+<!-- <p>placement-card works!</p> -->
+<a [routerLink]="['/recruiter/placement/placement-details/', Job?.Id]" class="placement-grid-card">
+  <div class="card">
+    <div class="card-body">
+      <div class="card-title">
+        <div class="company-logo">
+          <ng-template #noLogo>
+            <img src="../../../../../../../assets/images/sample-company-logo.png" alt="" class="img-fluid">
+          </ng-template>
+          <img src="{{Job?.Company.LogoUrl}}" alt="" class="img-fluid" *ngIf="Job?.Company.LogoUrl; else noLogo">
+        </div>
+        <div class="company-name">{{Job?.Company.Name}}</div>
+      </div>
+      <ul class="body-content list-style-none pl-0" *ngIf="Job?.StartDate || Job?.EndStart">
+        <li *ngIf="Job?.StartDate">
+          <div class="label">Start date</div>
+          <div class="value">{{Job?.StartDate}}</div>
+        </li>
+        <li *ngIf="Job?.EndDate">
+          <div class="label">End date</div>
+          <div class="value">{{Job?.EndDate}}</div>
+        </li>
+      </ul>
+      <ul class="body-content list-style-none pl-0 mb-0">
+        <li>
+          <div class="label">Employees</div>
+          <div class="value">
+            <app-placed-applicants-list [vacancyId]="Job?.Id"></app-placed-applicants-list>
+          </div>
+        </li>
+        <li>
+          <div class="label">Recruiter</div>
+          <div class="value">{{Job?.UpdatedBy}}</div>
+        </li>
+      </ul>
+    </div>
+    <div class="company-name">{{ Job?.Company.Name }}</div>
+  </div>
+  <ul class="body-content list-style-none pl-0" *ngIf="Job?.StartDate || Job?.EndStart">
+    <li *ngIf="Job?.StartDate">
+      <div class="label">Start date</div>
+      <div class="value">{{ Job?.StartDate }}</div>
+    </li>
+    <li *ngIf="Job?.EndDate">
+      <div class="label">End date</div>
+      <div class="value">{{ Job?.EndDate }}</div>
+    </li>
+  </ul>
+  <ul class="body-content list-style-none pl-0 mb-0">
+    <li>
+      <div class="label">Employees</div>
+      <div class="value">
+        <app-placed-applicants-list [vacancyId]="Job?.Id"></app-placed-applicants-list>
+      </div>
+    </li>
+    <li>
+      <div class="label">Recruiter</div>
+      <div class="value">{{ Job?.UpdatedBy }}</div>
+    </li>
+  </ul>
+</a>

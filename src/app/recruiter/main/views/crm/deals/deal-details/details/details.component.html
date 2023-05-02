@@ -1,0 +1,406 @@
+<!-- <p>details works!</p> -->
+
+
+<section class="section" *ngIf="dealCompanyDetails">
+    <h3 class="section-title">Company</h3>
+    <div class="section-wrapper card">
+        <div id="company-information" class="card-body">
+            <div class="text-right">
+                <button class="btn btn-sm" (click)="isEditCompanyInfo = true" *ngIf="!isEditCompanyInfo">
+                    <i class="fas fa-pen mr-2"></i>Edit
+                </button>
+                <!-- <button class="btn btn-sm" (click)="isEditCompanyInfo = false" *ngIf="isEditCompanyInfo">
+                    <i class="fas fa-times text-danger"></i>
+                </button> -->
+            </div>
+            <div class="deal-listing">
+                <ul class="listing list-style-none pl-0 mb-0" *ngIf="!isEditCompanyInfo">
+
+                    <!-- <li class="logo-item">
+                        <div class="brand-logo">
+                            <img src="{{brandLogo}}" alt="" class="img-fluid">
+                        </div>
+                    </li> -->
+                    <li class="logo-item" *ngIf="dealCompanyDetails?.LogoUrl">
+                        <div class="brand-logo">
+                            <!-- Compnay brand logo -->
+                            <img [src]="dealCompanyDetails?.LogoUrl" alt="" class="img-fluid">
+                            <!-- <img src="{{brandLogo}}" alt="" class="img-fluid"> -->
+                        </div>
+                    </li>
+                    <!-- <li>
+                        <div class="list-title">Company Name</div>
+                        <div class="list-value">Henderson</div>
+                    </li> -->
+                    <li *ngIf="dealCompanyDetails?.Name">
+                        <div class="list-title">Company Name</div>
+                        <div class="list-value">{{dealCompanyDetails?.Name}}</div>
+                    </li>
+                    <!-- <li>
+                        <div class="list-title">Address</div>
+                        <div class="list-value">4517 Washington Ave. Manchester, Kentucky 39495</div>
+                    </li> -->
+                    <li *ngIf="dealCompanyDetails?.Address">
+                        <div class="list-title">Address</div>
+                        <div class="list-value">{{dealCompanyDetails?.Address}}</div>
+                    </li>
+                    <li *ngIf="dealCompanyDetails?.EmailAddress">
+                        <div class="list-title">Email Address</div>
+                        <!-- <div class="list-value email">michelle.rivera@example.com</div> -->
+                        <div class="list-value email">{{dealCompanyDetails?.EmailAddress}}</div>
+                    </li>
+                    <li *ngIf="dealCompanyDetails?.PhoneNumber">
+                        <div class="list-title">Phone Number</div>
+                        <!-- <div class="list-value phone">+44 (308) 555-0121</div> -->
+                        <div class="list-value phone">{{dealCompanyDetails?.PhoneNumber}}</div>
+                    </li>
+                    <li *ngIf="dealCompanyDetails?.Location">
+                        <div class="list-title">Location</div>
+                        <!-- <div class="list-value">Netherland</div> -->
+                        <div class="list-value">{{dealCompanyDetails?.Location | titlecase}}</div>
+                    </li>
+                    <li *ngIf="dealCompanyDetails?.Size">
+                        <div class="list-title">Comapny SIze</div>
+                        <!-- <div class="list-value">32</div> -->
+                        <div class="list-value">{{dealCompanyDetails?.Size}}</div>
+                    </li>
+                    <li *ngIf="dealCompanyDetails?.VATReistration">
+                        <div class="list-title">Vat</div>
+                        <!-- <div class="list-value">840989795487</div> -->
+                        <div class="list-value">{{dealCompanyDetails?.VATReistration}}</div>
+                    </li>
+                    <li *ngIf="dealCompanyDetails?.Description">
+                        <div class="list-title">Description</div>
+                        <!-- <div class="list-value">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tortor sit id
+                            sit
+                            fermentum sit ullamcorper habitasse amet. Ultricies ornare laoreet proin sed. Id id amet
+                            amet
+                            et. Consequat mi cras diam in.</div> -->
+                        <div class="list-value" [innerHTML]="dealCompanyDetails?.Description"></div>
+                    </li>
+                </ul>
+
+            </div>
+
+            <!--  -->
+            <!-- <p>{{isEditCompanyInfo}}</p> -->
+            <!-- <app-update-deal *ngIf="isEditCompanyInfo" [dealDetails]="dealDetails"></app-update-deal> -->
+            <app-update-deal-company *ngIf="isEditCompanyInfo" (onCloseUpdateDealCompany)="isEditCompanyInfo = false"
+                [dealCompanyDetails]="dealCompanyDetails"
+                (closeUpdateDealCompanyForm)="onCloseUpdateDealCompanyForm($event)">
+            </app-update-deal-company>
+        </div>
+    </div>
+</section>
+
+
+
+<section id="contacts" class="section" [ngClass]="{'pb-5': !dealsJobVacancyList.length}">
+    <div class="d-flex align-items-start justify-content-between">
+        <h3 class="section-title">Contacts</h3>
+        <div>
+            <button class="btn btn-sm text-link text-bold add-btn text-primary-link"
+                (click)="openCompanyContactDialog()">Add Contact</button>
+        </div>
+    </div>
+
+    <!-- OLD -->
+    <!-- <div class="section-wrapper card">
+        <div id="company-contacts" class="card-body">
+            {{dealSecondaryContactList$ | async | json}}
+            <ul class="list-style-none pl-0 mb-0" *ngIf="dealPrimaryContactDetails">
+                <li class="item deal-listing">
+                    <div *ngIf="!isEditCompanyContact; else updateDealPrimaryContact">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <h5 class="text-primary-title-sm">Primary</h5>
+                            <div class="text-right">
+                                <button class="btn btn-sm" (click)="isEditCompanyContact = true"
+                                    *ngIf="!isEditCompanyContact" (click)="onEditContact(dealPrimaryContactDetails)">
+                                    <i class="fas fa-pen mr-2"></i>Edit
+                                </button>
+                            </div>
+                        </div>
+                        <ul class="listing list-style-none pl-0 mb-0">
+                            <li
+                                *ngIf="dealPrimaryContactDetails?.ContactFirstName || dealPrimaryContactDetails?.ContactLastName">
+                                <div class="list-title">Contact name</div>
+                                <div class="list-value">
+                                    {{dealPrimaryContactDetails?.ContactFirstName}}&nbsp;{{dealPrimaryContactDetails?.ContactLastName}}
+                                </div>
+                            </li>
+                            <li *ngIf="dealPrimaryContactDetails?.ContactEmail">
+                                <div class="list-title">Email Address</div>
+                                <div class="list-value email">{{dealPrimaryContactDetails?.ContactEmail}}</div>
+                            </li>
+                            <li *ngIf="dealPrimaryContactDetails?.ContactPhoneNumber">
+                                <div class="list-title">Phone Number</div>
+                                <div class="list-value phone">{{dealPrimaryContactDetails?.ContactPhoneNumber}}</div>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <ng-container *ngIf="!isEditSecondaryContact; else updateDealSecondaryContact">
+                    <li class="item deal-listing" *ngFor="let contact of (dealSecondaryContactList$ | async)">
+                        <div class="text-right">
+                            <button class="btn btn-sm" (click)="onEditContact(contact)">
+                                <i class="fas fa-pen mr-2"></i>Edit
+                            </button>
+                        </div>
+                        <ul class="listing list-style-none pl-0 mb-0">
+                            <li *ngIf="contact?.FirstName || contact?.LastName">
+                                <div class="list-title">Contact name</div>
+                                <div class="list-value">{{contact?.FirstName}}&nbsp;{{contact?.LastName}}</div>
+                            </li>
+                            <li *ngIf="contact?.EmailAddress">
+                                <div class="list-title">Email Address</div>
+                                <div class="list-value email">{{contact?.EmailAddress}}</div>
+                            </li>
+                            <li *ngIf="contact?.PhoneNumber">
+                                <div class="list-title">Phone Number</div>
+                                <div class="list-value phone">{{contact?.PhoneNumber}}</div>
+                            </li>
+                        </ul>
+                    </li>
+                </ng-container>
+            </ul>
+            <ng-template #updateDealPrimaryContact>
+                <app-update-deal-primary-contact (triggerUpdateForm)="onCloseUpdateDealContactForm($event)">
+                </app-update-deal-primary-contact>
+            </ng-template>
+            <ng-template #updateDealSecondaryContact>
+                <app-update-deal-contact [dealDetails]="dealDetails"
+                    (triggerUpdateForm)="onCloseEditDealSecondaryContactForm($event)">
+                </app-update-deal-contact>
+            </ng-template>
+            <app-add-deal-contact *ngIf="isAddCompanyContact" (triggerAddForm)="onCloseAddDealContactForm($event)"
+                [dealDetails]="dealDetails">
+            </app-add-deal-contact>
+        </div>
+    </div> -->
+
+
+
+    <!-- NEW -->
+
+    <div class="section-wrapper card">
+        <div id="company-contacts" class="card-body">
+            <ul class="list-style-none pl-0 mb-0" *ngIf="dealPrimaryContactDetails">
+                <li class="item deal-listing">
+                    <div *ngIf="!isEditCompanyContact; else updateDealPrimaryContact">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <h5 class="text-primary-title-sm">Primary</h5>
+                            <div class="text-right">
+                                <button class="btn btn-sm" (click)="isEditCompanyContact = true"
+                                    *ngIf="!isEditCompanyContact" (click)="onEditContact(dealPrimaryContactDetails)">
+                                    <i class="fas fa-pen mr-2"></i>Edit
+                                </button>
+                            </div>
+                        </div>
+                        <ul class="listing list-style-none pl-0 mb-0">
+                            <li
+                                *ngIf="dealPrimaryContactDetails?.ContactFirstName || dealPrimaryContactDetails?.ContactLastName">
+                                <div class="list-title">Contact name</div>
+                                <div class="list-value">
+                                    {{dealPrimaryContactDetails?.ContactFirstName}}&nbsp;{{dealPrimaryContactDetails?.ContactLastName}}
+                                </div>
+                            </li>
+                            <li *ngIf="dealPrimaryContactDetails?.ContactEmail">
+                                <div class="list-title">Email Address</div>
+                                <div class="list-value email">{{dealPrimaryContactDetails?.ContactEmail}}</div>
+                            </li>
+                            <li *ngIf="dealPrimaryContactDetails?.ContactPhoneNumber">
+                                <div class="list-title">Phone Number</div>
+                                <div class="list-value phone">{{dealPrimaryContactDetails?.ContactPhoneNumber}}</div>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <ng-container *ngIf="!isEditSecondaryContact; else updateDealSecondaryContact">
+                    <li class="item deal-listing" *ngFor="let contact of (dealContactList$ | async)">
+                        <div class="text-right">
+                            <button class="btn btn-sm" (click)="onEditContact(contact)">
+                                <i class="fas fa-pen mr-2"></i>Edit
+                            </button>
+                        </div>
+                        <ul class="listing list-style-none pl-0 mb-0">
+                            <li *ngIf="contact?.FirstName || contact?.LastName">
+                                <div class="list-title">Contact name</div>
+                                <div class="list-value">{{contact?.FirstName}}&nbsp;{{contact?.LastName}}</div>
+                            </li>
+                            <li *ngIf="contact?.EmailAddress">
+                                <div class="list-title">Email Address</div>
+                                <div class="list-value email">{{contact?.EmailAddress}}</div>
+                            </li>
+                            <li *ngIf="contact?.PhoneNumber">
+                                <div class="list-title">Phone Number</div>
+                                <div class="list-value phone">{{contact?.PhoneNumber}}</div>
+                            </li>
+                        </ul>
+                    </li>
+                </ng-container>
+            </ul>
+            <ng-template #updateDealPrimaryContact>
+                <app-update-deal-primary-contact (triggerUpdateForm)="onCloseUpdateDealContactForm($event)">
+                </app-update-deal-primary-contact>
+            </ng-template>
+            <ng-template #updateDealSecondaryContact>
+                <app-update-deal-contact [dealDetails]="dealDetails"
+                    (triggerUpdateForm)="onCloseEditDealSecondaryContactForm($event)">
+                </app-update-deal-contact>
+            </ng-template>
+            <app-add-deal-contact *ngIf="isAddCompanyContact" (triggerAddForm)="onCloseAddDealContactForm($event)"
+                [dealDetails]="dealDetails">
+            </app-add-deal-contact>
+        </div>
+    </div>
+</section>
+<section id="job-details" class="section pb-5" *ngIf="dealsJobVacancyList.length">
+    <div class="d-flex align-items-start justify-content-between">
+        <h3 class="section-title">Job descriptions</h3>
+    </div>
+    <div class="section-wrapper-alt card mb-2" *ngFor="let jobVacancy of dealsJobVacancyList">
+        <div class="card-body">
+            <app-deal-job-post [JobVacancy]="jobVacancy"></app-deal-job-post>
+        </div>
+    </div>
+
+</section>
+
+<section id="job-details" class="section d-none">
+    <div class="d-flex align-items-start justify-content-between">
+        <h3 class="section-title">Job description</h3>
+    </div>
+    <div class="section-wrapper card">
+        <div class="card-body">
+            <ul class="list-style-none pl-0" id="job-preview-details-row">
+                <li>
+                    <i class="fas fa-briefcase"></i> On-site
+                </li>
+                <!-- <li> <i class="fas fa-calendar"></i> 2022-03-31</li> -->
+                <li *ngIf="dealDetails?.JobVacancy?.StartDate"> <i
+                        class="fas fa-calendar"></i>{{dealDetails?.JobVacancy?.StartDate}}</li>
+                <!-- <li> <i class="fas fa-calendar"></i> 2022-03-31</li> -->
+                <li *ngIf="dealDetails?.JobVacancy?.EndDate"> <i
+                        class="fas fa-calendar"></i>{{dealDetails?.JobVacancy?.EndDate}}</li>
+                <!-- <li> <i class="fas fa-map-marker-alt"></i>Amsterdam</li> -->
+                <li *ngIf="dealDetails?.JobVacancy?.EndDate"> <i
+                        class="fas fa-map-marker-alt"></i>{{dealDetails?.JobVacancy?.EndDate}}</li>
+                <li> <i class="fas fa-clock"></i>40HR</li>
+                <li> <i class="fas fa-money-bill-wave-alt"></i> €60</li>
+            </ul>
+            <ul class="list-style-none pl-0" id="job-detailed-information">
+                <li *ngIf="dealDetails?.JobVacancy?.JobDescription">
+                    <h5 class="content-title">Job description</h5>
+                    <div [innerHTML]="dealDetails?.JobVacancy?.JobDescription"></div>
+                    <!-- <ul class="list-style-none pl-0 custom-dot-list">
+                        <li>Demonstrate deep engineering and architectural expertise on Microsoft Azure PAAS, FAAS and
+                            IAAS
+                            stack of services on multiple Consulting and Delivery engagements</li>
+                        <li>Minimum of 8 to 10+ years’ experience in Architect / Design / Develop various web
+                            applications using
+                            .NET Framework / .NET Core / Java or any other</li>
+                        <li>Programming frameworks.</li>
+                        <li>Minimum 2+ years of experience in Microsoft Azure PaaS Services mentioned in the skills
+                            sets.</li>
+                        <li>Experience in implementation of best practices using various Design Patterns.</li>
+                        <li>Must have strong team and interpersonal skills, and the ability to multi-task, when
+                            required.</li>
+                        <li>Curious self-starter willing to learn and stay current with emerging technologies required.
+                        </li>
+                        <li>High customer orientation and quality awareness.</li>
+                    </ul> -->
+                </li>
+                <li *ngIf="dealDetails?.JobVacancy?.JobExperience">
+                    <h5 class="content-title">Experience</h5>
+                    <div [innerHTML]="dealDetails?.JobVacancy?.JobExperience"></div>
+                    <!-- <p>Minimum of +8 years of experience and hands on in development and implementation of .Net
+                        applications.</p> -->
+                </li>
+                <li *ngIf="dealDetails?.JobVacancy?.jobSkills">
+                    <h5 class="content-title">Skills</h5>
+
+                    <ul class="skills list-style-none pl-0 mb-0">
+                        <li class="skill-item" *ngFor="let skill of dealDetails?.JobVacancy?.jobSkills">
+                            <span>{{ skill }}</span>
+                        </li>
+                        <!-- <li class="skill-item">
+                            <span>Javascript</span>
+                        </li>
+                        <li class="skill-item">
+                            <span>PHP</span>
+                        </li>
+                        <li class="skill-item">
+                            <span>Mpmgo DB</span>
+                        </li> -->
+                    </ul>
+                </li>
+                <li *ngIf="dealDetails?.JobVacancy?.Certification">
+                    <h5 class="content-title">Certifications</h5>
+                    <p>{{dealDetails?.JobVacancy?.Certification}}</p>
+                    <!-- <p>AZ-300 and AZ-301</p> -->
+                </li>
+                <li *ngIf="dealDetails?.JobVacancy?.NationalLaguage">
+                    <h5 class="content-title">Languages</h5>
+                    <ul class="list-style-none pl-0 custom-dot-list">
+                        <li>{{dealDetails?.JobVacancy?.NationalLaguage}}</li>
+                        <!-- <li>English</li> -->
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--  -->
+</section>
+
+
+<!-- 
+<section id="shortlisted-candidate" class="section">
+    <div class="d-flex align-items-start justify-content-between">
+        <h3 class="section-title">Shortlisted candidates</h3>
+    </div>
+    <div class="section-wrapper card">
+        <div class="card-body">
+            <ul class="row no-gutters list-style-none pl-0 mb-0">
+                <li class="col-12 col-md-4" *ngFor="let item of [1, 2, 3, 4]">
+                    <div class="shortlisted-candidate-card card card-item border-rounded-lg">
+                        <div class="card-body">
+                            <div class="candidate-info">
+                                <div class="info-avatar">
+                                    <img src="../../../../../../../../assets/images/candidate-test-avatar-1.png" alt=""
+                                        class="img-fluid">
+                                </div>
+                                <div class="info-details">
+                                    <div class="title">Ali Raheed</div>
+                                    <div class="sub-title">Full stack Developer</div>
+
+                                    <ul class="social-icons list-style-none pl-0 d-flex">
+                                        <li>
+                                            <a href="#">
+                                                <i class="fab fa-linkedin"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fas fa-briefcase"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="user-actions">
+                                <div>
+                                    <button class="btn action-btn attachment-doc-btn">View CV</button>
+                                </div>
+                                <div class="d-flex flex-nowrap">
+                                    <button class="btn action-danger-btn times-danger-btn"></button>
+                                    <span class="mx-1"></span>
+                                    <button class="btn action-btn tick-success-btn"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section> -->

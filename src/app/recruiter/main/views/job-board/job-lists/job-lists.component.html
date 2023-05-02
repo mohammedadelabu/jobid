@@ -1,0 +1,124 @@
+<div class="mt-4 job-board">
+  <div class="d-flex align-items-center justify-content-between mb-5">
+    <h1 class="page-title mb-4">Job Board</h1>
+    <div class="d-flex align-items-center">
+      <button
+        type="button"
+        class="btn px-3 py-2 white-btn-green-border rounded mb-2 mb-sm-0"
+        [routerLink]="['/recruiter/employee-management/job-board/post-job']"
+      >
+        +&nbsp; Create a Job
+      </button>
+
+      <div *ngIf="showToggle" id="grid-switch">
+        <!-- list effect -->
+        <button
+          class="btn p-0"
+          [ngClass]="{
+            'd-none': this._jobVacancySvc.listCandidateCards | async
+          }"
+          (click)="onCardsToggle()"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="30.803"
+            height="20.716"
+            viewBox="0 0 37.803 24.716"
+          >
+            <g
+              id="Icon_ionic-ios-list"
+              data-name="Icon ionic-ios-list"
+              transform="translate(-4.5 -7.313)"
+            >
+              <path
+                id="Path_3850"
+                data-name="Path 3850"
+                d="M10.013,18.788a2.757,2.757,0,1,1-2.757-2.757A2.757,2.757,0,0,1,10.013,18.788Z"
+                transform="translate(0 0.883)"
+                fill="#c7d0db"
+              />
+              <path
+                id="Path_3851"
+                data-name="Path 3851"
+                d="M10.013,10.069A2.757,2.757,0,1,1,7.257,7.313,2.757,2.757,0,0,1,10.013,10.069Z"
+                fill="#c7d0db"
+              />
+              <path
+                id="Path_3852"
+                data-name="Path 3852"
+                d="M10.013,27.507A2.757,2.757,0,1,1,7.257,24.75a2.757,2.757,0,0,1,2.757,2.756Z"
+                transform="translate(0 1.766)"
+                fill="#c7d0db"
+              />
+              <path
+                id="Path_3853"
+                data-name="Path 3853"
+                d="M37.591,16.875H13.915a1.575,1.575,0,1,0,0,3.15H37.591a1.575,1.575,0,0,0,0-3.15Z"
+                transform="translate(3.137 1.22)"
+                fill="#c7d0db"
+              />
+              <path
+                id="Path_3854"
+                data-name="Path 3854"
+                d="M37.591,25.594H13.915a1.575,1.575,0,0,0,0,3.15H37.591a1.575,1.575,0,0,0,0-3.15Z"
+                transform="translate(3.137 2.103)"
+                fill="#c7d0db"
+              />
+              <path
+                id="Path_3855"
+                data-name="Path 3855"
+                d="M13.915,11.307H37.591a1.575,1.575,0,0,0,0-3.15H13.915a1.575,1.575,0,1,0,0,3.15Z"
+                transform="translate(3.137 0.338)"
+                fill="#c7d0db"
+              />
+            </g>
+          </svg>
+        </button>
+        <!-- grid effect -->
+        <button
+          class="btn p-0"
+          [ngClass]="{
+            'd-none': !(this._jobVacancySvc.listCandidateCards | async)
+          }"
+          (click)="onCardsToggle()"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20.368"
+            height="20.368"
+            viewBox="0 0 26.368 26.368"
+          >
+            <path
+              id="Icon_open-grid-two-up"
+              data-name="Icon open-grid-two-up"
+              d="M0,0V9.888H9.888V0ZM16.48,0V9.888h9.888V0ZM0,16.48v9.888H9.888V16.48Zm16.48,0v9.888h9.888V16.48Z"
+              fill="#c7d0db"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="tabs border-bottom pb-3 mb-4">
+    <a
+      class="mr-5 px-5 pb-3"
+      [routerLink]="['/recruiter', 'employee-management', 'job-board']"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      >Jobs</a
+    >
+    <a
+      class="px-5 pb-3"
+      [routerLink]="[
+        '/recruiter',
+        'employee-management',
+        'job-board',
+        'pending-posts'
+      ]"
+      routerLinkActive="active"
+      >Pending</a
+    >
+  </div>
+
+  <router-outlet></router-outlet>
+</div>

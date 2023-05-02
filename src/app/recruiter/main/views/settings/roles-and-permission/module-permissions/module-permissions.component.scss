@@ -1,0 +1,46 @@
+.content-module {
+    min-width: 150px;
+}
+
+.permission-table {
+    // .table-responsive{}
+    thead {
+        th {
+            border-bottom: 1px solid #c7c7c7;
+            padding-top: 0;
+            padding-bottom: 0;
+            height: 40px;
+            font-family: "Poppins";
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 24px;
+            color: #000000;
+            min-width: 130px;
+            &:not(&:first-child) {
+                background: #dadada;
+            } &:first-child {
+                min-width: 200px;
+            }
+        }
+    }
+
+    thead {
+        th {
+            &:first-child + th {
+                padding-left: 50px;
+                min-width: calc(130px + 50px);
+            }
+        }
+    }
+
+    tbody {
+        th {
+            padding-left: 1.5em;
+            + td{
+                padding-left: 50px;
+                // background-color: red;
+            }
+        }
+    }
+}

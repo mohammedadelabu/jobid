@@ -1,0 +1,40 @@
+<div class="card">
+  <div class="card-body">
+    <h5 class="form-title text-center">Add Teammates</h5>
+    <div class="form-group">
+      <label for="Name" class="required-field-label">Add members</label>
+      <select
+        name="Skills"
+        id="Skills"
+        class="form-control"
+        multiple
+        size="10"
+        formControlName="Skills"
+      >
+        <option value="" disabled selected="selected">Select teammate</option>
+        <option *ngFor="let teammate of teammates" [ngValue]="teammate">
+          {{ teammate.name }}
+        </option>
+      </select>
+      <div>
+        <ul class="skills list-style-none pl-0 pt-3 mb-0">
+          <li class="skill-item" *ngFor="let item of teammates">
+            <span *ngIf="item"
+              ><img
+                style="
+                  width: 15px;
+                  height: 15px;
+                  border-radius: 50%;
+                  margin-right: 5px;
+                "
+                [src]="item.imgUrl"
+                alt="avatar"
+              />{{ item.name }}</span
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+    <button mat-dialog-close class="btn success-btn">Add</button>
+  </div>
+</div>

@@ -1,0 +1,95 @@
+<!-- <p>personal-profile works!</p> -->
+
+<h1 class="page-title">Let’s get you started</h1>
+<p class="title-tagline">Please enter some personal details</p>
+
+<div class="form-wrapper">
+    <!-- {{personalProfileForm | json}} -->
+    <div class="inner">
+        <form [formGroup]="personalProfileForm" (ngSubmit)="onSubmit()">
+            <div class="form-row">
+                <div class="form-group col-12 col-md-4">
+                    <label for="FirstName">First Name</label>
+                    <input type="text" class="form-control" id="FirstName" readonly formControlName="FirstName">
+                </div>
+                <div class="form-group col-12 col-md-4">
+                    <label for="MiddleName">Middle Name</label>
+                    <input type="text" class="form-control" id="MiddleName" readonly formControlName="MiddleName">
+                </div>
+                <div class="form-group col-12 col-md-4">
+                    <label for="LastName">Last Name</label>
+                    <input type="text" class="form-control" id="LastName" readonly formControlName="LastName">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-12 col-md-6">
+                    <label for="PhoneNumber">Phone</label>
+                    <input type="text" class="form-control" id="PhoneNumber" readonly formControlName="PhoneNumber">
+                </div>
+                <div class="form-group col-12 col-md-6">
+                    <label for="Email">Email</label>
+                    <input type="text" class="form-control" id="Email" readonly formControlName="Email">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-12 col-md-4">
+                    <label for="Profession" class="required-field-label">Profession</label>
+                    <input type="text" class="form-control" id="Profession" formControlName="Profession" [ngClass]="{'is-invalid': personalProfileForm.get('Profession')?.touched && personalProfileForm.get('Profession')?.invalid}">
+                </div>
+                <div class="form-group col-12 col-md-4">
+                    <label for="SalaryExpectationPerHour">Salary Expectation / Hour</label>
+                    <input type="text" class="form-control" id="SalaryExpectationPerHour" formControlName="SalaryExpectationPerHour" [ngClass]="{'is-invalid': personalProfileForm.get('SalaryExpectationPerHour')?.touched && personalProfileForm.get('SalaryExpectationPerHour')?.invalid}">
+                </div>
+                <div class="form-group col-12 col-md-4">
+                    <label for="YearsOfExperience" class="required-field-label">Years of experience</label>
+                    <!-- <input type="text" class="form-control" id="YearsOfExperience"> -->
+                    <select name="YearsOfExperience" id="YearsOfExperience" class="form-control cursor-pointer" formControlName="YearsOfExperience" [ngClass]="{'is-invalid': personalProfileForm.get('YearsOfExperience')?.touched && personalProfileForm.get('YearsOfExperience')?.invalid}">
+                        <option value="" selected="selected">--Select years of experience--</option>
+                        <option value="{{item?.value}}" *ngFor="let item of YearsOfExperienceList">{{item?.value}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-12 col-md-4">
+                    <label for="Country" class="required-field-label">Country</label>
+                    <!-- <input type="text" class="form-control" id="Country" formControlName="Country" [ngClass]="{'is-invalid': personalProfileForm.get('Country')?.touched && personalProfileForm.get('Country')?.invalid}"> -->
+                    <select name="Country" id="Country" class="form-control" formControlName="Country" [ngClass]="{'is-invalid': personalProfileForm.get('Country')?.touched && personalProfileForm.get('Country')?.invalid}">
+                        <option value="" selected="selected">--Select country--</option>
+                        <option value="{{item?.Value}}" *ngFor="let item of countryList">{{item?.Name}}</option>
+                    </select>
+                </div>
+                <div class="form-group col-12 col-md-4">
+                    <label for="State" class="required-field-label">State</label>
+                    <input type="text" class="form-control" id="State" formControlName="State" [ngClass]="{'is-invalid': personalProfileForm.get('State')?.touched && personalProfileForm.get('State')?.invalid}">
+                </div>
+                <div class="form-group col-12 col-md-4">
+                    <label for="City" class="required-field-label">City</label>
+                    <input type="text" class="form-control" id="City" formControlName="City" [ngClass]="{'is-invalid': personalProfileForm.get('City')?.touched && personalProfileForm.get('City')?.invalid}">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-12 col-md-8">
+                    <label for="Street">Street</label>
+                    <input type="text" class="form-control" id="Street" formControlName="Street">
+                </div>
+                <div class="form-group col-12 col-md-4">
+                    <label for="PostalCode" class="required-field-label">Postal Code</label>
+                    <input type="text" class="form-control" id="PostalCode" formControlName="PostalCode" [ngClass]="{'is-invalid': personalProfileForm.get('PostalCode')?.touched && personalProfileForm.get('PostalCode')?.invalid}">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-12 col-md-6">
+                    <label for="LinkedinPlatform">LinkedIn</label>
+                    <input type="text" class="form-control" id="LinkedinPlatform" formControlName="LinkedinPlatform">
+                </div>
+                <div class="form-group col-12 col-md-6">
+                    <label for="PortfolioPlatform">Portfolio Link</label>
+                    <input type="text" class="form-control" id="PortfolioPlatform" formControlName="PortfolioPlatform">
+                </div>
+            </div>
+            <div class="text-right">
+                <button class="btn success-btn px-md-4 next-btn" [disabled]="personalProfileForm.invalid">NEXT</button>
+            </div>
+        </form>
+    </div>
+</div>

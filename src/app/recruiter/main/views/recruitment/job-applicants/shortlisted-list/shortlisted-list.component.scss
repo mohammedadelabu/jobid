@@ -1,0 +1,50 @@
+// * {
+//   margin: 0;
+//   padding: 0;
+//   box-sizing: border-box;
+// }
+
+// ul, ol {
+//   list-style: none;
+// }
+
+// .list-container {
+//   display: flex;
+//   align-items: center;
+//   margin-right: 1.5rem;
+//   margin-left: 2rem;
+
+//   .list {
+//     position: relative;
+//   }
+
+//   .pdr {
+//     padding-right: 2rem;
+//   }
+
+//   @media (min-width: 640px) {
+//     .pdr {
+//       padding-right: 12rem;
+//     }
+//   }
+// }
+
+// .action-btn {
+//   padding: 10px 17px;
+//   border-radius: 5px;
+//   color: #fff;
+//   background: #4164AD !important;
+//   border: none;
+//   display: flex;
+//   align-items: center;
+//   font-size: 14px;
+
+//   &:disabled {
+//       opacity: 0.8;
+//       cursor: not-allowed;
+//   }
+// }
+
+// .btn-img {
+//   margin-right: 8px;
+// }

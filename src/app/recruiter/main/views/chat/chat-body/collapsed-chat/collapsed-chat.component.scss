@@ -1,0 +1,36 @@
+.collapsed-chat {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  background: #fff;
+  border-radius: 20px 20px 0 0;
+  padding: 10px 20px;
+  border: 1px solid #c7c7c7;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 400px;
+
+  .left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    .avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+    }
+  }
+
+  .right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    color: #14984B;
+
+    .arrow {
+      cursor: pointer;
+      width: 16px;
+    }
+  }
+}

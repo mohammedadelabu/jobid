@@ -1,0 +1,12 @@
+<!-- <p>dd-object-sorting works!</p> -->
+<h6>Object Sorting</h6>
+
+<div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+    <div class="card mb-2 shadow-sm" *ngFor="let movie of movies" cdkDrag>
+        <div class="card-header">
+            {{movie?.episode}}</div>
+        <div class="card-body">
+            {{movie?.title}}
+        </div>
+    </div>
+</div>

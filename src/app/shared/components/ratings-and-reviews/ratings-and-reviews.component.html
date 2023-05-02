@@ -1,0 +1,60 @@
+<!-- <p>ratings-and-reviews works!</p> -->
+<!-- <div class="form-wrapper">
+    <h1 class="form-title">Rating</h1>
+    <form  #ratingForm="ngForm" (ngSubmit)="onSubmit(ratingForm)">
+        <div class="form-group">
+            <div class="text-center">
+                star rating
+                <span class="star-rating">
+            <i class="far fa-star text-warning review-star"></i>
+            <i class="far fa-star text-warning review-star"></i>
+            <i class="far fa-star text-warning review-star"></i>
+            <i class="far fa-star text-warning review-star"></i>
+            <i class="far fa-star text-warning review-star"></i>
+        </span>
+                star rating hidden input field
+                <input type="text" id="rating_value" name="Rating" [(ngModel)]="test" required #Rating="ngModel">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="Username" class="required-field-label">Username</label>
+            <input type="text" id="Username" class="form-control" name="Username" ngModel required #Username="ngModel">
+        </div>
+        <div class="form-group">
+            <label for="Comment" class="required-field-label">Enter a comment</label>
+            <textarea id="Comment" rows="5" class="form-control" name="Comment" ngModel required #Comment="ngModel"></textarea>
+        </div>
+        <button class="btn success-btn">Enter</button>
+
+    </form>
+</div> -->
+
+<div class="card border-rounded-lg">
+    <div class="card-body">
+        <div class="form-wrapper">
+            <h1 class="form-title">Rating</h1>
+            <form [formGroup]="ratingForm" (ngSubmit)="onSubmit()">
+                <div class="form-row">
+                    <div class="form-group col-12 text-center">
+                        <div class="star-wrapper">
+                            <ngx-star-rating formControlName="Rating" [id]="'Rating'"></ngx-star-rating>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="form-group">
+                    <label for="Username" class="required-field-label">Username</label>
+                    <input type="text" id="Username" class="form-control" name="Username" required formControlName="Username">
+                </div> -->
+                <div class="form-group">
+                    <label for="Comment" class="required-field-label">Enter a comment</label>
+                    <textarea id="Comment" rows="5" class="form-control" name="Comment" required
+                        formControlName="Comment"></textarea>
+                </div>
+                <button class="btn success-btn">
+                    <ng-container *ngIf="!isSending">Enter</ng-container>
+                    <ng-container *ngIf="isSending">Sending...</ng-container>
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,179 @@
+<!-- <p>side-navigation works!</p> -->
+<div class="sidebar-sticky pt-5 h-75">
+  <div class="d-flex flex-column justify-content-between h-100">
+    <ul class="nav flex-column">
+      <li class="nav-item">
+        <!-- <a class="nav-link active" [routerLink]="['/recruiter/dashboard']"
+                    routerLinkActive="router-link-active" [routerLinkActiveOptions]="{exact:
+                    true}">
+                    Dashboard <span class="sr-only">(current)</span>
+                </a> -->
+        <a
+          class="nav-link active"
+          [routerLink]="['/candidate/account/dashboard']"
+          routerLinkActive="router-link-active"
+        >
+          <span class="navlink-icon"
+            ><img
+              src="../../../../../../../assets/images/icons/dashboard-icon.svg"
+              alt=""
+              class="img-fluid"
+          /></span>
+          Dashboard
+          <span class="sr-only">(current)</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          [routerLink]="['/candidate/account/profile', userId, userEmail]"
+          routerLinkActive="router-link-active"
+        >
+          <span class="navlink-icon"
+            ><img
+              src="../../../../../../../assets/images/icons/profile-avatar-icon.svg"
+              alt=""
+              class="img-fluid"
+          /></span>
+          My Profile
+        </a>
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          [routerLink]="['/candidate/account/applications']"
+          routerLinkActive="router-link-active"
+        >
+          <span class="navlink-icon"
+            ><img
+              src="../../../../../../../assets/images/icons/application-icon.svg"
+              alt=""
+              class="img-fluid"
+          /></span>
+          Applications
+        </a>
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          [routerLink]="['/candidate/account/placement']"
+          routerLinkActive="router-link-active"
+        >
+          <span class="navlink-icon"
+            ><img
+              src="../../../../../../../assets/images/icons/placement-icon.svg"
+              alt=""
+              class="img-fluid"
+          /></span>
+          Placement
+        </a>
+      </li>
+      <li class="nav-item drop">
+        <!-- <a class="nav-link" [routerLink]="['/administrator/settings']" routerLinkActive="router-link-active" (click)="CloseSidenav()">
+                    <div>
+                        <span class="navlink-icon"><img
+                                src="../../../../../../../assets/images/icons/project-management-icon.svg" alt=""
+                                class="img-fluid"></span>
+                        Project Management
+                    </div>
+                </a> -->
+        <a class="nav-link">
+          <div>
+            <span class="navlink-icon"
+              ><img
+                src="../../../../../../../assets/images/icons/project-management-icon.svg"
+                alt=""
+                class="img-fluid"
+            /></span>
+            Projects
+          </div>
+        </a>
+        <div class="drop-content">
+          <ul class="list-style-none">
+            <li>
+              <a
+                [routerLink]="[
+                  '/candidate/account/project-management/calendar'
+                ]"
+                routerLinkActive="router-link-active"
+                class="nav-link"
+              >
+                <span class="navlink-icon"
+                  ><img
+                    src="../../../../../../../assets/images/icons/timesheet-icon.svg"
+                    alt=""
+                    class="img-fluid"
+                /></span>
+                Calendar
+              </a>
+            </li>
+            <li>
+              <a
+                [routerLink]="['/candidate/account/project']"
+                routerLinkActive="router-link-active"
+                class="nav-link"
+              >
+                <span class="navlink-icon"
+                  ><img
+                    src="../../../../../../../assets/images/icons/timesheet-icon.svg"
+                    alt=""
+                    class="img-fluid"
+                /></span>
+                Project
+              </a>
+            </li>
+            <li>
+              <a
+                [routerLink]="['/candidate/account/todo']"
+                routerLinkActive="router-link-active"
+                class="nav-link"
+              >
+                <span class="navlink-icon"
+                  ><img
+                    src="../../../../../../../assets/images/icons/timesheet-icon.svg"
+                    alt=""
+                    class="img-fluid"
+                /></span>
+                Todo*
+              </a>
+            </li>
+            <li>
+              <a
+                [routerLink]="['/candidate/account/timesheet']"
+                routerLinkActive="router-link-active"
+                class="nav-link"
+              >
+                <span class="navlink-icon"
+                  ><img
+                    src="../../../../../../../assets/images/icons/timesheet-icon.svg"
+                    alt=""
+                    class="img-fluid"
+                /></span>
+                Timesheet
+              </a>
+            </li>
+            <!-- <li>
+                            <a [routerLink]="['/candidate/account/project']" routerLinkActive="router-link-active" (click)="CloseSidenav()" >Sub-link 2</a>
+                        </li> -->
+          </ul>
+        </div>
+      </li>
+    </ul>
+    <ul class="nav flex-column">
+      <li class="nav-item cursor-pointer" (click)="logoutUser()">
+        <div class="nav-link">
+          <span class="navlink-icon"
+            ><img
+              src="../../../../../../../assets/images/icons/sign-out-icon.svg"
+              alt=""
+              class="img-fluid"
+          /></span>
+          Sign out
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- overlay -->
+<!-- <app-custom-overlay></app-custom-overlay> -->

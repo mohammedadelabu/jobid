@@ -1,0 +1,40 @@
+#content-wrapper {
+    max-width: 710px;
+    margin: 0 auto;
+    background: #ffffff;
+    box-shadow: 0px 10px 16px rgba(0, 0, 0, 0.08);
+    border: none;
+    padding: 2em 1.5em;
+
+    .card-title {
+        font-family: "Poppins";
+        font-style: normal;
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 30px;
+        color: #4f656e;
+        text-align: center;
+    }
+
+    .card-title,
+    .select-control-wrapper,
+    .separator-text {
+        margin-bottom: 2em;
+    }
+
+    .separator-text {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 30px;
+        color: #4F656E;
+
+    }
+
+    .field-label {
+        font-size: 16px;
+        line-height: 24px;
+        color: #4F656E;
+    }
+}

@@ -1,0 +1,32 @@
+@use "../../../../../../../../sass/_partials/mixins";
+
+#skills-listing {
+    li {
+        margin-bottom: 1em;
+        .list-title {
+            font-family: "Poppins";
+            font-style: normal;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 24px;
+            /* identical to box height */
+
+            color: #000000;
+        }
+
+        .card-control {
+            // display: none;
+            opacity: 0;
+            @include mixins.transition(opacity 300ms ease-in-out);
+        }
+        &:hover {
+            .card-control {
+                // display: block;
+                opacity: 1;
+            }
+        }
+    }
+}
+.btn .fas {
+    font-size: 12px;
+}

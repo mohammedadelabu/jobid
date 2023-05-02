@@ -1,0 +1,38 @@
+.calendar-content-card {
+    background: #f0f0f0 !important;
+    border: 1px solid #dadada !important;
+    border-radius: 10px !important;
+}
+
+.fc .fc-daygrid-day.fc-day-today {
+    background-color: #b5b5b5 !important;
+    background-color: var(--fc-today-bg-color, #b5b5b5) !important;
+}
+
+.fc.fc-media-screen.fc-direction-ltr.fc-theme-standard {
+    font-family: "Poppins" !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    font-size: 10.9818px !important;
+    line-height: 16px !important;
+    text-align: right !important;
+
+    /* Secondary color/Dark Green 75% */
+
+    a {
+        color: #4f656e !important;
+    }
+}
+.fc-h-event .fc-event-main {
+    color: #14323e !important;
+    color: var(--fc-event-text-color, #14323e) !important;
+}
+
+.fc-h-event .fc-event-title-container {
+    //     border: 0.686364px solid #8ACCA5 !important;
+    cursor: pointer !important;
+}
+
+// .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard a {
+//     color: #4f656e !important;
+// }

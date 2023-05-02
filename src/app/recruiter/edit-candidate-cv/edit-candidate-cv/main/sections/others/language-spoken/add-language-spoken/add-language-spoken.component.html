@@ -1,0 +1,32 @@
+<!-- <p>add-language-spoken works!</p> -->
+
+<div class="alert alert-info text-center" *ngIf="responseMessage">{{responseMessage}}</div>
+<div class="text-right">
+    <button type="button" class="btn btn-sm px-0" (click)="cancelForm()">
+        <i class="fas fa-times text-danger"></i>
+    </button>
+</div>
+<form class="mb-5" [formGroup]="laguageSpokenForm" (ngSubmit)="saveLanguageSpoken()">
+    <div class="form-row">
+        <div class="form-group col-12 col-sm-6">
+            <label for="Language">Language</label>
+            <input type="text" id="Language" class="form-control" formControlName="Language" [ngClass]="{'is-invalid': laguageSpokenForm.get('Language')?.touched && laguageSpokenForm.get('Language')?.invalid}" required>
+        </div>
+        <div class="form-group col-12 col-sm-6">
+            <label for="proficiency">proficiency</label>
+            <select name="proficiency" id="proficiency" class="form-control" formControlName="Proficiency" [ngClass]="{'is-invalid': laguageSpokenForm.get('Proficiency')?.touched && laguageSpokenForm.get('Proficiency')?.invalid}" required>
+                <option value="" selected>Select</option>
+                <option value="expert">Expert</option>
+                <option value="fluent">Fluent</option>
+                <option value="intermediate">Intermediate</option>
+                <option value="beginner">Beginner</option>
+            </select>
+        </div>
+    </div>
+    <!-- <div>
+        <button class="btn form-btn px-md-5">SUBMIT</button>
+    </div> -->
+    <div>
+        <button type="submit" class="btn btn-outline-success px-5" [disabled]="laguageSpokenForm.invalid">SAVE</button>
+    </div>
+</form>

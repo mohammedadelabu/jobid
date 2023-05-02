@@ -1,0 +1,109 @@
+.page-title {
+    font-size: 2rem;
+}
+
+#basic-information {
+    > .inner {
+        background: #14323e;
+        border: 1px solid #dadada;
+        border-radius: 10px;
+        color: #ffffff;
+        font-family: "Poppins";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+    }
+}
+
+#profile-image {
+    position: relative;
+    z-index: 1;
+    // background-color: red;
+    display: inline-flex;
+    margin-bottom: 10px;
+    .inner {
+        width: 125px;
+        height: 130px;
+        border-radius: 50%;
+        overflow: hidden;
+    }
+    #verified-icon {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 10px;
+        display: none;
+    }
+
+    &.verified {
+        #verified-icon {
+            display: block;
+        }
+    }
+}
+
+.ref-number {
+    font-size: 12px;
+    line-height: 18px;
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+#star-ratings {
+    .star-score {
+        display: block;
+        color: #ffffff;
+    }
+}
+
+#info-blocks {
+    list-style: none;
+    padding-left: 0;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    line-height: 40px;
+    > li {
+        flex-basis: 50%;
+    }
+    .candidate-name,
+    .candidate-salary {
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 30px;
+        color: #ffffff;
+    }
+    .icon {
+        display: inline-block;
+        margin-right: 5px;
+        width: 20px;
+    }
+
+    .social-icons {
+        margin-top: 30px;
+        li {
+            &:first-child {
+                margin-right: 1.5em;
+            }
+            a {
+                color: #4fb278;
+                font-size: 1.4rem;
+            }
+        }
+    }
+}
+
+#professional-info-tab {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #053f63;
+    .wrapper{
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+}

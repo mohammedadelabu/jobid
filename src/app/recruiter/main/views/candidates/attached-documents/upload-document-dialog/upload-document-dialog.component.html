@@ -1,0 +1,33 @@
+<!-- <p>upload-document-dialog works!</p> -->
+<h1 class="form-title">Upload Document</h1>
+<ng-template #SuccessMessage>
+    <div class="alert text-info text-center" *ngIf="successMessage">{{successMessage}}</div>
+</ng-template>
+<form [formGroup]="UploadFIleForm" (ngSubmit)="onSubmit()" *ngIf="!successMessage; else SuccessMessage">
+    <div class="form-wrapper">
+        <div class="form-group">
+            <label for="DocumentName">Document Name</label>
+            <input type="text" id="DocumentName" class="form-control" formControlName="DocumentName" [ngClass]="{'is-invalid': UploadFIleForm.get('DocumentName')?.touched && UploadFIleForm.get('DocumentName')?.invalid}" required>
+        </div>
+        <div class="form-group">
+            <label for="DocumentType" class="required-field-label">Document Type</label>
+            <select name="DocumentType" formControlName="DocumentType" id="DocumentType" class="form-control cursor-pointer" [ngClass]="{'is-invalid': UploadFIleForm.get('DocumentType')?.touched && UploadFIleForm.get('DocumentType')?.invalid}" required>
+            <option value="" selected="selected">
+            
+                Select a document type</option>
+            <option value="{{type.Value}}" *ngFor="let type of DocumentTypeList">{{type.Name}}</option>
+        </select>
+            <small id="nameErrorMsg" class="form-text text-danger invalid-feedback">Select document type</small>
+        </div>
+        <div class="form-group">
+            <label for="File" class="upload-control-label">
+                <span class="inner">{{fileLabel}}</span>
+            </label>
+            <input type="file" name="File" id="File" hidden (change)="onSelectFile($event)" required formControlName="RawFile">
+        </div>
+        <ng-template *ngIf="uploadFileError">
+            <small class="alert text-danger">{{uploadFileError}}</small>
+        </ng-template>
+        <button class="btn success-btn" [disabled]="UploadFIleForm.invalid">Upload</button>
+    </div>
+</form>

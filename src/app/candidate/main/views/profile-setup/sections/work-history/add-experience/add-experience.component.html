@@ -1,0 +1,125 @@
+<!-- <p>add-experience works!</p> -->
+
+
+<div class="form-wrapper pb-5">
+    <div class="text-right">
+        <button type="button" class="btn btn-sm px-0" (click)="onCloseForm()">
+            <i class="fas fa-times text-danger"></i>
+        </button>
+    </div>
+    <form [formGroup]="workExperienceForm" (ngSubmit)="onSaveWorkExperience()" novalidate *ngIf="!responseMsg">
+        <div>
+            <div class="single-form-list-item">
+                <div>
+                    <div class="form-row">
+                        <div class="form-group col-12 col-sm-6">
+                            <label for="JobTitle" class="required-field-label">JobTitle</label>
+                            <input type="text" name="JobTitle" id="JobTitle" class="form-control" name="JobTitle"
+                                formControlName="JobTitle"
+                                [ngClass]="{'is-invalid': workExperienceForm.get('JobTitle')?.touched && workExperienceForm.get('JobTitle')?.invalid}"
+                                required>
+                        </div>
+                        <div class="form-group col-12 col-sm-6">
+                            <label for="Industry" class="required-field-label">Industry</label>
+                            <input type="text" name="Industry" id="Industry" class="form-control" name="Industry"
+                                formControlName="Industry"
+                                [ngClass]="{'is-invalid': workExperienceForm.get('Industry')?.touched && workExperienceForm.get('Industry')?.invalid}"
+                                required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-12 col-sm-6">
+                            <label for="EmployerName" class="required-field-label">Employer Name</label>
+                            <input type="text" id="EmployerName" class="form-control" name="EmployerName"
+                                formControlName="EmployerName"
+                                [ngClass]="{'is-invalid': workExperienceForm.get('EmployerName')?.touched && workExperienceForm.get('EmployerName')?.invalid}"
+                                required>
+                        </div>
+                        <div class="form-group col-12 col-sm-6">
+                            <label for="Location">Location</label>
+                                <select name="Location" id="Location" class="form-control" formControlName="Location">
+                                    <option value="" selected="selected">Select country</option>
+                                    <option value={{country.Value}} *ngFor="let country of countryList">{{country.Name}}</option>
+                                </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-12" [ngClass]="{'col-sm-6': !workExperienceForm.value.Currently}">
+                            <label for="StartDate">Start Date</label>
+                            <!-- <input type="text" name="StartDate" id="StartDate" class="form-control" placeholder="Start Date e.g January 2019" name="StartDate" formControlName="StartDate" ngbDatepicker #StartDate="ngbDatepicker" (click)="StartDate.toggle()"> -->
+                            <input type="month" name="StartDate" id="StartDate" class="form-control" name="StartDate"
+                                formControlName="StartDate"
+                                [ngClass]="{'is-invalid': workExperienceForm.get('StartDate')?.touched && workExperienceForm.get('StartDate')?.invalid}"
+                                required>
+                        </div>
+                        <div class="form-group col-12 col-sm-6" *ngIf="!workExperienceForm.value.Currently">
+                            <label for="EndDate">End Date</label>
+                            <!-- <input type="text" name="EndDate" id="EndDate" class="form-control" placeholder="Start Date e.g January 2019" name="EndDate" formControlName="EndDate" ngbDatepicker #StopDate="ngbDatepicker" (click)="StopDate.toggle()"> -->
+                            <input type="month" name="EndDate" id="EndDate" class="form-control" name="EndDate"
+                                formControlName="EndDate"
+                                [ngClass]="{'is-invalid': workExperienceForm.get('EndDate')?.touched && workExperienceForm.get('EndDate')?.invalid}"
+                                required>
+                        </div>
+                    </div>
+                        <div class="form-group custom-check">
+                            <input type="checkbox" name="currently" id="currently" name="currently"
+                                formControlName="Currently">
+                            <label for="currently">
+                                <span class="ui-check"></span>
+                                I currently work here
+                            </label>
+                        </div>
+                    <div class="form-row">
+                        <div class="form-group col-12">
+                            <label for="Description">Description</label>
+                            <!-- <input type="text" name="Description" id="Description" class="form-control" placeholder="Description" formControlName="Description"> -->
+                            <!-- <textarea class="form-control" name="Description" id="Description" cols="30" rows="6" ngModel [(ngModel)]="workExperienceModel.Description">Description</textarea> -->
+                            <editor placeholder="Description" initialValue="Description" name="Description"
+                                formControlName="Description" [init]=" { height: 200, menubar: false, plugins: [ 'advlist autolink lists link image charmap print preview anchor',
+                                'searchreplace visualblocks code fullscreen', 'insertdatetime media table paste code help wordcount' ], toolbar: 'undo redo | formatselect | bold italic backcolor | \
+                                  alignleft aligncenter alignright alignjustify | \
+                                  bullist numlist outdent indent | removeformat | help' } "></editor>
+    
+                            <!-- <editor id="Description " placeholder="Description " formControlName="Description " [init]="{ height: 200, menubar: false, plugins: [ 'advlist autolink lists link image charmap print preview anchor',
+                                'searchreplace visualblocks code fullscreen', 'insertdatetime media table paste code help wordcount' ], toolbar: 'undo redo | formatselect | bold italic backcolor | \
+    alignleft aligncenter alignright alignjustify | \
+    bullist numlist outdent indent | removeformat | help' } "></editor> -->
+                        </div>
+                    </div>
+    
+                    <div class="form-row">
+                        <div class="form-group col-12 col-sm-6">
+                            <label for="TeamSize">Team Size</label>
+                            <input type="text" id="TeamSize" class="form-control" name="TeamSize"
+                                formControlName="TeamSize">
+                        </div>
+                        <div class="form-group col-12 col-sm-6">
+                            <label for="TechStack">Tech Stack</label>
+                            <input type="text" id="TechStack" class="form-control" name="TechStack"
+                                formControlName="TechStack">
+                        </div>
+                    </div>
+    
+                    <!-- <div class="form-row">
+                        <div class="form-group col-12 col-sm-6">
+                            <input type="text" id="ProjectDuration" class="form-control" placeholder="Project Duration" name="ProjectDuration" formControlName="ProjectDuration">
+                        </div>
+                        <div class="form-group col-12 col-sm-6">
+                            <input type="text" id="ProjectIndustry" class="form-control" placeholder="Project Industry" name="ProjectIndustry" formControlName="ProjectIndustry">
+                        </div>
+                    </div> -->
+    
+                    <!-- <div>
+                        <button type="submit" class="btn btn-outline-success px-5">SAVE</button>
+                    </div> -->
+    
+                </div>
+    
+            </div>
+        </div>
+        <div class="d-flex justify-content-between align-items-center ">
+            <button type="button " class="btn btn-outline-success px-md-4 previous-btn" (click)="goBack()">BACK</button>
+            <button type="submit" class="btn success-btn px-md-4 next-btn" [disabled]="workExperienceForm.invalid">NEXT</button>
+        </div>
+    </form>
+    </div>

@@ -1,0 +1,131 @@
+<!-- <p>users works!</p> -->
+<div class="setting-content-container">
+
+    <div class="container-fluid">
+        <!-- {{searchTerm}} -->
+        <div class="d-flex pt-3">
+            <h2 class="setting-content-title">Users</h2>
+            <!-- {{userList | json}} -->
+
+            <div id="search-input-wrapper" class="order-2 order-md-1 ml-auto">
+                <form #searchFilterForm="ngForm" (ngSubmit)="onSearch(searchFilterForm)">
+                    <div id="search-input" class="form-inline flex-nowrap mb-2">
+                        <!-- <button class="btn" type="submit" (click)="onSearch()">
+                            <img src="../../../../../assets/images/icons/search-lens-icon.svg" alt="search icon"
+                                class="img-fluid">
+                        </button>
+                        <input class="form-control mr-sm-2 w-100" type="search" placeholder="ddd" aria-label="Search"
+                            [(ngModel)]="searchTerm" (change)="onSearch()"> -->
+
+                        <button class="btn" type="submit">
+                            <img src="../../../../../assets/images/icons/search-lens-icon.svg" alt="search icon"
+                                class="img-fluid">
+                        </button>
+                        <input class="form-control w-100" type="search" aria-label="Search" name="searchTerm"
+                            [(ngModel)]="searchTerm">
+
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="dashboard-table table-responsive border-rounded-md">
+            <table class="table table-striped">
+                <thead class="thead">
+                    <tr>
+                        <!-- <th scope="col">
+                            <div class="custom-check">
+                                <input type="checkbox" name="selectAllCheckbox" id="selectAllCheckbox"
+                                    [(ngModel)]="selectAllCheckbox" (change)="onSelectLeadAll()">
+                                <label for="selectAllCheckbox">
+                                    <span class="ui-check"></span>
+                                </label>
+                            </div>
+                        </th> -->
+                        <th scope="col"></th>
+                        <th scope="col">Username</th>
+                        <th scope="col">IP</th>
+                        <!-- <th scope="col">Location</th> -->
+                        <th scope="col">Ip Lock</th>
+                        <th scope="col">Role</th>
+                        <th scope="col">Region</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let user of userList | paginate : {
+                        itemsPerPage: itemsPerPage,
+                        currentPage: page,
+                        totalItems: totalRecords
+                      }; let i = index">
+                        <!-- <th scope="row">
+                            <div class="custom-check">
+                                <input type="checkbox" [name]="user?.id" [(ngModel)]="user.isChecked"
+                                    (change)="onSelectUsers(user)">
+                                <label>
+                                    <span class="ui-check"></span>
+                                </label>
+                            </div>
+                        </th> -->
+                        <th scope="row">{{i + 1}}.</th>
+                        <td>{{user?.FirstName}}&nbsp;{{user?.LastName}}</td>
+                        <td>{{user?.IpAddress}}</td>
+                        <!-- <td>{{user?.location}}</td> -->
+                        <td>
+                            <!-- xxxx {{user?.IsIpLock}} -->
+                            <div class="btn-group">
+                                <div>
+                                    <img src="../../../../../../assets/images/icons/padlock-opened-grey-icon.svg" alt=""
+                                        class="img-fluid">
+                                </div>
+                                <div class="mx-2">
+                                    <div class="custom-control custom-switch">
+                                        <!-- <input type="checkbox" [value]="user?.IsIpLock[i]" class="custom-control-input"
+                                            id="customSwitch1" name="user.IsIpLock"> -->
+                                        <input type="checkbox" class="custom-control-input" id="IsIpLock[{{i}}]"
+                                            name="user?.IsIpLock[{{i}}]" [(ngModel)]="user.IsIpLock"
+                                            (change)="onToggleIpLock(user)">
+                                        <label class="custom-control-label"
+                                            for="IsIpLock[{{i}}]">{{user?.IsIpLock[i]}}</label>
+                                    </div>
+                                    <!-- {{user?.IsIpLock}} -->
+                                </div>
+                                <div>
+                                    <img src="../../../../../../assets/images/icons/padlock-closed-grey-icon.svg" alt=""
+                                        class="img-fluid">
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <!-- {{user?.RoleName}} -->
+                            <div class="role-dropdown text-danger">
+                                <div class="select-drop-wrapper recruitment-admin-role">
+                                    <select name="userRole" id="" [(ngModel)]="user.RoleName"
+                                        (change)="onChangeUserRole(user)">
+                                        <!-- <option value="" *ngFor="let item of [1, 2, 3, 4]">Recruiter</option> -->
+                                        <!-- <ng-container *ngIf="user?.RoleName; else noRole">
+                                            <option selected="selected">{{user?.RoleName}}</option>
+                                        </ng-container>
+                                        <ng-template #noRole>
+                                            <option selected="selected">User</option>
+                                        </ng-template> -->
+                                        <option selected="selected">{{user.RoleName}}</option>
+                                        <option [value]="role?.Id" *ngFor="let role of adminRoles$ | async">
+                                            {{role?.RoleName}}</option>
+                                    </select>
+                                </div>
+                                <!-- Recruiter -->
+                            </div>
+                        </td>
+                        <td>{{user?.RegionName}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+        <!-- PAGINATION -->
+        <div class="text-right" *ngIf="userList" id="pagination">
+            <!-- <pagination-controls (pageChange)="page = $event"></pagination-controls> -->
+            <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
+        </div>
+    </div>
+</div>

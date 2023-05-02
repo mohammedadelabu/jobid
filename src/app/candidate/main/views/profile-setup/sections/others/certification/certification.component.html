@@ -1,0 +1,27 @@
+<!-- <p>certification works!</p> -->
+<!-- <p>Id: {{candidateId}}</p> -->
+
+<h5 class="section-title">Certification (optional)</h5>
+<!-- PREVIEW CERTIFICATION -->
+<app-preview-certification [candidateId]="candidateId" *ngIf="!isAddCertification"></app-preview-certification>
+<!-- ADD CERTIFICATION -->
+<div *ngIf="isAddCertification">
+    <!-- <div class="text-right">
+        <button type="button" class="btn btn-sm px-0" (click)="isAddCertification=false">
+            <i class="fas fa-times text-danger"></i>
+        </button>
+    </div> -->
+    <app-add-certification [candidateId]="candidateId" (closeIsAddCertification)="onCloseIsAddCertification()"></app-add-certification>
+</div>
+<!-- UPDATE CERTIFICATION -->
+<div *ngIf="isUpdateCertification">
+    <!-- <div class="text-right">
+            <button type="button" class="btn btn-sm px-0" (click)="isAddCertification=false">
+                <i class="fas fa-times text-danger"></i>
+            </button>
+        </div> -->
+    <app-update-certification (closeIsUpdateCertification)="onCloseIsUpdateCertification()"></app-update-certification>
+</div>
+<div class="mb-4">
+    <button class="btn btn-lg btn-block text-uppercase add-more-block-btn" *ngIf="!isAddCertification" (click)="isAddCertification=true">Add Certification</button>
+</div>

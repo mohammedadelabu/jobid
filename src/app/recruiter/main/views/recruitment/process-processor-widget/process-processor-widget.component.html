@@ -1,0 +1,17 @@
+<!-- <p>process-processor-widget works!</p> -->
+<h1 class="form-title text-left">Process processor</h1>
+<ng-template #noProcessListTodo>
+    <div class="alert alert-info text-center">
+        No Process
+    </div>
+</ng-template>
+<form #processForm="ngForm" (ngSubmit)="onSubmit(processForm)" *ngIf="ProcessListTodo?.length; else noProcessListTodo">
+    <div class="form-group">
+        <label for="VacancyProcess">Vacancy Process</label>
+        <select name="VacancyProcess" id="VacancyProcess" class="form-control" name="vacancyProcessId" ngModel required #vacancyProcessId="ngModel">
+            <option value="" selected="selected">-- Select the next process --</option>
+            <option value="{{process?.Id}}" *ngFor="let process of ProcessListTodo">{{process?.Name}}</option>
+        </select>
+    </div>
+    <button type="submit" class="btn success-btn">Proceed</button>
+</form>

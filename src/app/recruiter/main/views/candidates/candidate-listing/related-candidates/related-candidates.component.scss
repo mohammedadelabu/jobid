@@ -1,0 +1,48 @@
+// @use "../../../../../../../sass/_abstracts/typography";
+// @use "../../../../../../../sass/_partials/mixins";
+// @use "../../../../../../../sass/_abstracts/colors";
+// #related-items-block {
+//     overflow-y: auto;
+//     .list-group-item {
+//         background-color: unset;
+//         border: none;
+//         padding: 0;
+//         margin-left: 0;
+//         > a {
+//             text-decoration: none;
+//             font-family: "Poppins";
+//             font-style: normal;
+//             font-weight: 500;
+//             font-size: 14px;
+//             line-height: 21px;
+//             color: #14323e;
+//         }
+//         @include mixins.transition(all 300ms ease-in-out);
+//         &:hover {
+//                 @include mixins.transform(scale(1.03));
+//                 @include mixins.transition(all 300ms ease-in-out);
+//         }
+//     }
+
+//     .card-title {
+//         font-size: 14px;
+//         margin-bottom: 0;
+//     }
+
+//     .img-wrap {
+//         height: 55px;
+//         width: 55px;
+//         border-radius: 50%;
+//         overflow: hidden;
+//     }
+// }
+// // .block-title {
+// //     font-size: 1.1rem;
+// //     font-family: "Poppins";
+// //     font-style: normal;
+// //     font-weight: 700;
+// //     font-size: 20px;
+// //     line-height: 30px;
+// //     /* Secondary color/Dark Green 75% */
+// //     color: #4f656e;
+// // }

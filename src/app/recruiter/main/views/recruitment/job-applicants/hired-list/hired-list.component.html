@@ -1,0 +1,140 @@
+<!-- <p>rejected-list works!</p> -->
+<div class="content-container" id="recruitment-table">
+  <div class="table-content-head">
+    <ul class="title-list list-style-none pl-0">
+      <li>Name</li>
+      <li>Position</li>
+      <li>Email</li>
+      <li>Mobile No.</li>
+      <li>Location</li>
+      <li>Progress</li>
+      <li></li>
+    </ul>
+  </div>
+
+  <!-- <ng-template #noApplicant>
+        <div class="alert alert-info text-center" style="width: calc(300px + calc(200px * 6))">No Shortlisted applicant</div>
+    </ng-template> -->
+
+  <div class="table-content-body pb-5">
+    <ng-template #noRejectedListApplicant>
+      <div
+        class="alert alert-info text-center"
+        style="width: calc(300px + calc(200px * 6))"
+      >
+        No Hired applicant
+      </div>
+    </ng-template>
+    <cdk-accordion
+      class="example-accordion"
+      *ngIf="hiredApplicants?.length; else noRejectedListApplicant"
+    >
+      <cdk-accordion-item
+        *ngFor="
+          let application of hiredApplicants
+            | paginate
+              : {
+                  itemsPerPage: pageSize,
+                  currentPage: page,
+                  totalItems: totalPosts
+                };
+          let index = index
+        "
+        #accordionItem="cdkAccordionItem"
+        class="example-accordion-item"
+        role="button"
+        tabindex="0"
+        [attr.id]="'accordion-header-' + index"
+        [attr.aria-expanded]="accordionItem.expanded"
+        [attr.aria-controls]="'accordion-body-' + index"
+      >
+        <div
+          class="example-accordion-item-header"
+          (click)="accordionItem.toggle()"
+        >
+          <!-- {{ item }} -->
+          <ul
+            class="body-list list-style-none pl-0 mb-0 d-flex align-items-center"
+          >
+            <li class="d-flex align-items-center">
+              <div class="company-logo">
+                <img
+                  src="assets/images/sample-company-logo.png"
+                  alt=""
+                  class="img-fluid"
+                  *ngIf="!application?.Candidate.ProfileImageUrl"
+                />
+                <img
+                  src="{{ application?.Candidate.ProfileImageUrl }}"
+                  alt=""
+                  class="ing img-fluid"
+                  *ngIf="application?.Candidate.ProfileImageUrl"
+                />
+              </div>
+              <div>
+                {{ application?.Candidate.FirstName }}&nbsp;{{
+                  application?.Candidate.LastName
+                }}
+              </div>
+            </li>
+            <li>
+              <div>{{ application?.Vacancies?.JobTitle }}</div>
+            </li>
+            <li>
+              <div>{{ application?.Candidate.Email }}</div>
+            </li>
+            <li>
+              <div>{{ application?.Candidate.PhoneNumber }}</div>
+            </li>
+            <li>
+              <div>
+                <app-applicant-location
+                  [candidateId]="application?.Candidate.Id"
+                ></app-applicant-location>
+              </div>
+            </li>
+            <li>
+              <div>
+                <app-application-process-count
+                  [application]="application"
+                ></app-application-process-count>
+                /{{ ZarttechProcesses?.length }} steps
+              </div>
+              <!-- <div>00/00</div> -->
+            </li>
+            <li class="text-right">
+              <span class="example-accordion-item-description">
+                <!-- Click to {{ accordionItem.expanded ? 'close' : 'open' }} -->
+                <span class="">
+                  <img
+                    src="assets/images/icons/angle-circle-green-icon.svg"
+                    alt=""
+                    class="img-fluid rotate"
+                    [ngClass]="{ 'd-none': !accordionItem.expanded }"
+                  />
+                  <img
+                    src="assets/images/icons/angle-circle-grey-icon.svg"
+                    alt=""
+                    class="img-fluid"
+                    [ngClass]="{ 'd-none': accordionItem.expanded }"
+                  />
+                </span>
+              </span>
+            </li>
+          </ul>
+
+          <!-- <span class="example-accordion-item-description">
+           Click to {{ accordionItem.expanded ? "close" : "open" }}
+          </span> -->
+        </div>
+      </cdk-accordion-item>
+    </cdk-accordion>
+  </div>
+</div>
+
+<!-- PAGINATION -->
+<div *ngIf="hiredApplicants?.length" class="text-right" id="pagination">
+  <pagination-controls
+    (pageChange)="pageChangeEvent($event)"
+  ></pagination-controls>
+</div>

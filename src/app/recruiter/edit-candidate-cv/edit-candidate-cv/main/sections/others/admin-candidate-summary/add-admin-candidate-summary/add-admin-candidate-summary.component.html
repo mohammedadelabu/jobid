@@ -1,0 +1,35 @@
+<!-- <p>add-admin-candidate-summary works!</p> -->
+<!-- <p>add-admin-candidate-summary works!</p> -->
+
+<div class="alert alert-info text-center" *ngIf="responseMessage">{{responseMessage}}</div>
+<div class="text-right">
+    <button type="button" class="btn btn-sm px-0" (click)="cancelForm()">
+        <i class="fas fa-times text-danger"></i>
+    </button>
+</div>
+<form class="mb-5" [formGroup]="candidateSummaryForm" (ngSubmit)="saveOpinion()">
+    <p class="mb-0">Sample:</p>
+    <blockquote class="note-sm">
+        <ul>
+            <li>10 years total work experience.</li>
+            <li>6 years of experience in the DevOps role</li>
+            <li>Prior experience in programming (Java, PHP), application support engineering, database administration
+                and Linux
+                administration.</li>
+            <li> Expertise in continuous integration and continuous deployment (CI/CD)</li>
+        </ul>
+    </blockquote>
+    <div class="form-row">
+        <div class="form-group col-12">
+            <editor initialValue="Summary" name="Summary"
+                formControlName="Summary" [init]=" { height: 200, menubar: false, plugins: [ 'advlist autolink lists link image charmap print preview anchor',
+            'searchreplace visualblocks code fullscreen', 'insertdatetime media table paste code help wordcount' ], toolbar: 'undo redo | formatselect | bold italic backcolor | \
+              alignleft aligncenter alignright alignjustify | \
+              bullist numlist outdent indent | removeformat | help' } "></editor>
+        </div>
+    </div>
+    <div>
+        <button type="submit" class="btn btn-outline-success px-5">SAVE</button>
+    </div>
+
+</form>

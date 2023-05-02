@@ -1,0 +1,393 @@
+<!-- <p>new-company-conversion works!</p> -->
+
+<div id="convert-lead-to-deal-page">
+  <app-page-title></app-page-title>
+  <!-- {{CompanyInformationForm.value | json}}
+    <hr />
+    {{CompanyInformationForm.valid | json}}
+    <hr/> -->
+  <ng-container *ngIf="isphoneNumberError">
+    <small class="text-danger text-center"
+      >Provide a valid Phone number for company!</small
+    >
+  </ng-container>
+  <ng-container *ngIf="ServerErrorMessage">
+    <div class="alert alert-danger text-center">{{ ServerErrorMessage }}</div>
+  </ng-container>
+  <div class="form-wrapper pb-4">
+    <mat-stepper linear #stepper>
+      <mat-step [stepControl]="CompanyInformationForm">
+        <form
+          [formGroup]="CompanyInformationForm"
+          (ngSubmit)="onSubmitCompanyInfoForm()"
+          class="wide-form-controls-grid"
+        >
+          <div class="form-row">
+            <div class="form-group col-12 col-md-6">
+              <label for="CompanyName" class="required-field-label"
+                >Company Name</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="CompanyName"
+                aria-describedby="CompanyNameHelp"
+                formControlName="CompanyName"
+                [ngClass]="{
+                  'is-invalid':
+                    CompanyInformationForm.get('CompanyName')?.touched &&
+                    CompanyInformationForm.get('CompanyName')?.invalid
+                }"
+                required
+              />
+              <small
+                id="nameErrorMsg"
+                class="form-text text-danger invalid-feedback"
+                >Company name is required.</small
+              >
+            </div>
+            <div class="form-group col-12 col-md-6">
+              <label for="CompanyEmail" class="required-field-label"
+                >Company Email</label
+              >
+              <input
+                type="email"
+                class="form-control"
+                id="CompanyEmail"
+                aria-describedby="CompanyEmailHelp"
+                formControlName="CompanyEmail"
+                (input)="onEmailChange($event)"
+                [ngClass]="{
+                  'is-invalid':
+                    CompanyInformationForm.get('CompanyEmail')?.touched &&
+                    CompanyInformationForm.get('CompanyEmail')?.invalid
+                }"
+                required
+              />
+              <small
+                id="nameErrorMsg"
+                class="form-text text-danger invalid-feedback"
+                >Company email is required.</small
+              >
+              <small class="form-text text-danger">{{ emailTakenError }}</small>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-12 col-md-6">
+              <label for="Address">Address</label>
+              <input
+                type="text"
+                class="form-control"
+                id="Address"
+                aria-describedby="AddressHelp"
+                formControlName="Address"
+              />
+            </div>
+            <div class="form-group col-12 col-md-6">
+              <label for="Location">Location</label>
+              <select
+                name="Location"
+                id="Location"
+                class="form-control"
+                formControlName="Location"
+              >
+                <option value="" selected="selected">Select a Location</option>
+                <option
+                  [value]="location.Value"
+                  *ngFor="let location of LocationList"
+                >
+                  {{ location.Name }}
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-12 col-md-6">
+              <label for="CompanySize">Company Size</label>
+              <input
+                type="number"
+                class="form-control"
+                id="CompanySize"
+                aria-describedby="CompanySizeHelp"
+                formControlName="CompanySize"
+              />
+            </div>
+            <div class="form-group col-12 col-md-6">
+              <label for="Website">Website</label>
+              <input
+                type="text"
+                class="form-control"
+                id="Website"
+                aria-describedby="WebsiteHelp"
+                formControlName="Website"
+              />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-12 col-md-6">
+              <label for="VATReistration" class="required-field-label"
+                >VAT Registration
+              </label>
+              <input
+                type="text"
+                class="form-control"
+                id="VATReistration"
+                aria-describedby="VATReistrationHelp"
+                formControlName="VATReistration"
+                [ngClass]="{
+                  'is-invalid':
+                    CompanyInformationForm.get('VATReistration')?.touched &&
+                    CompanyInformationForm.get('VATReistration')?.invalid
+                }"
+                required
+              />
+              <small
+                id="nameErrorMsg"
+                class="form-text text-danger invalid-feedback"
+                >Provide company VAT Registration number</small
+              >
+            </div>
+            <div class="form-group col-12 col-md-6">
+              <label for="PhoneNumber" class="required-field-label"
+                >PhoneNumber</label
+              >
+              <!-- <input type="text" class="form-control" id="PhoneNumber" aria-describedby="PhoneNumberHelp"
+                                formControlName="PhoneNumber"
+                                [ngClass]="{'is-invalid': CompanyInformationForm.get('PhoneNumber')?.touched && CompanyInformationForm.get('PhoneNumber')?.invalid}" required/> -->
+              <ngx-intl-tel-input
+                [enableAutoCountrySelect]="true"
+                [enablePlaceholder]="true"
+                [preferredCountries]="['nl']"
+                [searchCountryFlag]="true"
+                [selectFirstCountry]="true"
+                [phoneValidation]="true"
+                name="PhoneNumber"
+                [(ngModel)]="PhoneNumber"
+                [ngModelOptions]="{ standalone: true }"
+                (ngModelChange)="onPhoneChange()"
+                required
+              >
+              </ngx-intl-tel-input>
+              <small
+                id="phoneNumberErrorMsg"
+                class="form-text text-danger"
+                [ngClass]="{ 'd-none': !isphoneNumberError }"
+                >Phone number is required.</small
+              >
+              <small class="form-text text-danger">{{ phoneTakenError }}</small>
+            </div>
+          </div>
+
+          <div class="form-row align-items-end">
+            <div class="form-group col-12 col-md-6">
+              <label for="Description">Description</label>
+              <!-- <input type="text" class="form-control" id="Description" aria-describedby="DescriptionHelp"
+                                formControlName="Description" /> -->
+              <textarea
+                class="form-control"
+                name="Description"
+                id=""
+                cols="30"
+                rows="4"
+                formControlName="Description"
+              ></textarea>
+            </div>
+            <div class="form-group col-12 col-md-6">
+              <!-- <div class="company-brand-logo-wrapper" *ngIf="logoImgSrc || isExistingCompany">
+                                <img [src]="logoImgSrc" alt="" class="img-fluid">
+                            </div> -->
+              <ng-container *ngIf="uploadedImage">
+                <div id="uploadedImage" class="mb-2">
+                  <img [src]="uploadedImage" alt="" class="img-fluid" />
+                </div>
+              </ng-container>
+              <ng-container>
+                <label for="CompanyLogo" class="file-label">{{
+                  CompanyLogoLabel
+                }}</label>
+                <input
+                  type="file"
+                  class="form-control"
+                  id="CompanyLogo"
+                  hidden
+                  (change)="onSelectFile($event)"
+                />
+              </ng-container>
+              <ng-container *ngIf="uploadCompanyLogoError">
+                <div>
+                  <small class="text-danger text-center">
+                    {{ uploadCompanyLogoError }}</small
+                  >
+                </div>
+              </ng-container>
+              <ng-container *ngIf="isDoneUploadingImage">
+                <div>
+                  <small class="text-info text-center"> Uploading... </small>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+          <div>
+            <button
+              class="btn success-btn"
+              matStepperNext
+              [disabled]="
+                CompanyInformationForm.invalid ||
+                !isFormValid ||
+                emailAndPhoneValidationLoading
+              "
+            >
+              Next
+            </button>
+          </div>
+        </form>
+      </mat-step>
+
+      <mat-step [stepControl]="AddCompanyContactForm">
+        <form
+          [formGroup]="AddCompanyContactForm"
+          (ngSubmit)="onSubmitCompanyContactsForm()"
+        >
+          <fieldset>
+            <legend class="mb-4">Contact Details</legend>
+            <div class="form-row">
+              <div class="form-group col-12 col-md-6">
+                <label for="ContactFirstName" class="required-field-label"
+                  >First Name</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="ContactFirstName"
+                  aria-describedby="ContactFirstNameHelp"
+                  formControlName="ContactFirstName"
+                  [ngClass]="{
+                    'is-invalid':
+                      AddCompanyContactForm.get('ContactFirstName')?.touched &&
+                      AddCompanyContactForm.get('ContactFirstName')?.invalid
+                  }"
+                  required
+                />
+                <small
+                  id="nameErrorMsg"
+                  class="form-text text-danger invalid-feedback"
+                  >Contact first name is required.</small
+                >
+              </div>
+              <div class="form-group col-12 col-md-6">
+                <label for="ContactLastName" class="required-field-label"
+                  >Last Name</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="ContactLastName"
+                  aria-describedby="ContactLastNameHelp"
+                  formControlName="ContactLastName"
+                  [ngClass]="{
+                    'is-invalid':
+                      AddCompanyContactForm.get('ContactLastName')?.touched &&
+                      AddCompanyContactForm.get('ContactLastName')?.invalid
+                  }"
+                  required
+                />
+                <small
+                  id="nameErrorMsg"
+                  class="form-text text-danger invalid-feedback"
+                  >Contact last name is required.</small
+                >
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-12 col-md-6">
+                <label for="ContactEmail" class="required-field-label"
+                  >Email</label
+                >
+                <input
+                  type="email"
+                  class="form-control"
+                  id="ContactEmail"
+                  aria-describedby="ContactEmailHelp"
+                  formControlName="ContactEmail"
+                  [ngClass]="{
+                    'is-invalid':
+                      AddCompanyContactForm.get('ContactEmail')?.touched &&
+                      AddCompanyContactForm.get('ContactEmail')?.invalid
+                  }"
+                  required
+                />
+                <span class="invalid-feedback">
+                  <small
+                    class="form-text text-danger"
+                    *ngIf="
+                      AddCompanyContactForm.get('ContactEmail')?.hasError(
+                        'required'
+                      )
+                    "
+                    >Email is required.
+                  </small>
+                  <small
+                    class="form-text text-danger"
+                    *ngIf="
+                      AddCompanyContactForm.get('ContactEmail')?.hasError(
+                        'email'
+                      )
+                    "
+                    >You entered an invalid Email.
+                  </small>
+                </span>
+              </div>
+              <div class="form-group col-12 col-md-6">
+                <label for="ContactPhoneNumber" class="required-field-label"
+                  >Mobile No</label
+                >
+                <!-- <input type="text" class="form-control" id="ContactPhoneNumber"
+                                aria-describedby="ContactPhoneNumberHelp"
+                                formControlName="ContactPhoneNumber" /> -->
+                <ngx-intl-tel-input
+                  [enableAutoCountrySelect]="true"
+                  [enablePlaceholder]="true"
+                  [preferredCountries]="['nl']"
+                  [searchCountryFlag]="true"
+                  [selectFirstCountry]="true"
+                  [phoneValidation]="true"
+                  name="ContactPhoneNumber"
+                  [(ngModel)]="ContactPhoneNumber"
+                  [ngModelOptions]="{ standalone: true }"
+                  required
+                >
+                </ngx-intl-tel-input>
+                <small
+                  id="phoneNumberErrorMsg"
+                  class="form-text text-danger"
+                  [ngClass]="{ 'd-none': !isContactPhoneNumberError }"
+                  >Phone number is required.</small
+                >
+              </div>
+            </div>
+          </fieldset>
+          <div class="d-flex align-items-center">
+            <button
+              mat-button
+              matStepperPrevious
+              class="white-btn-green-border"
+              [disabled]="isSending"
+            >
+              Back
+            </button>
+            <span class="mx-1"></span>
+            <button
+              class="btn success-btn"
+              [disabled]="AddCompanyContactForm.invalid || isSending"
+            >
+              <ng-container *ngIf="isSending">Sending...</ng-container>
+              <ng-container *ngIf="!isSending">Finish</ng-container>
+            </button>
+          </div>
+        </form>
+      </mat-step>
+    </mat-stepper>
+  </div>
+</div>

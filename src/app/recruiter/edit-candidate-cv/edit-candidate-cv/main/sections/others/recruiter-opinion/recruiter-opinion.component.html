@@ -1,0 +1,16 @@
+<!-- <p>recruiter-opinion works!</p> -->
+<!-- <p>certification works!</p> -->
+<h5 class="section-title">Recruiter opinion</h5>
+<div class="alert text-info text-center" *ngIf="responseMessage">{{responseMessage}}</div>
+<div *ngIf="!isAdd">
+    <app-preview-recruiter-opinion *ngIf="!isEdit"></app-preview-recruiter-opinion>
+    <app-update-recruiter-opinion *ngIf="isEdit"></app-update-recruiter-opinion>
+</div>
+
+<div *ngIf="isAdd">
+    <app-add-recruiter-opinion></app-add-recruiter-opinion>
+</div>
+<div *ngIf="!isAdd">
+    <button type="button" class="btn btn-block add-more-btn mb-5" (click)="handleIsAdd()">
+        <span>+</span> ADD OPINION</button>
+</div>

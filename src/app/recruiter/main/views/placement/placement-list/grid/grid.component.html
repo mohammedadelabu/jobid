@@ -1,0 +1,75 @@
+<!-- <p>grid works!</p> -->
+<div class="row no-gutters">
+  <!-- <div class="col-12 col-lg-3" *ngFor="let item of placementList">
+        <a [routerLink]="['/recruiter/placement/placement-details/9929']" class="placement-grid-card">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-title">
+                        <div class="company-logo">
+                            <img src="../../../../../../../assets/images/sample-company-logo.png" alt="" class="img-fluid">
+                        </div>
+                        <div class="company-name">Johnson & Johnson Lorem, ipsum dolor.</div>
+                    </div>
+                    <ul class="body-content list-style-none pl-0">
+                        <li>
+                            <div class="label">Start date</div>
+                            <div class="value">2022-03-31</div>
+                        </li>
+                        <li>
+                            <div class="label">End date</div>
+                            <div class="value">2022-03-31</div>
+                        </li>
+                    </ul>
+                    <ul class="body-content list-style-none pl-0 mb-0">
+                        <li>
+                            <div class="label">Employees</div>
+                            <div class="value">
+
+                                <div class="candidates-avatar cursor-pointer" [routerLink]="['/recruiter/employee-management/recruitment/job-applicants/applicant-list']">
+                                    <div class="avatar-wrap">
+                                        <img src="../../../../../../assets/images/image-placeholder.jpg" alt="" class="img-fluid" />
+                                    </div>
+                                    <div class="avatar-wrap">
+                                        <img src="../../../../../../assets/images/candidate-test-avatar-1.png" alt="" class="img-fluid" />
+                                    </div>
+                                    <div class="avatar-wrap">
+                                        <img src="../../../../../../assets/images/image-placeholder.jpg" alt="" class="img-fluid" />
+                                    </div>
+                                    <div class="avatar-wrap">47+</div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="label">Recruiter</div>
+                            <div class="value">Jenny Wilson Lorem, ipsum dolor.</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </a>
+    </div> -->
+  <div
+    class="col-12 col-lg-3"
+    *ngFor="
+      let Job of pagedJobVacancyList
+        | paginate
+          : {
+              itemsPerPage: pageSize,
+              currentPage: page,
+              totalItems: totalPosts
+            };
+      let i = index
+    "
+  >
+    <!-- <app-placement-card [Job]="Job" (isApplicationExist)="onIsApplicationExist($event)" *ngIf="isApplicationExist"></app-placement-card> -->
+    <!-- <app-placement-card [Job]="Job" (isApplicationExist)="onIsApplicationExist($event)"></app-placement-card> -->
+
+    <app-placement-card [Job]="Job"></app-placement-card>
+  </div>
+  <!--  -->
+</div>
+<div class="text-right" id="pagination">
+  <pagination-controls
+    (pageChange)="pageChangeEvent($event)"
+  ></pagination-controls>
+</div>

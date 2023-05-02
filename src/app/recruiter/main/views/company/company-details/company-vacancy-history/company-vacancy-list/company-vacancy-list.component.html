@@ -1,0 +1,87 @@
+<!-- <p>company-vacancy-list works!</p> -->
+
+<ul class="list-style-none pl-0" id="history">
+    <li *ngFor="let item of jobVacancyList">
+        <div class="inner">
+            <div class="indicator">
+                <div class="bulb"></div>
+            </div>
+            <div>
+
+                <!-- <div class="date">2nd May 2022</div> -->
+                <!-- <div class="title">Applied to Project Management</div> -->
+                <div class="date">{{item?.LastUpdate | date:'fullDate'}}</div>
+                <div class="title">
+                    <strong class="text-info">{{item?.JobTitle}}</strong> vacancy position was posted by {{item?.JobPoster?.Email}}
+                </div>
+            </div>
+        </div>
+    </li>
+    <!-- <li>
+        <div class="inner">
+            <div class="indicator">
+                <div class="bulb"></div>
+            </div>
+            <div>
+                <div class="date">2nd May 2022</div>
+                <div class="title">Applied to Project Management</div>
+            </div>
+        </div>
+    </li>
+    <li>
+        <div class="inner">
+            <div class="indicator">
+                <div class="bulb"></div>
+            </div>
+            <div>
+                <div class="date">2nd May 2022</div>
+                <div class="title">Applied to Project Management</div>
+            </div>
+        </div>
+    </li>
+    <li>
+        <div class="inner">
+            <div class="indicator">
+                <div class="bulb"></div>
+            </div>
+            <div>
+                <div class="date">2nd May 2022</div>
+                <div class="title">Applied to Project Management</div>
+            </div>
+        </div>
+    </li>
+    <li>
+        <div class="inner">
+            <div class="indicator">
+                <div class="bulb"></div>
+            </div>
+            <div>
+                <div class="date">2nd May 2022</div>
+                <div class="title">Interviewed for Web Designer Role</div>
+            </div>
+        </div>
+    </li>
+    <li>
+        <div class="inner">
+            <div class="indicator">
+                <div class="bulb"></div>
+            </div>
+            <div>
+                <div class="date">2nd May 2022</div>
+                <div class="title">Rejected for Web designer role</div>
+            </div>
+        </div>
+    </li>
+    <li>
+        <div class="inner">
+            <div class="indicator">
+                <div class="bulb"></div>
+            </div>
+            <div>
+                <div class="date">2nd May 2022</div>
+                <div class="title">Shortlisted For Web Developer role</div>
+            </div>
+        </div>
+    </li> -->
+</ul>
+<!-- <a href="#" class="btn btn-sm btn-default show-more-btn">Show more</a> -->

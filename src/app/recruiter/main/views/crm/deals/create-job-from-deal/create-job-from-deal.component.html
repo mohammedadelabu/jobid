@@ -1,0 +1,182 @@
+<!-- <p>create-job-from-deal works!</p> -->
+<div class="d-flex align-items-center">
+  <button class="btn btn-default mr-3" (click)="back()">
+    <img src="../../../../../../../assets/images/icons/angle-left-icon.svg" alt="" class="img-fluid" />
+  </button>
+  <h1 class="page-title py-0 mb-0">Create a Job</h1>
+</div>
+<div class="form-wrapper mb-4">
+  <form [formGroup]="PostJobForm" (ngSubmit)="onSubmitForm()" class="wide-form-controls-grid">
+    <div class="form-row">
+      <div class="form-group col-12 col-md-6">
+        <label for="JobTitle" class="required-field-label">Job Title</label>
+        <input type="text" class="form-control" id="JobTitle" aria-describedby="JobTitleHelp" formControlName="JobTitle"
+          [ngClass]="{'is-invalid': PostJobForm.get('JobTitle')?.touched && PostJobForm.get('JobTitle')?.invalid}"
+          required />
+        <small id="nameErrorMsg" class="form-text text-danger invalid-feedback">Job title
+          is
+          required.</small>
+      </div>
+      <div class="form-group col-12 col-md-6">
+        <label for="CompanyId" class="required-field-label">Company</label>
+        <!-- <input type="text" class="form-control" id="CompanyId" aria-describedby="CompanyIdHelp"
+                    formControlName="CompanyId" readonly /> -->
+        <!-- <select name="CompanyId" id="" class="form-control" formControlName="CompanyId" [(ngModel)]="CompanyID" (change)="onGetCompanyId()"> -->
+        <select name="CompanyId" id="" class="form-control" formControlName="CompanyId" readonly>
+          <!-- <option value="" selected="selected">Select Company</option> -->
+          <option value="{{ companyDetails.id }}">
+            {{ companyDetails.name }}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-12 col-md-6">
+        <label for="JobType">Job Type</label>
+        <select name="JobType" id="" class="form-control" formControlName="JobType">
+          <option value="" selected="selected">Select Job type</option>
+          <option value="{{ type.Value }}" *ngFor="let type of jobTypes">
+            {{ type.Name }}
+          </option>
+        </select>
+      </div>
+      <!-- {{locationList$ | async | json}} -->
+      <div class="form-group col-12 col-md-6">
+        <label for="JobLocationId" class="required-field-label">Location</label>
+        <select name="JobLocationId" id="" class="form-control" formControlName="JobLocationId"
+          [ngClass]="{'is-invalid': PostJobForm.get('JobLocationId')?.touched && PostJobForm.get('JobLocationId')?.invalid}"
+          required>
+          <option value="" selected="selected">Select a Location</option>
+          <option [value]="location.Id" *ngFor="let location of locationList$ | async">
+            {{ location.Name }}
+          </option>
+        </select>
+        <small id="nameErrorMsg" class="form-text text-danger invalid-feedback">Select location</small>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-12 col-md-6">
+        <label for="StartDate" class="required-field-label">Start date</label>
+        <input type="date" class="form-control" id="StartDate" aria-describedby="StartDateHelp"
+          formControlName="StartDate" [ngClass]="{'is-invalid': PostJobForm.get('StartDate')?.touched && PostJobForm.get('StartDate')?.invalid}"
+          required/>
+          <small id="nameErrorMsg" class="form-text text-danger invalid-feedback">Start date is required</small>
+      </div>
+      <div class="form-group col-12 col-md-6">
+        <label for="EndDate">End Date</label>
+        <input type="date" class="form-control" id="EndDate" aria-describedby="EndDateHelp" formControlName="EndDate" />
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-12 col-md-6">
+        <label for="HoursAWeek">Hours a week</label>
+        <input type="text" class="form-control" id="HoursAWeek" aria-describedby="HoursAWeekHelp"
+          formControlName="HoursAWeek" />
+      </div>
+      <div class="form-group col-12 col-md-6">
+        <label for="HourlyRate">Hourly Rate</label>
+        <div class="input-group mb-3 rate">
+          <input type="text" class="form-control" aria-label="Hourly Rate" aria-describedby="basic-addon2"
+            id="HourlyRate" formControlName="HourlyRate" />
+          <div class="input-group-append">
+            <span class="input-group-text text-bold bg-none" id="basic-addon2">$</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="JobDescription">Job Description</label>
+      <!-- <textarea class="form-control" id="JobDescription" rows="5" formControlName="JobDescription"></textarea> -->
+      <editor placeholder="JobDescription" initialValue="JobDescription" name="JobDescription"
+        formControlName="JobDescription" [init]=" { height: 200, menubar: false, plugins: [ 'advlist autolink lists link image charmap print preview anchor',
+                  'searchreplace visualblocks code fullscreen', 'insertdatetime media table paste code help wordcount' ], toolbar: 'undo redo | formatselect | bold italic backcolor | \
+                    alignleft aligncenter alignright alignjustify | \
+                    bullist numlist outdent indent | removeformat | help'
+        }"></editor>
+    </div>
+    <div class="form-group">
+      <label for="JobExperience">Job Experience</label>
+      <!-- <textarea class="form-control" id="JobExperience" rows="5" formControlName="JobExperience"></textarea> -->
+      <editor placeholder="JobExperience" initialValue="JobExperience" name="JobExperience"
+        formControlName="JobExperience" [init]="{
+          height: 200,
+          menubar: false,
+          plugins: [
+            'advlist autolink lists link image charmap print preview anchor',
+            'searchreplace visualblocks code fullscreen',
+            'insertdatetime media table paste code help wordcount'
+          ],
+          toolbar:
+            'undo redo | formatselect | bold italic backcolor | \
+                    alignleft aligncenter alignright alignjustify | \
+                    bullist numlist outdent indent | removeformat | help'
+        }"></editor>
+    </div>
+    <!-- 
+    <div class="form-row">
+      <div class="form-group col-12">
+        <label for="Skills">Skills
+          <small>(Select multiple skills while holding the CTRL key)</small></label>
+        <ng-template #loading>
+          <div>
+            <small class="text-info"> Loading... </small>
+          </div>
+        </ng-template>
+        <select name="Skills" id="Skills" class="form-control" multiple size="10" (click)="testSkill()"
+          [(ngModel)]="Skills" [ngModelOptions]="{ standalone: true }" *ngIf="!(isLoading | async); else loading">
+          <option value="" selected="selected">Select skills</option>
+          <option value="{{skill}}" *ngFor="let skill of (skillsList$ | async)">{{skill}}</option>
+        </select>
+        <div id="skills-listing-wrap" *ngIf="selectedSkills && selectedSkills[0]">
+          <ul class="skills list-style-none pl-0 pt-3 mb-0">
+            <li class="skill-item" *ngFor="let item of selectedSkills">
+              <span *ngIf="item">{{ item }}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div> -->
+
+    <!--  -->
+    <div class="form-row">
+      <div class="form-group col-12">
+        <label for="Skills">Skills</label>
+        <ng-select [items]="skillsList$ | async" [multiple]="true" formControlName="Skills" style="height: 34px">
+        </ng-select>
+        <small *ngIf="selectedSkills?.length === 0" class="alert alert-danger mt-4 d-block">
+          Select at least one skill
+        </small>
+      </div>
+    </div>
+
+
+    <!--  -->
+    <div class="form-row">
+      <div class="form-group col-12 col-md-6">
+        <label for="Certification">Certification</label>
+        <input type="text" class="form-control" id="Certification" aria-describedby="CertificationHelp"
+          formControlName="Certification" />
+      </div>
+      <div class="form-group col-12 col-md-6">
+        <label for="Languages" class="required-field-label">Languages</label>
+        <select name="LanguageId" id="" class="form-control" formControlName="LanguageId"
+          [ngClass]="{'is-invalid': PostJobForm.get('LanguageId')?.touched && PostJobForm.get('LanguageId')?.invalid}"
+          required>
+          <option value="" selected="selected">Select a Language</option>
+          <option [value]="Language?.Id" *ngFor="let Language of (spokenLanguageList$ | async)">
+            {{ Language?.Name }}
+          </option>
+        </select>
+        <small id="nameErrorMsg" class="form-text text-danger invalid-feedback">Select language</small>
+      </div>
+      <!-- <input type="text" class="form-control" id="Languages" aria-describedby="LanguagesHelp"
+                formControlName="Languages" /> -->
+    </div>
+    <div class="text-right">
+      <button type="submit" class="btn success-btn"  [disabled]="isSendingFormData">
+        <ng-container *ngIf="isSendingFormData">Sending...</ng-container>
+        <ng-container *ngIf="!isSendingFormData">Create Job</ng-container>
+        </button>
+    </div>
+  </form>
+</div>

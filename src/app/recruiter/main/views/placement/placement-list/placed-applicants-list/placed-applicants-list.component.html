@@ -1,0 +1,44 @@
+<!-- <p>placed-applicants-list works!</p> -->
+
+<div
+  class="candidates-avatar cursor-pointer"
+  [routerLink]="[
+    '/recruiter/employee-management/recruitment/job-applicants/applicant-list'
+  ]"
+>
+  <div class="avatar-wrap" *ngFor="let application of uiList">
+    <!-- <img src="../../../../../../assets/images/image-placeholder.jpg" alt="" class="img-fluid" /> -->
+    <ng-template #noLogo>
+      <img
+        src="../../../../../../assets/images/image-placeholder.jpg"
+        alt=""
+        class="img-fluid"
+      />
+    </ng-template>
+    <img
+      src="{{ application?.Candidate?.ProfileImageUrl }}"
+      alt=""
+      class="img-fluid"
+      *ngIf="application?.Candidate?.ProfileImageUrl; else noLogo"
+    />
+  </div>
+  <!-- <div class="avatar-wrap">
+        <img src="../../../../../../assets/images/image-placeholder.jpg" alt="" class="img-fluid" />
+    </div>
+    <div class="avatar-wrap">
+        <img src="../../../../../../assets/images/candidate-test-avatar-1.png" alt="" class="img-fluid" />
+    </div>
+    <div class="avatar-wrap">
+        <img src="../../../../../../assets/images/image-placeholder.jpg" alt="" class="img-fluid" />
+    </div> -->
+  <div class="avatar-wrap" *ngIf="uiList?.length; else noPlacement">
+    <div>
+      {{ uiList?.length
+      }}<span *ngIf="uiList?.length < JobApplicationList?.length">+</span>
+    </div>
+  </div>
+</div>
+<ng-template #noPlacement>
+  <p style="height: 30px; margin-bottom: 0">{{ noFound }}</p>
+</ng-template>
+<!--  -->

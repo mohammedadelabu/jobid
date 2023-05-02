@@ -1,0 +1,604 @@
+<!-- <p>share-job-template works!</p> -->
+
+<div id="template-container" class="mb-5">
+  <!-- <div class="template-header">
+        <div class="inner">
+            <div class="zarttech-logo-wrapper">
+                <img src="assets/images/zarttech-brand-logo.svg" class="img-fluid" alt="">
+            </div>
+            <div class="box-pattern">
+                <ul class="boxes list-style-none mb-0 pl-0">
+                    <li class="box-1"></li>
+                    <li class="box-2"></li>
+                    <li class="box-3"></li>
+                </ul>
+            </div>
+        </div>
+    </div> -->
+
+  <div>
+    <div class="template-header">
+      <div class="inner">
+        <div class="zarttech-logo-wrapper">
+          <img
+            src="assets/images/zarttech-brand-logo.svg"
+            class="img-fluid"
+            alt="zarttech-brand-log"
+          />
+        </div>
+        <div class="box-pattern">
+          <img
+            src="assets/images/cv-job-template-bg.png"
+            class="img-fluid"
+            alt="zarttech-brand-log"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <div class="intro">
+      <!-- <h1>Azure Architect 8+ Years</h1> -->
+      <h1>{{ JobDetails?.JobTitle }}</h1>
+      <div *ngIf="_jobVacancySvc.showDisclosedJob | async">
+        <h2>{{ CompanyDetails?.Name | titlecase }}</h2>
+        <p>
+          {{ CompanyDetails?.Description | titlecase }}
+
+          <!-- Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tortor eleifend nullam vestibulum scelerisque. Consectetur pretium eu pulvinar nunc. Et nisi tristique porta leo sed odio mattis. Sagittis libero consequat, nulla magna etiam ornare
+                  scelerisque. Mauris, amet felis in mi non. Ullamcorper nisl, tristique ut lacus, nibh blaVndit. -->
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h3 class="section-heading">Job Detail</h3>
+    <div class="section-body">
+      <!-- <div class="row list-item">
+        <div class="col-12 col-sm-3">
+          <div class="title">Industry</div>
+        </div>
+        <div class="col-12 col-sm-9">
+          <div class="value">Banking</div>
+        </div>
+      </div> -->
+      <!-- <div class="row list-item">
+        <div class="col-12 col-sm-3">
+          <div class="title">Job type</div>
+        </div>
+        <div class="col-12 col-sm-9">
+          <div class="value">{{ JobDetails?.JobType | titlecase }}</div>
+        </div>
+      </div> -->
+      <div class="row list-item">
+        <div class="col-12 col-sm-3">
+          <div class="title">Job description</div>
+        </div>
+        <div class="col-12 col-sm-9">
+          <div class="value">
+            Must have :
+            <div class="test" [innerHTML]="JobDetails?.JobDescription">
+              <!-- {{ JobDetails?.JobDescription }} -->
+            </div>
+            <!-- <ul class="pl-0">
+                            <li>
+                                Demonstrate deep engineering and architectural expertise on Microsoft Azure PAAS, FAAS and IAAS stack of services on multiple Consulting and Delivery engagements</li>
+                            <li>
+                                Minimum of 8 to 10+ years’ experience in Architect / Design / Develop various web applications using .NET Framework / .NET Core / Java or any other programming frameworks.</li>
+                            <li>
+                                Minimum 2+ years of experience in Microsoft Azure PaaS Services mentioned in the skills sets.</li>
+                            <li> Experience in implementation of best practices using various Design Patterns.</li>
+                            <li> Must have strong team and interpersonal skills, and the ability to multi-task, when required.</li>
+                            <li> Curious self-starter willing to learn and stay current with emerging technologies required.</li>
+                            <li> High customer orientation and quality awareness.</li>
+                        </ul> -->
+          </div>
+        </div>
+      </div>
+      <div class="row list-item">
+        <div class="col-12 col-sm-3">
+          <div class="title">Experience</div>
+        </div>
+        <div class="col-12 col-sm-9">
+          <div [innerHTML]="JobDetails?.JobExperience" class="value"></div>
+        </div>
+      </div>
+      <div class="row list-item">
+        <div class="col-12 col-sm-3">
+          <div class="title">Skills</div>
+        </div>
+        <div class="col-12 col-sm-9">
+          <div class="value">
+            <div>Good to have:</div>
+            <ul>
+              <li *ngFor="let skill of JobSkills">{{ skill | titlecase }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="row list-item">
+        <div class="col-12 col-sm-3">
+          <div class="title">Certifications</div>
+        </div>
+        <div class="col-12 col-sm-9">
+          <div class="value">{{ JobDetails?.Certification }}</div>
+        </div>
+      </div>
+      <div class="row list-item">
+        <div class="col-12 col-sm-3">
+          <div class="title">Languages</div>
+        </div>
+        <div class="col-12 col-sm-9">
+          <div class="value">{{ JobLanguages }}</div>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="section-heading">Availibility and Work type</h3>
+    <div class="section-body">
+      <div class="row list-item">
+        <div class="col-12 col-sm-3">
+          <div class="title">Start date</div>
+        </div>
+        <div class="col-12 col-sm-9">
+          <div class="value">{{ JobDetails?.StartDate | date }}</div>
+        </div>
+      </div>
+      <div class="row list-item">
+        <div class="col-12 col-sm-3">
+          <div class="title">End date</div>
+        </div>
+        <div class="col-12 col-sm-9">
+          <div class="value">{{ JobDetails?.EndDate | date }}</div>
+        </div>
+      </div>
+      <div class="row list-item">
+        <div class="col-12 col-sm-3">
+          <div class="title">Company Location</div>
+        </div>
+        <div class="col-12 col-sm-9">
+          <div class="value">{{ JobDetails?.Location }}</div>
+        </div>
+      </div>
+      <div
+        *ngIf="_jobVacancySvc.showDisclosedJob | async"
+        class="row list-item"
+      >
+        <div class="col-12 col-sm-3">
+          <div class="title">Hourly Rate</div>
+        </div>
+        <div class="col-12 col-sm-9">
+          <div class="value">{{ JobDetails?.HourlyRate }}</div>
+        </div>
+      </div>
+      <div class="row list-item">
+        <div class="col-12 col-sm-3">
+          <div class="title">Job Type</div>
+        </div>
+        <div class="col-12 col-sm-9">
+          <div class="value">{{ JobDetails?.HoursAWeek }}</div>
+        </div>
+      </div>
+    </div>
+    <!--  -->
+
+    <h3 class="section-heading">Our Internal Process</h3>
+    <div class="section-body">
+      <div class="row list-item">
+        <div class="col-12 col-sm-3">
+          <div class="title">Code Challenge</div>
+        </div>
+        <div class="col-12 col-sm-9">
+          <div class="value">
+            Attempt our code challenge which is based on your specialty. Perform
+            brilliantly and you are ready to be hired.
+          </div>
+        </div>
+      </div>
+      <div class="row list-item">
+        <div class="col-12 col-sm-3">
+          <div class="title">Recruiter interview</div>
+        </div>
+        <div class="col-12 col-sm-9">
+          <div class="value">
+            Here, we are interested in your personality. We want to see how
+            great of an individual you are and determine how quickly we should
+            have you on our team.
+          </div>
+        </div>
+      </div>
+      <div class="row list-item">
+        <div class="col-12 col-sm-3">
+          <div class="title">Technical interview</div>
+        </div>
+        <div class="col-12 col-sm-9">
+          <div class="value">
+            Come tell us how good you are at what you do. This is all about you
+            and your knowledge of your tech stack
+          </div>
+        </div>
+      </div>
+      <div class="row list-item">
+        <div class="col-12 col-sm-3">
+          <div class="title">Offer</div>
+        </div>
+        <div class="col-12 col-sm-9">
+          <div class="value">
+            Here, we are interested in your personality. We want to see how
+            great of an individual you are and determine how quickly we should
+            have you on our team.
+          </div>
+        </div>
+      </div>
+      <div class="row list-item">
+        <div class="col-12 col-sm-3">
+          <div class="title">Contract signing</div>
+        </div>
+        <div class="col-12 col-sm-9">
+          <div class="value">
+            We give you a contract you'll be happy to say YES to. All you need
+            to do is sign the dotted line.
+          </div>
+        </div>
+      </div>
+      <div class="row list-item">
+        <div class="col-12 col-sm-3">
+          <div class="title">Hired</div>
+        </div>
+        <div class="col-12 col-sm-9">
+          <div class="value">
+            Congratulations! You are the newest Zarttan. Welcome to the Zarttech
+            family.
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--  -->
+
+    <h3 class="section-heading">Privacy Policy</h3>
+    <div class="section-body privacy-policy">
+      <div>
+        <p>
+          If you are a resident of the European Union (EU) and European Economic
+          Area (EEA), you have certain data protection rights, covered by GDPR.
+          We aim to take reasonable steps to allow you to correct, amend,
+          delete, or limit the use of your Personal Data. If you wish to be
+          informed what Personal Data we hold about you and if you want it to be
+          removed from our systems, please email us at info@zwarttech.com. In
+          certain circumstances, you have the following data protection rights:
+        </p>
+        <p>
+          0.1. the right to access, update or to delete the information we have
+          on you;<br />0.2. the right of rectification. You have the right to
+          have your information rectified if that information is inaccurate or
+          incomplete;<br />
+          0.3. the right to object. You have the right to object to our
+          processing of your Personal Data;<br />
+          0.4. the right of restriction. You have the right to request that we
+          restrict the processing of your personal information;<br />
+          0.5. the right to data portability. You have the right to be provided
+          with a copy of your Personal Data in a structured, machine-readable
+          and commonly used format;<br />
+          0.6. the right to withdraw consent. You also have the right to
+          withdraw your consent at any time where we rely on your consent to
+          process your personal information;
+        </p>
+
+        <p>
+          Please note that we may ask you to verify your identity before
+          responding to such requests.
+        </p>
+
+        <p>
+          Please note, we may not able to provide Service without some necessary
+          data. You have the right to complain to a Data Protection Authority
+          about our collection and use of your Personal Data. For more
+          information, please contact your local data protection authority in
+          the European Economic Area (EEA).
+        </p>
+      </div>
+      <div class="text-center mt-5">
+        <p>
+          Send <br />
+          Read this form carefully if you have any comments or questions please
+          send an email <br />
+          to: info@zarttech.com with subject "Request"
+        </p>
+      </div>
+    </div>
+  </section>
+</div>
+<!-- </div> -->
+
+<!-- For pdf generation -->
+<div class="d-none" id="pdfTable" #pdfTable>
+  <!-- <div>
+    <div class="inner">
+      <div class="zarttech-logo-wrapper">
+        <img
+          src="assets/images/zarttech-brand-logo.svg"
+          class="img-fluid"
+          alt="zarttech-brand-log"
+        />
+      </div>
+      <div class="box-pattern">
+        <img
+          src="assets/images/cv-job-template-bg.png"
+          class="img-fluid"
+          alt="zarttech-brand-log"
+        />
+      </div>
+    </div>
+  </div> -->
+
+  <section>
+    <div class="text-center">
+      <!-- <h1>Azure Architect 8+ Years</h1> -->
+      <h1>{{ JobDetails?.JobTitle | titlecase }}</h1>
+      <div *ngIf="_jobVacancySvc.showDisclosedJob | async">
+        <h2>{{ CompanyDetails?.Name | titlecase }}</h2>
+        <p>
+          {{ CompanyDetails?.Description | titlecase }}
+
+          <!-- Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tortor eleifend nullam vestibulum scelerisque. Consectetur pretium eu pulvinar nunc. Et nisi tristique porta leo sed odio mattis. Sagittis libero consequat, nulla magna etiam ornare
+                scelerisque. Mauris, amet felis in mi non. Ullamcorper nisl, tristique ut lacus, nibh blaVndit. -->
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="mt-2">
+    <h3 class="section-heading">Job Detail</h3>
+    <div class="section-body">
+      <!-- <div class="row list-item">
+      <div class="col-12 col-sm-3">
+        <div class="title">Industry</div>
+      </div>
+      <div class="col-12 col-sm-9">
+        <div class="value">Banking</div>
+      </div>
+    </div> -->
+      <!-- <div class="row list-item">
+      <div class="col-12 col-sm-3">
+        <div class="title">Job type</div>
+      </div>
+      <div class="col-12 col-sm-9">
+        <div class="value">{{ JobDetails?.JobType | titlecase }}</div>
+      </div>
+    </div> -->
+      <div>
+        <div>
+          <h5>Job description</h5>
+        </div>
+        <div>
+          <div>
+            Must have :
+            <div [innerHTML]="JobDetails?.JobDescription">
+              <!-- {{ JobDetails?.JobDescription }} -->
+            </div>
+            <!-- <ul class="pl-0">
+                          <li>
+                              Demonstrate deep engineering and architectural expertise on Microsoft Azure PAAS, FAAS and IAAS stack of services on multiple Consulting and Delivery engagements</li>
+                          <li>
+                              Minimum of 8 to 10+ years’ experience in Architect / Design / Develop various web applications using .NET Framework / .NET Core / Java or any other programming frameworks.</li>
+                          <li>
+                              Minimum 2+ years of experience in Microsoft Azure PaaS Services mentioned in the skills sets.</li>
+                          <li> Experience in implementation of best practices using various Design Patterns.</li>
+                          <li> Must have strong team and interpersonal skills, and the ability to multi-task, when required.</li>
+                          <li> Curious self-starter willing to learn and stay current with emerging technologies required.</li>
+                          <li> High customer orientation and quality awareness.</li>
+                      </ul> -->
+          </div>
+        </div>
+      </div>
+      <div>
+        <div>
+          <h5>Experience</h5>
+        </div>
+        <div>
+          <div [innerHTML]="JobDetails?.JobExperience" class="value"></div>
+        </div>
+      </div>
+      <div>
+        <div>
+          <h5>Skills</h5>
+        </div>
+        <div>
+          <div>
+            <div>Good to have:</div>
+            <ul>
+              <li *ngFor="let skill of JobSkills">{{ skill | titlecase }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div>
+          <h5>Certifications</h5>
+        </div>
+        <div>
+          <div>AZ-300 and AZ-301</div>
+        </div>
+      </div>
+      <div>
+        <div>
+          <h5>Languages</h5>
+        </div>
+        <div>
+          <div>{{ JobDetails?.Language }}</div>
+        </div>
+      </div>
+    </div>
+    <hr />
+
+    <h3>Availibility and Work type</h3>
+    <div>
+      <div>
+        <div>
+          <p><strong>Start date:</strong> {{ JobDetails?.StartDate | date }}</p>
+        </div>
+      </div>
+      <div>
+        <div>
+          <p><strong>End date:</strong> {{ JobDetails?.EndDate | date }}</p>
+        </div>
+      </div>
+      <div>
+        <div>
+          <p><strong>Company Location:</strong> {{ JobDetails?.Location }}</p>
+        </div>
+      </div>
+      <div *ngIf="_jobVacancySvc.showDisclosedJob | async">
+        <div>
+          <p><strong>Hourly Rate:</strong> {{ JobDetails?.HourlyRate }}</p>
+        </div>
+      </div>
+      <div>
+        <div>
+          <p><strong>Job Type:</strong> {{ JobDetails?.HoursAWeek }}</p>
+        </div>
+      </div>
+    </div>
+    <hr />
+
+    <h3>Our Internal Process</h3>
+    <div>
+      <div>
+        <div>
+          <h6 style="margin-top: 1.5rem">Code Challenge</h6>
+        </div>
+        <div>
+          <div>
+            Attempt our code challenge which is based on your specialty. Perform
+            brilliantly and you are ready to be hired.
+          </div>
+        </div>
+      </div>
+      <div>
+        <div>
+          <h6 style="margin-top: 1.5rem">Recruiter interview</h6>
+        </div>
+        <div>
+          <div>
+            Here, we are interested in your personality. We want to see how
+            great of an individual you are and determine how quickly we should
+            have you on our team.
+          </div>
+        </div>
+      </div>
+      <div>
+        <div>
+          <h6 style="margin-top: 1.5rem">Technical interview</h6>
+        </div>
+        <div>
+          <div>
+            Come tell us how good you are at what you do. This is all about you
+            and your knowledge of your tech stack
+          </div>
+        </div>
+      </div>
+      <div>
+        <div>
+          <h6 style="margin-top: 1.5rem">Offer</h6>
+        </div>
+        <div>
+          <div>
+            Here, we are interested in your personality. We want to see how
+            great of an individual you are and determine how quickly we should
+            have you on our team.
+          </div>
+        </div>
+      </div>
+      <div>
+        <div>
+          <h6 style="margin-top: 1.5rem">Contract signing</h6>
+        </div>
+        <div>
+          <div>
+            We give you a contract you'll be happy to say YES to. All you need
+            to do is sign the dotted line.
+          </div>
+        </div>
+      </div>
+      <div>
+        <div>
+          <h6 style="margin-top: 1.5rem">Hired</h6>
+        </div>
+        <div>
+          <div>
+            Congratulations! You are the newest Zarttan. Welcome to the Zarttech
+            family.
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr />
+
+    <h3 class="section-heading">Privacy Policy</h3>
+    <div class="section-body privacy-policy">
+      <div>
+        <p>
+          If you are a resident of the European Union (EU) and European Economic
+          Area (EEA), you have certain data protection rights, covered by GDPR.
+          We aim to take reasonable steps to allow you to correct, amend,
+          delete, or limit the use of your Personal Data. If you wish to be
+          informed what Personal Data we hold about you and if you want it to be
+          removed from our systems, please email us at info@zwarttech.com. In
+          certain circumstances, you have the following data protection rights:
+        </p>
+        <ul>
+          <li>
+            0.1. the right to access, update or to delete the information we
+            have on you;
+          </li>
+          <li>
+            0.2. the right of rectification. You have the right to have your
+            information rectified if that information is inaccurate or
+            incomplete;
+          </li>
+          <li>
+            0.3. the right to object. You have the right to object to our
+            processing of your Personal Data;
+          </li>
+          <li>
+            0.4. the right of restriction. You have the right to request that we
+            restrict the processing of your personal information;
+          </li>
+          <li>
+            0.5. the right to data portability. You have the right to be
+            provided with a copy of your Personal Data in a structured,
+            machine-readable and commonly used format;
+          </li>
+          <li>
+            0.6. the right to withdraw consent. You also have the right to
+            withdraw your consent at any time where we rely on your consent to
+            process your personal information;
+          </li>
+        </ul>
+
+        <p>
+          Please note that we may ask you to verify your identity before
+          responding to such requests.
+        </p>
+
+        <p>
+          Please note, we may not able to provide Service without some necessary
+          data. You have the right to complain to a Data Protection Authority
+          about our collection and use of your Personal Data. For more
+          information, please contact your local data protection authority in
+          the European Economic Area (EEA).
+        </p>
+      </div>
+      <div style="text-align: center">
+        <p>
+          Send <br />
+          Read this form carefully if you have any comments or questions please
+          send an email <br />
+          to: info@zarttech.com with subject "Request"
+        </p>
+      </div>
+    </div>
+  </section>
+</div>

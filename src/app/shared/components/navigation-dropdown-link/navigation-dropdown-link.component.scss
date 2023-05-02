@@ -1,0 +1,73 @@
+@use "../../../../sass/_abstracts/colors";
+@use "../../../../sass/_partials/mixins";
+
+.nav-item {
+    // padding-left: 1em;
+    // padding-right: 1em;
+    // padding-bottom: 0.5em;
+    // margin-bottom: 1em;
+    .drop-content {
+        display: none;
+
+        &.show {
+            display: block;
+        }
+    }
+    &.drop {
+        > a {
+            display: flex;
+            justify-content: space-between;
+            &::after {
+                // @include mixins.after("\f0d7", inherit);
+                @include mixins.after("\f107", inherit);
+                color: #00984B;
+            }
+            &.active::after {
+                // @include mixins.after("\f0d8", inherit);
+                @include mixins.after("\f106", inherit);
+            }
+        }
+        // &:hover {
+        //     > a {
+        //         &::after {
+        //             // @include mixins.after("\f0d8", inherit);
+        //             @include mixins.after("\f106", inherit);
+        //         }
+        //     }
+        //     .drop-content {
+        //         display: block;
+        //     }
+        // }
+        &.open-dropdown {
+            > a {
+                &::after {
+                    // @include mixins.after("\f0d8", inherit);
+                    @include mixins.after("\f106", inherit);
+                }
+            }
+            .drop-content {
+                display: block;
+            }
+        }
+    }
+    .nav-link {
+        color: #ffffff;
+        font-family: "Poppins";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+        padding-left: 1em;
+        padding-right: 1em;
+        padding-bottom: 0.5em;
+        @include mixins.transition(all 300ms ease-in-out);
+        &:hover,
+        &.router-link-active {
+            background-color: colors.$PrimaryColorGreen20;
+            color: colors.$SecondaryColorDarkGreen;
+        }
+        .navlink-icon {
+            margin-right: 5px;
+        }
+    }
+}

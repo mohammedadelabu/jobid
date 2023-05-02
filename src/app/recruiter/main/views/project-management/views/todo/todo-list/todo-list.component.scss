@@ -1,0 +1,32 @@
+#todos-navigation {
+    border-bottom: 1px solid #C7C7C7;
+
+    .nav-link {
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 24px;
+        color: #B5B5B5;
+
+        &.router-link-active {
+            color: #14984B;
+            border-bottom: 3px solid #14984B;
+            margin-bottom: -1px;
+        }
+    }
+}
+
+#todos-category-wrapper{
+    
+}
+
+// font-family: 'Poppins';
+// font-style: normal;
+// font-weight: 600;
+// font-size: 16px;
+// line-height: 24px;
+// color: #14984B;
+// flex: none;
+// order: 0;
+// flex-grow: 0;

@@ -1,0 +1,221 @@
+<!-- <p>requisitions works!</p> -->
+
+<div class="dashboard-page-Wrapper" style="min-height: auto">
+  <div
+    id="top-action"
+    class="d-flex align-items-center justify-content-between mb-4 flex-wrap"
+  >
+    <div class="d-flex align-items-center">
+      <img
+        src="assets/images/icons/angle-left-icon.svg"
+        alt=""
+        class="img-fluid mr-3 cursor-pointer"
+        (click)="back()"
+      />
+      <h1 class="page-title py-0 mb-0">Requisitions</h1>
+    </div>
+    <div class="d-flex align-items-center">
+      <div class="btn-group align-items-center">
+        <button
+          class="btn success-btn btn-sm rounded add-requisition-btn"
+          (click)="openDialog()"
+        >
+          Add Requisition
+        </button>
+        <div>
+          <div class="d-inline-block">
+            <button
+              class="btn sort-btn py-0"
+              [matMenuTriggerFor]="filters"
+            ></button>
+            <mat-menu #filters="matMenu">
+              <button (click)="onSortByMostRecent()" mat-menu-item>
+                By Most Recent
+              </button>
+              <button (click)="onSortByOldest('Created_At')" mat-menu-item>
+                By Oldest
+              </button>
+              <button
+                (click)="onSortByAphabeticalOrder('JobRole')"
+                mat-menu-item
+              >
+                In Alphabetical Order
+              </button>
+              <button mat-menu-item [matMenuTriggerFor]="status">
+                By Status
+              </button>
+              <button mat-menu-item [matMenuTriggerFor]="region">
+                By Region
+              </button>
+              <button (click)="clearFilters()" mat-menu-item>
+                Clear Filters
+              </button>
+            </mat-menu>
+
+            <mat-menu #status="matMenu">
+              <button (click)="filterByStatus('all')" mat-menu-item>All</button>
+              <button (click)="filterByStatus('ongoing')" mat-menu-item>
+                Ongoing
+              </button>
+              <button (click)="filterByStatus('new')" mat-menu-item>New</button>
+              <button (click)="filterByStatus('rejected')" mat-menu-item>
+                Rejected
+              </button>
+              <button (click)="filterByStatus('onhold')" mat-menu-item>
+                On hold
+              </button>
+              <button (click)="filterByStatus('closed')" mat-menu-item>
+                Closed
+              </button>
+              <button (click)="filterByStatus('completed')" mat-menu-item>
+                Completed
+              </button>
+              <button (click)="filterByStatus('rollover')" mat-menu-item>
+                Rollover
+              </button>
+              <button
+                (click)="filterByStatus('awaiting feedback')"
+                mat-menu-item
+              >
+                Profile Submitted Awaiting feedback
+              </button>
+            </mat-menu>
+            <mat-menu #region="matMenu">
+              <button (click)="filterByRegion('all')" mat-menu-item>
+                All Regions
+              </button>
+              <button (click)="filterByRegion('africa')" mat-menu-item>
+                Africa
+              </button>
+              <button (click)="filterByRegion('eu')" mat-menu-item>EU</button>
+            </mat-menu>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--  -->
+  <!-- <p>{{(requisitionsList | async)}}</p> -->
+  <ng-template #noList>
+    <tr>
+      <td colspan="6">
+        <div class="alert alert-info text-center">No Item</div>
+      </td>
+    </tr>
+    <!-- <div class="alert alert-info text-center">No Item</div> -->
+  </ng-template>
+  <p *ngIf="isLoading | async" class="text-info">
+    <app-simple-component-loader-with-spinner></app-simple-component-loader-with-spinner>
+  </p>
+  <!-- <div *ngIf="requisitionsList | async as requisitionsArray?.length">
+        {{requisitionsArray | json}} -->
+  <!-- <div *ngIf="requisitionsArray?.length; else noList"> -->
+  <div class="sticky-top" id="horizon-control-wrapper">
+    <div class="text-right">
+      <div class="inline-flex align-items-center nowrap">
+        <button class="btn btn-sm" (click)="onScrollLeft()">
+          <i class="fas fa-angle-left"></i>
+        </button>
+        <button class="btn btn-sm" (click)="onScrollRight()">
+          <i class="fas fa-angle-right"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div
+    id="container"
+    class="dashboard-table-responsive border-rounded-md"
+    *ngIf="!(isLoading | async)"
+  >
+    <table class="table">
+      <thead class="thead">
+        <tr>
+          <th scope="col" class="whitespace-nowrap">
+            Sourcing week
+            <!-- <button
+              class="btn btn-sm sort-btn"
+              (click)="onSortByMostRecent('SourceWeekStartDate')"
+            ></button> -->
+            <button class="btn btn-sm sort-btn"></button>
+          </th>
+          <th scope="col">Recruiters</th>
+          <th scope="col">Roles</th>
+          <th scope="col">Client</th>
+          <th scope="col" class="whitespace-nowrap">Sales Rep</th>
+          <th scope="col">Status</th>
+          <th scope="col">Region</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- <tr *ngFor="let item of requisitionsList | async"> -->
+        <ng-container *ngIf="requisitionsListArray?.length; else noList">
+          <tr
+            *ngFor="
+              let item of requisitionsListArray
+                | paginate
+                  : {
+                      itemsPerPage: pageSize,
+                      currentPage: page,
+                      totalItems: totalPosts
+                    }
+            "
+          >
+            <!-- <th scope="row">{{item?.Recruiter}}</th> -->
+            <th scope="row">
+              <!-- <button mat-raised-button>Wk 4 (22nd - 26th Mar)</button> -->
+              <button
+                class="btn btn-sm shadow-sm bg-white"
+                (click)="openUpdateSourceWeekDialog(item)"
+              >
+                <!-- Wk 4 (22nd - 26th Mar) -->
+                <!-- {{item?.SourceWeek}} ({{item?.SourceWeekStartDate | date:'shortDate'}} - {{item?.SourceWeekEndDate |  date:'shortDate'}}) -->
+                <!-- <strong> {{ item?.SourceWeek }} </strong> -->
+                ({{ item?.SourceWeekStartDate | date }} -
+                {{ item?.SourceWeekEndDate | date }})
+              </button>
+            </th>
+            <td>{{ item?.Recruiter }}</td>
+            <td>{{ item?.JobRole }}</td>
+            <td>{{ item?.Client }}</td>
+            <td>{{ item?.SalesRepresentative }}</td>
+            <td>
+              <app-requisition-status-button
+                [requisition]="item"
+              ></app-requisition-status-button>
+            </td>
+            <td>{{ item?.Location }}</td>
+            <td>
+              <div class="btn-group">
+                <button
+                  class="btn btn-sm btn-default"
+                  (click)="openUpdateRequisitionFormDialog(item)"
+                >
+                  <i class="fas fa-pen text-info"></i>
+                </button>
+                <!-- <button class="btn btn-sm btn-default">
+                                <i class="fas fa-eye"></i>
+                            </button> -->
+                <button
+                  class="btn btn-sm btn-default"
+                  (click)="onRemoveRequisition(item?.Id)"
+                >
+                  <i class="fas fa-trash text-danger"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+  <!-- </div> -->
+  <!-- </div> -->
+</div>
+
+<!-- PAGINATION -->
+<div *ngIf="requisitionsListArray?.length" class="text-right" id="pagination">
+  <pagination-controls
+    (pageChange)="pageChangeEvent($event)"
+  ></pagination-controls>
+</div>

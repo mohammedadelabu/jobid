@@ -1,0 +1,37 @@
+@use "../../../../sass/_abstracts/colors";
+@use "../../../../sass/_partials/mixins";
+#sidebarMenu {
+    position: fixed;
+    width: 80%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    // padding: 48px 0 0;
+    background-color: colors.$SecondaryColorDarkGreen;
+    // background-color: colors.$zart-primary-color;
+    // box-shadow: inset -1px 0 0 rgb(0 0 0 / 10%);
+    // background-color: #f8f9fa;
+
+    &.show {
+        left: 0;
+    }
+    @include mixins.maxmq(768px) {
+        left: -100%;
+    }
+}
+
+main[role="main"] {
+    #main-content-wrapper {
+        .inner {
+            padding-top: 1.5em;
+            @include mixins.minmq(768px) {
+                padding-top: 3em;
+            }
+        }
+    }
+
+    .nav-link {
+        // color: colors.$zart-primary-color;
+    }
+}

@@ -1,0 +1,38 @@
+<!-- <p>activity-task-card works!</p> -->
+<div class="task-information-wrapper">
+    <div class="card task-type-card">
+        <div class="card-body">
+            <!-- <h5 class="title">Implementation and user authentication</h5> -->
+            <h5 class="title">{{itemContent?.task?.name}}</h5>
+            <!-- <div class="date">25 May</div> -->
+            <div class="date">25 May</div>
+
+            <div class="task-info">
+                <div class="assignee">
+                    <div class="label">Assigned to:</div>
+                    <ul class="list-style-none mb-0 pl-0">
+                        <li *ngFor="let item of itemContent?.task?.assignee">
+                            <div class="card-avatar">
+                                <!-- <img src="../../../../../../../assets/images/candidate-test-avatar-1.png" alt=""
+                                    class="img-fluid"> -->
+                                <img [src]="item?.profileImageUrl" alt="" class="img-fluid">
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="assignor">
+                    <div class="label">Created by:</div>
+                    <div class="card-avatar">
+                        <!-- <img src="../../../../../../../assets/images/candidate-test-avatar-1.png" alt=""
+                            class="img-fluid"> -->
+                        <img [src]="itemContent?.task?.assignor?.profileImageUrl" alt="" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="task-date">
+        3:59:00 7 January 2021
+    </div>
+</div>

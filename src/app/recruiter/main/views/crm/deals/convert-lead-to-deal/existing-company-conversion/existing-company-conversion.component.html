@@ -1,0 +1,98 @@
+<!-- <p>existing-company-conversion works!</p> -->
+
+<div id="convert-lead-to-deal-page">
+    <app-page-title></app-page-title>
+    <div class="form-wrapper pb-4">
+        <form [formGroup]="CompanyInformationForm" (ngSubmit)="onSubmitCompanyInfoForm()"
+            class="wide-form-controls-grid">
+            <div class="form-row">
+                <div class="form-group col-12 col-md-6">
+                    <label for="CompanyName">Company Name</label>
+                    <input type="text" class="form-control" id="CompanyName" aria-describedby="CompanyNameHelp"
+                        formControlName="CompanyName" readonly />
+                </div>
+                <div class="form-group col-12 col-md-6">
+                    <label for="CompanyEmail">Company Email</label>
+                    <input type="email" class="form-control" id="CompanyEmail" aria-describedby="CompanyEmailHelp"
+                        formControlName="CompanyEmail" readonly />
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-12 col-md-6">
+                    <label for="Address">Address</label>
+                    <input type="text" class="form-control" id="Address" aria-describedby="AddressHelp"
+                        formControlName="Address" readonly />
+                </div>
+                <div class="form-group col-12 col-md-6">
+                    <label for="Location">Location</label>
+                    <select name="Location" id="Location" class="form-control" formControlName="Location" readonly>
+                        <option value="" selected="selected">Select a
+                            Location</option>
+                        <option [value]="location.Value" *ngFor="let
+                        location of LocationList">{{location.Name}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-12 col-md-6">
+                    <label for="CompanySize">Company Size</label>
+                    <input type="number" class="form-control" id="CompanySize" aria-describedby="CompanySizeHelp"
+                        formControlName="CompanySize" readonly />
+                </div>
+                <div class="form-group col-12 col-md-6">
+                    <label for="Website">Website</label>
+                    <input type="text" class="form-control" id="Website" aria-describedby="WebsiteHelp"
+                        formControlName="Website" readonly />
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-12 col-md-6">
+                    <label for="VATReistration">VAT Registration</label>
+                    <input type="text" class="form-control" id="VATReistration" aria-describedby="VATReistrationHelp"
+                        formControlName="VATReistration" readonly />
+                </div>
+                <div class="form-group col-12 col-md-6">
+                    <label for="PhoneNumber">PhoneNumber</label>
+                    <input type="text" class="form-control" id="PhoneNumber" aria-describedby="PhoneNumberHelp"
+                        formControlName="PhoneNumber" readonly />
+                    <!-- <ngx-intl-tel-input [enableAutoCountrySelect]="true" [enablePlaceholder]="true"
+                    [preferredCountries]="['nl']" [searchCountryFlag]="true" [selectFirstCountry]="true"
+                    [phoneValidation]="true" name="PhoneNumber" [(ngModel)]="PhoneNumber"
+                    [ngModelOptions]="{ standalone: true }" required>
+                </ngx-intl-tel-input>
+                <small id="phoneNumberErrorMsg" class="form-text text-danger"
+                    [ngClass]="{ 'd-none': !isphoneNumberError }">Phone number is required.</small> -->
+                </div>
+            </div>
+
+            <div class="form-row align-items-end">
+                <div class="form-group col-12 col-md-6">
+                    <label for="Description">Description</label>
+                    <!-- <input type="text" class="form-control" id="Description" aria-describedby="DescriptionHelp"
+                    formControlName="Description" /> -->
+                    <textarea class="form-control" name="Description" id="" cols="30" rows="4"
+                        formControlName="Description" readonly></textarea>
+                </div>
+                <div class="form-group col-12 col-md-6">
+                    <!-- <div class="company-brand-logo-wrapper" *ngIf="logoImgSrc || isExistingCompany">
+                    <img [src]="logoImgSrc" alt="" class="img-fluid">
+                </div> -->
+                    <ng-container *ngIf="uploadedImage">
+                        <div id="uploadedImage" class="mb-2">
+                            <img [src]="uploadedImage" alt="" class="img-fluid">
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+            <div>
+                <button class="btn success-btn" [disabled]="CompanyInformationForm.invalid || isSending">
+                    <ng-container *ngIf="isSending">Converting...</ng-container>
+                    <ng-container *ngIf="!isSending">Convert to deal</ng-container>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

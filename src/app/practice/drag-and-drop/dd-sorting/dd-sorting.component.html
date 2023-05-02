@@ -1,0 +1,6 @@
+<!-- <p>dd-sorting works!</p> -->
+<h6>Drag & Drop Sorting</h6>
+
+<div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+    <div class="example-box" *ngFor="let movie of movies" cdkDrag>{{movie}}</div>
+  </div>

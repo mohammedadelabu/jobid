@@ -1,0 +1,80 @@
+<!-- <p>list works!</p> -->
+
+<div class="dashboard-table table-responsive border-rounded-md">
+  <table class="table">
+    <thead class="thead">
+      <tr>
+        <th scope="col">Company Name</th>
+        <th scope="col">Employee</th>
+        <th scope="col">Start date</th>
+        <th scope="col">End Date</th>
+        <th scope="col">Recruiter</th>
+        <!-- <th scope="col">Account manager</th> -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        class="cursor-pointer"
+        [routerLink]="['/recruiter/placement/placement-details/', Job?.Id]"
+        *ngFor="
+          let Job of pagedJobVacancyList
+            | paginate
+              : {
+                  itemsPerPage: pageSize,
+                  currentPage: page,
+                  totalItems: totalPosts
+                };
+          let i = index
+        "
+      >
+        <th scope="row">
+          <div class="d-flex align-items-center">
+            <div class="company-logo">
+              <img
+                src="../../../../../../assets/images/sample-company-logo.png"
+                alt=""
+                class="img-fluid"
+              />
+            </div>
+            <div>{{ Job?.Company.Name }}</div>
+          </div>
+        </th>
+        <td>
+          <app-placed-applicants-list
+            [vacancyId]="Job?.Id"
+          ></app-placed-applicants-list>
+          <!-- <div class="candidates-avatar cursor-pointer">
+                        <div class="avatar-wrap">
+                            <img src="../../../../../../assets/images/image-placeholder.jpg" alt="" class="img-fluid" />
+                        </div>
+                        <div class="avatar-wrap">
+                            <img src="../../../../../../assets/images/candidate-test-avatar-1.png" alt="" class="img-fluid" />
+                        </div>
+                        <div class="avatar-wrap">
+                            <img src="../../../../../../assets/images/image-placeholder.jpg" alt="" class="img-fluid" />
+                        </div>
+                        <div class="avatar-wrap">
+                            <img src="../../../../../../assets/images/image-placeholder.jpg" alt="" class="img-fluid" />
+                        </div>
+                        <div class="avatar-wrap">
+                            <img src="../../../../../../assets/images/image-placeholder.jpg" alt="" class="img-fluid" />
+                        </div>
+                        <div class="avatar-wrap">
+                            <img src="../../../../../../assets/images/image-placeholder.jpg" alt="" class="img-fluid" />
+                        </div>
+                        <div class="avatar-wrap">47+</div>
+                    </div> -->
+        </td>
+        <td>{{ Job?.StartDate }}</td>
+        <td>{{ Job?.EndDate }}</td>
+        <td>{{ Job?.UpdatedBy }}</td>
+        <!-- <td>Jenny Wilson</td> -->
+      </tr>
+    </tbody>
+  </table>
+  <div class="text-right" id="pagination">
+    <pagination-controls
+      (pageChange)="pageChangeEvent($event)"
+    ></pagination-controls>
+  </div>
+</div>

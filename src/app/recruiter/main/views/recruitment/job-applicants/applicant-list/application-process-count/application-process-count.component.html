@@ -1,0 +1,3 @@
+<!-- <p>application-process-count works!</p> -->
+<span *ngIf="applicationProcessListCount; else noApplicationProcessListCount">{{applicationProcessListCount}}</span>
+<ng-template #noApplicationProcessListCount>0</ng-template>

@@ -1,0 +1,137 @@
+<!-- <p>navigation-dropdown-link works!</p> -->
+<!-- {{linkDetails?.appHasModule}} -->
+<div [ngSwitch]="linkDetails?.appHasModule">
+  <div *ngSwitchCase="null">
+    <li
+      class="nav-item cursor-pointer drop"
+      [ngClass]="{
+        'open-dropdown': isOpen,
+        drop: linkDetails?.dropMenu?.length
+      }"
+      (click)="isOpen = !isOpen"
+    >
+      <ng-container [ngSwitch]="linkDetails?.routeLink">
+        <ng-container *ngSwitchCase="null">
+          <a
+            class="parent nav-link active"
+            routerLinkActive="router-link-active"
+          >
+            <div>
+              <!-- CRM -->
+              <span class="navlink-icon">
+                <img
+                  [src]="linkDetails?.iconImageLink"
+                  alt=""
+                  class="img-fluid"
+                />
+              </span>
+              {{ linkDetails?.title }}
+            </div>
+          </a>
+        </ng-container>
+        <ng-container *ngSwitchDefault>
+          <a
+            class="nav-link active"
+            [routerLink]="[linkDetails?.routeLink]"
+            routerLinkActive="router-link-active"
+          >
+            <div>
+              <span class="navlink-icon">
+                <img
+                  [src]="linkDetails?.iconImageLink"
+                  alt=""
+                  class="img-fluid"
+                />
+              </span>
+              {{ linkDetails?.title }}
+            </div>
+          </a>
+        </ng-container>
+      </ng-container>
+      <div class="drop-content">
+        <ul class="list-style-none">
+          <li *ngFor="let item of linkDetails?.dropMenu">
+            <a
+              class="nav-link active"
+              [routerLink]="[linkDetails?.routeLink]"
+              routerLinkActive="router-link-active"
+            >
+              <div>
+                <span class="navlink-icon">
+                  <img [src]="item?.iconImageLink" alt="" class="img-fluid" />
+                </span>
+                {{ item?.title }}
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </li>
+  </div>
+  <div *ngSwitchDefault>
+    <li
+      [ngClass]="{
+        'nav-item cursor-pointer': true,
+        drop: linkDetails?.dropMenu?.length
+      }"
+      *appHasModule="linkDetails?.appHasModule"
+    >
+      <ng-container [ngSwitch]="linkDetails?.routeLink">
+        <ng-container *ngSwitchCase="null">
+          <a
+            [ngClass]="{ 'nav-link': true, active: isOpen }"
+            routerLinkActive="router-link-active"
+            (click)="isOpen = !isOpen"
+          >
+            <div>
+              <span class="navlink-icon">
+                <img
+                  [src]="linkDetails?.iconImageLink"
+                  alt=""
+                  class="img-fluid"
+                />
+              </span>
+              {{ linkDetails?.title }}
+            </div>
+          </a>
+        </ng-container>
+        <ng-container *ngSwitchDefault>
+          <a
+            class="nav-link active"
+            [routerLink]="[linkDetails?.routeLink]"
+            routerLinkActive="router-link-active"
+          >
+            <div>
+              <span class="navlink-icon">
+                <img
+                  [src]="linkDetails?.iconImageLink"
+                  alt=""
+                  class="img-fluid"
+                />
+              </span>
+              {{ linkDetails?.title }}
+            </div>
+          </a>
+        </ng-container>
+      </ng-container>
+      <div [ngClass]="{ 'drop-content': true, show: isOpen }">
+        <ul class="list-style-none">
+          <li *ngFor="let item of linkDetails?.dropMenu">
+            <a
+              class="nav-link active"
+              [routerLink]="[item?.routeLink]"
+              routerLinkActive="router-link-active"
+            >
+              <div>
+                <span class="navlink-icon">
+                  <img [src]="item?.iconImageLink" alt="" class="img-fluid" />
+                </span>
+                {{ item?.title }}
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </li>
+  </div>
+</div>

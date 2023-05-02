@@ -1,0 +1,56 @@
+<!-- <p>contact-list-table works!</p> -->
+<div class="dashboard-table table-responsive table-hover border-rounded-md">
+    <table class="table">
+        <thead class="thead">
+            <tr>
+                <th scope="col">
+                    <div class="custom-check">
+                        <input type="checkbox" name="selectAllCheckbox" id="selectAllCheckbox"
+                            [(ngModel)]="selectAllCheckbox" (change)="onSelectLeadAll()">
+                        <label for="selectAllCheckbox">
+                            <span class="ui-check"></span>
+                        </label>
+                    </div>
+                </th>
+                <th scope="col">Contact Name</th>
+                <th scope="col">Company</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone Number</th>
+                <th scope="col" class="column-action"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of contactList | paginate : {
+                itemsPerPage: paginationData?.ItemsPerPage,
+                currentPage: paginationData?.page,
+                totalItems: paginationData?.totalRecords
+              };">
+                <th scope="row">
+                    <div class="custom-check">
+                        <input type="checkbox" [name]="item?.EmailAddress" [id]="item?.EmailAddress"
+                            [(ngModel)]="item.isChecked" (change)="onSelectLead(item)">
+                        <label [for]="item?.EmailAddress">
+                            <span class="ui-check"></span>
+                        </label>
+                    </div>
+                </th>
+                <th>{{item?.FirstName}}&nbsp;{{item?.LastName }}</th>
+                <td>{{item?.CompanyName }}</td>
+                <td>{{item?.EmailAddress}}</td>
+                <td>{{item?.PhoneNumber}}</td>
+                <td class="text-right">
+                    <button [matMenuTriggerFor]="menu" class="menu-dots-btn btn btn-sm p-1 py-0 pr-0"></button>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item class="email-icon-btn black-bordered-icon"
+                            (click)="openMailerDialog(item?.EmailAddress)" *appCrm="Update">
+                            Email
+                        </button>
+                        <button mat-menu-item class="trash-icon-btn black-bordered-icon" (click)="onRemove(item)"
+                            *appCrm="Delete">
+                            Delete</button>
+                    </mat-menu>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

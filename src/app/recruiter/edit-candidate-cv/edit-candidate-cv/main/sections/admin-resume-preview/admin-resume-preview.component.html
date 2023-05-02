@@ -1,0 +1,18 @@
+<!-- <p>admin-resume-preview works!</p> -->
+<!-- <p>resume-template works!</p> -->
+<!-- <div class="alert alert-info text-center" *ngIf="!profileList?.length || !candidateSkillList?.length">
+    <strong>CV Not completed</strong> (Provide your skills and work experience)
+</div> -->
+<!-- NEW TEMPLATE -->
+<!-- <app-admin-cv-template [undisclosed]="undisclosed"></app-admin-cv-template> -->
+<app-admin-cv-template></app-admin-cv-template>
+
+
+<div class="text-right my-3">
+    <div class="btn-group">
+        <button class="btn btn-default shadow-sm text-danger" id="undisclosed-cv-save-btn" (click)="printUndisclosed()">Undisclosed Download
+            CV&nbsp;&nbsp;<i class="fas fa-download"></i></button>
+        <button class="btn btn-default shadow-sm" id="cv-save-btn" (click)="printResume()">Download
+            CV&nbsp;&nbsp;<i class="fas fa-download"></i></button>
+    </div>
+</div>

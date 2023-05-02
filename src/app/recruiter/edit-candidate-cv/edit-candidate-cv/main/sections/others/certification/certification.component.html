@@ -1,0 +1,14 @@
+<!-- <p>certification works!</p> -->
+<h5 class="section-title">Certification (optional)</h5>
+<div *ngIf="!isAdd">
+    <app-preview-certification *ngIf="!isEdit"></app-preview-certification>
+    <app-update-certification *ngIf="isEdit"></app-update-certification>
+</div>
+<!--  -->
+<div *ngIf="isAdd">
+    <app-add-certification></app-add-certification>
+</div>
+<div *ngIf="!isAdd">
+    <button type="button" class="btn btn-block add-more-btn mb-5" (click)="handleIsAdd()">
+        <span>+</span> ADD CERTIFICATION</button>
+</div>

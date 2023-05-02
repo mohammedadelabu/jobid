@@ -1,0 +1,24 @@
+<!-- <p>verification works!</p> -->
+
+<div class="page-container">
+    <div class="inner">
+        <div class="form-wrapper">
+            <div class="card border-rounded-lg">
+                <div class="card-body" *ngIf="responseMessage">
+                    <div class="text-center text-info">{{responseMessage}}</div>
+                </div>
+                <div class="card-body" *ngIf="!responseMessage">
+                    <p class="card-text">Provide verification code to change password</p>
+                    <div class="text-center text-danger" *ngIf="responseMessageErr">{{responseMessageErr}}</div>
+                    <form [formGroup]="requestVerificationForm" (ngSubmit)="verifyEmail()" novalidate>
+                        <div class="form-group">
+                            <input type="text" class="form-control verification-code-input" id="VerificationCode" [ngClass]="{'is-invalid': requestVerificationForm.get('VerificationCode')?.touched && requestVerificationForm.get('VerificationCode')?.invalid}" formControlName="VerificationCode">
+                            <small id="VerificationCodeErrorMsg" class="form-text text-danger invalid-feedback">Provide verification code.</small>
+                        </div>
+                        <button class="btn btn-block success-btn" [disabled]="requestVerificationForm.invalid">VERIFY</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

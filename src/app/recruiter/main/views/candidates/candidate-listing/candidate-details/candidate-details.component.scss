@@ -1,0 +1,283 @@
+@use "../../../../../../../sass/_abstracts/typography";
+@use "../../../../../../../sass/_partials/mixins";
+@use "../../../../../../../sass/_abstracts/colors";
+
+.action-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  li {
+    // margin-right: 0.5em;
+    padding: 0.2em;
+    .btn {
+      display: flex;
+      align-items: center;
+    }
+    &:last-child {
+      // margin-right: 0;
+    }
+  }
+}
+#related-candidate-block {
+  .list-group-item {
+    background-color: unset;
+    border: none;
+    padding: 0;
+    margin-left: 0;
+    > a {
+      text-decoration: none;
+      font-family: "Poppins";
+      font-style: normal;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 21px;
+      /* Secondary color/Dark Green */
+      color: #14323e;
+    }
+    @include mixins.transition(all 300ms ease-in-out);
+    &:hover {
+      box-shadow: 0 0.125rem 0.25rem rgb(0 0 0 / 8%);
+      @include mixins.transition(all 300ms ease-in-out);
+      margin-left: 0.2em;
+      padding-left: 1em;
+    }
+  }
+
+  .card-title {
+    font-size: 14px;
+    margin-bottom: 0;
+  }
+
+  .img-wrap {
+    height: 55px;
+    width: 55px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+}
+.display-content-card {
+  font-size: 14px;
+}
+
+#candidate-skills-tab {
+  height: 250px;
+  overflow-y: auto;
+}
+
+#profile-image {
+  position: relative;
+  z-index: 1;
+  // background-color: red;
+  display: inline-flex;
+  .inner {
+    width: 125px;
+    height: 130px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  #verified-icon {
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    right: 10px;
+    display: none;
+  }
+
+  &.verified {
+    #verified-icon {
+      display: block;
+    }
+  }
+}
+
+.candidate-name {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 30px;
+  /* Secondary color/Dark Green */
+  color: #14323e;
+}
+.candidate-profession {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  /* Secondary color/Dark Green 75% */
+  color: #4f656e;
+}
+
+.ref-no {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  /* Secondary color/Dark Green 75% */
+  color: #4f656e;
+}
+
+.social-icons {
+  ul {
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    li {
+      margin-right: 1em;
+      // white-space: nowrap;
+      a {
+        color: rgba(79, 178, 120, 1);
+        font-size: 1.3rem;
+      }
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+.fas,
+.fab,
+.far {
+  color: rgba(79, 178, 120, 1);
+}
+
+//
+.candidate-hiring-process-accordion {
+  .example-accordion {
+    display: block;
+    // max-width: 500px;
+  }
+
+  .example-accordion-item {
+    display: block;
+    border: solid 1px #ccc;
+  }
+
+  .example-accordion-item + .example-accordion-item {
+    // border-top: none;
+  }
+
+  .example-accordion-item-header {
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+  }
+
+  .example-accordion-item-description {
+    font-size: 0.85em;
+    color: #999;
+  }
+
+  .example-accordion-item-header,
+  .example-accordion-item-body {
+    padding: 16px;
+  }
+
+  .example-accordion-item-header:hover {
+    cursor: pointer;
+    background-color: #eee;
+  }
+
+  .example-accordion-item:first-child {
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+  }
+
+  .example-accordion-item:last-child {
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+  }
+
+  .company-name {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #14323e;
+  }
+  .job-role {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    color: #4f656e;
+  }
+}
+
+// #cadidate-details-section{
+
+// }
+
+// #candidate-action-section{
+
+// }
+
+// #cadidate-skills-section{
+
+// }
+
+#related-candidate-section {
+  // background-color: red;
+  // max-height: 400px;
+  max-height: 100%;
+  overflow-y: auto;
+}
+
+// #timesheet-nav-card {
+//     .inner {
+//         min-height: 300px;
+//         display: flex;
+//         align-items: center;
+//         justify-content: center;
+//         flex-direction: column;
+//     }
+// }
+
+// #application-history,
+// #timesheet-entry-point {
+//     .display-content-card {
+//         height: 350px;
+//         max-height: 350px;
+//     }
+// }
+
+#ratings-reviews {
+  .img-wrapper {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  .review-title-wrap {
+    max-width: 500px;
+  }
+  .review-title {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 30px;
+    color: #4f656e;
+  }
+  p {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #000000;
+  }
+
+  .item {
+    border-bottom: 1px solid #c7c7c7;
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+  }
+}
+
+.back-icon {
+  width: 11px;
+}

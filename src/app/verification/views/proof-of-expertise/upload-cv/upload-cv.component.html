@@ -1,0 +1,14 @@
+<!-- <p>upload-cv works!</p> -->
+
+<div class="form-row">
+    <div class="form-group col-12">
+        <label id="file-label" for="idDocument">
+            <aside class="mb-0 mx-auto">Click here to select a file 2MB max</aside>
+            <p class="mb-0 text-center" *ngIf="label">{{label}}</p>
+            <input type="file" id="idDocument" class="form-control" hidden (change)="onSelectFile($event)">
+        </label>
+        <div class="save-action">
+            <button class="btn" *ngIf="isReadyToBeSaved"><i class="fas fa-save mr-3"></i>SAVE</button>
+        </div>
+    </div>
+</div>

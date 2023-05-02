@@ -1,0 +1,31 @@
+.nav {
+    // border-bottom: 3px solid #b5b5b5;
+    border-bottom: 1px solid #C7C7C7;
+}
+
+.nav-item {
+    cursor: pointer;
+    &.router-link-active {
+        color: #14984b;
+        height: 50px;
+        &:after {
+            content: "";
+            display: block;
+            height: 3px;
+            background-color: #14984b;
+        }
+    }
+}
+
+.nav-link {
+    color: #b5b5b5;
+    padding-bottom: 0;
+    padding-right: 2em;
+    padding-left: 2em;
+    height: 100%;
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+}

@@ -1,0 +1,46 @@
+<!-- <p>preview-education works!</p> -->
+
+
+<div class="alert alert-info text-center" *ngIf="!candidateEducationList">No education provided</div>
+<table class="table" *ngIf="candidateEducationList">
+    <thead class="thead-light">
+        <tr>
+            <th scope="col">Degree</th>
+            <th scope="col">Field</th>
+            <th scope="col">School</th>
+            <th scope="col">Start date</th>
+            <th scope="col">End date</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of candidateEducationList">
+            <th scope="row">{{item?.Degree}}</th>
+            <td>{{item?.Field}}</td>
+            <td>{{item?.SchoolName}},&nbsp;{{item?.SchoolLocation}}</td>
+            <td>{{item?.StartDate}}</td>
+            <td>{{item?.StopDate}}</td>
+            <th class="text-right">
+                <div class="inline-flex">
+                    <button class="btn btn-sm py-0"
+                        [routerLink]="['/edit-candidate-cv/education/update-education/', item.Id]">
+                        <i class="fas fa-pen text-info"></i>
+                    </button>
+                    <button class="btn btn-sm py-0" (click)="removeEducation(item.Id)">
+                        <i class="fas fa-trash text-danger"></i>
+                    </button>
+                </div>
+            </th>
+        </tr>
+    </tbody>
+</table>
+
+<div>
+    <button type="button" class="btn btn-block add-more-btn mb-5"
+        [routerLink]="['/edit-candidate-cv/education/add-education']">
+        <span>+</span> ADD EDUCATION</button>
+</div>
+<div class="d-flex justify-content-between align-items-center">
+    <button type="button" class="btn success-btn previous-btn px-md-4" (click)="onGoBack()">BACK</button>
+    <button type="button" class="btn success-btn next-btn px-md-4" [routerLink]="['/edit-candidate-cv/skills']">PROCEED</button>
+</div>

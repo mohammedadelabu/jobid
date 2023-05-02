@@ -1,0 +1,36 @@
+<!-- <p>summary works!</p> -->
+<!-- <div class="py-2 d-flex align-items-center justify-content-between">
+    <button type="submit" class="btn form-btn px-md-5"
+        [routerLink]="['/administrator/edit-candidate-data/others']">BACK</button>
+    <button class="btn btn-success">Download</button>
+</div> -->
+
+<div id="resume-preview-page">
+    <div class="inner">
+        <div class="d-flex">
+            <!-- <button class="action-btn btn btn-sm download-cv-btn ml-auto" (click)="onDownloadCv()">Download CV</button> -->
+            
+<div ngbDropdown class="d-inline-block ml-auto">
+    <button type="button" class="action-btn btn download-cv-btn" id="dropdownBasic1" ngbDropdownToggle>Download</button>
+    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+        <button target="_blank" [routerLink]="['/edit-candidate-cv/view-disclosed-cv']" class="btn-sm" ngbDropdownItem>Disclosed CV</button>
+        <button target="_blank" [routerLink]="['/edit-candidate-cv/view-udisclosed-cv']" class="btn-sm" ngbDropdownItem>Undisclosed CV</button>
+        <!-- <button class="btn-sm" ngbDropdownItem>Something else is here</button> -->
+    </div>
+</div>
+        </div>
+
+<!--  -->
+
+<!--  -->
+
+        <!-- <admin-resume-preview></admin-resume-preview> -->
+        <app-admin-cv-template></app-admin-cv-template>
+        <div class="py-2 d-flex align-items-center justify-content-between">
+            <button type="button" class="btn form-btn px-md-5" (click)="onGoBack()">BACK</button>
+            <div>
+                <a [routerLink]="['/recruiter/candidates/details', CandidateId]" class="btn call-to-action-pill-btn badge-pill">Complete</a>
+            </div>
+        </div>
+    </div>
+</div>

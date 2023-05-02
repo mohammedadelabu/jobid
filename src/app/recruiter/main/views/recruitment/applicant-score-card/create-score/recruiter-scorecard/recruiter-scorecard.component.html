@@ -1,0 +1,381 @@
+<!-- <p>recruiter-scorecard works!</p> -->
+<div class="dashboard-page-Wrapper">
+  <div class="d-flex align-items-center mt-4">
+    <img
+      (click)="back()"
+      src="assets/images/icons/angle-left-icon.svg"
+      alt=""
+      class="img-fluid back-icon cursor-pointer mr-4"
+    />
+    <h1 class="page-title py-0">Recruiter Evaluation Scorecard</h1>
+  </div>
+  <div class="score-sheet pb-5">
+    <div class="d-flex mb-3">
+      <div class="brand-logo-wrapper ml-auto">
+        <img
+          src="assets/images/zarttech-brand-logo.svg"
+          alt=""
+          class="img-fluid"
+        />
+      </div>
+    </div>
+    <h2 class="text-center title">
+      Technical Competencies Validation Score Sheet
+    </h2>
+    <form [formGroup]="TechnicalCompetenceForm" (ngSubmit)="onSubmit()">
+      <div class="table-container">
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th
+                  scope="col"
+                  class="head-col border-0"
+                  *ngFor="let item of [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2]"
+                ></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row" colspan="2">Candidate Name</th>
+                <td colspan="10">
+                  {{
+                    application?.Candidate?.FirstName +
+                      " " +
+                      application?.Candidate?.LastName
+                  }}
+                </td>
+              </tr>
+              <tr>
+                <th scope="row" colspan="2">Qualification:</th>
+                <td colspan="4">{{ application?.Qualification }}</td>
+                <th colspan="2">Discipline/Grade:</th>
+                <td colspan="4">{{ application?.Discipline }}</td>
+              </tr>
+              <tr>
+                <th scope="row" colspan="2">Date of Birth:</th>
+                <td colspan="4">{{ application?.DateOfBirth }}</td>
+                <th colspan="2">Age/Gender:</th>
+                <td colspan="4">{{ application?.Gender }}</td>
+              </tr>
+              <tr>
+                <th scope="row" colspan="2">Date of Interview:</th>
+                <td colspan="4">{{ today | date : "yyyy-MM-dd" }}</td>
+                <th colspan="2">Position:</th>
+                <td colspan="4">{{ application?.Vacancies?.JobTitle }}</td>
+              </tr>
+              <tr>
+                <th scope="row" colspan="2">Phone No:</th>
+                <td colspan="4">{{ application?.Candidate?.PhoneNumber }}</td>
+                <th colspan="2">Location:</th>
+                <td colspan="4">
+                  <app-applicant-location
+                    [candidateId]="application?.Candidate.Id"
+                  ></app-applicant-location>
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" colspan="12">
+                  Evaluation process helps to reduce bias and improve the
+                  quality of candidates. This technical evaluation form is to be
+                  completed by the interviewer to rank the candidate's overall
+                  qualifications for the position for which they have applied.
+                  Under each heading, the interviewer should give the candidate
+                  a numerical rating and write specific job-related comments in
+                  the space provided. The numerical rating system is based on
+                  the scale below.
+                </td>
+              </tr>
+              <tr>
+                <th scope="row" colspan="2">Scale:</th>
+                <td colspan="2">10 - Very Good</td>
+                <td colspan="2">8 - Good</td>
+                <td colspan="2">6 - Average</td>
+                <td colspan="2">4 - Fair</td>
+                <td colspan="2">2 - Poor</td>
+              </tr>
+              <tr>
+                <th scope="row" colspan="8">
+                  Please Note: (Overall Score is 100 while Pass mark is 80 and
+                  above).
+                </th>
+                <td colspan="4">
+                  <div class="list-wrapper">
+                    <div class="text-center">
+                      <strong>Rating</strong>
+                    </div>
+                    <hr />
+                    <ul class="check-list list-style-none pl-0 mb-0">
+                      <li>
+                        <strong> 10</strong>
+                      </li>
+                      <li>
+                        <strong> 8</strong>
+                      </li>
+                      <li>
+                        <strong>6</strong>
+                      </li>
+                      <li>
+                        <strong> 4</strong>
+                      </li>
+                      <li>
+                        <strong>2</strong>
+                      </li>
+                    </ul>
+                  </div>
+                  <!-- <table>
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" class="head-col border-0" *ngFor="let item of [1, 2, 3, 4, 5]"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th colspan="5" class="text-center">Ratings</th>
+                                        </tr>
+                                        <tr>
+                                            <td>10</td>
+                                            <td>8</td>
+                                            <td>6</td>
+                                            <td>4</td>
+                                            <td>2</td>
+                                        </tr>
+                                    </tbody>
+                                </table> -->
+                </td>
+              </tr>
+              <tr
+                formArrayName="entries"
+                *ngFor="let entry of entries.controls; let i = index"
+              >
+                <ng-container [formGroupName]="i"
+                  ><th scope="row" colspan="8">
+                    {{ questionsArray[i].title }} -
+                    <span class="font-weight-normal"
+                      >{{ questionsArray[i].text }} </span
+                    ><br />
+                    <br />
+                    <div class="comment-section">
+                      <label for="comment-{{ i }}">
+                        <strong>Comments:</strong>
+                      </label>
+                      <input
+                        id="comment-{{ i }}"
+                        type="text"
+                        class="comment-input"
+                        formControlName="comment"
+                      />
+                    </div>
+                  </th>
+                  <td colspan="4" class="py-0">
+                    <div class="list-wrapper">
+                      <ul
+                        formGroupName="ratings"
+                        class="check-list list-style-none pl-0 mb-0"
+                      >
+                        <li>
+                          <div class="form-group custom-check">
+                            <input
+                              type="radio"
+                              id="10-{{ i }}"
+                              formControlName="rating"
+                              value="10"
+                              (change)="onCalc()"
+                            />
+                            <label for="10-{{ i }}">
+                              <span class="ui-check"></span>
+                              <!-- Remember me -->
+                            </label>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="form-group custom-check">
+                            <input
+                              type="radio"
+                              id="8-{{ i }}"
+                              formControlName="rating"
+                              value="8"
+                              (change)="onCalc()"
+                            />
+                            <label for="8-{{ i }}">
+                              <span class="ui-check"></span>
+                              <!-- Remember me -->
+                            </label>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="form-group custom-check">
+                            <input
+                              type="radio"
+                              id="6-{{ i }}"
+                              formControlName="rating"
+                              value="6"
+                              (change)="onCalc()"
+                            />
+                            <label for="6-{{ i }}">
+                              <span class="ui-check"></span>
+                              <!-- Remember me -->
+                            </label>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="form-group custom-check">
+                            <input
+                              type="radio"
+                              id="4-{{ i }}"
+                              formControlName="rating"
+                              value="4"
+                              (change)="onCalc()"
+                            />
+                            <label for="4-{{ i }}">
+                              <span class="ui-check"></span>
+                              <!-- Remember me -->
+                            </label>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="form-group custom-check">
+                            <input
+                              type="radio"
+                              id="2-{{ i }}"
+                              formControlName="rating"
+                              value="2"
+                              (change)="onCalc()"
+                            />
+                            <label for="2-{{ i }}">
+                              <span class="ui-check"></span>
+                              <!-- Remember me -->
+                            </label>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </td></ng-container
+                >
+              </tr>
+
+              <tr>
+                <th scope="row" colspan="7">
+                  Overall Impression and Recommendation - Summary of your
+                  perceptions of thecandidate's strengths/weaknesses. Final
+                  comments and recommendations forproceeding with the candidate.
+                  <br />
+                  <br />
+                  <div class="comment-section">
+                    <label for="">
+                      <strong>SMEs Average Score:</strong>
+                    </label>
+                    <div class="final-score" *ngIf="score">
+                      {{ score }}/{{ questionsArray.length * 10 }}
+                    </div>
+                    <!-- <input type="text" class="comment-input" readonly value="{{score}}"> -->
+                  </div>
+                  <div class="comment-section">
+                    <label for="">
+                      <strong>SMEs Comments:</strong>
+                    </label>
+                    <input
+                      type="text"
+                      [(ngModel)]="summaryComment"
+                      [ngModelOptions]="{ standalone: true }"
+                      class="comment-input"
+                    />
+                  </div>
+                </th>
+
+                <td colspan="5" class="py-0">
+                  <div class="list-wrapper">
+                    <ul class="check-list recommend list-style-none pl-0 mb-0">
+                      <li>
+                        <strong>Recommended</strong>
+                        <div class="form-group custom-check">
+                          <input
+                            type="radio"
+                            name="Recommend"
+                            id="Recommended"
+                            value="recommended"
+                            (change)="onChange($event)"
+                            [checked]="recommended"
+                          />
+                          <label for="Recommended">
+                            <span class="ui-check"></span>
+                          </label>
+                        </div>
+                      </li>
+                      <li>
+                        <strong> KIV</strong>
+                        <div class="form-group custom-check">
+                          <input
+                            type="radio"
+                            name="Recommend"
+                            id="kiv"
+                            value="KIV"
+                            (change)="onChange($event)"
+                            [checked]="kiv"
+                          />
+                          <label for="kiv">
+                            <span class="ui-check"></span>
+                          </label>
+                        </div>
+                      </li>
+                      <li>
+                        <strong> NR</strong>
+                        <div class="form-group custom-check">
+                          <input
+                            type="radio"
+                            name="Recommend"
+                            id="nr"
+                            value="NR"
+                            (change)="onChange($event)"
+                            [checked]="nr"
+                          />
+                          <label for="nr">
+                            <span class="ui-check"></span>
+                          </label>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+              <!--  -->
+              <tr>
+                <th scope="row" colspan="7">
+                  <div class="comment-section">
+                    <label for="">
+                      <strong>Subject Matter Expert's (SMEs) Name:</strong>
+                    </label>
+                    <input
+                      type="text"
+                      class="comment-input"
+                      [(ngModel)]="interviewerName"
+                      [ngModelOptions]="{ standalone: true }"
+                    />
+                  </div>
+                </th>
+                <td colspan="5" class="py-0">
+                  <div class="comment-section">
+                    <label for="">
+                      <strong>Signature:</strong>
+                    </label>
+                    <input
+                      type="text"
+                      class="comment-input"
+                      [(ngModel)]="interviewerSignature"
+                      [ngModelOptions]="{ standalone: true }"
+                    />
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="text-right">
+        <button class="btn success-btn">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- <pre>{{ TechnicalCompetenceForm.value | json }}</pre> -->

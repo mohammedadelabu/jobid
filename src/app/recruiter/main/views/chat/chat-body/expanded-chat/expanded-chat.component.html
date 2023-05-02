@@ -1,0 +1,46 @@
+<div class="expanded-chat">
+  <div class="header">
+    <div class="left">
+      <img class="avatar" [src]="chat.imgUrl" alt="avatar" />
+      <span>Chat</span>
+    </div>
+    <div class="right">
+      <img
+        class="icons"
+        src="assets/images/icons/video-icon-green.svg"
+        alt="video icon"
+      />
+      <img
+        class="icons"
+        src="assets/images/icons/call-icon-green.svg"
+        alt="call icon"
+      />
+      <img
+        class="icons chevron"
+        src="assets/images/icons/chevron-down.svg"
+        alt="chevron down icon"
+        (click)="onToggleCollapse()"
+      />
+    </div>
+  </div>
+  <div class="body">
+    <div class="body-content">
+      <div class="message-content" *ngFor="let chat of allChats">
+        <div class="avatar">
+          <img class="avatar" [src]="chat.imgUrl" alt="avatar" />
+        </div>
+        <div>
+          <div>
+            <span class="name">{{ chat.name }}</span
+            ><span class="time">{{ chat.time }}</span>
+          </div>
+          <div class="message">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vitae
+            at tincidunt elit.
+          </div>
+        </div>
+        <div *ngIf="chat.unread > 0" class="unread">{{ chat.unread }}</div>
+      </div>
+    </div>
+  </div>
+</div>

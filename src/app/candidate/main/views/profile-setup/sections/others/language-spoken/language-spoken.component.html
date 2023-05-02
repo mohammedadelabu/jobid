@@ -1,0 +1,26 @@
+<!-- <p>language-spoken works!</p> -->
+
+<h5 class="section-title">Language spoken</h5>
+<!-- PREVIEW LANGUAGE SPOKEN -->
+<app-preview-language-spoken [candidateId]="candidateId" *ngIf="!isAddLanguageSpoken"></app-preview-language-spoken>
+<!-- ADD LANGUAGE SPOKEN -->
+<div *ngIf="isAddLanguageSpoken">
+    <!-- <div class="text-right">
+        <button type="button" class="btn btn-sm px-0" (click)="isAddLanguageSpoken=false">
+            <i class="fas fa-times text-danger"></i>
+        </button>
+    </div> -->
+    <app-add-language-spoken [candidateId]="candidateId" (closeIsAddLanguageSpoken)="onCloseIsAddLanguageSpoken()"></app-add-language-spoken>
+</div>
+<!-- UPDATE LANGUAGE SPOKEN -->
+<div *ngIf="isUpdateLanguageSpoken">
+    <!-- <div class="text-right">
+            <button type="button" class="btn btn-sm px-0" (click)="isAddLanguageSpoken=false">
+                <i class="fas fa-times text-danger"></i>
+            </button>
+        </div> -->
+    <app-update-language-spoken (closeIsUpdateLanguageSpoken)="onCloseIsUpdateLanguageSpoken()"></app-update-language-spoken>
+</div>
+<div class="mb-4">
+    <button class="btn btn-lg btn-block text-uppercase add-more-block-btn" *ngIf="!isAddLanguageSpoken" (click)="isAddLanguageSpoken=true">Add Language Spoken</button>
+</div>

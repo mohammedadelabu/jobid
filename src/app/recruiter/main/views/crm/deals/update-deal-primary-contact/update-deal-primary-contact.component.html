@@ -1,0 +1,97 @@
+<!-- <p>update-deal-primary-contact works!</p> -->
+
+<!-- <div class="text-right">
+    <button class="btn btn-sm" (click)="onCloseUpdateDealContactForm()">
+        <i class="fas fa-times text-danger"></i>
+    </button>
+</div> -->
+<form [formGroup]="UpdateDealContactForm" (ngSubmit)="onSubmit()">
+    <div class="deal-listing">
+        <ul class="listing list-style-none pl-0 mb-0">
+            <li>
+                <label class="list-title required-field-label">First Name</label>
+                <div class="list-value">
+                    <div class="list-value">
+                        <input type="text" class="form-control" id="ContactFirstName"
+                            formControlName="ContactFirstName"
+                            [ngClass]="{'is-invalid': UpdateDealContactForm.get('ContactFirstName')?.touched && UpdateDealContactForm.get('ContactFirstName')?.invalid}"
+                            required>
+                        <small class="form-text text-danger invalid-feedback">First
+                            name is
+                            required.</small>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <label class="list-title required-field-label">Last Name</label>
+                <div class="list-value">
+                    <div class="list-value">
+                        <input type="text" class="form-control" id="ContactLastName" formControlName="ContactLastName"
+                        [ngClass]="{'is-invalid': UpdateDealContactForm.get('ContactLastName')?.touched && UpdateDealContactForm.get('ContactLastName')?.invalid}"
+                        required>
+                    <small class="form-text text-danger invalid-feedback">Last
+                        name is
+                        required.</small>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <label class="list-title required-field-label">Email Address</label>
+                <div class="list-value email">
+                    <div class="list-value">
+                        <input type="text" class="form-control" id="ContactEmail" formControlName="ContactEmail"  [ngClass]="{
+                            'is-invalid':
+                              UpdateDealContactForm.get('ContactEmail')?.touched &&
+                              UpdateDealContactForm.get('ContactEmail')?.invalid
+                          }" required />
+                        <span class="invalid-feedback">
+                            <small class="form-text text-danger"
+                                *ngIf="UpdateDealContactForm.get('ContactEmail')?.hasError('required')">Email is
+                                required.
+                            </small>
+                            <small class="form-text text-danger"
+                                *ngIf="UpdateDealContactForm.get('ContactEmail')?.hasError('email')">You entered an
+                                invalid
+                                Email.
+                            </small>
+                        </span>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <label class="list-title required-field-label">Phone Number</label>
+                <div class="list-value phone">
+                    <div class="list-value">
+                        <!-- <input type="text" class="form-control" id="ContactPhoneNumber"
+                            formControlName="ContactPhoneNumber"> -->
+                        <!--  -->
+                        <ngx-intl-tel-input [enableAutoCountrySelect]="true" [enablePlaceholder]="true" [preferredCountries]="['nl']" 
+                            [searchCountryFlag]="true" [selectFirstCountry]="true" [phoneValidation]="false"
+                            name="ContactPhoneNumber" formControlName="ContactPhoneNumber">
+                        </ngx-intl-tel-input>
+                        <!-- <small id="ContactPhoneNumberErrorMsg" class="form-text text-danger"
+                            [ngClass]="{'d-none': !isContactPhoneNumberError}">Phone number is
+                            required.</small> -->
+                                <small id="phoneNumberErrorMsg" class="form-text text-danger"
+                                [ngClass]="{'d-none': !isphoneNumberError}">Phone number is
+                                required.</small>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <button class="btn success-btn" [disabled]="UpdateDealContactForm.invalid || isUpdating">
+        <ng-container *ngIf="isUpdating">
+            Updating...
+        </ng-container>
+        <ng-container *ngIf="!isUpdating">
+            Update
+        </ng-container>
+
+    </button>
+    <span class="mx-1"></span>
+    <button class="btn outline-danger-btn" (click)="onCloseUpdateDealContactForm()">Cancel</button>
+</form>
+<ng-template #isLoading>
+    Updating...
+</ng-template>

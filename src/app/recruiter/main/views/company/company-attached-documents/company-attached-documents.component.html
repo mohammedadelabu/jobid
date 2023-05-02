@@ -1,0 +1,160 @@
+<!-- <div class="dashboard-page-Wrapper">
+  <div class="d-flex align-items-center justify-content-between">
+
+      <div class="d-flex align-items-center">
+          <button class="btn btn-default mr-3" (click)="back()">
+              <img src="../../../../../../../assets/images/icons/angle-left-icon.svg" alt="" class="img-fluid" />
+          </button>
+          <h1 class="page-title py-0">Attached Document</h1>
+      </div>
+
+      <div>
+          <button class="btn primary-border-btn upload-btn" (click)="openUploadDocumentDialog()">Upload Document</button>
+      </div>
+  </div>
+
+
+
+  <section class="py-5">
+      <cdk-accordion class="example-accordion">
+          <cdk-accordion-item *ngFor="let application of ['1']; let index = index" #accordionItem="cdkAccordionItem" class="example-accordion-item" role="button" tabindex="0" [attr.id]="'accordion-header-' + index" [attr.aria-expanded]="accordionItem.expanded"
+              [attr.aria-controls]="'accordion-body-' + index">
+              <div class="example-accordion-item-header">
+
+
+                  <div class="example-accordion-item-description">
+                      <div class="d-flex align-items-center justify-content-between">
+                          <div class="d-flex align-items-center">
+                              <h6 class="mr-5 mb-0">Documents</h6>
+                          </div>
+
+                          <div class="text-right">
+                              <span class="example-accordion-item-description">
+                                  <span class="" (click)="accordionItem.toggle()">
+                                      <img src="../../../../../../assets/images/icons/angle-circle-green-icon.svg"
+                                          alt="close" class="img-fluid rotate"
+                                          [ngClass]="{'d-none': !accordionItem.expanded}">
+                                      <img src="../../../../../../assets/images/icons/angle-circle-grey-icon.svg"
+                                          alt="open" class="img-fluid" [ngClass]="{'d-none': accordionItem.expanded}">
+                                  </span>
+                              </span>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="example-accordion-item-body" role="region" [style.display]="accordionItem.expanded ? '' : 'none'" [attr.id]="'accordion-body-' + index" [attr.aria-labelledby]="'accordion-header-' + index">
+                  <div class="mt-4">
+                      <ul class="document-list list-style-none pl-0 mb-0" *ngIf="otherUploadedDocumentsList?.length; else noDocument">
+                          <li *ngFor="let item of otherUploadedDocumentsList">
+                              <div class="text-right">
+                                  <button class="btn btn-sm" (click)="onRemoveDoc(item?.Id)">
+                                      <i class="fas fa-times text-danger"></i>
+                                  </button>
+                              </div>
+                              <div class="file-img-wrapper">
+                                  <img src="../../../../../../assets/images/doc.png" alt="" class="img-fluid">
+                              </div>
+                              <div class="file-name">{{item?.DocumentName}}</div>
+                              <div class="btn-group">
+                                  <button class="btn text-green-btn" (click)="onPreviewFile(item?.UploadUrl)">View</button>
+                                  <a href="{{item?.UploadUrl}}" class="btn text-green-btn">Download</a>
+                              </div>
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+          </cdk-accordion-item>
+      </cdk-accordion>
+  </section>
+
+</div>
+
+<ng-template #noDocument>
+  <div class="no-document-alert text-center">No document Uploaded</div>
+</ng-template> -->
+
+
+
+
+
+<div class="dashboard-page-Wrapper">
+  <div class="d-flex align-items-center justify-content-between">
+
+      <div class="d-flex align-items-center">
+          <button class="btn btn-default mr-3" (click)="back()">
+              <img src="../../../../../../../assets/images/icons/angle-left-icon.svg" alt="" class="img-fluid" />
+          </button>
+          <h1 class="page-title py-0">Attached Document</h1>
+      </div>
+
+      <div>
+          <button class="btn primary-border-btn upload-btn" (click)="openUploadDocumentDialog()">Upload Document</button>
+      </div>
+  </div>
+
+
+
+  <section class="py-5">
+      <!-- <cdk-accordion class="example-accordion"> -->
+      <div class="example-accordion">
+          <!-- <cdk-accordion-item *ngFor="let application of ['1']; let index = index" #accordionItem="cdkAccordionItem" class="example-accordion-item" role="button" tabindex="0" [attr.id]="'accordion-header-' + index" [attr.aria-expanded]="accordionItem.expanded" -->
+          <div *ngFor="let application of ['1']; let index = index" class="example-accordion-item" role="button" tabindex="0" [attr.id]="'accordion-header-' + index"
+              [attr.aria-controls]="'accordion-body-' + index">
+              <div class="example-accordion-item-header">
+
+
+                  <div class="example-accordion-item-description">
+                      <div class="d-flex align-items-center justify-content-between">
+                          <div class="d-flex align-items-center">
+                              <h6 class="mr-5 mb-0">Uploaded Documents</h6>
+                          </div>
+
+                          <!-- <div class="text-right">
+                              <span class="example-accordion-item-description">
+                                  <span class="" (click)="accordionItem.toggle()">
+                                      <img src="../../../../../../assets/images/icons/angle-circle-green-icon.svg"
+                                          alt="close" class="img-fluid rotate"
+                                          [ngClass]="{'d-none': !accordionItem.expanded}">
+                                      <img src="../../../../../../assets/images/icons/angle-circle-grey-icon.svg"
+                                          alt="open" class="img-fluid" [ngClass]="{'d-none': accordionItem.expanded}">
+                                  </span>
+                              </span>
+                          </div> -->
+                      </div>
+                  </div>
+              </div>
+              <!-- <div class="example-accordion-item-body" role="region" [style.display]="accordionItem.expanded ? '' : 'none'" [attr.id]="'accordion-body-' + index" [attr.aria-labelledby]="'accordion-header-' + index"> -->
+              <div class="example-accordion-item-body" role="region" [attr.id]="'accordion-body-' + index" [attr.aria-labelledby]="'accordion-header-' + index">
+                  <div class="mt-4">
+                      <ul class="document-list list-style-none pl-0 mb-0" *ngIf="otherUploadedDocumentsList?.length; else noDocument">
+                          <li *ngFor="let item of otherUploadedDocumentsList">
+                              <div class="text-right">
+                                  <button class="btn btn-sm" (click)="onRemoveDoc(item?.Id)">
+                                      <i class="fas fa-times text-danger"></i>
+                                  </button>
+                              </div>
+                              <div class="file-img-wrapper">
+                                  <img src="../../../../../../assets/images/doc.png" alt="" class="img-fluid">
+                              </div>
+                              <div class="file-name">{{item?.DocumentName}}</div>
+                              <div class="btn-group">
+                                  <!-- <button class="btn text-green-btn" (click)="onPreviewFile(item?.UploadUrl)">View</button> -->
+                                  <a href="{{item?.UploadUrl}}" class="btn text-green-btn">View</a>
+                                  <a href="{{item?.UploadUrl}}" class="btn text-green-btn">Download</a>
+                              </div>
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+          <!-- </cdk-accordion-item> -->
+            </div>
+      <!-- </cdk-accordion> -->
+          </div>
+  </section>
+
+</div>
+
+
+<ng-template #noDocument>
+  <div class="no-document-alert text-center">No document Uploaded</div>
+</ng-template>

@@ -1,0 +1,14 @@
+<!-- <p>job-download-options works!</p> -->
+<div id="page-top">
+    <div class="inner text-right">
+        <div ngbDropdown class="d-inline-block">
+            <button type="button" class="btn white-btn-green-border" id="dropdownBasic1" ngbDropdownToggle>Download Job</button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <button ngbDropdownItem [routerLink]="['/download/disclosed-job']">Disclosed</button>
+                <button ngbDropdownItem [routerLink]="['/download/undisclosed-job']">Undisclosed</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-download-job-template></app-download-job-template>

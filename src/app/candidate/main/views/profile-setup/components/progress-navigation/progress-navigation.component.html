@@ -1,0 +1,29 @@
+<!-- <p>progress-navigation works!</p> -->
+<div class="sidebar-sticky pt-5 h-75">
+    <div class="d-flex flex-column justify-content-between h-100">
+        <ul class="nav flex-column">
+            <!-- <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/edit-candidate-cv/personal-profile']"
+                    routerLinkActive="router-link-active">
+                    <span class="navlink-number">1</span>
+                    Personal profile <span class="sr-only">(current)</span>
+                </a>
+            </li> -->
+            <li class="nav-item" *ngFor="let item of progressNavigation; let i = index">
+                <!-- item?.navLink] -->
+                <a class="nav-link" [ngClass]="{'done': item?.isDone}" [routerLink]="['/candidate/profile-setup/', item?.navLink]" routerLinkActive="router-link-active">
+                    <span class="navlink-number">
+                        <div class="index">{{i + 1}}</div>
+                    </span> {{item?.name}}
+                </a>
+            </li>
+            <!-- <li class="nav-item" *ngFor="let item of progressNavigation; let i = index">
+                <a class="nav-link" [ngClass]="{'done': item?.isDone}" (click)="onRoute(item?.navLink)">
+                    <span class="navlink-number">
+                        <div class="index">{{i + 1}}</div>
+                    </span> {{item?.name}}
+                </a>
+            </li> -->
+        </ul>
+    </div>
+</div>

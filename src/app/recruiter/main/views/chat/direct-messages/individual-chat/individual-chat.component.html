@@ -1,0 +1,11 @@
+<p [ngClass]="{ 'individual-chat': true, selected: chat.selected }">
+  <span class="avatar-container"
+    ><img class="avatar" [src]="chat.imgUrl" alt="avatar" /><span
+      class="online-indicator"
+      [ngClass]="{ 'online-indicator': true, offline: !chat.online }"
+    ></span></span
+  ><span class="name">{{ chat.name }}</span
+  ><span [ngClass]="{ unread: true, show: chat.unread > 0 }">{{
+    chat.unread
+  }}</span>
+</p>

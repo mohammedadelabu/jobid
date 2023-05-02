@@ -1,0 +1,22 @@
+<!-- <p>Mat Tab Works</p> -->
+<section id="custom-nav-tabs">
+  <mat-tab-group
+    animationDuration="0ms"
+    (selectedTabChange)="clicked($event)"
+    [selectedIndex]="_jobApplicationSvc.ActiveJobStatusTabSubject | async"
+  >
+    <mat-tab label="Applicants">
+      <!-- <app-applicant-list></app-applicant-list> -->
+    </mat-tab>
+    <mat-tab label="Shortlisted">
+      <!-- <app-shortlisted-list></app-shortlisted-list> -->
+    </mat-tab>
+    <mat-tab label="Hired">
+      <!-- <app-hired-list></app-hired-list> -->
+    </mat-tab>
+    <mat-tab label="Rejected">
+      <!-- <app-rejected-list></app-rejected-list> -->
+    </mat-tab>
+  </mat-tab-group>
+  <router-outlet></router-outlet>
+</section>

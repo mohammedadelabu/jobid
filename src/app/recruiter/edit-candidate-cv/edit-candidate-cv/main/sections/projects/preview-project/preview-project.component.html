@@ -1,0 +1,129 @@
+<!-- <p>preview-project works!</p> -->
+<!-- Projects -->
+<div class="alert alert-info text-center" *ngIf="!candidateProjectList">
+    {{infoMessage}}
+</div>
+<!-- <ul class="list-style-none pl-0">
+    <li *ngFor="let item of candidateProjectList">
+        <div class="text-right">
+            <button class="btn btn-sm py-0" [routerLink]="['/administrator/edit-candidate-data/projects/update-project/', item.Id]">
+                <i class="fas fa-pen text-info"></i>
+            </button>
+            <button class="btn btn-sm py-0" (click)="removeProject(item.Id)">
+                <i class="fas fa-trash text-danger"></i>
+            </button>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead class="bg-light">
+                    <tr>
+                        <th scope="row" colspan="2">Company name:</th>
+                        <td colspan="4">
+                            <h2 class="heading my-0">Hydrogen Technologies</h2>
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row" colspan="2">Company size:</th>
+                        <td colspan="4">
+                            10-15 People
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row" colspan="2">Industry:</th>
+                        <td colspan="4">
+                            Energy
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row" colspan="2">Location:</th>
+                        <td colspan="4">
+                            Nigeria
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row" colspan="2">Description:</th>
+                        <td colspan="4">
+                            <ul class="dot-list">
+                                <li> Automate continuous integration and continuous delivery and suites collaboration using tools such as Gitlab, Jenkins, Docker, Kubernetes, Ansible
+                                </li>
+                                <li>Version/Source Code management control using Gitlab. Orchestrate the provisioning, load balancing, dynamic configuration, monitoring, and optimization of servers on Digital Ocean. </li>
+                                <li> Perform root cause analysis of staging and production impacting issues, including opening problem cases with vendors and driving them to conclusion.</li>
+                                <li> Drive and support DevOps adoption across SDLC, Pipeline implementation for legacy applications, while ensuring compliance with enterprise policies and best practices.</li>
+                                <li>Provide technology evaluations and recommendations for vendor selection, including proof of concepts.</li>
+                                <li> Create, Manage and Deploy microservices into Digital Ocean Kubernetes engine. </li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row" colspan="2">Tools and Technologies:</th>
+                        <td colspan="4">Gitlab, Jenkins, Docker, Kubernetes, Ansible. Digital Ocean, Elasticsearch, Kafka
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row" colspan="2">Project Role:</th>
+                        <td colspan="4">DevOps Engineer
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row" colspan="2">Involvement Duration:</th>
+                        <td colspan="4">4 months+
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row" colspan="2">Team size:</th>
+                        <td colspan="4">5 people
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </li>
+</ul> -->
+
+
+<div class="table-responsive" *ngIf="candidateProjectList">
+    <table class="table">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">Project Name</th>
+                <th scope="col">Start Date</th>
+                <th scope="col">Stop Date</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of candidateProjectList">
+                <th scope="row">
+                    <a href={{item?.ProjectUrl}} target="_blank" class="text-link">{{item?.ProjectName}}</a>
+                </th>
+                <td>{{item?.StopDate}}</td>
+                <td>{{item?.StartDate}}</td>
+                <td class="text-right">
+                    <div class="inline-flex">
+                        <button class="btn btn-sm"
+                            [routerLink]="['/edit-candidate-cv/projects/update-project/', item.Id]">
+                          <i class="fas fa-pen text-info"></i>
+                        </button>
+                        <button class="btn btn-sm text-danger" (click)="removeProject(item?.Id)">
+                            <i class="fas fa-trash"></i></button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<div>
+    <button type="button" class="btn btn-block add-more-btn mb-5"
+        [routerLink]="['/edit-candidate-cv/projects/add-project']">
+        <span>+</span> ADD PROJECT</button>
+</div>
+
+<div class="py-2 d-flex align-items-center justify-content-between">
+    <button type="submit" class="btn success-btn previous-btn px-md-4" (click)="onGoBack()">BACK</button>
+    <button type="submit" class="btn success-btn next-btn px-md-4"
+        [routerLink]="['/edit-candidate-cv/others']">NEXT</button>
+</div>

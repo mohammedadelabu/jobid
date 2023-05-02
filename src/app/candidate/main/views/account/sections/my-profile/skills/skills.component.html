@@ -1,0 +1,26 @@
+<!-- <p>skills works!</p> -->
+<ng-template #noSkill>
+    <div class="alert alert-info text-center">
+        No Skill
+    </div>
+</ng-template>
+<!-- {{skillsList | json}} -->
+<ul class="professional-info-list list-style-none pl-0 mb-0" *ngIf="skillsList?.length; else noSkill">    
+    <li class="item" *ngFor="let item of skillsList">
+        <h5 class="title">
+            <!-- Product designer, Zwarttech&nbsp;&nbsp;Netherlands -->
+            <!-- {{item?.Degree}}, {{item?.SchoolName}}&nbsp;&nbsp;{{item?.SchoolLocation}} -->  
+            <!-- {{item?.CategoryId}}           -->
+            <app-skill-title [skillCategoryId]="item?.CategoryId" [ngStyle]="skillTitleStyle"></app-skill-title>
+            <ul class="skills list-style-none pl-0 py-3">
+                <li class="skill-item" *ngFor="let item of item?.Skills | stringToArray">
+                    <span>{{item}}</span>
+                </li>
+            </ul>
+        </h5>
+        <div class="light-title" *ngIf="item?.StartDate && item?.StopDate">
+            <!-- June, 2020 - present -->
+            {{item?.StartDate}}&nbsp;&nbsp;-&nbsp;&nbsp; {{item?.StopDate}}
+        </div>
+    </li>
+</ul>

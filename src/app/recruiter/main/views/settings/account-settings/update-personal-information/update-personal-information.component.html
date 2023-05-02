@@ -1,0 +1,32 @@
+<!-- <p>update-personal-information works!</p> -->
+<form [formGroup]="UpdatePersonalInformationForm" class="update-form" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <label for="FirstName" class="required-field-label">First Name</label>
+        <input type="text" id="FirstName" class="form-control" formControlName="FirstName"
+        [ngClass]="{'is-invalid': UpdatePersonalInformationForm.get('FirstName')?.touched && UpdatePersonalInformationForm.get('FirstName')?.invalid}"
+        required>
+    <small id="nameErrorMsg" class="form-text text-danger invalid-feedback">First Name
+        is
+        required.</small>
+    </div>
+    <div class="form-group">
+        <label for="MiddleName">Middle Name</label>
+        <input type="text" id="MiddleName" class="form-control" formControlName="MiddleName">
+    </div>
+    <div class="form-group">
+        <label for="LastName" class="required-field-label">Last Name</label>
+        <input type="text" id="LastName" class="form-control" formControlName="LastName"
+        [ngClass]="{'is-invalid': UpdatePersonalInformationForm.get('LastName')?.touched && UpdatePersonalInformationForm.get('LastName')?.invalid}"
+        required>
+    <small id="nameErrorMsg" class="form-text text-danger invalid-feedback">Last Name
+        is
+        required.</small>
+    </div>
+    <div class="d-flex align-items-center">
+        <button class="btn success-btn mr-2" [disabled]="UpdatePersonalInformationForm.invalid || isSubmittingForm">
+            <ng-container *ngIf="!isSubmittingForm">Save</ng-container>
+        <ng-container *ngIf="isSubmittingForm">Updating...</ng-container>
+        </button>
+        <button type="button" class="btn outline-success-btn" (click)="onCloseUpdatePersonalInfoForm_()">Cancel</button>
+    </div>
+</form>

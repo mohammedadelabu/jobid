@@ -1,0 +1,43 @@
+<!-- <p>shortlisted-candidate works!</p> -->
+
+<div class="shortlisted-candidate-card card card-item border-rounded-lg">
+    <div class="card-body">
+        <div class="candidate-info">
+            <div class="info-avatar">
+                <img src="../../../../../../../../assets/images/candidate-test-avatar-1.png" alt=""
+                    class="img-fluid">
+            </div>
+            <div class="info-details">
+                <!-- <div class="title">Ali Raheed</div> -->
+                <div class="title">{{Candidate?.user?.FirsstName}}&nbsp;{{Candidate?.user?.LastName}}</div>
+                <!-- <div class="sub-title">Full stack Developer</div> -->
+                <!-- <div class="sub-title">{{Candidate?.user?.Email}}</div> -->
+                <div class="sub-title">{{Candidate?.Profile?.Profession}}</div>
+                <ul class="social-icons list-style-none pl-0 d-flex">
+                    <li>
+                        <a [href]="Candidate?.Profile?.LinkedinPlatform">
+                            <i class="fab fa-linkedin"></i>                         
+                            
+
+                        </a>
+                    </li>
+                    <li>
+                        <a [href]="Candidate?.Profile?.PortfolioPlatform">
+                            <i class="fas fa-briefcase"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="user-actions">
+            <div>
+                <button class="btn action-btn attachment-doc-btn" (click)="routeLink(Candidate?.user?.Id)">View CV</button>
+            </div>
+            <!-- <div class="d-flex flex-nowrap">
+                <button class="btn action-danger-btn times-danger-btn"></button>
+                <span class="mx-1"></span>
+                <button class="btn action-btn tick-success-btn"></button>
+            </div> -->
+        </div>
+    </div>
+</div>

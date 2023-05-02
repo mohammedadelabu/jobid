@@ -1,0 +1,111 @@
+<div class="card">
+  <div class="card-body">
+    <!-- <p>update-requisition works!</p> -->
+
+    <!-- <div class="dashboard-page-Wrapper"> -->
+    <div id="requisitionForm">
+      <div class="d-flex justify-content-between align-items-start">
+        <h1 class="title">Requisition</h1>
+        <button class="btn btn-sm" (click)="closeDialog()">
+          <i class="fas fa-times text-danger"></i>
+        </button>
+      </div>
+
+      <form [formGroup]="UpdateRequisitionForm" (ngSubmit)="onSubmit()">
+        <fieldset>
+          <div class="form-row">
+            <div class="form-group col-12 col-md-6">
+              <label for="Client">Sales Opportunity/Client</label>
+              <input
+                type="text"
+                class="form-control"
+                id="Client"
+                formControlName="Client"
+                required
+              />
+            </div>
+            <div class="form-group col-12 col-md-6">
+              <label for="JobRole">Job Role</label>
+              <input
+                type="text"
+                class="form-control"
+                id="JobRole"
+                formControlName="JobRole"
+                required
+              />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-12 col-md-6">
+              <label for="SalesRepresentative">Sales Representative</label>
+              <input
+                type="text"
+                class="form-control"
+                id="SalesRepresentative"
+                formControlName="SalesRepresentative"
+                required
+              />
+            </div>
+            <div class="form-group col-12 col-md-6">
+              <label for="RequisitionStatus">Requisition Status</label>
+              <select
+                name="RequisitionStatus"
+                id="RequisitionStatus"
+                class="form-control"
+                id="RequisitionStatus"
+                formControlName="RequisitionStatus"
+                required
+              >
+                <option value="" selected="selected">
+                  Select requisition status
+                </option>
+                <option
+                  value="{{ item?.value }}"
+                  *ngFor="let item of requisitionStatusList"
+                >
+                  {{ item?.name }}
+                </option>
+              </select>
+            </div>
+          </div>
+        </fieldset>
+        <hr />
+        <fieldset>
+          <h2 class="title">Sourcing week</h2>
+          <div class="form-group">
+            <label for="SourceWeek">Week</label>
+            <input
+              type="text"
+              class="form-control"
+              id="SourceWeek"
+              placeholder="e.g Week 1"
+              formControlName="SourceWeek"
+            />
+          </div>
+          <div class="form-row">
+            <div class="form-group col-12 col-lg-6">
+              <label for="SourceWeekStartDate">Start Date</label>
+              <input
+                type="date"
+                id="SourceWeekStartDate"
+                class="form-control"
+                formControlName="SourceWeekStartDate"
+              />
+            </div>
+            <div class="form-group col-12 col-lg-6">
+              <label for="SourceWeekEndDate">End Date</label>
+              <input
+                type="date"
+                id="SourceWeekEndDate"
+                class="form-control"
+                formControlName="SourceWeekEndDate"
+              />
+            </div>
+          </div>
+        </fieldset>
+        <button class="btn success-btn">Update</button>
+      </form>
+    </div>
+    <!-- </div> -->
+  </div>
+</div>

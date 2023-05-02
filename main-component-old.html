@@ -1,0 +1,57 @@
+<div
+  class="container-fluid page-colored-wrapper"
+  id="admin-dashboard-container"
+>
+  <div class="row no-gutters">
+    <!-- <nav id="sidebarMenu" class="col-lg-2 d-none d-md-block sidebar"> -->
+    <!-- <nav id="sidebarMenu" class="col-lg-2 sidebar" [ngClass]="{'open': isOpen}"> -->
+    <!-- <div id="overlay" [ngClass]="{'collapse': !isOpen}" (click)="CloseSidenav()"></div> -->
+    <!-- <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block sidebar " [ngClass]="{'collapse': !isOpen}"> -->
+    <nav
+      id="sidebarMenu"
+      class="col-md-3 col-lg-2 d-md-block sidebar overflow-auto"
+      [ngClass]="{ show: isShowSideNav }"
+    >
+      <div class="brandlogo-wrapper nav-link">
+        <!-- <img
+          src="../../../assets/images/zart-brand-logo.svg"
+          alt=""
+          class="img-fluid"
+        /> -->
+        <img
+          src="../../../assets/images/new-zarttech-brand-logo.svg"
+          alt=""
+          class="img-fluid"
+        />
+      </div>
+      <!-- <div>
+                <button id="sideNavToggler" class="btn">
+                    <i class="fas fa-times text-white"></i>
+                </button>
+            </div> -->
+      <recruiter-sidebar></recruiter-sidebar>
+    </nav>
+    <!-- <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-0"> -->
+    <main
+      style="border: 2px solid red"
+      role="main"
+      class="col-md-9 ml-sm-auto col-lg-10 px-md-4"
+    >
+      <!-- <div id="main-content-wrapper" class="px-md-4">
+                <recruiter-toolbar></recruiter-toolbar>
+                <router-outlet></router-outlet>
+            </div> -->
+
+      <div id="main-content-wrapper">
+        <recruiter-toolbar></recruiter-toolbar>
+        <!-- <div class="inner px-md-4">
+                    <router-outlet></router-outlet>
+                </div> -->
+        <div class="">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+<app-custom-overlay></app-custom-overlay>

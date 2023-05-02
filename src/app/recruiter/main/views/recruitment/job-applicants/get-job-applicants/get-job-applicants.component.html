@@ -1,0 +1,84 @@
+<!-- <p>get-job-applicants works!</p> -->
+<div
+  class="candidates-avatar cursor-pointer"
+  [routerLink]="[
+    '/recruiter/employee-management/recruitment/job-applicants/',
+    vacancyId,
+    companyId
+  ]"
+  *ngIf="uiList?.length; else noApplicant"
+>
+  <!-- <div *ngIf="uiList; else noApplicant"> -->
+  <div class="avatar-wrap" *ngFor="let applicant of uiList">
+    <img
+      *ngIf="!applicant?.Candidate.ProfileImageUrl"
+      src="../../../../../../assets/images/image-placeholder.jpg"
+      alt=""
+      class="img-fluid"
+    />
+    <img
+      *ngIf="applicant?.Candidate.ProfileImageUrl"
+      src="{{ applicant?.Candidate.ProfileImageUrl }}"
+      alt=""
+      class="img-fluid"
+    />
+  </div>
+  <!-- </div> -->
+  <!-- <div class="avatar-wrap">
+      <img
+        src="../../../../../../assets/images/image-placeholder.jpg"
+        alt=""
+        class="img-fluid"
+      />
+    </div>
+    <div class="avatar-wrap">
+      <img
+        src="../../../../../../assets/images/candidate-test-avatar-1.png"
+        alt=""
+        class="img-fluid"
+      />
+    </div>
+    <div class="avatar-wrap">
+      <img
+        src="../../../../../../assets/images/image-placeholder.jpg"
+        alt=""
+        class="img-fluid"
+      />
+    </div>
+    <div class="avatar-wrap">
+      <img
+        src="../../../../../../assets/images/image-placeholder.jpg"
+        alt=""
+        class="img-fluid"
+      />
+    </div>
+    <div class="avatar-wrap">
+      <img
+        src="../../../../../../assets/images/image-placeholder.jpg"
+        alt=""
+        class="img-fluid"
+      />
+    </div>
+    <div class="avatar-wrap">
+      <img
+        src="../../../../../../assets/images/image-placeholder.jpg"
+        alt=""
+        class="img-fluid"
+      />
+    </div> -->
+  <div class="avatar-wrap" *ngIf="uiList?.length < applicantList?.length">
+    <!-- 47+ -->
+    <div>
+      {{ uiList?.length
+      }}<span *ngIf="uiList?.length < applicantList?.length">+</span>
+    </div>
+  </div>
+
+  <!--     
+    <li *ngIf="uiList?.length < companyContactList?.length">
+      <div>{{uiList?.length}}<span *ngIf="uiList?.length < companyContactList?.length">+</span></div>
+  </li> -->
+</div>
+<ng-template #noApplicant>
+  <small>No applicant</small>
+</ng-template>

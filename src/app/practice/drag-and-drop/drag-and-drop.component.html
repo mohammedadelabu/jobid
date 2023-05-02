@@ -1,0 +1,16 @@
+<!-- <p>drag-and-drop works!</p> -->
+<div class="container-fluid">
+    <div class="d-flex">
+        <ul class="nav list-style-none pl-0 ml-auto border-bottom">
+            <li class="cursor-pointer nav-link" [routerLink]="['/practice/drag-and-drop/sorting']" routerLinkActive="router-link-active">Simple sorting</li>
+            <li class="cursor-pointer nav-link" [routerLink]="['/practice/drag-and-drop/connected-sorting']" routerLinkActive="router-link-active">Connected sorting</li>
+            <li class="cursor-pointer nav-link" [routerLink]="['/practice/drag-and-drop/object-sorting']" routerLinkActive="router-link-active">Object sorting</li>
+            <li class="cursor-pointer nav-link" [routerLink]="['/practice/drag-and-drop/object-connected-sorting']" routerLinkActive="router-link-active">Object connected sorting</li>
+            <li class="cursor-pointer nav-link" [routerLink]="['/practice/drag-and-drop/api-sample-object-sorting']" routerLinkActive="router-link-active">API sample sorting</li>
+            <!-- api-sample-object-sorting -->
+        </ul>
+    </div>
+    <router-outlet></router-outlet>
+    <!-- <app-dd-sorting></app-dd-sorting>
+    <app-dd-connected-sorting></app-dd-connected-sorting> -->
+</div>

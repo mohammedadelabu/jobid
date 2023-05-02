@@ -1,0 +1,57 @@
+{
+    "Payload": [
+        {
+            "role": "superadmin",
+            "modules": [
+                {
+                    "id": 1,
+                    "name": "candidate",
+                    "region": "africa",
+                    "permissions": {
+                        "create": false,
+                        "delete": false,
+                        "update": false,
+                        "view": true
+                    }
+                },
+                {
+                    "id": 1,
+                    "name": "company",
+                    "region": "hq",
+                    "permissions": {
+                        "create": true,
+                        "delete": false,
+                        "update": false,
+                        "view": true
+                    }
+                }
+            ]
+        },
+        {
+            "role": "recruiter",
+            "modules": [
+                {
+                    "id": 1,
+                    "name": "candidate",
+                    "region": "eu",
+                    "permissions": {
+                        "create": true,
+                        "delete": false,
+                        "update": false,
+                        "view": true
+                    }
+                },
+                {
+                    "id": 1,
+                    "name": "africa",
+                    "permissions": {
+                        "create": false,
+                        "delete": false,
+                        "update": false,
+                        "view": true
+                    }
+                }
+            ]
+        }
+    ]
+}

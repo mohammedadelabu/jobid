@@ -1,0 +1,24 @@
+<div class="content-wrapper">
+  <div class="row justify-content-between">
+    <div class="col-2 d-flex align-items justify-content-between">
+      <div class="d-flex justify-content-between align-items-center">
+        <img
+          src="../../../assets/images/icons/nav-back-green-icon.svg"
+          alt="back-icon"
+        />
+        <h1 class="page-title ml-4">Notification</h1>
+      </div>
+    </div>
+  </div>
+  <div class="row my-5">
+    <div class="py-3 za-border mb-4" *ngFor="let item of taskList">
+        <div class="col-12">
+          <span class="mr-5">{{ item.title }}</span>
+          <span>{{ item.date }}</span>
+          <p class="za-task-des mb-0">
+            {{ item.des }}
+          </p>
+      </div>
+    </div>
+  </div>
+</div>

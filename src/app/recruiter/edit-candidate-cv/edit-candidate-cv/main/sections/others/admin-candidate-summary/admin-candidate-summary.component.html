@@ -1,0 +1,17 @@
+<!-- <p>admin-candidate-summary works!</p> -->
+<!-- <p>admin-candidate-summary works!</p> -->
+<!-- <p>certification works!</p> -->
+<h5 class="section-title">Candidate summary</h5>
+<div class="alert text-info text-center" *ngIf="responseMessage">{{responseMessage}}</div>
+<div *ngIf="!isAdd">
+    <app-preview-admin-candidate-summary *ngIf="!isEdit"></app-preview-admin-candidate-summary>
+    <app-update-admin-candidate-summary *ngIf="isEdit"></app-update-admin-candidate-summary>
+</div>
+
+<div *ngIf="isAdd">
+    <app-add-admin-candidate-summary></app-add-admin-candidate-summary>
+</div>
+<div *ngIf="!isAdd">
+    <button type="button" class="btn btn-block add-more-btn mb-5" (click)="handleIsAdd()">
+        <span>+</span> ADD OPINION</button>
+</div>

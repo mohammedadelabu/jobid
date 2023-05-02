@@ -1,0 +1,56 @@
+<!-- <p>add-project works!</p> -->
+
+<div class="alert alert-info text-center" *ngIf="responseMsg">
+    {{responseMsg}}</div>
+
+    
+    <div *ngIf="!responseMsg">        
+<form class="mb-5" [formGroup]="projectsForm" (ngSubmit)="saveProjects()" novalidate>
+    <div class="text-right">
+        <button type="button" class="btn btn-sm px-0" [routerLink]="['/edit-candidate-cv/projects']">
+            <i class="fas fa-times text-danger"></i>
+        </button>
+    </div>
+    <fieldset>
+        <legend>
+            <div class="">
+                <div>Projects (optional)</div>
+            </div>
+
+        </legend>
+        <div class="">
+
+            <div class="form-row">
+                <div class="form-group col-12 col-sm-6">
+                    <label for="ProjectName">Project Name</label>
+                    <input type="text" id="ProjectName" class="form-control" formControlName="ProjectName">
+                </div>
+                <div class="form-group col-12 col-sm-6">
+                    <label for="ProjectUrl">Project Url</label>
+                    <input type="text" id="ProjectUrl" class="form-control" formControlName="ProjectUrl">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-12 col-sm-6">
+                    <label for="StartDate">Start Date</label>
+                    <input type="month" id="StartDate" class="form-control" formControlName="StartDate">
+                    <!-- <input type="text" id="StartDate" class="form-control" placeholder="Start Date" formControlName="StartDate" ngbDatepicker #StartDate="ngbDatepicker" (click)="StartDate.toggle()"> -->
+                    <!-- <input type="text" id="StartDate" class="form-control" placeholder="Start Date e.g June 2019" formControlName="StartDate"> -->
+                </div>
+                <div class="form-group col-12 col-sm-6">
+                    <label for="StopDate">Stop Date</label>
+                    <input type="month" id="StopDate" class="form-control" formControlName="StopDate">
+                    <!-- <input type="text" id="StopDate" class="form-control" placeholder="Stop Date" formControlName="StopDate" ngbDatepicker #StopDate="ngbDatepicker" (click)="StopDate.toggle()"> -->
+                    <!-- <input type="text" id="StopDate" class="form-control" placeholder="Stop Date e.g July 2020" formControlName="StopDate"> -->
+                </div>
+            </div>
+        </div>
+    </fieldset>
+    <!-- <div>
+        <button class="btn form-btn px-md-5">SUBMIT</button>
+    </div> -->
+    <div>
+        <button type="submit" class="btn btn-outline-success px-5" [disabled]="projectsForm.invalid">SAVE</button>
+    </div>
+</form>
+    </div>

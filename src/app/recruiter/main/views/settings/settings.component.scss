@@ -1,0 +1,42 @@
+@use "../../../../../sass/_partials/mixins";
+#top-action{
+    margin-bottom: 5em;
+}
+#settings-content {
+    // overflow-x: auto;
+    .inner {
+        position: relative;
+        // width: 100%;
+        // width: 1120px;
+        // min-width: 1200px;
+        .settings-side-nav {
+            position: absolute;
+            // background-color: red;
+            width: 270px;
+            height: 100%;
+            background: #f0f0f0;
+            border: 1px solid #dadada;
+            border-radius: 10px;
+
+            font-family: "Poppins";
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            // padding-top: 0.8em;
+        }
+        .setting-main-content {
+            width: calc(100% - 270px + 20px);
+            min-height: 80vh;
+            margin-left: calc(270px + 20px);
+            margin-bottom: 2em;
+            border: 1px solid #dadada;
+            background: #f0f0f0;
+            border: 1px solid #dadada;
+            border-radius: 10px;
+            // padding: 0.8em;
+            // padding: 1em 1.5em;
+
+           
+        }
+    }
+}

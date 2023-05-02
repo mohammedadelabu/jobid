@@ -1,0 +1,75 @@
+<!-- <p>invite-candidate-form works!</p> -->
+<div class="container-fluid">
+  <div class="card border-rounded-lg">
+    <div class="card-body">
+      <h5 class="form-title text-center">Invite Candidate</h5>
+      <!-- <ng-template #formBody>
+    <div id="form-body" class="card mb-4">
+        <div class="card-body">
+            <p>Dear Candidate,</p>
+            <blockquote>
+                <p>
+                    Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia
+                    consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.
+                </p>
+            </blockquote>
+            <p>
+                Best regards<br /> HR Team
+            </p>
+        </div>
+    </div>
+</ng-template> -->
+
+
+      <!-- <div class="alert alert-danger text-center" *ngIf="errorMsg">errorMsg: {{errorMsg | json}}</div> -->
+      <!-- <div class="alert alert-info text-center" *ngIf="responseMsg?.length">responseMsg: {{responseMsg}}</div> -->
+      <form [formGroup]="invitationForm" (ngSubmit)="onSubmit()" *ngIf="!responseMsg?.length">
+        <div class="form-group">
+          <label for="Email">Email address</label>
+          <input type="email" class="form-control" id="Email" placeholder="Enter Email of candidate/candidates"
+            aria-describedby="emailHelp" formControlName="Email" [ngClass]="{
+            'is-invalid':
+              invitationForm.get('Email')?.touched &&
+              invitationForm.get('Email')?.invalid
+          }" required />
+          <small id="emailHelp" class="form-text text-danger invalid-feedback">Email address is required</small>
+          <!-- <small class="form-text text-muted">Multiple emails can be seperated with a comma “,”</small> -->
+        </div>
+        <!-- <ng-container *ngTemplateOutlet="formBody">
+        This text is not displayed
+    </ng-container> -->
+
+        <!-- <div class="form-group">
+        <label for="exampleFormControlTextarea1">Example textarea</label>
+        <editor
+          placeholder="Body"
+          initialValue="Message"
+          name="Body"
+          formControlName="Body"
+          [init]="{
+            height: 200,
+            menubar: false,
+            plugins: [
+              'advlist autolink lists link image charmap print preview anchor',
+              'searchreplace visualblocks code fullscreen',
+              'insertdatetime media table paste code help wordcount'
+            ],
+            toolbar:
+              'undo redo | formatselect | bold italic backcolor | \
+          alignleft aligncenter alignright alignjustify | \
+          bullist numlist outdent indent | removeformat | help'
+          }"
+        ></editor>
+      </div> -->
+        <button type="submit" class="btn success-btn" [disabled]="isSending">
+          <ng-container *ngIf="isSending">Sending...</ng-container>
+          <ng-container *ngIf="!isSending"> <i class="fas fa-paper-plane"></i>
+            Send Invite
+          </ng-container>
+        </button>
+        <span class="mx-1"></span>
+        <button class="btn outline-danger-btn" (click)="closeDialog()">Cancel</button>
+      </form>
+    </div>
+  </div>
+</div>

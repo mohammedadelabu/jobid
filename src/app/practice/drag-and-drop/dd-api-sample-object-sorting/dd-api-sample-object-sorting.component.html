@@ -1,0 +1,36 @@
+<!-- <p>dd-api-sample-object-sorting works!</p> -->
+
+<h6>Connected Object Sorting</h6>
+
+<p>{{DataList | json}}</p>
+<div class="example-container" *ngFor="let list of DataList">
+    <h2>{{list?.title}}</h2>
+    <div class="alert-alert-info">
+        listRef: {{list?.listRef}}
+    </div>
+    <div class="alert-alert-success">
+       connectedTo: {{list?.connectedTo}}
+    </div>
+    <div class="alert-alert-success">
+       list: {{list?.list | json}}
+    </div>
+    <div cdkDropList id={{list?.listRef}} [cdkDropListData]="list.list" [cdkDropListConnectedTo]="[list?.connectedTo]" class="example-list" (cdkDropListDropped)="drop($event)">
+        <div class="example-box" *ngFor="let item of list.list" cdkDrag>{{item | json}}</div>
+    </div>
+</div>
+<hr>
+<div class="example-container">
+    <h2>To do</h2>
+    <p>{{todo | json}}</p>
+    <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="todo" [cdkDropListConnectedTo]="[doneList]" class="example-list" (cdkDropListDropped)="drop($event)">
+        <div class="example-box" *ngFor="let item of todo" cdkDrag>{{item | json}}</div>
+    </div>
+</div>
+
+<div class="example-container">
+    <h2>Done</h2>
+    <p>{{done | json}}</p>
+    <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="done" [cdkDropListConnectedTo]="[todoList]" class="example-list" (cdkDropListDropped)="drop($event)">
+        <div class="example-box" *ngFor="let item of done" cdkDrag>{{item | json}}</div>
+    </div>
+</div>

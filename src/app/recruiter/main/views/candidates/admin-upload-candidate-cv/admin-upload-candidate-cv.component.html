@@ -1,0 +1,49 @@
+<!-- <p>admin-upload-candidate-cv works!</p> -->
+<div class="page-colored-wrapper">
+    <div>
+        <div class="container inner-pg-container">
+            <div class="form-wrapper-sm">
+                <form>
+                    <div class="card border-0 px-3 pb-4">
+                        <div class="card-body">
+                            <button class="btn" id="arrow-left-btn" (click)="goBack()">
+                                <i class="fas fa-arrow-left mr-2"></i>Back
+                            </button>
+                            <div class="alert alert-info text-center" *ngIf="responseMessage">
+                                {{responseMessage}}
+                            </div>
+                            <div class="form-card-title">
+                                <h1 class="form-title mb-1 text-center">Upload your resume</h1>
+                                <div class="tagline font-family-poppins text-center">File format should be pdf
+                                </div>
+                            </div>
+                            <div class="form-control-wrapper mb-4">
+                                <div id="ui-temp">
+                                    <div class="featured-icon">
+                                        <!-- <img src="../../../../../assets/svg-icons/file-icon.svg" alt=""
+                                            class="img-fluid"> -->
+                                        <img src="../../../../../../assets/images/icons/file-upload-solid.svg" alt=""
+                                        class="img-fluid">
+                                        <!-- <img src="./src/assets/svg-icons/file-icon.svg" alt="" class="img-fluid"> -->
+                                    </div>
+                                    <div id="file-name">{{label}}</div>
+                                </div>
+                                <input class="cursor-pointer" type="file" name="resumeFile"
+                                    (change)="onSelectFile($event);">
+                            </div>
+                            <!-- > -->
+                            <div class="d-flex align-items-center justify-content-between w-100" *ngIf="isSelected">
+                                <button type="button" class="btn outline-success-btn border-rounded-md"
+                                    (click)="clearControl()">REPLACE</button>
+                                <button type="button" class="btn success-btn border-rounded-md"
+                                    (click)="uploadImage()">PROCEED</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+            <!--  -->
+        </div>
+    </div>
+</div>

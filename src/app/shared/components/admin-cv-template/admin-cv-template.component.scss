@@ -1,0 +1,345 @@
+@page {
+  margin: 0;
+}
+
+@media print {
+  pre, blockquote {break-inside: avoid;}
+}
+
+// #candidate-skills,
+// .list-content,
+// .section-content,
+// .section-header,
+// ol,
+// ul,
+// h4,
+// p {
+//   break-inside: avoid;
+// }
+
+// .list-content,
+// .section-content,
+// .section-header,
+// ol, ul {
+//   break-after: avoid;
+// }
+// h4 {
+//     break-after: avoid;
+// }
+
+// .list-content,
+// .section-content,
+// .section-header,
+// ol,
+// ul,
+// p {
+//   break-inside: avoid;
+// }
+// h4 {
+//     break-after: avoid;
+// }
+
+
+.s-border {
+  border-bottom: 1px solid black;
+  padding-bottom: 15px;
+}
+
+.img-fluid {
+  border-radius: 8px;
+  width: 100%;
+  max-width: 500px !important;
+  max-height: 500px !important;
+}
+
+.centerImage {
+ text-align:center;
+ display:block;
+}
+#template-container {
+    font-size: 18px;
+    width: 100%;
+    margin: 0 auto;
+
+
+    .template-header {
+        .inner{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            .zarttech-logo-wrapper{
+                max-width: 300px;
+                // max-width: 500px;
+                padding-left: 3em;
+            }
+            .box-pattern{
+                height: 150px;
+                width: calc(55% - 50px);
+            }
+        }
+    }
+
+
+    .profile-image {
+        position: relative;
+        z-index: 3;
+        height: 160px;
+        display: grid;
+
+        .image-container {
+            height: 160px;
+            width: 160px;
+            border: 5px solid #ffffff;
+            border-radius: 20px;
+            position: absolute;
+            // margin-top: -90px;
+            margin-top: 0px;
+            left: calc(calc(100% - 160px) / 2);
+            background-color: #ffffff;
+            overflow: hidden;
+        }
+    }
+
+    .content-one {
+        background-color: white;
+        // padding: 0 3em;
+        padding: 0 1em;
+        color: #131230;
+        position: relative;
+        z-index: 2;
+        border-bottom: 4px solid green;
+        border: 1px solid rgb(232, 238, 232);
+
+        .column-content {
+            line-height: 30px;
+        }
+    }
+
+    .column-header {
+        // font-weight: 600;
+        text-transform: none;
+        // font: normal normal bold 18px/28px Poppins;
+        font: normal normal bold 25px 'Plus Jakarta Sans' !important;
+        // font-family: 'Plus Jakarta Sans', sans-serif;
+        text-align: center;
+        width: 100%;
+        color: #131230;
+        // border: 1px solid red;
+        &::before {
+            content: "";
+            border: 3px solid white;
+            display: block;
+            border-top-style: dashed;
+            // border-top-style: solid;
+            border-bottom: unset;
+            border-right: unset;
+            border-left: unset;
+        }
+        &::after {
+            content: "";
+            border: 3px solid white;
+            display: block;
+            border-bottom-style: dashed;
+            border-top: unset;
+            border-right: unset;
+            border-left: unset;
+        }
+    }
+
+    .column-center {
+        border-right: 2px solid #131230;
+        // border-left: 2px solid #131230;
+        // 1px solid #131230
+        .content-name {
+            // margin-top: 72px;
+            font: normal normal bold 2rem 'Plus Jakarta Sans' !important;
+            // font-family: 'Plus Jakarta Sans', sans-serif;
+            text-align: center;
+        }
+
+        .content-profession {
+            color: #131230;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+
+        .candidate-ref-number {
+            text-align: center;
+            font-size: 1.5rem;
+        }
+    }
+
+    // #portfolio-section {
+    //     .item {
+    //         white-space: nowrap;
+    //         overflow: hidden;
+    //         text-overflow: ellipsis;
+    //         a {
+    //             color: #F7941D;
+    //             text-decoration: none;
+    //             font: normal normal normal 15px Poppins;
+    //             text-align: center;
+    //         }
+    //         a:hover {
+    //             color: red;
+    //         }
+    //     }
+    // }
+
+    // .content-two {
+        // background: transparent radial-gradient(closest-side at 124% 100%, #14343F 0%, #00964B 100%) 0% 0% no-repeat padding-box;
+        // background: linear-gradient(152.64deg, #00964b 27.73%, rgba(20, 52, 63, 0.81) 67.9%);
+    // }
+
+    #candidate-skills {
+        .list-content {
+            ul {
+                li {
+                    display: flex;
+                    flex-wrap: nowrap;
+                    align-items: center;
+                    &::before {
+                        content: "";
+                        display: block;
+                        height: 5px;
+                        width: 5px;
+                        background-color: #ffffff;
+                        border-radius: 50%;
+                        margin-right: 5px;
+                    }
+                }
+            }
+        }
+    }
+    .section-header {
+        // background-color: #ac2c2c;
+        background-color: #ffffff;
+        text-align: center;
+        font: normal normal bold 28px 'Plus Jakarta Sans';
+        // font-family: 'Plus Jakarta Sans', sans-serif;
+        letter-spacing: 0px;
+        color: #14323e;
+        // color: red;
+        text-transform: uppercase;
+        // border-top: 5px dashed #FFFFFF;
+        // border-bottom: 5px dashed #FFFFFF;
+        line-height: 60px;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)
+    }
+
+    .section-content {
+        padding: 0 4em;
+        // color: #ffffff;
+        color: black;
+        // background: #F4EFEA;
+        background: white;
+        // border-top: 4px dashed black;
+        border-top: 4px solid #F4EFEA;
+        box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1);
+        ;
+
+        .list-title {
+            // font: normal normal bold 1.3rem 'Plus Jakarta Sans';
+            font: normal normal 1rem 'Plus Jakarta Sans';
+            // font-family: 'Plus Jakarta Sans', sans-serif;
+            letter-spacing: 0px;
+            // color: #ffffff;
+            text-transform: uppercase;
+        }
+    }
+
+    #candidate-skills {
+        .skills {
+            display: grid;
+            grid-gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            // grid-template-columns: auto auto auto auto;
+        }
+    }
+
+    #candidate-projects,
+    #candidate-experience,
+    #candidate-projects {
+        .project-item,
+        .list-item {
+            .list-title {
+                width: 500px;
+                + div {
+                    width: 600px;
+                }
+            }
+        }
+    }
+    #candidate-projects,
+    #candidate-experience,
+    #candidate-education,
+    #candidate-projects {
+        .project-item,
+        .list-item {
+            // border-bottom: 5px dashed #ffffff;
+            // border-bottom: 5px solid #ffffff;
+            // padding-top: 2em;
+            ul li:last-child {
+                margin-bottom: 0 !important;
+            }
+            &:not(&:first-child) {
+                padding-top: 2em;
+            }
+            &:last-child {
+                margin-bottom: 0;
+                border-bottom: none;
+            }
+            &.last-item {
+                .s-border {
+                    border-bottom: none;
+                }
+
+            }
+
+        }
+    }
+
+    #candidate-certification {
+        .list-title {
+            width: 500px;
+            + div {
+                width: 600px;
+            }
+        }
+    }
+
+    &.undisclosedCv {
+        .content-name,
+        #portfolio-section,
+        .work-history-company-name {
+            color: red;
+            display: none;
+            // position: relative;
+            // &::before {
+            //     content: "";
+            //     display: block;
+            //     background-color: rgba(0, 0, 0, 1);
+            //     height: 100%;
+            //     width: 100%;
+            //     position: absolute;
+            // }
+        }
+    }
+}
+
+// svg {
+//     background-color: blue;
+//     path: {
+//         fill: red !important;
+//     }
+// }
+// .white-btn-green-border {
+//     &:hover {
+//         svg {
+//             path: {
+//                 fill: red !important;
+//             }
+//         }
+//     }
+// }
+

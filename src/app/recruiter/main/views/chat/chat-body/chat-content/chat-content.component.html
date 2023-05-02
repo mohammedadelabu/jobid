@@ -1,0 +1,58 @@
+<div class="chat-content-container">
+  <div class="top">
+    <div class="image-container">
+      <img class="avatar" [src]="chatContent.imgUrl" alt="avatar" />
+      <div class="name">{{ chatContent.name }}</div>
+    </div>
+    <div class="call-icons-container">
+      <img
+        class="mr-2"
+        src="assets/images/icons/video-icon-green.svg"
+        alt="camera icon"
+      />
+      <img src="assets/images/icons/call-icon-green.svg" alt="call icon" />
+    </div>
+  </div>
+  <div class="middle">
+    <div class="middle-content">
+      <div *ngFor="let day of parsedContent">
+        <div class="day">
+          <span>{{ day[0] | titlecase }}</span>
+        </div>
+        <div class="message-content" *ngFor="let msg of day[1]">
+          <div class="avatar">
+            <img class="avatar" [src]="msg.imgUrl" alt="avatar" />
+          </div>
+          <div>
+            <div>
+              <span class="name">{{ msg.name }}</span
+              ><span class="time">{{ msg.time }}</span>
+            </div>
+            <div class="message">
+              {{ msg.message }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="end">
+    <input placeholder="Enter a message" type="text" class="form-control" />
+    <div class="mt-2 ml-auto">
+      <button class="chat-btn">
+        <img
+          class="mr-2"
+          src="assets/images/icons/send-icon.svg"
+          alt="send icon"
+        />
+        <span>Send</span>
+      </button>
+    </div>
+  </div>
+</div>
+<div *ngIf="collapsed">
+  <app-collapsed-chat (toggle)="toggleCollapsed()"></app-collapsed-chat>
+</div>
+<div *ngIf="!collapsed">
+  <app-expanded-chat (toggle)="toggleCollapsed()"></app-expanded-chat>
+</div>

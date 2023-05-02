@@ -1,0 +1,80 @@
+@use "../../../../../../sass/_partials/mixins";
+
+// .ui-check{
+//     background-color: unset;
+// }
+
+
+
+.dashboard-table{
+    thead{
+        th{
+            // min-width: 200px;
+        }
+    }
+}
+
+
+#search-input-wrapper {
+    width: 100%;
+    max-width: 400px;
+    + div {
+        width: 100%;
+        // background-color: red;
+        @include mixins.minmq(765px) {
+            max-width: 160px;
+        }
+    }
+}
+#search-input {
+    border: 1px solid rgba(199, 199, 199, 1);
+    border-radius: 5px;
+    input {
+        border: none;
+        background: unset;
+        &:focus {
+            border: none !important;
+        }
+    }
+}
+
+
+
+.select-drop-wrapper {
+    font-size: 0.9rem;
+    padding: 0.23em 0.8em;
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    max-width: 100px;white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 150px;
+    select {
+        width: 100%;
+        border: none;
+        background-color: unset;
+        cursor: pointer;
+        color: inherit;
+    }
+    &.super-admin-role {
+        background: #afe2ff;
+        border: 1px solid #0ca5fc;
+        border-radius: 15.5px;
+        color: #0ca5fc;
+    }
+    &.recruiter-role {
+        background: #ffebac;
+        border: 1px solid #f2b200;
+        border-radius: 15.5px;
+        color: #f2b200;
+    }
+    &.recruitment-admin-role {
+        background: #d0eadb;
+        border: 1px solid #4fb278;
+        border-radius: 15.5px;
+        color: #4fb278;
+    }
+}

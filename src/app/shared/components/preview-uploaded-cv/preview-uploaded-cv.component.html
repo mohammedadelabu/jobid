@@ -1,0 +1,25 @@
+<!-- <p>preview-uploaded-cv works!</p> -->
+<!-- <p>preview-uploaded-cv works!</p> -->
+<div class="text-right">
+    <button class="btn btn-sm" (click)="onNoClick()">
+        <i class="fas fa-times text-danger"></i>
+    </button>
+</div>
+<ng-template #noUploadedCV>
+    <div class="alert alert-info text-center mb-0">No Uploaded CV</div>
+</ng-template>
+<div *ngIf="uploadedCV; else noUploadedCV">
+    <!-- {{uploadedCV}} -->
+    <pdf-viewer [src]="doc" [render-text]="true" style="display: block; width: 100%; height: 500px
+">
+    </pdf-viewer>
+    <div class="text-right">
+        <a href="{{doc}}" target="_blank" class="btn btn-sm">Download
+            <i class="fas fa-download text-info"></i>
+        </a>
+    </div>
+</div>
+
+<!-- <div class="loading" *ngIf="!uploadedCV">
+    <div>Loading...</div>
+</div> -->

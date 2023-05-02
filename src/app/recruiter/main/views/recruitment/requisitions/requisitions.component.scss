@@ -1,0 +1,36 @@
+@use "../../../../../../sass/_partials/mixins";
+
+.sorting-list-card {
+    background: #ffffff;
+    box-shadow: 0px 10px 16px rgba(0, 0, 0, 0.08);
+    border-radius: 11px;
+}
+
+.drop-carret {
+    &::after {
+        // content: "";
+        // height: 20px;
+        // width: 20px;
+        // background-image: ;
+        @include mixins.after("\f107", inherit);
+        float: right;
+    }
+}
+
+#horizon-control-wrapper{
+    height: 30px;
+    background-color: #ffffff;
+    z-index: 1;
+}
+
+.add-requisition-btn {
+    white-space: nowrap;
+}
+
+select.form-control {
+    height: auto;
+}
+
+.whitespace-nowrap {
+    white-space: nowrap;
+}

@@ -1,0 +1,23 @@
+<!-- <p>roles-and-permission works!</p> -->
+<div class="setting-content-container">
+    <h2 class="setting-content-title">Roles & Permissions</h2>
+   
+    <div id="roles-and-permission-content">
+        <div class="content-wrapper">
+            <div id="roles-and-permission-side-navigation">
+                <ul class="list-style-none pl-0 mb-0">
+                    <!-- <li> {{roleList | json}}hrarqe</li> -->
+                    <li *ngFor="let item of roleList">
+                        <!-- <a href="#" [ngClass]="{'active': item?.active}">{{item?.name}}</a> -->
+                        <!-- <a [routerLink]="[item?.url]" routerLinkActive="router-link-active">{{item?.name}}</a> -->
+                        <!-- <a [routerLink]="['/recruiter/settings/roles-and-permission/module/', item?.id]" routerLinkActive="router-link-active">{{item?.RoleName}}</a> -->
+                        <a [routerLink]="['/recruiter/settings/roles-and-permission/roles/', item?.Id]" routerLinkActive="router-link-active">{{item?.RoleName}}</a>
+                    </li>
+                </ul>
+            </div>
+            <div id="roles-and-permission-main">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+.page-title {
+    line-height: unset !important;
+    margin-bottom: 0;
+}
+
+.example-accordion-item {
+    margin-bottom: 0.3em;
+    background: #f0f0f0;
+    border: 1px solid #dadada;
+    border-radius: 10px;
+    display: block;
+    padding: 9px 20px;
+}
+
+.document-list {
+    // display: flex;
+    display: grid;
+    // grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-gap: 20px;
+    li {
+        // background-color: aqua;
+        text-align: center;
+        .file-img-wrapper {
+            max-width: 70px;
+            margin: 0 auto;
+        }
+
+        .btn-group {
+            .btn {
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
+.no-document-alert {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    color: #b5b5b5;
+}

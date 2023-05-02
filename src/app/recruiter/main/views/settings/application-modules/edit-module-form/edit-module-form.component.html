@@ -1,0 +1,15 @@
+<!-- <p>edit-module-form works!</p> -->
+<div class="card form-card">
+    <div class="card-body">
+        <!-- {{updateModuleForm | json}} -->
+        <form #updateModuleForm="ngForm" (ngSubmit)="onSubmit(updateModuleForm)">
+            <div class="form-group">
+                <label for="ModuleName">Module Name</label>
+                <input type="text" id="ModuleName" class="form-control" name="ModuleName" [(ngModel)]="Module.ModuleName">
+            </div>
+            <button class="btn success-btn">Update module</button>
+            <span class="mx-1"></span>
+            <button type="button" class="btn primary-border-btn" (click)="onCancel()">Cancel</button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,52 @@
+<div class="card">
+  <div class="card-body">
+    <h5 class="form-title text-left">Apply For This Job</h5>
+    <div class="alert alert-info text-center" *ngIf="responseMessage">
+      {{ responseMessage }}
+    </div>
+    <div class="alert alert-danger text-center" *ngIf="responseError">
+      {{ responseError }}
+    </div>
+
+    <form
+      [formGroup]="ApplicationForm"
+      (ngSubmit)="onSubmit()"
+      *ngIf="!responseMessage"
+    >
+      <div class="form-group">
+        <label for="Email">Email Address</label>
+        <input
+          type="email"
+          class="form-control"
+          id="CandidateEmail"
+          [ngClass]="{
+            'is-invalid':
+              ApplicationForm.get('Email')?.touched &&
+              ApplicationForm.get('Email')?.invalid
+          }"
+          formControlName="Email"
+          required
+        />
+
+        <span class="invalid-feedback">
+          <small
+            class="form-text text-danger"
+            *ngIf="ApplicationForm.get('Email')?.hasError('required')"
+            >Email is required.
+          </small>
+          <small
+            class="form-text text-danger"
+            *ngIf="ApplicationForm.get('Email')?.hasError('Email')"
+            >You entered an invalid Email.
+          </small>
+        </span>
+      </div>
+      <button
+        class="btn success-btn btn-block"
+        [disabled]="ApplicationForm.invalid"
+      >
+        APPLY
+      </button>
+    </form>
+  </div>
+</div>

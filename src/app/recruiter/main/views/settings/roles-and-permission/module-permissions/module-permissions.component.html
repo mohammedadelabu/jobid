@@ -1,0 +1,99 @@
+<!-- <p>module-permissions works!</p> -->
+<!-- <button (click)="onUpdatePermission(adminRole)">Add Permission</button> -->
+<div class="permission-table pb-5">
+    <!-- {{moduleList | json}} -->
+    <!-- <div class="table-responsive"> -->
+    <!-- {{moduleList | json}} -->
+    <!-- {{ isLoading$ | async}} -->
+    <table class="table table-borderless">
+        <thead>
+            <tr>
+                <th scope="col" class="content-module"></th>
+                <th scope="col">View</th>
+                <th scope="col">Write</th>
+                <th scope="col">Update</th>
+                <th scope="col">Delete</th>
+                <!-- <th scope="col"></th> -->
+            </tr>
+        </thead>
+        <tbody *ngIf="moduleList?.length; else isLoading">
+            <ng-container *ngFor="let module of moduleList; let i = index">
+                <tr *ngIf="module">
+                    <th scope="row">{{module?.ModuleName}}</th>
+                    <td>
+                        <div class="custom-check">
+                            <input type="checkbox" name="view[{{i}}]" id="view[{{i}}]"
+                                [(ngModel)]="module?.Permission.View" (change)="onUpdatePermission(module)">
+                            <label for="view[{{i}}]">
+                                <span class="ui-check preview-check"></span>
+                            </label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-check">
+                            <input type="checkbox" name="write[{{i}}]" id="write[{{i}}]"
+                                [(ngModel)]="module?.Permission.Create" (change)="onUpdatePermission(module)">
+                            <label for="write">
+                                <span class="ui-check preview-check"></span>
+                            </label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-check">
+                            <input type="checkbox" name="update[{{i}}]" id="update[{{i}}]"
+                                [(ngModel)]="module?.Permission.Update" (change)="onUpdatePermission(module)">
+                            <label for="update[{{i}}]">
+                                <span class="ui-check preview-check"></span>
+                            </label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-check">
+                            <input type="checkbox" name="delete[{{i}}]" id="delete[{{i}}]"
+                                [(ngModel)]="module?.Permission.Delete" (change)="onUpdatePermission(module)">
+                            <label for="delete[{{i}}]">
+                                <span class="ui-check preview-check"></span>
+                            </label>
+                        </div>
+                    </td>
+                    <!-- <td>
+                        <div class="custom-check">
+                            <input type="checkbox" name="update" id="update" name="update" [(ngModel)]="module.Permission.Update">
+                            <label for="update">
+                                <span class="ui-check preview-check"></span>
+                            </label>
+                        </div>
+                    </td> -->
+                    <!-- <td>
+                        <div class="custom-check">
+                            <input type="checkbox" name="write" id="write" name="write">
+                            <label for="write">
+                                <span class="ui-check preview-check"></span>
+                            </label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-check">
+                            <input type="checkbox" name="delete" id="delete" name="delete">
+                            <label for="delete">
+                                <span class="ui-check preview-check"></span>
+                            </label>
+                        </div>
+                    </td> -->
+
+                    <!-- <td>
+                        <button class="btn btn-danger btn-sm" (click)="removeModule(module)">Delete</button>
+                    </td> -->
+                </tr>
+            </ng-container>
+        </tbody>
+    </table>
+    <!-- </div> -->
+</div>
+<ng-template #isLoading>
+    <tbody>
+        <tr>
+            <td colspan="4">No List Item</td>
+        </tr>
+    </tbody>
+</ng-template>

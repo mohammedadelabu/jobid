@@ -1,0 +1,21 @@
+// #resume-template-top-action {
+//     .page-title {
+//         font-size: 1.3rem;
+//         font-family: "Poppins";
+//         font-style: normal;
+//         font-weight: 700;
+//         line-height: 60px;
+//         color: #14323e;
+//     }
+// }
+
+.page-title {
+  line-height: unset !important;
+  margin-bottom: 0;
+  font-size: 2rem;
+  font-family: "Poppins" !important;
+}
+
+.back-icon {
+  width: 11px;
+}

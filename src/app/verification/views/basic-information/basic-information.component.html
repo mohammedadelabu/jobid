@@ -1,0 +1,120 @@
+<!-- <p>basic-information works!</p> -->
+<div class="verification-form-wrapper">
+    <div class="inner">
+        <h1 class="title">Basic Information</h1>
+        <h2 class="sub-title">Complete with your basic information</h2>
+        <div *ngIf="formErrorMsg" class="alert alert-info text-center">{{formErrorMsg}}</div>
+        <!-- {{BasicInformationForm.value | json}}
+        <hr/>
+        {{BasicInformationForm.valid | json}} -->
+        <form [formGroup]="BasicInformationForm" (ngSubmit)="onSubmit()">
+            <div class="card mb-4 border-0">
+                <div class="fieldset card-body">
+                    <div class="form-row">
+                        <div class="form-group col-12 col-md-6">
+                            <label for="FirstName" class="required-field-label">First Name</label>
+                            <input type="text" id="FirstName" class="form-control" name="FirstName" formControlName="FirstName" [ngClass]="{'is-invalid': BasicInformationForm.get('FirstName')?.touched && BasicInformationForm.get('FirstName')?.invalid}" required>
+                            <small id="nameErrorMsg" class="form-text text-danger invalid-feedback">First Name
+                                is
+                                required.</small>
+                        </div>
+                        <div class="form-group col-12 col-md-6">
+                            <label for="MiddleName" class="required-field-label">Middle Name</label>
+                            <input type="text" id="MiddleName" class="form-control" name="MiddleName" formControlName="MiddleName" [ngClass]="{'is-invalid': BasicInformationForm.get('MiddleName')?.touched && BasicInformationForm.get('MiddleName')?.invalid}" required>
+                            <small id="nameErrorMsg" class="form-text text-danger invalid-feedback">Middle Name
+                                is
+                                required.</small>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-12 col-md-6">
+                            <label for="LastName" class="required-field-label">Last Name</label>
+                            <input type="text" id="LastName" class="form-control" name="LastName" formControlName="LastName" [ngClass]="{'is-invalid': BasicInformationForm.get('LastName')?.touched && BasicInformationForm.get('LastName')?.invalid}" required>
+                            <small id="nameErrorMsg" class="form-text text-danger invalid-feedback">Last Name
+                                is
+                                required.</small>
+                        </div>
+                        <div class="form-group col-12 col-md-6">
+                            <label for="DateOfBirth" class="required-field-label">Date of Birth</label>
+                            <input type="date" id="DateOfBirth" class="form-control" name="DateOfBirth" formControlName="DateOfBirth" [ngClass]="{'is-invalid': BasicInformationForm.get('DateOfBirth')?.touched && BasicInformationForm.get('DateOfBirth')?.invalid}" required>
+                            <small id="nameErrorMsg" class="form-text text-danger invalid-feedback">Provide your DOB</small>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-12 col-md-6">
+                            <label for="exampleInputEmail1" class="required-field-label">Email address</label>
+                            <input type="email" class="form-control" [ngClass]="{'is-invalid': BasicInformationForm.get('Email')?.touched && BasicInformationForm.get('Email')?.invalid}" id="exampleInputEmail" aria-describedby="EmailHelp" name="Email" formControlName="Email" required>
+
+                            <span class="invalid-feedback">
+                                <small class="form-text text-danger"
+                                    *ngIf="BasicInformationForm.get('Email')?.hasError('required')">Email is
+                                    required.
+                                </small>
+                                <small class="form-text text-danger"
+                                    *ngIf="BasicInformationForm.get('Email')?.hasError('email')">You entered an
+                                    invalid
+                                    Email.
+                                </small>
+                            </span>
+                        </div>
+                        <div class="form-group col-12 col-md-6">
+                            <label for="PhoneNumber" class="required-field-label">Phone Number</label>
+                            <!-- <input type="text" id="PhoneNumber" class="form-control" name="PhoneNumber" formControlName="PhoneNumber" [ngClass]="{'is-invalid': BasicInformationForm.get('PhoneNumber')?.touched && BasicInformationForm.get('PhoneNumber')?.invalid}" required>
+                            <small id="nameErrorMsg" class="form-text text-danger invalid-feedback">Provide your Phone number</small> -->
+                            <ngx-intl-tel-input [enableAutoCountrySelect]="true" [enablePlaceholder]="true" [preferredCountries]="['nl']"  [searchCountryFlag]="true" [selectFirstCountry]="true" [phoneValidation]="true" [enableAutoCountrySelect]="false" [searchCountryFlag]="true" [phoneValidation]="true" name="PhoneNumber" [(ngModel)]="PhoneNumber" [ngModelOptions]="{standalone: true}">
+                            </ngx-intl-tel-input>
+                            <small id="phoneNumberErrorMsg" class="form-text text-danger" [ngClass]="{'d-none': !isphoneNumberError}">Phone number is
+                            required.</small>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-12 col-sm-6">
+                            <label for="Password" class="required-field-label">Password</label>
+                            <input type="password" class="form-control" id="Password" [ngClass]="{'is-invalid': BasicInformationForm.get('Password')?.touched && BasicInformationForm.get('Password')?.invalid}" name="Password" formControlName="Password" pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$">
+                            <span class="invalid-feedback">
+                                <small id="PasswordErrorMsg" class="form-text text-danger"
+                                    *ngIf="BasicInformationForm.get('Password')?.hasError('required')">Password is
+                                    required.
+                                </small>
+                                <small id="PasswordErrorMsg" class="form-text text-danger"
+                                    *ngIf="BasicInformationForm.get('Password')?.hasError('symbol')">Password must
+                                    contain
+                                    at least a number, capital letter and special character.
+                                </small>
+                                <small id="PasswordErrorMsg" class="form-text text-danger"
+                                    *ngIf="BasicInformationForm.get('Password')?.hasError('minlength')">Password
+                                    must
+                                    contain a minimum of 8 characters.
+                                </small>
+                            </span>
+                            <small id="PasswordErrorMsg" class="text-muted" *ngIf="BasicInformationForm.get('Password')?.hasError('required') || BasicInformationForm.get('Password')?.hasError('minlength')">Your password must not be less
+                                than 8 characters with atleast an uppercase text, number and a
+                                special character</small>
+                            <!-- <small class="text-muted d-none"
+                                [ngClass]="{'d-block': BasicInformationForm.invalid}">Your password must not be less
+                                than 8 characters with atleast an uppercase text, number and a
+                                special character</small> -->
+                            <small class="text-muted" *ngIf="BasicInformationForm.get('Password')?.hasError('required') && BasicInformationForm.get('Password')?.hasError('minlength')">Your password must not be less
+                                than 8 characters with atleast an uppercase text, number and a
+                                special character</small>
+                        </div>
+                        <div class="form-group col-12 col-sm-6">
+                            <div class="field">
+                                <label for="ConfirmPassword" class="required-field-label">Confirm Password</label>
+                                <input type="password" class="form-control" id="ConfirmPassword" [ngClass]="{'is-invalid': BasicInformationForm.get('ConfirmPassword')?.touched && BasicInformationForm.get('ConfirmPassword')?.invalid}" name="ConfirmPassword" formControlName="ConfirmPassword"
+                                    pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$">
+                                <small id="ConfirmPasswordErrorMsg" class="form-text text-danger invalid-feedback">Passwords
+                                    must
+                                    match.</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-right">
+                <button class="btn success-btn" [disabled]="BasicInformationForm.invalid">Continue</button>
+            </div>
+        </form>
+    </div>
+</div>

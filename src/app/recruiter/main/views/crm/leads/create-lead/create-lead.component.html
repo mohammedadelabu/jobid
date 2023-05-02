@@ -1,0 +1,128 @@
+<!-- <p>create-lead works!</p> -->
+<div class="card border-0">
+  <div class="card-body px-0">
+    <div id="top-action" class="d-flex align-items-center">
+      <button class="btn mr-3 px-0" (click)="goBack()">
+        <img src="../../../../../../../assets/images/icons/angle-left-icon.svg" alt="" class="img-fluid" />
+      </button>
+      <h1 class="page-title mb-0">Create Lead</h1>
+    </div>
+    <div class="form-wrapper" *ngIf="!addNewTag">
+      <ng-container>
+        <small class="text-danger">{{formErrorMsg}}</small>
+      </ng-container>
+      <form [formGroup]="CreateLeadForm" (ngSubmit)="onSubmit()" class="wide-form-controls-grid">
+        <div class="form-row">
+          <div class="form-group col-12 col-lg-6">
+            <label for="AccountName" class="required-field-label">Account Name</label>
+            <input type="text" id="AccountName" class="form-control" formControlName="AccountName"
+              [ngClass]="{'is-invalid': CreateLeadForm.get('AccountName')?.touched && CreateLeadForm.get('AccountName')?.invalid}"
+              required>
+            <small id="nameErrorMsg" class="form-text text-danger invalid-feedback">Account Name
+              is
+              required.</small>
+          </div>
+
+          <!-- <div class="form-group col-12 col-lg-6">
+            <label for="EmailAddress" >Email Address</label>
+            <input type="email" id="EmailAddress" class="form-control" formControlName="EmailAddress"
+              [ngClass]="{'is-invalid': CreateLeadForm.get('EmailAddress')?.touched && CreateLeadForm.get('EmailAddress')?.invalid}">
+
+            <span class="invalid-feedback">
+              <small class="form-text text-danger"
+                *ngIf="CreateLeadForm.get('EmailAddress')?.hasError('required')">Email is
+                required.
+              </small>
+              <small class="form-text text-danger" *ngIf="CreateLeadForm.get('EmailAddress')?.hasError('email')">You
+                entered
+                an
+                invalid
+                Email.
+              </small>
+            </span>
+          </div> -->
+
+          <div class="form-group col-12 col-lg-6">
+            <label for="EmailAddress">Email Address</label>
+            <input type="email" id="EmailAddress" class="form-control" formControlName="EmailAddress"
+              [ngClass]="{'is-invalid': CreateLeadForm.get('EmailAddress')?.touched && CreateLeadForm.get('EmailAddress')?.invalid}">
+
+            <span class="invalid-feedback">
+              <small class="form-text text-danger"
+                *ngIf="CreateLeadForm.get('EmailAddress')?.hasError('required')">Email is
+                required.
+              </small>
+              <small class="form-text text-danger" *ngIf="CreateLeadForm.get('EmailAddress')?.hasError('email')">You
+                entered
+                an
+                invalid
+                Email.
+              </small>
+            </span>
+          </div>
+
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-12 col-lg-6">
+            <label for="PhoneNumber">Phone Number</label>
+            <ngx-intl-tel-input [enableAutoCountrySelect]="true" [enablePlaceholder]="true"
+              [preferredCountries]="['nl']" [searchCountryFlag]="true" [selectFirstCountry]="true"
+              [phoneValidation]="false" name="PhoneNumber" formControlName="PhoneNumber">
+            </ngx-intl-tel-input>
+            <small id="phoneNumberErrorMsg" class="form-text text-danger"
+              [ngClass]="{'d-none': !isphoneNumberError}">Phone
+              number is
+              required.</small>
+          </div>
+
+
+          <div class="form-group col-12 col-lg-6">
+            <label for="Tag" >Tag </label>
+            <!-- <ng-select [items]="leadTags$ | async" bindLabel="name" bindValue="id" (change)="onChange($event)"
+              [multiple]="true" formControlName="Tag"
+              [ngClass]="{'is-invalid': CreateLeadForm.get('Tag')?.touched && CreateLeadForm.get('Tag')?.invalid}">
+            </ng-select> -->
+            <ng-select [items]="leadTags$ | async" bindLabel="name" bindValue="id" (change)="onChange($event)"
+              [multiple]="true" formControlName="Tag"
+              >
+            </ng-select>
+
+            <!-- <small *ngIf="!SelectedTags.length" id="nameErrorMsg" class="form-text text-danger ">Select at least one tag</small> -->
+            <small class="d-block btn w-100 text-right text-primary-link" (click)="toggleaddNewTag()" style="height: 15px;">Add new tag</small>
+          </div>
+        </div>
+        <div class="d-flex justify-content-between align-items-start" style="margin-top: -15px">
+          <!-- <button class="btn success-btn form-btn" [disabled]="isSending">Create</button> -->
+          <button class="btn success-btn" [disabled]="CreateLeadForm.invalid || isSending">
+            <ng-container *ngIf="isSending">Sending...</ng-container>
+            <ng-container *ngIf="!isSending">{{btnLabel}}</ng-container>
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <div id="create-tag-form" *ngIf="addNewTag">
+      <app-create-new-tag (ToggleaddNewTagForm)="toggleaddNewTag()"></app-create-new-tag>
+    </div>
+
+    <!-- <ng-multiselect-dropdown [placeholder]="'custom placeholder'" [settings]="dropdownSettings" [data]="dropdownList"
+        [(ngModel)]="selectedItems" (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
+    </ng-multiselect-dropdown> -->
+
+    <ng-template #selectedList>
+      <div class="selected-drop-list-wrapper">
+        <ul class="list-style-none pl-0 mb-0 selected-drop-list">
+          <li class="list-item" *ngFor="let item of UIList">
+            <span class="mr-3">{{ item?.name }}</span><span (click)="onRemoveTag(item)"><i
+                class="fas fa-times"></i></span>
+          </li>
+          <li *ngIf="selectedItemsList?.length > UIList?.length">
+            {{ selectedItemsList?.length - UIList?.length }}+
+          </li>
+        </ul>
+        <div class="clickable-space" (click)="toggleIsShowDropOptions()"></div>
+      </div>
+    </ng-template>
+  </div>
+</div>

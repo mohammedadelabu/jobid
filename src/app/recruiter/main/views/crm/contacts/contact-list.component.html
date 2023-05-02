@@ -1,0 +1,98 @@
+<!-- <p>contacts works!</p> -->
+
+<div class="d-flex align-items justify-content-between">
+  <h1 class="page-title">Contacts</h1>
+  <div id="top-buttons">
+    <div class="d-flex justify-content-around">
+      <button type="button" class="btn white-btn-green-border" (click)="onDealMultipleLeads()" *appCrm="Delete"
+        [disabled]='isloading' [disabled]="!SelectedContactList.length">
+        <i class="fas fa fa-trash"></i>&nbsp;{{
+        isloading ? "Deleting..." : " Delete"
+        }}
+      </button>
+      <button type="button" class="btn white-btn-green-border" (click)="openEmailMessageDialog()"
+        [disabled]="!SelectedContactList.length">
+        Send mail
+      </button>
+    </div>
+  </div>
+</div>
+<!-- {{(companyList$ | async) | json}} -->
+<!-- {{range | json}} -->
+<ul id="action-tool" class="mb-5 list-style-none pl-0">
+  <li class="date-range">
+    <form [formGroup]="range">
+      <mat-form-field appearance="fill">
+        <mat-label>Enter a date range</mat-label>
+        <mat-date-range-input [rangePicker]="picker">
+          <input matStartDate formControlName="Start" placeholder="Start date" (dateChange)="onChange($event)" />
+          <input matEndDate formControlName="End" placeholder="End date" (dateChange)="onChange($event)" />
+        </mat-date-range-input>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+      </mat-form-field>
+    </form>
+  </li>
+  <li>
+    <form [formGroup]="companySearch">
+      <mat-form-field appearance="fill">
+        <mat-label>Company</mat-label>
+        <mat-select formControlName="CompanyId" (selectionChange)="onChangeCompanySearch()">
+          <mat-option *ngFor="let company of (companyList$ | async)" [value]="company?.CompanyId">
+            {{company?.Name}}
+          </mat-option>
+          <mat-option> All </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </form>
+  </li>
+</ul>
+
+<!-- app-mailing-form -->
+<!-- <app-mailing-form></app-mailing-form> -->
+
+<!-- app-mailing-form -->
+<!-- {{(contactList$ | async) | json}} -->
+<!-- *ngIf="(contactList$ | async)?.length; else noCandidate" -->
+<!-- <ng-container *ngIf="(isContactListLoading$ | async)">
+  <small>Please wait...</small>
+</ng-container> -->
+
+<div>
+  <ng-container *ngIf="!(contactList$ | async)">
+    <ng-container *ngIf="(isContactListLoading$ | async)">
+      <app-simple-component-loader-with-spinner></app-simple-component-loader-with-spinner>
+    </ng-container>
+  </ng-container>
+  <ng-container *ngIf="!(isContactListLoading$ | async) && !(contactList$ | async)">
+    <div class="alert alert-info text-center">No contact</div>
+  </ng-container>
+
+
+
+  <div *ngIf="isSearchLead">
+    <button class="btn btn-sm" (click)="onGetLeadsList()">
+        <i class="fas fa-refresh"></i>
+        Refresh</button>
+</div>
+
+  <!--  -->
+  <ng-container *ngIf="(contactList$ | async)">
+    <app-contact-list-table [paginationData]="paginationData" [contactList]="contactList"
+      (GetEmailList)="onGetEmailList($event)" (GetSelectedContactList)="onSelectedContactList($event)">
+    </app-contact-list-table>
+    <!-- PAGINATION -->
+    <div class="text-right" *ngIf="contactList" id="pagination">
+      <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
+    </div>
+  </ng-container>
+</div>
+
+<ng-template #isLoading>
+  <!-- <small class="text-info">Loading...</small> -->
+  <app-simple-component-loader-with-spinner></app-simple-component-loader-with-spinner>
+</ng-template>
+<!-- isContactListLoading$ -->
+<ng-template #noContact>
+  <div class="alert alert-info text-center">No contact</div>
+</ng-template>

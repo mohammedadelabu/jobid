@@ -1,0 +1,41 @@
+<!-- <p>import-lead-form-dialog works!</p> -->
+<div class="card border-rounded-lg">
+    <div class="card-body">
+        <h5 class="form-title mb-3">Import Lead</h5>
+        <ng-container *ngIf="successMessage">
+            <div class="alert alert-info text-center">{{successMessage}}</div>
+        </ng-container>
+        <div *ngIf="!successMessage">
+            <form (ngSubmit)="uploadLeadFile()">
+                <div class="form-row">
+                    <div class="form-group col-12">
+                        <div class="form-control-wrapper">
+                            <label id="ui-temp" for="UserImage">
+                                <div id="file-name">{{label}}</div>
+                            </label>
+                            <input type="file" accept=".xlsx" (change)="onSelectFile($event)" name="UserImage"
+                                id="UserImage" class="form-control cursor-pointer" required>
+                        </div>
+                        <ng-container *ngIf="fileTypeErrorMsg">
+                            <small class="text-danger">{{fileTypeErrorMsg}}</small>
+                        </ng-container>
+                        <div class="btn btn-sm text-success" [ngClass]="{'d-none': !isFile}"><i
+                                class="fas fa-check"></i>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn success-btn" [disabled]="isSending">
+                    <ng-container *ngIf="isSending">Sending...</ng-container>
+                    <ng-container *ngIf="!isSending">{{btnLabel}}</ng-container>
+
+                </button>
+                <span class="mx-1"></span>
+                <button type="button" class="btn outline-danger-btn" (click)="closeDialog()">Cancel</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<ng-template #isLoading>
+    <div class="text success text-bold text-center">Loading...</div>
+</ng-template>

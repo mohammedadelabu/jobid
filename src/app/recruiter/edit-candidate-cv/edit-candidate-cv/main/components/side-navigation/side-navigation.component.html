@@ -1,0 +1,57 @@
+<!-- <p>side-navigation works!</p> -->
+<div class="sidebar-sticky pt-5 h-75">
+    <div class="d-flex flex-column justify-content-between h-100">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <!-- <a class="nav-link" [routerLink]="['/recruiter/dashboard']"
+                    routerLinkActive="router-link-active" [routerLinkActiveOptions]="{exact:
+                    true}">
+                    Dashboard <span class="sr-only">(current)</span>
+                </a> -->
+                <a class="nav-link" [routerLink]="['/edit-candidate-cv/personal-profile']"
+                    routerLinkActive="router-link-active">
+                    <span class="navlink-number">1</span>
+                    Personal profile <span class="sr-only">(current)</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/edit-candidate-cv/work-history']"
+                    routerLinkActive="router-link-active">
+                    <span class="navlink-number">2</span>
+                    Work history
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/edit-candidate-cv/education']"
+                    routerLinkActive="router-link-active">
+                    <span class="navlink-number">3</span>
+                    Education
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/edit-candidate-cv/skills']" routerLinkActive="router-link-active">
+                    <span class="navlink-number">4</span>
+                    Skills
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/edit-candidate-cv/projects']" routerLinkActive="router-link-active">
+                    <span class="navlink-number">5</span>
+                    Projects
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/edit-candidate-cv/others']" routerLinkActive="router-link-active">
+                    <span class="navlink-number">6</span>
+                    Others
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/edit-candidate-cv/summary']" routerLinkActive="router-link-active">
+                    <span class="navlink-number">7</span>
+                    Summary
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

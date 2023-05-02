@@ -1,0 +1,297 @@
+<!-- <p>undisclosed works!</p> -->
+
+<div class="text-right py-2" id="template-nav">
+    <div ngbDropdown class="d-inline-block">
+        <button type="button" class="btn btn-outline-success px-2" id="dropdownBasic1" ngbDropdownToggle>Download</button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+            <button ngbDropdownItem onclick="Export2Doc('content-to-pdf')" (click)="onMsWord()">Download as word</button>
+            <button ngbDropdownItem (click)="onPrint()">Download as PDF</button>
+        </div>
+    </div>
+</div>
+
+<div id="content-to-pdf">
+    <style>
+        #template-container {
+            font-size: 18px;
+            width: 100%;
+            margin: 0 auto;
+        }
+        
+        #template-container .template-header {
+            background-color: #ffffff;
+            padding: 3em 3.3em;
+        }
+        
+        #template-container .template-header>.inner {
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        #template-container .template-header .zarttech-logo-wrapper {
+            max-width: 20.5%;
+        }
+        
+        #template-container .template-header .box-pattern {
+            width: 30%;
+        }
+        
+        #template-container .template-header .boxes {
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        
+        #template-container .template-header .boxes>li {
+            height: 60px;
+            width: 60px;
+            border-radius: 12px;
+            transform: rotate(45deg);
+            background-color: #14984b;
+        }
+        
+        #template-container .template-header .boxes>li:first-child {
+            height: 89px;
+            width: 89px;
+            background-color: #14323e;
+        }
+        
+        #template-container .template-header .boxes>li:last-child {
+            height: 81px;
+            width: 81px;
+            position: absolute;
+            left: 249px;
+            top: 65%;
+        }
+        
+        #template-container .profile-image {
+            position: relative;
+            z-index: 3;
+            height: 80px;
+        }
+        
+        #template-container .profile-image .image-container {
+            height: 160px;
+            width: 160px;
+            border: 5px solid #ffffff;
+            border-radius: 20px;
+            position: absolute;
+            margin-top: -90px;
+            left: calc((100% - 160px) / 2);
+            background-color: #ffffff;
+            overflow: hidden;
+        }
+        
+        #template-container .content-one {
+            background-color: #14323e;
+            padding: 0 3em;
+            color: #ffffff;
+            position: relative;
+            z-index: 2;
+            border-bottom: 4px dashed #ffffff;
+        }
+        
+        #template-container .content-one .column-content {
+            line-height: 30px;
+        }
+        
+        #template-container .column-header {
+            text-transform: uppercase;
+            font: normal normal bold 25px Poppins;
+            text-align: center;
+            width: 100%;
+        }
+        
+        #template-container .column-header::before {
+            content: "";
+            border: 3px solid white;
+            display: block;
+            border-top-style: dashed;
+            border-bottom: unset;
+            border-right: unset;
+            border-left: unset;
+        }
+        
+        #template-container .column-header::after {
+            content: "";
+            border: 3px solid white;
+            display: block;
+            border-bottom-style: dashed;
+            border-top: unset;
+            border-right: unset;
+            border-left: unset;
+        }
+        
+        #template-container .column-center {
+            border-right: 4px dashed #ffffff;
+            border-left: 4px dashed #ffffff;
+        }
+        
+        #template-container .column-center .content-name {
+            font: normal normal bold 2rem Poppins;
+            text-align: center;
+        }
+        
+        #template-container .column-center .content-profession {
+            color: #14984b;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+        
+        #template-container .column-center .candidate-ref-number {
+            text-align: center;
+            font-size: 1.5rem;
+        }
+        
+        #template-container #portfolio-section .item {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        #template-container #portfolio-section .item a {
+            color: #ffffff;
+            text-decoration: none;
+            font: normal normal normal 20px Poppins;
+        }
+        
+        #template-container .content-two {
+            background: linear-gradient(152.64deg, #00964b 27.73%, rgba(20, 52, 63, 0.81) 67.9%);
+        }
+        
+        #template-container #candidate-skills .list-content ul li {
+            display: flex;
+            flex-wrap: nowrap;
+            align-items: center;
+        }
+        
+        #template-container #candidate-skills .list-content ul li::before {
+            content: "";
+            display: block;
+            height: 5px;
+            width: 5px;
+            background-color: #ffffff;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+        
+        #template-container .section-header {
+            background-color: #ffffff;
+            text-align: center;
+            font: normal normal bold 28px Poppins;
+            letter-spacing: 0px;
+            color: #14323e;
+            text-transform: uppercase;
+        }
+        
+        #template-container .section-content {
+            padding: 0 3em;
+            color: #ffffff;
+            border-top: 4px dashed #ffffff;
+        }
+        
+        #template-container .section-content .list-title {
+            font: normal normal bold 1.3rem Poppins;
+            letter-spacing: 0px;
+            color: #ffffff;
+            text-transform: uppercase;
+        }
+        
+        #template-container #candidate-skills .skills {
+            display: grid;
+            grid-gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        }
+        
+        #template-container #candidate-projects .project-item .list-title,
+        #template-container #candidate-projects .list-item .list-title,
+        #template-container #candidate-experience .project-item .list-title,
+        #template-container #candidate-experience .list-item .list-title,
+        #template-container #candidate-projects .project-item .list-title,
+        #template-container #candidate-projects .list-item .list-title {
+            width: 500px;
+        }
+        
+        #template-container #candidate-projects .project-item .list-title+div,
+        #template-container #candidate-projects .list-item .list-title+div,
+        #template-container #candidate-experience .project-item .list-title+div,
+        #template-container #candidate-experience .list-item .list-title+div,
+        #template-container #candidate-projects .project-item .list-title+div,
+        #template-container #candidate-projects .list-item .list-title+div {
+            width: 600px;
+        }
+        
+        #template-container #candidate-projects .project-item,
+        #template-container #candidate-projects .list-item,
+        #template-container #candidate-experience .project-item,
+        #template-container #candidate-experience .list-item,
+        #template-container #candidate-education .project-item,
+        #template-container #candidate-education .list-item,
+        #template-container #candidate-projects .project-item,
+        #template-container #candidate-projects .list-item {
+            border-bottom: 5px dashed #ffffff;
+            padding-bottom: 2em;
+        }
+        
+        #template-container #candidate-projects .project-item ul li:last-child,
+        #template-container #candidate-projects .list-item ul li:last-child,
+        #template-container #candidate-experience .project-item ul li:last-child,
+        #template-container #candidate-experience .list-item ul li:last-child,
+        #template-container #candidate-education .project-item ul li:last-child,
+        #template-container #candidate-education .list-item ul li:last-child,
+        #template-container #candidate-projects .project-item ul li:last-child,
+        #template-container #candidate-projects .list-item ul li:last-child {
+            margin-bottom: 0 !important;
+        }
+        
+        #template-container #candidate-projects .project-item:not(#template-container #candidate-projects .project-item:first-child, #template-container #candidate-projects .list-item:first-child, #template-container #candidate-experience .project-item:first-child, #template-container #candidate-experience .list-item:first-child, #template-container #candidate-education .project-item:first-child, #template-container #candidate-education .list-item:first-child, #template-container #candidate-projects .project-item:first-child, #template-container #candidate-projects .list-item:first-child),
+        #template-container #candidate-projects .list-item:not(#template-container #candidate-projects .project-item:first-child, #template-container #candidate-projects .list-item:first-child, #template-container #candidate-experience .project-item:first-child, #template-container #candidate-experience .list-item:first-child, #template-container #candidate-education .project-item:first-child, #template-container #candidate-education .list-item:first-child, #template-container #candidate-projects .project-item:first-child, #template-container #candidate-projects .list-item:first-child),
+        #template-container #candidate-experience .project-item:not(#template-container #candidate-projects .project-item:first-child, #template-container #candidate-projects .list-item:first-child, #template-container #candidate-experience .project-item:first-child, #template-container #candidate-experience .list-item:first-child, #template-container #candidate-education .project-item:first-child, #template-container #candidate-education .list-item:first-child, #template-container #candidate-projects .project-item:first-child, #template-container #candidate-projects .list-item:first-child),
+        #template-container #candidate-experience .list-item:not(#template-container #candidate-projects .project-item:first-child, #template-container #candidate-projects .list-item:first-child, #template-container #candidate-experience .project-item:first-child, #template-container #candidate-experience .list-item:first-child, #template-container #candidate-education .project-item:first-child, #template-container #candidate-education .list-item:first-child, #template-container #candidate-projects .project-item:first-child, #template-container #candidate-projects .list-item:first-child),
+        #template-container #candidate-education .project-item:not(#template-container #candidate-projects .project-item:first-child, #template-container #candidate-projects .list-item:first-child, #template-container #candidate-experience .project-item:first-child, #template-container #candidate-experience .list-item:first-child, #template-container #candidate-education .project-item:first-child, #template-container #candidate-education .list-item:first-child, #template-container #candidate-projects .project-item:first-child, #template-container #candidate-projects .list-item:first-child),
+        #template-container #candidate-education .list-item:not(#template-container #candidate-projects .project-item:first-child, #template-container #candidate-projects .list-item:first-child, #template-container #candidate-experience .project-item:first-child, #template-container #candidate-experience .list-item:first-child, #template-container #candidate-education .project-item:first-child, #template-container #candidate-education .list-item:first-child, #template-container #candidate-projects .project-item:first-child, #template-container #candidate-projects .list-item:first-child),
+        #template-container #candidate-projects .project-item:not(#template-container #candidate-projects .project-item:first-child, #template-container #candidate-projects .list-item:first-child, #template-container #candidate-experience .project-item:first-child, #template-container #candidate-experience .list-item:first-child, #template-container #candidate-education .project-item:first-child, #template-container #candidate-education .list-item:first-child, #template-container #candidate-projects .project-item:first-child, #template-container #candidate-projects .list-item:first-child),
+        #template-container #candidate-projects .list-item:not(#template-container #candidate-projects .project-item:first-child, #template-container #candidate-projects .list-item:first-child, #template-container #candidate-experience .project-item:first-child, #template-container #candidate-experience .list-item:first-child, #template-container #candidate-education .project-item:first-child, #template-container #candidate-education .list-item:first-child, #template-container #candidate-projects .project-item:first-child, #template-container #candidate-projects .list-item:first-child) {
+            padding-top: 2em;
+        }
+        
+        #template-container #candidate-projects .project-item:last-child,
+        #template-container #candidate-projects .list-item:last-child,
+        #template-container #candidate-experience .project-item:last-child,
+        #template-container #candidate-experience .list-item:last-child,
+        #template-container #candidate-education .project-item:last-child,
+        #template-container #candidate-education .list-item:last-child,
+        #template-container #candidate-projects .project-item:last-child,
+        #template-container #candidate-projects .list-item:last-child {
+            margin-bottom: 0;
+            border-bottom: none;
+        }
+        
+        #template-container #candidate-certification .list-title {
+            width: 500px;
+        }
+        
+        #template-container #candidate-certification .list-title+div {
+            width: 600px;
+        }
+        
+        #template-container.undisclosedCv .content-name,
+        #template-container.undisclosedCv #portfolio-section,
+        #template-container.undisclosedCv .work-history-company-name {
+            color: red;
+            display: none;
+        }
+        /*# sourceMappingURL=style.css.map */
+    </style>
+    <app-admin-cv-template [isUndisclosed]="isUndisclosed" [wsWordFormat]="wsWordFormat"></app-admin-cv-template>
+</div>
+
+<!-- <div id="content-to-pdf">
+    <h2>Best ways to loose weight</h2>
+    <p>The best way to loose weight is just contol your diet. </p>
+    <a href="">Read this nice article here</a>
+</div> -->
+
+<!-- <button class="btn btn-primary" onclick="Export2Doc('content-to-pdf');">Export as .doc</button> -->

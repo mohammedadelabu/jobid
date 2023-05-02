@@ -1,0 +1,20 @@
+<!-- <p>todo-list-card works!</p> -->
+
+<div class="todo-card">
+    <div class="inner-wrapper">
+        <label for="item{{indexNumber}}" class="content">
+            <h5 class="todo-title">{{todo?.Title }}</h5>
+            <div class="todo-date-time mb-2">
+                <!-- <span class="date">25 May</span>
+                <span class="time">7am</span> -->
+                <span class="date">{{todo?.DueDate}}</span>
+                <span class="time">{{todo?.DueTime}}</span>
+            </div>
+            <div class="todo-body">{{todo?.Description}}</div>
+        </label>
+        <div class="todo-check-control">
+            <input type="checkbox" name="" id="item{{indexNumber}}" [(ngModel)]="todo.isCompleted" (change)="UpdateIsCompleted()">
+            <span class="ui-check"></span>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,89 @@
+@use "../../../../../sass/_abstracts/colors";
+@use "../../../../../sass/_partials/mixins";
+
+#top-action {
+  // background-color: red;
+}
+
+.card-wrapper {
+  .candidate-list-card {
+    background: #f0f0f0;
+    border: 1px solid #dadada !important;
+    box-sizing: border-box;
+    border-radius: 10px;
+    // margin-right: 1.2em;
+    // margin-bottom: 1.2em;
+
+    .card-title {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-transform: capitalize;
+    }
+  }
+
+  @include mixins.maxmq(425px) {
+    .candidate-list-card {
+      margin-right: 0;
+    }
+  }
+}
+
+.card-profile-img {
+  width: 70px;
+  height: 71px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: #ffffff;
+}
+
+.card-action {
+  .btn {
+    margin-right: 2em;
+    font-size: 12px;
+    background: #14984b;
+    color: #ffffff;
+    border-radius: 5px;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+.candidate-btn-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  
+  .candidate-btn {
+    // background: #14984b;
+    background: colors.$PrimaryColorGreen;
+    border-radius: 5px;
+    font-size: 12px;
+    border: none;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    padding: 10px 10px;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+}
+
+
+.card-list-gutter {
+  // @media (min-width: 768px) {
+      // # Customize grid gap for form grig system
+      > .row > .col,
+      >.row {
+          margin-right: -12px;
+          margin-left: -12px;
+          & > [class*="col-"] {
+              padding-right: 12px;
+              padding-left: 12px;
+              margin-bottom: 24px;
+          }
+      }
+  // }
+}

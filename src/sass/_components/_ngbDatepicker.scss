@@ -1,0 +1,13 @@
+@use "../_abstracts/colors";
+@use "../_abstracts/typography";
+.ngb-dp-weekday {
+    // color: colors.$text-colour-100- !important;
+}
+
+.btn-link {
+    // color: colors.$green-100- !important;
+}
+
+[ngbDatepickerDayView] {
+    font-family: typography.$poppinsFontFamily !important;
+}

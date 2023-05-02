@@ -1,0 +1,61 @@
+<!-- <p>send-lead-email-message-form-dialog works!</p> -->
+
+<div class="container-fluid">
+    <div class="card border-rounded-lg">
+        <div class="card-body">
+            <h5 class="text-center form-title">Send Email**</h5>
+            <form #EmailMessageForm="ngForm" (ngSubmit)="onSubmit(EmailMessageForm)">
+                <div class="form-group">
+                    <label for="">Email(s)</label>
+                    <div class="email-list-container">
+                        <ul id="email-list" class="list-style-none pl-0 mb-0"
+                            *ngIf="data.EmailAddressList.length; else noEmailList">
+                            <li *ngFor="let item of emailAddressList">
+                                <div class="mx-2">
+                                    <span>{{ item }}</span>
+                                    <span class="ml-2 cursor-pointer" *ngIf="emailAddressList?.length > 1"
+                                        (click)="onRemoveTag(item)"><i class="fas fa-times"></i>
+                                    </span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <ng-container *ngIf="emptyEmailListMessage">
+                        <small class="text-danger">{{emptyEmailListMessage}}</small>
+                    </ng-container>
+                </div>
+                <div class="form-group">
+                    <label for="Subject">Subject </label>
+                    <input type="text" class="form-control" id="Subject" name="Subject" ngModel #Subject="ngModel"
+                        required>
+                    <div *ngIf="Subject.invalid && (Subject.dirty || Subject.touched)">
+                        <small class="text-danger" *ngIf="Subject.errors?.['required']">
+                            Subject is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Message" class="required-field-label ">Enter message</label>
+                    <textarea name="Message" id="Message" cols="30" rows="10" class="form-control" name="Message"
+                        ngModel #Message="ngModel" required></textarea>
+                    <div *ngIf="Message.invalid && (Message.dirty || Message.touched)">
+                        <small class="text-danger" *ngIf="Message.errors?.['required']">
+                            Message is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center justify-content-between">
+                    <button class="btn action-btn" [disabled]="!EmailMessageForm.valid || isSending">
+                        <ng-container *ngIf="isSending">Sending...</ng-container>
+                        <ng-container *ngIf="!isSending">Send Message</ng-container>
+                    </button>
+                    <button type="button" class="btn text-danger" (click)="closeDialog()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<ng-template #noEmailList>
+    <small class="text-info">No Email address listed!</small>
+</ng-template>

@@ -1,0 +1,244 @@
+<!-- <p>candidate-messenger works!</p> -->
+<div class="dashboard-page-Wrapper">
+  <div
+    id="top-action"
+    class="d-flex align-items-center justify-content-between flex-wrap mb-4"
+  >
+    <div class="d-flex align-items-center">
+      <button class="btn btn-default mr-3" (click)="back()">
+        <img
+          src="../../../../../../../assets/images/icons/angle-left-icon.svg"
+          alt=""
+          class="img-fluid"
+        />
+      </button>
+      <h1 class="page-title py-0">Candidate Details</h1>
+    </div>
+    <!-- Recruiter actions -->
+    <ul id="recruiter-actions" class="list-style-none pl-0 py-3">
+      <li>
+        <button class="action-btn btn btn-sm view-cv-btn" (click)="onViewCv()">
+          View CV
+        </button>
+      </li>
+      <li>
+        <button
+          class="action-btn btn btn-sm schedule-interview-btn"
+          (click)="openScheduleInterviewDialog(candidateEmail)"
+        >
+          Shedule Interview
+        </button>
+      </li>
+      <li>
+        <button class="action-btn btn btn-sm call-btn">Call</button>
+      </li>
+      <li>
+        <button class="action-btn btn btn-sm edit-cv-btn" (click)="onEditCV()">
+          Edit CV
+        </button>
+      </li>
+      <li>
+        <button
+          class="action-btn btn btn-sm download-cv-btn"
+          (click)="onDownloadCv()"
+        >
+          Download CV
+        </button>
+      </li>
+    </ul>
+  </div>
+
+  <div class="row">
+    <div class="col-12 col-xl-8">
+      <div class="card display-content-card" id="messenger-block">
+        <div class="card-body">
+          <div id="message-list">
+            <ul class="list-group">
+              <li class="list-group-item" *ngFor="let message of messageList">
+                <div class="card bg-none border-0 mb-3">
+                  <!-- <div class=""> -->
+                  <div class="img-wrap">
+                    <!-- <img src="{{message.Sender.ImgUrl}}" alt="" class="img-fluid"> -->
+                    <img
+                      src="../../../../../../../assets/images/image-placeholder.jpg"
+                      alt="..."
+                      class="img-fluid"
+                    />
+                    <!-- <img class="img-fluid" src="{{candidate?.User?.ProfileImageUrl}}"
+                                                *ngIf="candidate?.User?.ProfileImageUrl"> -->
+                  </div>
+                  <div class="text-content">
+                    <div class="card-body py-0">
+                      <div
+                        class="card-text message-body mb-0"
+                        [innerHTML]="message?.Body"
+                      >
+                        <!-- This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer. -->
+                      </div>
+                      <div
+                        class="d-flex align-items-center justify-content-between flex-wrap"
+                      >
+                        <div>
+                          <small class="text-muted">
+                            - {{ message?.Sender }}
+                          </small>
+                        </div>
+                        <div>
+                          <small class="text-muted">
+                            {{ message?.Date | dateAgo }}
+                            <!-- Last updated 3 mins ago -->
+                          </small>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- </div> -->
+                </div>
+              </li>
+              <!-- <li class="list-group-item">
+                <div class="card bg-none border-0 mb-3">
+                  <div class="d-flex align-items-center">
+                    <div>
+                      <div class="img-wrap">
+                        <img
+                          src="../../../../../../../assets/images/image-placeholder.jpg"
+                          alt="..."
+                          class="img-fluid"
+                        />
+                        <img class="img-fluid" src="{{candidate?.User?.ProfileImageUrl}}"
+                                                *ngIf="candidate?.User?.ProfileImageUrl">
+                      </div>
+                    </div>
+                    <div>
+                      <div class="card-body">
+                        <p class="card-text mb-0">
+                          This is a wider card with supporting text below as a
+                          natural lead-in to additional content. This content is
+                          a little bit longer.
+                        </p>
+                        <p class="card-text">
+                          <small class="text-muted"
+                            >Last updated 3 mins ago</small
+                          >
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li> -->
+            </ul>
+          </div>
+          <div class="alert alert-info text-center" *ngIf="responseMessage">
+            {{ responseMessage }}
+          </div>
+          <div
+            id="messenger-form"
+            class="card bg-none border-0"
+            *ngIf="!responseMessage"
+          >
+            <h5 class="card-header">From HR Team (Hrteam@zarttech.com)</h5>
+            <div class="form-wrapper">
+              <form
+                [formGroup]="messagingForm"
+                class="pb-3"
+                (ngSubmit)="onSubmitMessage()"
+              >
+                <div class="px-3 pt-2" id="candidate-email-wrapper">
+                  <div class="">
+                    <label>To: {{ candidateEmail }}</label>
+                  </div>
+                </div>
+                <div class="px-3 pt-4">
+                  <div class="form-group">
+                    <label for="Title">Title</label>
+                    <input
+                      type="text"
+                      id="Title"
+                      class="form-control"
+                      formControlName="messageTitle"
+                    />
+                  </div>
+                  <div
+                    class="form-group"
+                    id="messenger-text-editor"
+                    [ngClass]="{ 'hide-header': !isHeader }"
+                  >
+                    <label for="Body">Body</label>
+                    <!-- <textarea class="form-control" id="exampleFormControlTextarea1"
+                                            rows="3"></textarea> -->
+                    <editor
+                      id="Body"
+                      formControlName="messageBody"
+                      placeholder="Message"
+                      initialValue="Message"
+                      name="Message"
+                      [init]="{
+                        height: 200,
+                        menubar: false,
+                        plugins: [
+                          'advlist autolink lists link image charmap print preview anchor',
+                          'searchreplace visualblocks code fullscreen',
+                          'insertdatetime media table paste code help wordcount'
+                        ],
+                        toolbar:
+                          'undo redo | formatselect | bold italic backcolor | \
+                                              alignleft aligncenter alignright alignjustify | \
+                                              bullist numlist outdent indent | removeformat | help'
+                      }"
+                    ></editor>
+                  </div>
+                  <ng-container *ngIf="fileLabel">
+                    <small id="file-output">{{ fileLabel }}</small>
+                  </ng-container>
+
+                  <div
+                    class="d-flex align-items-center justify-content-between"
+                  >
+                    <div id="action-pill">
+                      <div class="d-flex align-items-center">
+                        <button
+                          type="button"
+                          class="btn p-0"
+                          id="editor-header-toggler"
+                          (click)="toggleHeader()"
+                        ></button>
+                        <div>
+                          <label
+                            for="file"
+                            class="mb-0"
+                            id="file-label"
+                          ></label>
+                          <input
+                            type="file"
+                            id="file"
+                            hidden
+                            (change)="onSelectFile($event)"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <!-- <button class="btn btn-default on-editor-btn">
+                                            <img src="../../../../../../../assets/images/icons/editor-icon.svg" alt=""
+                                                class="img-fluid">
+                                        </button> -->
+                    <button type="submit" class="btn success-btn">
+                      <img
+                        src="../../../../../../../assets/images/icons/paper-plane-icon.svg"
+                        alt=""
+                        class="img-fluid"
+                      />&nbsp;&nbsp;&nbsp;Send
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-xl-4">
+      <!-- RELATED CANDIDATES LIST -->
+      <app-related-candidates></app-related-candidates>
+    </div>
+  </div>
+</div>

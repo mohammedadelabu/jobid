@@ -1,0 +1,56 @@
+@use "../_abstracts/colors";
+@use "../_abstracts/typography";
+@use "../_partials/mixins";
+.skills {
+    display: flex;
+    flex-wrap: wrap;
+    .skill-item {
+        margin-right: 0.5em;
+        margin-bottom: 0.5em;
+        height: 24px;
+        span {
+            // display: flex;
+            // flex-direction: column;
+            // align-items: flex-start;
+            padding: 3px 20px;
+
+            // position: absolute;
+            // width: 122px;
+            // height: 24px;
+            // left: 790px;
+            // top: 662px;
+            /* Primary Color/Green 20% */
+            background: #d0eadb;
+            /* Primary Color/Green 75% */
+            border: 1px solid #4fb278;
+            box-sizing: border-box;
+            border-radius: 15.5px;
+            //
+            /* Body 2/Left */
+            font-family: "Poppins";
+            font-style: normal;
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 18px;
+            /* Primary Color/Green 75% */
+            color: #4fb278;
+        }
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+
+    &.interact {
+        .skill-item {
+            span {
+                .btn {
+                    color: inherit;
+                    &::after {
+                        @include mixins.after("\f00d", inherit);
+                        // margin-left: 1em;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,41 @@
+<!-- <p>preview-projects works!</p> -->
+<ng-template #noProject>
+    <div class="text-center alert alert-info">No Project</div>
+</ng-template>
+<div *ngIf="candidateProjectList?.length; else noProject">
+    <div class="card list-card mb-4" *ngFor="let item of candidateProjectList">
+
+        <div class="card-body">
+            <div class="card-control text-right">
+                <div class="inline-flex">
+                    <!-- <button class="btn btn-sm py-0" [routerLink]="['/candidate/create-resume/projects/update-project/', item.Id]">
+                <i class="fas fa-pen text-info"></i>
+            </button> -->
+                    <button class="btn btn-sm py-0" (click)="updateExperience(item.Id, candidateId)">
+                <i class="fas fa-pen text-info"></i>
+            </button>
+                    <button class="btn btn-sm py-0" (click)="removeExperience(item.Id)">
+                <i class="fas fa-trash text-danger"></i>
+            </button>
+                </div>
+            </div>
+            <h5 class="title">
+                <!-- Product designer, Zwarttech&nbsp;&nbsp;Netherlands -->
+                <a href="{{item?.ProjectUrl}}" target="_blank" class="text-link">
+                {{item?.ProjectName}}
+            </a><sup><small><i class="fas fa-external-link-alt"></i></small></sup>
+            </h5>
+
+            <div class="light-title">
+                <!-- June, 2020 - present -->
+                {{item?.StartDate}}<span *ngIf="item?.StopDate">&nbsp;&nbsp;-&nbsp;&nbsp; {{item?.StopDate}}</span>
+            </div>
+
+            <div>
+                <!-- Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
+            sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur. -->
+                <div [innerHTML]="item?.Description"></div>
+            </div>
+        </div>
+    </div>
+</div>

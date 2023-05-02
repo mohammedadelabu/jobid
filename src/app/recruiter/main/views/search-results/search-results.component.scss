@@ -1,0 +1,60 @@
+@use "../../../../../sass/_partials/mixins";
+
+#filter {
+    border-bottom: 1px solid #c7c7c7;
+    padding: 1em 0 1em 0;
+}
+
+#filter-list {
+    .dropdown-content {
+        height: 300px;
+        overflow-y: scroll;
+    }
+}
+
+.img-wrap {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 1em;
+}
+.image-container {
+    width: 85px;
+    + div{
+        width: calc(100% - 85px);
+    }
+}
+.search-card {
+    max-width: 650px;
+    font-size: 12px;
+    a {
+        // text-decoration: none;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 24px;
+        color: #000000;
+    }
+    .card-title {
+        font-size: 0.85rem;
+        margin-bottom: 0;
+    }
+    .card-text {
+        margin-bottom: 0;
+    }
+}
+
+.card-action {
+    .btn {
+      font-size: 12px;
+      border: 2px solid #14984b;
+      color: #14984b;
+      border-radius: 5px;
+      padding: .2em .7em;
+      @include mixins.transition(all 300ms ease-in-out);
+      &:hover{
+        background-color: rgba(20, 152, 75, .2);
+        @include mixins.transition(all 300ms ease-in-out);
+      }
+    }
+  }

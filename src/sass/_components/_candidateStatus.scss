@@ -1,0 +1,114 @@
+@use "../_partials/mixins";
+
+.status {
+    &.badge {
+        font-family: "Poppins";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 18px;
+    }
+    &.badge-registered,
+    &.badge-shortlisted,
+    &.badge-submitted,
+    &.badge-accepted {
+        background: #afe2ff;
+        color: #0ca5fc;
+    }
+    &.badge-interviewed,
+    &.badge-technical-interview,
+    &.badge-client-interviewed {
+        background: #b8d2ff;
+        color: #093580;
+    }
+
+    &.badge-awaiting-feedback,
+    &.badge-flagged {
+        color: #f2b200;
+        background: #ffebac;
+    }
+    &.badge-hired {
+        background: #d0eadb;
+        color: #14984b;
+    }
+    &.badge-disengaged,
+    &.badge-uncompleted {
+        color: #0ca5fc;
+        background: #afe2ff;
+    }
+    &.badge-not-selected,
+    &.badge-blocked {
+        background: #ffc6c6;
+        color: #FFFFFF;
+    }// RecruisitionStatus
+    &.badge-new,
+    &.badge-closed {
+        background: #000000;
+        color: #FFFFFF;
+    }
+    &.badge-ongoing {
+        background: #F19D38;
+        color: #FFFFFF;
+    }
+    &.badge-rollover {
+        background: #18333C;
+        color: #FFFFFF;
+    }
+    &.badge-rejected {
+        background: #EA3223;
+        color: #FFFFFF;
+    }
+    &.badge-onhold {
+        background: #EA3CF7;
+        color: #FFFFFF;
+    }
+    &.badge-awaiting-feedback {
+        background: #EECDCD;
+        color: #FFFFFF;
+    }
+
+    //
+    // RecruisitionStatus
+
+    &.badge-new,
+    &.badge-closed {
+        background: #000000;
+        color: #ffffff;
+    }
+    &.badge-ongoing {
+        background: #f19d38;
+        color: #ffffff;
+    }
+    &.badge-rollover {
+        background: #18333c;
+        color: #ffffff;
+    }
+    &.badge-rejected {
+        background: #ea3223;
+        color: #ffffff;
+    }
+    &.badge-onhold {
+        background: #ea3cf7;
+        color: #ffffff;
+    }
+    &.badge-awaiting-feedback {
+        background: #eecdcd;
+        color: #14323E;
+    }
+}
+.recruisition-status {
+    .badge {
+        // display: flex !important;
+        // display: block;
+        &::after {
+            @include mixins.after("\f107", "inherit");
+            color: #ffffff;
+            margin-left: 10px;
+        }
+        &.badge-awaiting-feedback {
+            &::after {
+                color: #14323E;
+            }
+        }
+    }
+}

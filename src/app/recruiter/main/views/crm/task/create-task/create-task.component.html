@@ -1,0 +1,52 @@
+<!-- <p>create-task works!</p> -->
+
+<div class="card border-rounded-lg">
+    <div class="card-body">
+        <h5 class="form-title text-center">Create Task</h5>
+        <form [formGroup]="CreateTaskForm" novalidate (ngSubmit)="onSubmit(CreateTaskForm)">
+            <div class="form-row">
+                <div class="form-group col-12 col-sm-6">
+                    <label for="TaskName" class="required-field-label">Task Name</label>
+                    <input type="text" class="form-control" id="TaskName" formControlName="TaskName"
+                        [ngClass]="{'is-invalid': CreateTaskForm.get('TaskName')?.touched && CreateTaskForm.get('TaskName')?.invalid}"
+                        required>
+                    <small id="nameErrorMsg" class="form-text text-danger invalid-feedback">Task Name
+                        is
+                        required.</small>
+                </div>
+                <div class="form-group col-12 col-sm-6">
+                    <label for="DueDate" class="required-field-label">Due Date</label>
+                    <input type="date" class="form-control" id="DueDate" formControlName="DueDate"
+                        [ngClass]="{'is-invalid': CreateTaskForm.get('DueDate')?.touched && CreateTaskForm.get('DueDate')?.invalid}"
+                        required>
+                    <small id="nameErrorMsg" class="form-text text-danger invalid-feedback">Due date
+                        is
+                        required.</small>
+                    <!-- <div>
+                        <mat-form-field appearance="fill" class="w-100">
+                            <mat-label>Choose a date</mat-label>
+                            <input matInput [matDatepicker]="picker">
+                            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                    </div> -->
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="Description" class="required-field-label">Description</label>
+                <textarea name="" id="" cols="30" rows="3" id="Description" class="form-control"
+                    formControlName="Description"
+                    [ngClass]="{'is-invalid': CreateTaskForm.get('Description')?.touched && CreateTaskForm.get('Description')?.invalid}"
+                    required></textarea>
+                <small id="nameErrorMsg" class="form-text text-danger invalid-feedback">Provide task
+                    description.</small>
+            </div>
+            <button class="btn success-btn" [disabled]="CreateTaskForm.invalid || isSending">
+                <ng-container *ngIf="isSending">Saving...</ng-container>
+                <ng-container *ngIf="!isSending">Save</ng-container>
+            </button>
+            <span class="mx-1"></span>
+            <button type="button" class="btn outline-danger-btn" (click)="closeDialog()">Cancel</button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,31 @@
+<!-- <p>settings works!</p> -->
+<div class="dashboard-page-Wrapper">
+    <div id="top-action">
+        <div class="d-flex align-items-center justify-content-between">
+            <h1 class="page-title">Settings</h1>
+            <div *appSettings class="d-flex">
+                <button class="btn primary-border-btn add-applicant-btn" (click)="openDialog()">Create
+                    Role</button>
+                    <span class="mx-1"></span>
+                <!-- <button class="btn btn-sm primary-border-btn add-applicant-btn">Register
+                    Module</button>
+                <button class="btn btn-sm primary-border-btn">Update
+                    Roles</button> -->
+                <button class="btn btn-sm primary-border-btn add-applicant-btn" (click)="openCreateBranchDialog()">Create
+                    Branch</button>
+                    <!-- <button class="btn btn-sm primary-border-btn add-applicant-btn" (click)="onRouteCreateBranch()">Create
+                        Branch</button> -->
+            </div>
+        </div>
+    </div>
+    <div id="settings-content">
+        <div class="inner">
+            <div class="settings-side-nav">
+                <app-settings-side-navigation></app-settings-side-navigation>
+            </div>
+            <div class="setting-main-content">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+</div>

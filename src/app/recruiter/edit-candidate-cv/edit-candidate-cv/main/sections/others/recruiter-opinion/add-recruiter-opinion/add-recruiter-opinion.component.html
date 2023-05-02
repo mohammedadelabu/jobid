@@ -1,0 +1,24 @@
+<!-- <p>add-recruiter-opinion works!</p> -->
+<div class="alert alert-info text-center" *ngIf="responseMessage">{{responseMessage}}</div>
+<div class="text-right">
+    <button type="button" class="btn btn-sm px-0" (click)="cancelForm()">
+        <i class="fas fa-times text-danger"></i>
+    </button>
+</div>
+<form class="mb-5" [formGroup]="recruiterOpinionForm" (ngSubmit)="saveOpinion()">
+    <div class="form-row">
+        <div class="form-group col-12"> 
+            <editor placeholder="opinion" initialValue="opinion" name="opinion" formControlName="opinion" [init]=" { height: 200, menubar: false, plugins: [ 'advlist autolink lists link image charmap print preview anchor',
+            'searchreplace visualblocks code fullscreen', 'insertdatetime media table paste code help wordcount' ], toolbar: 'undo redo | formatselect | bold italic backcolor | \
+              alignleft aligncenter alignright alignjustify | \
+              bullist numlist outdent indent | removeformat | help' } "></editor>
+        </div>
+    </div>
+    <!-- <div>
+        <button class="btn form-btn px-5">SUBMIT</button>
+    </div> -->
+    <div>
+        <button type="submit" class="btn btn-outline-success px-5">SAVE</button>
+    </div>
+
+</form>

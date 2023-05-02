@@ -1,0 +1,99 @@
+<div class="card">
+  <div class="card-body">
+    <!-- <p>add-interview-question works!</p> -->
+    <h5 class="form-title text-center">Add Question</h5>
+    <div class="form-group">
+      <select
+        name="FormType"
+        id="FormType"
+        class="form-control"
+        [(ngModel)]="formType"
+      >
+        <option value="DEFAULT" selected="selected">
+          Select a question Option
+        </option>
+        <option value="INPUT_TYPE">Input Field</option>
+        <option value="OPTIONS_TYPE">Dropdown Field</option>
+      </select>
+    </div>
+
+    <!-- INPUT_TYPE FORM -->
+    <div *ngIf="formType == 'INPUT_TYPE'">
+      <form [formGroup]="InputTypeForm">
+        <div class="form-group">
+          <label
+            for="question"
+            id="question"
+            class="question required-field-label"
+            >Question</label
+          >
+          <input type="text" class="form-control" formControlName="question" />
+        </div>
+        <button
+          [disabled]="!InputTypeForm.valid"
+          [mat-dialog-close]="{ type: 'input', form: InputTypeForm }"
+          class="btn success-btn"
+        >
+          ADD
+        </button>
+      </form>
+    </div>
+
+    <!--  -->
+
+    <!-- OPTIONS_TYPE FORM -->
+    <div *ngIf="formType == 'OPTIONS_TYPE'">
+      <form [formGroup]="OptionsTypeForm" class="options-form">
+        <div class="form-group">
+          <label
+            for="Question"
+            id="Question"
+            class="Question required-field-label"
+            >Question</label
+          >
+          <input type="text" class="form-control" formControlName="question" />
+        </div>
+        <div formArrayName="options">
+          <div
+            *ngFor="let option of options.controls; let i = index"
+            class="form-group"
+          >
+            <label class="required-field-label" for="option {{ i }}"
+              >Answer option {{ i + 1 }}</label
+            >
+            <input
+              id="option {{ i }}"
+              type="text"
+              class="form-control"
+              [formControlName]="i"
+            /><button class="btn btn-sm delete-btn" (click)="removeOption(i)">
+              <img
+                src="../../../../../../assets/images/icons/cancel-red-circle.svg"
+                alt=""
+                class="img-fluid"
+              />
+            </button>
+          </div>
+        </div>
+        <div class="text-right">
+          <button
+            class="btn text-green-btn btn-sm white-space-nowrap"
+            (click)="addOption()"
+          >
+            +&nbsp;Add Answer Option
+          </button>
+        </div>
+        <button
+          [disabled]="!OptionsTypeForm.valid"
+          [mat-dialog-close]="{
+            type: 'multiple-option',
+            form: OptionsTypeForm
+          }"
+          class="btn success-btn"
+        >
+          ADD
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,132 @@
+<!-- <p>job-applicants works!</p> -->
+<app-spinner *ngIf="isLoading"></app-spinner>
+<div class="dashboard-page-Wrapper">
+  <div
+    id="top-action"
+    class="d-flex align-items-center justify-content-between flex-wrap mb-4"
+  >
+    <div class="d-flex align-items-center">
+      <img
+        src="assets/images/icons/angle-left-icon.svg"
+        alt=""
+        class="img-fluid mr-3 cursor-pointer"
+        (click)="back()"
+      />
+      <h1 class="page-title py-0 mb-0">Applicants</h1>
+    </div>
+    <!-- Recruiter actions -->
+    <ul id="recruiter-actions" class="list-style-none pl-0 mt-3">
+      <!-- <li>
+      <button class="btn btn-sm white-btn-green-border">
+          +&nbsp;&nbsp;Add Applicants
+      </button>
+    </li> -->
+      <li>
+        <!--  -->
+        <!-- <button
+          class="btn btn-sm primary-border-btn add-applicant-btn"
+          (click)="onApplyForPosition()"
+        > -->
+        <button
+          class="btn btn-sm primary-border-btn add-applicant-btn"
+          [routerLink]="[
+            '/recruiter/employee-management/recruitment/candidates/',
+            vacancyId
+          ]"
+        >
+          Add Applicants
+        </button>
+      </li>
+      <li>
+        <button
+          class="btn btn-sm outline-danger-btn reject-applicant-btn"
+          (click)="onRejectAllApplicants()"
+        >
+          Reject all Applicants
+        </button>
+      </li>
+      <li>
+        <button
+          class="btn btn-sm primary-border-btn shortlisted-applicant-white-primary-border-btn"
+          (click)="onShortlistAllApplicants()"
+        >
+          Shortlist all Applicants
+        </button>
+      </li>
+    </ul>
+  </div>
+
+  <!-- {{VacancyInformation?.Company | json}} {{companyContact | json}} -->
+
+  <ul class="list-style-none pl-0 mb-5" id="intro-details">
+    <li>
+      <div class="name">Company</div>
+      <div class="value">{{ VacancyInformation?.Company?.Name }}</div>
+    </li>
+    <li>
+      <div class="name">Position</div>
+      <div class="value">{{ VacancyInformation?.JobTitle }}</div>
+    </li>
+    <li>
+      <div class="name">Created By</div>
+      <div class="value">
+        <div>
+          {{ VacancyInformation?.JobPosterFirstName }}&nbsp;{{
+            VacancyInformation?.JobPosterLastName
+          }}
+        </div>
+        <div class="d-flex align-items-center">
+          <!-- <a
+            href="tel:{{ VacancyInformation?.JobPoster.PhoneNumber }}"
+            class="icon btn btn-sm p-0"
+          > -->
+          <a href="#" style="pointer-events: none" class="icon btn btn-sm p-0">
+            <img
+              src="assets/images/icons/phone-green-box.svg"
+              alt=""
+              class="img-fluid"
+            />
+          </a>
+          <div class="icon btn btn-sm p-0">
+            <img
+              src="assets/images/icons/chat-green-box.svg"
+              alt=""
+              class="img-fluid"
+            />
+          </div>
+        </div>
+      </div>
+    </li>
+    <li *ngIf="companyContact?.FirstName || companyContact?.LastName">
+      <div class="name">Contact Person</div>
+      <div class="value">
+        <div>
+          {{ companyContact?.FirstName }}&nbsp;{{ companyContact?.LastName }}
+        </div>
+        <div></div>
+        <div class="d-flex align-items-center">
+          <button class="icon btn btn-sm p-0">
+            <img
+              src="assets/images/icons/phone-green-box.svg"
+              alt=""
+              class="img-fluid"
+            />
+          </button>
+          <div class="icon btn btn-sm p-0">
+            <img
+              src="assets/images/icons/chat-green-box.svg"
+              alt=""
+              class="img-fluid"
+            />
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
+
+  <!-- <app-job-applicants-navigation></app-job-applicants-navigation>
+<router-outlet></router-outlet> -->
+
+  <!-- {{applicantList | json}} -->
+  <router-outlet></router-outlet>
+</div>

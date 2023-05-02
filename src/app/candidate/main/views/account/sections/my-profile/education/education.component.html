@@ -1,0 +1,19 @@
+<!-- <p>education works!</p> -->
+<ng-template #noEducation>
+    <div class="alert alert-info text-center">
+        No Education
+    </div>
+</ng-template>
+<!-- {{educationList | json}} -->
+<ul class="professional-info-list list-style-none pl-0 mb-0" *ngIf="educationList?.length; else noEducation">
+    <li class="item" *ngFor="let item of educationList">
+        <h5 class="title" *ngIf="item?.Degree && item?.SchoolName">
+            <!-- Product designer, Zwarttech&nbsp;&nbsp;Netherlands -->
+            {{item?.Degree}}, {{item?.SchoolName}}&nbsp;&nbsp;{{item?.SchoolLocation}}
+        </h5>
+        <div class="light-title" *ngIf="item?.StartDate && item?.StopDate">
+            <!-- June, 2020 - present -->
+            {{item?.StartDate}}&nbsp;&nbsp;-&nbsp;&nbsp; {{item?.StopDate}}
+        </div>
+    </li>
+</ul>

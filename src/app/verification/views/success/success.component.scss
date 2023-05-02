@@ -1,0 +1,33 @@
+.fieldset{
+    padding-top: 3em;
+    padding-bottom: 3em;
+}
+
+.content-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+}
+.img-container {
+    // display: flex;
+    // align-items: center;
+    // justify-content: center;
+    // padding: 2em;
+    .img-wrapper {
+        max-width: 200px;
+    }
+}
+h1 {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 30px;
+    color: #14984b;
+}
+
+p {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    color: #4f656e;
+}

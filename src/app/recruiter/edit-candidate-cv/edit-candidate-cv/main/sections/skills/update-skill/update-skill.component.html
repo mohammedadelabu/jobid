@@ -1,0 +1,76 @@
+<!-- <p>update-skill works!</p> -->
+<div class="alert alert-info text-center" *ngIf="responseMsg">
+    {{responseMsg}}</div>
+<!-- <form [formGroup]="updateSkillsForm" (ngSubmit)="updateSkills()">
+    <div class="text-right">
+        <button class="btn btn-sm" type="button" [routerLink]="['/administrator/edit-candidate-data/skills']">
+                <i class="fas fa-times text-danger"></i>
+            </button>
+    </div>
+    <div class="form-item">
+        <div class="form-row">
+            <div class="form-group col-12 col-sm-6">
+                <label for="Language">Programming Language</label>
+                <input type="text" name="Language" id="Language" class="form-control" formControlName="Language">
+            </div>
+            <div class="form-group col-12 col-sm-6">
+                <label for="Framework">Framework</label>
+                <input type="text" name="Framework" id="Framework" class="form-control" formControlName="Framework">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-12 col-sm-6">
+                <label for="Database">Database</label>
+                <input type="text" name="Database" id="Database" class="form-control" formControlName="Database">
+            </div>
+            <div class="form-group col-12 col-sm-6">
+                <label for="Architecture">Architecture</label>
+                <input type="text" name="Architecture" id="Architecture" class="form-control" formControlName="Architecture">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-12 col-sm-6">
+                <label for="CloudPlatform">Cloud Platform</label>
+                <input type="text" name="CloudPlatform" id="CloudPlatform" class="form-control" formControlName="CloudPlatform">
+            </div>
+            <div class="form-group col-12 col-sm-6">
+                <label for="VersionControl">Version Control</label>
+                <input type="text" name="VersionControl" id="VersionControl" class="form-control" formControlName="VersionControl">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-12">
+                <label for="Others">Others (optional)</label>
+                <input type="text" name="Others" id="Others" class="form-control" formControlName="Others">
+            </div>
+        </div>
+                <div>
+                    <button type="submit" class="btn btn-outline-success px-5">UPDATE</button>
+                </div>
+    </div>
+</form> -->
+<div *ngIf="!responseMsg">
+
+    <form [formGroup]="updateSkillsForm" (ngSubmit)="updateSkills()" novalidate>
+        <div class="text-right">
+            <button type="button" class="btn btn-sm px-0" [routerLink]="['/edit-candidate-cv/skills']">
+                <i class="fas fa-times text-danger"></i>
+            </button>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-12 col-md-6">
+                <label for="category">Category</label>
+                <select class="form-control" id="category" formControlName="SkillCategoryId" [ngClass]="{'is-invalid': updateSkillsForm.get('SkillCategoryId')?.touched && updateSkillsForm.get('SkillCategoryId')?.invalid}" required>
+                    <option value={{item.CategoryId}} *ngFor="let item of categories | orderBy:'categoryName'">{{item?.CategoryName}}</option>
+                </select>
+            </div>
+            <div class="form-group col-12 col-md-6">
+                <label for="skillset">Skill set (e.g PHP, Javascript, C#)</label>
+                <input type="text" class="form-control" id="skillset" formControlName="Skills" [ngClass]="{'is-invalid': updateSkillsForm.get('Skills')?.touched && updateSkillsForm.get('Skills')?.invalid}" required>
+            </div>
+        </div>
+        <div>
+            <button type="submit" class="btn btn-outline-success px-5" [disabled]="updateSkillsForm.invalid">SAVE</button>
+        </div>
+    </form>
+</div>

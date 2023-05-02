@@ -1,0 +1,108 @@
+{
+  "BranchList": [
+    {
+      "BranchName": "Branch 1",
+      "BranchType": "Branch Office",
+      "Street": "No 10b",
+      "City": "Abule-egba",
+      "Country": "Aruba",
+      "PostalCode": "3044990",
+      "CreatedBy": "onyebuchi@gmail.com",
+      "id": 1
+    },
+    {
+      "BranchName": "Branch 2",
+      "BranchType": "Branch Office",
+      "Street": "No 10b",
+      "City": "Abule-egba",
+      "Country": "Austria",
+      "PostalCode": "3044990",
+      "CreatedBy": "onyebuchi@gmail.com",
+      "id": 2
+    },
+    {
+      "BranchName": "Branch 3",
+      "BranchType": "Branch Office",
+      "Street": "2464 Royal Ln. Mesa",
+      "City": "New Jersey ",
+      "Country": "United States",
+      "PostalCode": "45463",
+      "CreatedBy": "onyebuchi@gmail.com",
+      "id": 3
+    },
+    {
+      "BranchName": "Test",
+      "BranchType": "Branch Office",
+      "Street": "Segun Akinola street, Abule-egba",
+      "City": "Lagos",
+      "Country": "Australia",
+      "PostalCode": "23401",
+      "CreatedBy": "onyebuchi@gmail.com",
+      "id": 4
+    },
+    {
+      "BranchName": "Test 1A",
+      "BranchType": "Branch Office",
+      "Street": "Segun Akinola street, Abule-egba",
+      "City": "Lagos",
+      "Country": "Australia",
+      "PostalCode": "23401",
+      "CreatedBy": "onyebuchi@gmail.com",
+      "id": 5
+    },
+    {
+      "BranchName": "Test 1B",
+      "BranchType": "Branch Office",
+      "Street": "Segun Akinola street, Abule-egba",
+      "City": "Lagos",
+      "Country": "Australia",
+      "PostalCode": "23401",
+      "CreatedBy": "onyebuchi@gmail.com",
+      "id": 6
+    }
+  ],
+  "Todos": [
+    {
+      "Title": "Lorem ipsum dolor sit amet consectetur.",
+      "DueDate": "11/11/2022, 1:00:00 AM",
+      "Description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. In amet ducimus distinctio tenetur alias sint molestias quasi sed consectetur nisi!",
+      "isCompleted": true,
+      "id": 1
+    },
+    {
+      "Title": "Test",
+      "DueDate": "11/16/2022, 1:00:00 AM",
+      "Description": "sGASGASGa",
+      "isCompleted": true,
+      "id": 2
+    },
+    {
+      "Title": "s\\aSFVAs",
+      "DueDate": "11/7/2022, 1:00:00 AM",
+      "Description": "fasa\\vs\\s",
+      "isCompleted": true,
+      "id": 3
+    },
+    {
+      "Title": "s\\aSFVAs",
+      "DueDate": "11/7/2022, 1:00:00 AM",
+      "Description": "fasa\\vs\\s",
+      "isCompleted": true,
+      "id": 4
+    },
+    {
+      "Title": "s\\aSFVAs",
+      "DueDate": "11/7/2022, 1:00:00 AM",
+      "Description": "fasa\\vs\\s",
+      "isCompleted": true,
+      "id": 5
+    },
+    {
+      "Title": "Hello",
+      "DueDate": "11/3/2022, 1:00:00 AM",
+      "Description": "saccsasca",
+      "isCompleted": true,
+      "id": 6
+    }
+  ]
+}

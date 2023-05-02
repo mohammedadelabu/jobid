@@ -1,0 +1,69 @@
+<!-- <p>branch-locations works!</p> -->
+
+<div class="branch-content-container">
+    <div class="container-fluid py-3">
+        <!-- {{branchLocationList$ | async | json}} -->
+        <ng-container *ngIf="(isLoading$ | async)">
+            <div>
+                <small>Loading...</small>
+            </div>
+        </ng-container>
+        <ul class="row hq-branch-list list-style-none pl-0">
+            <li class="col-12 col-md-6" *ngFor="let item of HQList">
+                <div class="card hq-card design-card shadow-sm border-none"
+                    [routerLink]="['/recruiter/settings/branches/details', item?.id]">
+                    <!-- HQList -->
+                    <div class="card-body">
+                        <div class="d-flex">
+                            <!-- <div class="col-6 bg-danger"> -->
+                            <div class="logo-wrapper">
+                                <img src="../../../../../../assets/images/head-quarter-green-logo.png" alt=""
+                                    class="img-fluid">
+                            </div>
+                            <!-- </div> -->
+                            <div class="">
+                                <h5 class="title">HQ</h5>
+                                <h6 class="title">{{item?.Name}} </h6>
+                                <div class="label">Address:</div>
+                                <p><span *ngIf="item?.Street">{{item?.Street}},</span> {{item?.City}}
+                                    {{item?.PostalCode}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <!-- {{BranchOfficeList | json}} -->
+        <ul class="row branch-list list-style-none pl-0 mb-0">
+            <li class="col-6 col-md-4" *ngFor="let item of BranchOfficeList">
+                <div class="card branch-card design-card shadow-sm border-none"
+                    [routerLink]="['/recruiter/settings/branches/details', item?.id]">
+                    <div class="card-body">
+                        <div class="d-flex">
+                            <!-- <div class="col-6 bg-danger"> -->
+                            <div class="logo-wrapper">
+                                <img src="../../../../../../assets/images/branch-green-logo.png" alt=""
+                                    class="img-fluid">
+                            </div>
+                            <!-- </div> -->
+                            <div class="">
+                                <h5 class="title">{{item?.Name}} </h5>
+                                <div class="label">Address:</div>
+                                <!-- <p>2464 Royal Ln. Mesa, New Jersey 45463</p> -->
+                                <p><span *ngIf="item?.Street">{{item?.Street}},</span> {{item?.City}}
+                                    {{item?.PostalCode}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+
+
+<ng-template #Loading>
+    <small>Loading...</small>
+</ng-template>

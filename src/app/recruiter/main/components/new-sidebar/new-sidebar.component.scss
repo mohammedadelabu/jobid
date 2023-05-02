@@ -1,0 +1,121 @@
+.nav {
+  //   width: 320px;
+  // border-right: 1px solid #ddd;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  padding: 35px 40px 35px 20px;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  transition: width 0.1s ease-in-out;
+  z-index: 2;
+
+  &.collapsed {
+    padding: 35px 10px 20px 10px;
+  }
+
+  .collapse-icon {
+    text-align: right;
+
+    img {
+      cursor: pointer;
+    }
+
+    &.collapsed {
+      text-align: center;
+    }
+
+    &.hide {
+      display: none;
+    }
+  }
+
+  .jobid-logo {
+    text-align: center;
+    margin: 20px 0 40px 0;
+
+    img {
+      width: 47%;
+    }
+
+    &.collapsed {
+      img {
+        width: 90%;
+      }
+    }
+  }
+
+  .main {
+    // flex-grow: 1;
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow: auto;
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      border-radius: 3px;
+      padding: 12px 15px;
+      transition: all 0.3s ease-in-out;
+      cursor: pointer;
+
+      &.collapsed {
+        width: fit-content;
+        margin: 0 auto;
+
+        .nav-icon {
+          width: 24px;
+        }
+      }
+
+      &:hover,
+      &.active {
+        background: rgba(62, 179, 242, 0.3);
+      }
+
+      .nav-title {
+        font-size: 14px;
+      }
+    }
+  }
+
+  .bottom {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0px 1px 10px rgba(0, 140, 254, 0.14);
+    border-radius: 8px;
+    padding: 10px;
+    .left {
+      img {
+        border-radius: 50px;
+        height: 35px;
+        width: 35px;
+      }
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      .user-info {
+        display: flex;
+        flex-direction: column;
+        // gap: 10px;
+        .name {
+          font-size: 14px;
+          font-weight: 500;
+        }
+        .role {
+          font-size: 12px;
+        }
+      }
+    }
+    .right {
+      cursor: pointer;
+    }
+  }
+}

@@ -1,0 +1,29 @@
+
+  .thead {
+    background: #dadada;
+    /* Background/Grey 50% */
+
+    border: 1px solid #dadada;
+    box-sizing: border-box;
+    border-radius: 0;
+  }
+
+  .action-btns{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  
+.dashboard-table {
+  thead {
+      tr {
+          th {
+              border: none;
+              &:last-child {
+                  border-top-right-radius: 10px;
+              }
+          }
+      }
+  }
+}

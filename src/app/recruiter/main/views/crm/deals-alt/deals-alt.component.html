@@ -1,0 +1,79 @@
+<!-- <p>deals-alt works!</p> -->
+<h1 class="page-title">Deals</h1>
+
+<ul id="counter" class="list-style-none pl-0">
+    <li>
+        <div class="count">5322</div>
+        <div class="label">All Accounts</div>
+    </li>
+    <li>
+        <div class="count">5322</div>
+        <div class="label">Quoted</div>
+    </li>
+    <li>
+        <div class="count">5322</div>
+        <div class="label">Sold</div>
+    </li>
+</ul>
+
+<!--  -->
+<div class="sticky-top width-100 pb-3" id="horizon-control-wrapper">
+    <div class="text-right">
+        <div class="inline-flex align-items-center nowrap">
+            <button class="btn btn-sm" (click)="onScrollLeft()">
+                            <i class="fas fa-angle-left"></i>
+                        </button>
+            <button class="btn btn-sm" (click)="onScrollRight()">
+                            <i class="fas fa-angle-right"></i>
+                        </button>
+        </div>
+    </div>
+
+</div>
+
+<section id="progress-space" class="table-responsive">
+    <ul cdkDropListGroup class="column-list list-style-none pl-0">
+        <li class="example-container stage-column" *ngFor="let items of dealsList">
+            <!-- <h2>{{items?.title}}</h2>
+            <div class="alert alert-info">
+                listRef: {{items?.listRef}}
+            </div>
+            <div class="alert alert-success">
+               connectedTo: {{items?.connectedTo}}
+            </div>
+            <div class="alert alert-success">
+               list: {{items?.deals | json}}
+            </div> -->
+
+            <div class="top">
+                <div class="stage-title">{{items?.title}}</div>
+                <div class="control">
+                    <div class="btn-group">
+                        <button class="btn btn-sm menu-alt-btn py-0 px-1"></button>
+                        <button class="btn btn-sm edit-btn py-0 px-1"></button>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!--  -->
+            <ul class="example-list list-style-none pl-0 deal-card-container" cdkDropList [cdkDropListData]="items?.deals" (cdkDropListDropped)="drop($event)">
+                <li class="example-box deal-card" *ngFor="let deal of items?.deals" cdkDrag>
+                    <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+                    <div class="inner">
+                        <div>
+                            <div class="name">{{deal?.name}}</div>
+                            <div class="phone">{{deal?.phone}}</div>
+                        </div>
+                        <div class="d-flex justify-content-between align-deals-start">
+                            <div class="tag">New client</div>
+                            <div class="date">{{deal?.date}}</div>
+                        </div>
+                    </div>
+                    <!-- {{deal | json}} -->
+                </li>
+            </ul>
+        </li>
+    </ul>
+</section>

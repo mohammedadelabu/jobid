@@ -1,0 +1,48 @@
+<div class="card">
+  <div class="card-body">
+    <h5 class="form-title text-center">Add Process</h5>
+    <form [formGroup]="ProcessForm">
+      <div class="form-group">
+        <label for="Name" class="required-field-label">Process Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="Name"
+          formControlName="Name"
+          required
+        />
+        <!-- <small id="nameErrorMsg" class="form-text text-danger invalid-feedback"
+      >Process Name is required.</small
+    > -->
+      </div>
+      <div class="form-group">
+        <label for="DateCompleted" class="required-field-label"
+          >Process Date</label
+        >
+        <input
+          type="date"
+          class="form-control"
+          id="DateCompleted"
+          formControlName="DateCompleted"
+          required
+        />
+        <!-- <small id="nameErrorMsg" class="form-text text-danger invalid-feedback"
+      >Process Date is required.</small
+    > -->
+      </div>
+      <button
+        [mat-dialog-close]="ProcessForm"
+        class="btn success-btn"
+        [disabled]="ProcessForm.invalid"
+      >
+        Add
+      </button>
+    </form>
+
+    <!-- [ngClass]="{
+  'is-invalid':
+    ProcessForm.get('Name')?.touched && ProcessForm.get('Name')?.invalid
+}" -->
+    <!-- [ngClass]="{'is-invalid': ProcessForm.get('DateCompleted')?.touched && ProcessForm.get('DateCompleted')?.invalid}" -->
+  </div>
+</div>

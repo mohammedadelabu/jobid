@@ -1,0 +1,40 @@
+<!-- <p>ratings-and-reviews works!</p> -->
+<ng-template #noReview>
+    <div class="alert alert-info text-center">No Review</div>
+</ng-template>
+<ul class="list-style-none pl-0 mb-5" *ngIf="ratingsReviewsList?.length; else noReview">
+    <li class="rating-review-list" *ngFor="let item of ratingsReviewsList">
+        <div class="review-title-wrap mb-4">
+            <div class="review-title">
+                <!-- Wade Warren -->
+                <app-sender-info [SenderId]="item?.SenderId"></app-sender-info>
+            </div>
+            <div class="text-center">
+                <app-stars-count [rate]="item?.Rate"></app-stars-count>
+            </div>
+            <div class="text-right">
+                <button class="btn btn-sm ml-4" (click)="onRemoveReview(item?.Id)">
+                    <i class="fas fa-times text-danger"></i>
+                </button>
+            </div>
+        </div>
+        <p>{{item.Comment}}</p>
+    </li>
+    <!-- <li class="item" *ngFor="let item of [1, 2, 3, 4]">
+        <div class="review-title-wrap mb-4 d-flex align-items-center justify-content-between">
+            <div class="review-title">
+                Wade Warren
+            </div>
+            <div>
+                <i class="fas fa-star text-warning"></i>
+                <i class="fas fa-star text-warning"></i>
+                <i class="fas fa-star text-warning"></i>
+                <i class="fas fa-star text-warning"></i>
+                <i class="far fa-star text-warning"></i>
+            </div>
+        </div>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin diam ut ut nec lobortis. Id at quam ipsum egestas quisque turpis pulvinar nibh. Leo urna massa in at. Tristique mus blandit risus molestie sit eu. Egestas maecenas
+            quisque praesent aliquam. Blandit nibh at arcu leo nisl, etiam. Pulvinar tortor massa fermentum mi dui rhoncus eleifend aliquet. Tellus et arcu pharetra, ipsum mattis cursus. Eu, sapien consectetur imperdiet ipsum.
+            Amet nulla lectus sed eu nisl. Magna nec.</p>
+    </li> -->
+</ul>

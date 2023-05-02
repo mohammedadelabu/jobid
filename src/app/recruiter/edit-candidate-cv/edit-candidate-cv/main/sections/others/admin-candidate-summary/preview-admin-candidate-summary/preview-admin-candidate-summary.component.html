@@ -1,0 +1,35 @@
+<!-- <p>preview-admin-candidate-summary works!</p> -->
+<!-- <p>preview-admin-candidate-summary works!</p> -->
+<div *ngIf="!candidateSummary">
+    <div class="alert alert-info text-center">
+        {{infoMessage}}
+    </div>
+</div>
+
+<table class="table table-borderless" *ngIf="candidateSummary">
+    <!-- <thead class="thead-light">
+        <tr>
+            <th scope="col">Candidate summary</th>
+        </tr>
+    </thead> -->
+    <tbody>
+        <tr *ngFor="let item of candidateSummary">
+            <!-- <th scope="row">
+                <div [innerHTML]="item?.opinion"></div>
+            </th> -->
+            <td scope="row">
+                <div class="text-right">
+                    <div class="inline-flex no-wrap justify-content-right">
+                        <button class="btn btn-sm py-0" (click)="isEditForm(item)">
+                            <i class="fas fa-pen text-info"></i>
+                        </button>
+                        <button class="btn btn-sm py-0" (click)="removeSummary(item.Id)">
+                            <i class="fas fa-trash text-danger"></i>
+                        </button>
+                    </div>
+                </div>
+                <div [innerHTML]="item?.Summary"></div>
+            </td>
+        </tr>
+    </tbody>
+</table>

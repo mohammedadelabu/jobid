@@ -1,0 +1,32 @@
+<!-- <p>webcam works!</p> -->
+<!-- <webcam (initError)="handleInitError($event)"></webcam> -->
+<div class="alert alert-info text-center" *ngIf="selfieUploadSuccessMessage">{{selfieUploadSuccessMessage}}</div>
+<section *ngIf="!selfieUploadSuccessMessage">
+    <div id="camera" *ngIf="!isWebcamImage">
+        <webcam [height]="300" [width]="300" [trigger]="triggerObservable" (imageCapture)="handleImage($event)" [imageQuality]="1"></webcam>
+        <!-- Button Takes Photo -->
+        <button class="btn text-green-btn" (click)="triggerSnapshot();" *ngIf="!isWebcamImage">Take A Snapshot</button>
+    </div>
+    <!-- Snapshot Div where image will be shown -->
+    <div class="snapshot" *ngIf="isWebcamImage">
+        <!-- <h2>Take your image or get another</h2> -->
+
+        <div>
+            <div class="image-wrapper">
+                <img [src]="webcamImage.imageAsDataUrl" class="img-fluid" />
+            </div>
+            <div class="btn-group mt-2">
+                <button class="btn success-default" (click)="retakeSelfie()">Retake</button>
+                <button class="btn success-btn" (click)="onSubmit()">Save Image</button>
+            </div>
+        </div>
+
+        <!-- <form #SelfieForm="ngForm" (ngSubmit)="onSubmit(SelfieForm)">
+            <div class="image-wrapper">
+                <img [src]="webcamImage.imageAsDataUrl" class="img-fluid"/>
+                <input type="file" name="selfieImage" ngModel  #selfieImage="ngModel">
+            </div>
+            <button class="btn success-btn mt-2">Save Image</button>
+        </form> -->
+    </div>
+</section>

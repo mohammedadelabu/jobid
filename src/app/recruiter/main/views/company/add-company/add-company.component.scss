@@ -1,0 +1,81 @@
+// @import '../../../../../../../node_modules/bootstrap-icons/font/bootstrap-icons';
+
+
+// h3 {
+//     font-weight: 700;
+//     font-size: 1.3rem;
+// }
+
+// .btn-primary {
+//     background-color: #14984B;
+// }
+
+// .contact_details a {
+//     color: #14984B;
+//     font-weight: 700;
+// }
+
+// .form-group {
+//     width: 50%;
+// }
+
+// .redStar {
+//     color: #FF4444;
+// }
+
+// .upload {
+//     border: 1px dashed #4FB278;
+//     border-radius: 5px;
+//     font-weight: 400;
+//     color: #4FB278;
+//     width: 60%;
+//     margin: 0;
+
+//     i {
+//         font-size: 20px;
+//     }
+// }
+
+// .text-upload {
+//     color: #4FB278;
+//     font-size: 16px;
+//     margin: 0 auto;
+// }
+
+//
+legend {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 30px;
+    color: #4f656e;
+}
+
+#contact-details {
+    .form-item {
+        border-bottom: 1px solid #c7c7c7;
+        padding-top: 1em;
+        padding-bottom: 2em;
+        &:last-child {
+            border-bottom: none;
+            padding-top: 1em;
+            padding-bottom: 0;
+        }
+    }
+}
+
+.file-label {
+    // max-width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#uploadedImage{
+    max-width: 5rem;
+}
+
+#submit-btn-wrapper {
+    margin-right: 4em;
+}

@@ -1,0 +1,263 @@
+<!-- <p>job-posts works!</p> -->
+
+<div>
+  <div *ngIf="jobPostsLoading">
+    <app-simple-component-loader-with-spinner></app-simple-component-loader-with-spinner>
+  </div>
+  <section *ngIf="!listCandidateCards; else listingTable">
+    <div class="row no-gutters">
+      <div
+        class="col-12 col-md-6 col-lg-4"
+        *ngFor="
+          let jobPost of pagedJobPosts
+            | paginate
+              : {
+                  itemsPerPage: pageSize,
+                  currentPage: page,
+                  totalItems: totalPosts
+                }
+        "
+      >
+        <!-- <a [routerLink]="['/recruiter/employee-management/job-board/job-details/', jobPost.Id]" class="job-post-card ongoing"> -->
+        <a
+          (click)="onDirectToDetailsPage(jobPost.CompanyId, jobPost.Id)"
+          class="job-post-card cursor-pointer"
+          [ngClass]="{ ongoing: !jobPost?.IsClosed, closed: jobPost?.IsClosed }"
+        >
+          <div class="card">
+            <div class="card-body">
+              <!-- {{jobPost?.IsClosed}} -->
+              <!-- <div class="d-flex flex-wrap align-items-start"> -->
+              <h5 class="card-title" title="{{ jobPost?.JobTitle }}">
+                {{ jobPost?.JobTitle }}
+              </h5>
+              <!-- <div class="tag"></div> -->
+              <!-- </div> -->
+              <!-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
+              <ul
+                class="list-style-none pl-0 mb-0 d-flex align-item-center justify-content-between"
+              >
+                <li>
+                  <div class="job-type">
+                    <i class="fas fa-briefcase"></i>
+                    {{ jobPost.JobType | titlecase }}
+                  </div>
+                </li>
+                <li>
+                  <div class="date">
+                    <i class="fas fa-calendar"></i>
+                    <!-- 2022-03-31 -->
+                    {{ jobPost.EndDate | date : "yyyy-MM-dd" }}
+                  </div>
+                </li>
+                <li>
+                  <div class="location">
+                    <i class="fas fa-map-marker-alt"></i>
+                    {{ jobPost.Location }}
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </a>
+      </div>
+      <!-- <div class="col-12 col-md-6 col-lg-4">
+                    <a [routerLink]="['/recruiter/employee-management/job-board/job-details/9909']" class="job-post-card closed">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Sales Representative Lorem ipsum dolor sit amet.</h5>
+                                <div class="tag"></div>
+                                <ul class="list-style-none pl-0 mb-0 d-flex align-item-center justify-content-between">
+                                    <li>
+                                        <div class="job-type">
+                                            <i class="fas fa-briefcase"></i> Part-time
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="date">
+                                            <i class="fas fa-calendar"></i> 2022-03-31
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="location">
+                                            <i class="fas fa-map-marker-alt"></i> Nigeria
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </a>
+                </div> -->
+      <!-- <div class="col-12 col-md-6 col-lg-4">
+                    <a [routerLink]="['/recruiter/employee-management/job-board/job-details/9909']" class="job-post-card closed">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Sales Representative</h5>
+                                <ul class="list-style-none pl-0 mb-0 d-flex align-item-center justify-content-between">
+                                    <li>
+                                        <div class="job-type">
+                                            <i class="fas fa-briefcase"></i> Part-time
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="date">
+                                            <i class="fas fa-calendar"></i> 2022-03-31
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="location">
+                                            <i class="fas fa-map-marker-alt"></i> Nigeria
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <a [routerLink]="['/recruiter/employee-management/job-board/job-details/8903']" class="job-post-card closed">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Sales Representative</h5>
+                                <ul class="list-style-none pl-0 mb-0 d-flex align-item-center justify-content-between">
+                                    <li>
+                                        <div class="job-type">
+                                            <i class="fas fa-briefcase"></i> Part-time
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="date">
+                                            <i class="fas fa-calendar"></i> 2022-03-31
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="location">
+                                            <i class="fas fa-map-marker-alt"></i> Nigeria
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </a>
+                </div> -->
+    </div>
+  </section>
+
+  <!-- JOBPOSTs TABLE LISTING -->
+  <ng-template #listingTable>
+    <section>
+      <div class="dashboard-table table-responsive border-rounded-md">
+        <table class="table">
+          <thead class="thead">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Job Title</th>
+              <th scope="col">Location</th>
+              <th scope="col">Job Type</th>
+              <th scope="col">End Date</th>
+              <th scope="col"></th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="
+                let jobPost of pagedJobPosts
+                  | paginate
+                    : {
+                        itemsPerPage: pageSize,
+                        currentPage: page,
+                        totalItems: totalPosts
+                      };
+                let i = index
+              "
+            >
+              <th scope="row">
+                {{ i + 1 }}
+              </th>
+              <td
+                class="cursor-pointer"
+                (click)="onDirectToDetailsPage(jobPost.CompanyId, jobPost.Id)"
+              >
+                {{ jobPost?.JobTitle }}
+              </td>
+              <td>
+                <i class="fas fa-map-marker-alt"></i> {{ jobPost?.Location }}
+              </td>
+              <td>{{ jobPost?.JobType }}</td>
+              <td>{{ jobPost?.EndDate }}</td>
+              <td>
+                <div class="form-group mb-0 custom-control custom-switch">
+                  <input
+                    type="checkbox"
+                    class="custom-control-input"
+                    [checked]="jobPost.PublishJob"
+                  />
+                  <!-- <label
+                    class="custom-control-label"
+                    (click)="onPublish(jobPost.id, jobPost.publishJob)"
+                    [ngClass]="{ 'd-none': jobPost.publishJob }"
+                    >Publish</label -->
+                  <label
+                    class="custom-control-label"
+                    [ngClass]="{ 'd-none': jobPost.PublishJob }"
+                    >Publish</label
+                  >
+                  <!-- <label
+                    class="custom-control-label"
+                    (click)="onPublish(jobPost.id, jobPost.publishJob)"
+                    [ngClass]="{ 'd-none': !jobPost.publishJob }"
+                    >Unpublish</label
+                  > -->
+                  <label
+                    class="custom-control-label"
+                    [ngClass]="{ 'd-none': !jobPost.PublishJob }"
+                    >Unpublish</label
+                  >
+                </div>
+              </td>
+              <td>
+                <div class="form-group mb-0 custom-control custom-switch">
+                  <input
+                    type="checkbox"
+                    class="custom-control-input"
+                    [checked]="!jobPost.IsClosed"
+                  />
+                  <!-- <label
+                    class="custom-control-label"
+                    (click)="onIsClosed(jobPost.id, jobPost.isClosed)"
+                    [ngClass]="{ 'd-none': jobPost.isClosed }"
+                    >Close</label
+                  > -->
+                  <label
+                    class="custom-control-label"
+                    [ngClass]="{ 'd-none': jobPost.IsClosed }"
+                    >Close</label
+                  >
+                  <!-- <label
+                    class="custom-control-label"
+                    (click)="onIsClosed(jobPost.id, jobPost.isClosed)"
+                    [ngClass]="{ 'd-none': !jobPost.isClosed }"
+                    >Open</label
+                  > -->
+                  <label
+                    class="custom-control-label"
+                    [ngClass]="{ 'd-none': !jobPost.IsClosed }"
+                    >Open</label
+                  >
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </ng-template>
+
+  <!-- PAGINATION -->
+  <div class="text-right" id="pagination">
+    <pagination-controls
+      (pageChange)="pageChangeEvent($event)"
+    ></pagination-controls>
+  </div>
+</div>

@@ -1,0 +1,7 @@
+@use '../../../../sass/_partials/mixins';
+
+.fieldset{
+    @include mixins.minmq(768px){
+        padding: 4em 6em;
+    }
+}

@@ -1,0 +1,58 @@
+<!-- <p>settings-side-navigation works!</p> -->
+
+<div class="height-spacer"></div>
+<ul class="list-style-none pl-0 mb-0">
+  <li>
+    <!-- <a href="#" [ngClass]="{'active': item?.active}">{{item?.name}}</a> -->
+    <a [routerLink]="[navLinks_[0].url]" routerLinkActive="router-link-active">
+      <div class="icon">
+        <!-- <img src="../../../../../../../assets/images/icons/key-green-icon.png" alt=""> -->
+        <img [src]="navLinks_[0].icon" alt="" class="img-fluid" />
+      </div>
+      {{ navLinks_[0].name }}
+    </a>
+  </li>
+  <ng-container *appSettings>
+    <li *ngFor="let item of navLinks_.slice(1)">
+      <!-- <a href="#" [ngClass]="{'active': item?.active}">{{item?.name}}</a> -->
+      <a [routerLink]="[item?.url]" routerLinkActive="router-link-active">
+        <div class="icon">
+          <!-- <img src="../../../../../../../assets/images/icons/key-green-icon.png" alt=""> -->
+          <img [src]="item?.icon" alt="" class="img-fluid" />
+        </div>
+        {{ item?.name }}
+      </a>
+    </li>
+  </ng-container>
+  <li (click)="logoutUser()">
+    <span class="logout-link cursor-pointer">
+      <div class="icon">
+        <!-- <img src="../../../../../../../assets/images/icons/key-green-icon.png" alt=""> -->
+        <img [src]="SignOutBtnIconUrl" alt="" class="img-fluid" />
+      </div>
+      {{ SignOutBtnLabel }}
+    </span>
+  </li>
+
+  <!-- <li> 
+        <a [routerLink]="['/recruiter/settings/account-settings']" routerLinkActive="router-link-active">Account Setting</a>
+    </li>
+    <li>
+        <a [routerLink]="['/recruiter/settings/roles-and-permission']" routerLinkActive="router-link-active">Roles & Permmisions</a>
+    </li>
+    <li>
+        <a [routerLink]="['/kkk']" routerLinkActive="router-link-active">Branches</a>
+    </li>
+    <li>
+        <a [routerLink]="['/fxfh']" routerLinkActive="router-link-active">Users</a>
+    </li>
+    <li>
+        <a [routerLink]="['/zsrhtfhj']" routerLinkActive="router-link-active">2 step verification</a>
+    </li>
+    <li>
+        <a [routerLink]="['sdggds']" routerLinkActive="router-link-active">Users</a>
+    </li>
+    <li>
+        <a [routerLink]="['dsagsags']" routerLinkActive="router-link-active">Sign out</a>
+    </li> -->
+</ul>

@@ -1,0 +1,148 @@
+@use "../_abstracts/colors";
+@use "../_abstracts/typography";
+
+table {
+  font-size: 0.95rem;
+}
+table th,
+table td {
+  // padding: 0.75rem;
+  vertical-align: middle !important;
+  border-top: 1px solid #dee2e6;
+}
+// .table-sm th, .table-sm td{
+//     padding: 0 .3em !important;
+// }
+.table-sm thead th {
+  padding-top: 0.6em !important;
+  padding-bottom: 0.6em !important;
+}
+
+.dashboard-table {
+  .ui-check{
+      background-color: unset;
+  }
+  thead {
+    th {
+      font-size: 0.9rem;
+    }
+  }
+  tbody {
+    th,
+    td {
+      font-size: 0.8rem;
+    }
+  }
+
+  td,
+  th {
+    white-space: nowrap;
+  }
+
+  td {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+  }
+}
+
+.dashboard-table {
+  thead {
+    tr {
+      th {
+        border: none;
+        &:last-child {
+          border-top-right-radius: 10px;
+        }
+      }
+    }
+  }
+  tbody {
+    tr {
+      &:last-child {
+        th {
+          border: none;
+          &:first-child {
+            border-bottom-left-radius: 10px;
+          }
+        }
+        td {
+          &:last-child {
+            border-bottom-right-radius: 10px;
+          }
+        }
+      }
+    }
+  }
+}
+.dashboard-table {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  /* identical to box height */
+  color: #000000;
+
+  thead {
+    th {
+      font-weight: 600;
+      &:first-child {
+        // background-color: red;
+        padding-left: 30px;
+      }
+      &:last-child {
+        // background-color: blue;
+        padding-right: 30px;
+      }
+
+      &.column-action {
+        min-width: 80px;
+      }
+    }
+  }
+
+  tbody {
+    background: #f0f0f0;
+    // border: 1px solid #dadada;
+    // box-sizing: border-box;
+    // border-radius: 10px;
+    //
+    th {
+      &:first-child {
+        // background-color: red;
+        padding-left: 30px;
+      }
+    }
+    td {
+      &:last-child {
+        // background-color: blue;
+        padding-right: 30px;
+      }
+    }
+    td,
+    th {
+      // font-size: 16px;
+      padding-top: 0.5em;
+      padding-bottom: 0.5em;
+    }
+  }
+
+  .thead {
+    background: #dadada;
+  }
+  .column-action {
+    width: 200px;
+    max-width: 200px;
+    min-width: 70px;
+  }
+
+  #pagination {
+    font-size: 0.9rem;
+  }
+
+  .company-logo {
+    max-width: 40px;
+    margin-right: 1em;
+  }
+}

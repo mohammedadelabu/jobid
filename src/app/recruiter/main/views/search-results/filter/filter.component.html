@@ -1,0 +1,41 @@
+<!-- <p>filter works!</p> -->
+
+<ul class="list-style-none pl-0 mb-0 pills-listing">
+    <li class="list-item">
+        <!-- <a href="#">Blocked</a> -->
+        <!-- <span> -->
+        <a [routerLink]="['/recruiter/blocked/search/', 'blocked']" routerLinkActive="router-link-active" (click)="onCheckBlocked()">Blocked</a>
+        <!-- </span> -->
+    </li>
+    <li class="list-item">
+        <a [routerLink]="['/recruiter/search/flagged']" routerLinkActive="router-link-active" (click)="onCheckFlagged()">Flagged</a>
+    </li>
+    <li class="list-item">
+        <div ngbDropdown class="d-inline-block">
+            <!--  -->
+            <a type="button" id="dropdownBasic1" ngbDropdownToggle>Location</a>
+            <!-- <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="dropdown-content">
+          <button ngbDropdownItem [routerLink]="['/recruiter/candidates/search',country.Value | lowercase]" *ngFor="let country of countryList">{{country.Name}}</button>
+      </div> -->
+        </div>
+    </li>
+    <li class="list-item">
+        <a href="#">Registered</a>
+    </li>
+    <!-- <li class="list-item">
+        <div ngbDropdown class="d-inline-block">
+            <a type="button" id="dropdownBasic1" ngbDropdownToggle>Company</a>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="dropdown-content">
+          <button ngbDropdownItem [routerLink]="['/recruiter/candidates/search', country.Value | lowercase]" *ngFor="let country of countryList">{{country.Name}}</button>
+      </div>
+        </div>
+    </li>
+    <li class="list-item">
+        <div ngbDropdown class="d-inline-block">
+            <a type="button" id="dropdownBasic1" ngbDropdownToggle>Skill</a>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="dropdown-content">
+          <button ngbDropdownItem [routerLink]="['/recruiter/candidates/search', category.CategoryName | lowercase]" *ngFor="let category of skillsCategoryList">{{category.CategoryName}}</button>
+      </div>
+        </div>
+    </li> -->
+</ul>

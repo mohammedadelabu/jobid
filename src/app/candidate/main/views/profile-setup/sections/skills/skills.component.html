@@ -1,0 +1,31 @@
+<!-- <p>skills works!</p> -->
+<h1 class="page-title">What are your relevant skills</h1>
+<p class="title-tagline">Enter all your relevant skills</p>
+
+<div class="mb-5">
+    <!-- PREVIEW SKILL -->
+    <app-preview-skill [candidateId]="candidateId" *ngIf="!isAddSkill"></app-preview-skill>
+   
+       <!-- ADD SKILL -->
+       <div *ngIf="isAddSkill">
+        <!-- <div class="text-right">
+            <button type="button" class="btn btn-sm px-0" (click)="isAddSkill=false">
+                <i class="fas fa-times text-danger"></i>
+            </button>
+        </div> -->
+        <app-add-skill [candidateId]="candidateId" (closeIsAddSkill)="onCloseIsAddSkill()"></app-add-skill>
+    </div>
+
+    <!-- UPDATE SKILL -->
+    <div *ngIf="isUpdateSkill">
+        <app-update-experience (closeIsUpdateSkill)="onCloseIsUpdateSkill()"></app-update-experience>
+    </div>
+    <div class="mb-4">
+        <button class="btn btn-lg btn-block text-uppercase add-more-block-btn" *ngIf="!isAddSkill" (click)="isAddSkill=true">Add Experience</button>
+    </div>
+    <div class="d-flex justify-content-between align-items-center " *ngIf="!isAddSkill">
+        <button type="button " class="btn btn-outline-success px-md-4 previous-btn" [routerLink]="['/candidate/profile-setup/education']">BACK</button>
+        <button type="submit" class="btn success-btn px-md-4 next-btn" [routerLink]="['/candidate/profile-setup/others']">NEXT</button>
+    </div>
+
+</div>

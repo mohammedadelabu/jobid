@@ -1,0 +1,128 @@
+<!-- <p>update-deal-company works!</p> -->
+
+
+<form [formGroup]="UpdateDealForm" (ngSubmit)="onSubmit()">
+    <div class="deal-listing">
+        <ul class="listing list-style-none pl-0 mb-3">
+            <li class="logo-item">
+                <div class="brand-logo">
+                    <img src="{{brandLogo}}" alt="" class="img-fluid">
+                </div>
+            </li>
+            <li>
+                <label class="list-title required-field-label" for="CompanyName">Company Name</label>
+                <div class="list-value">
+                    <input type="text" class="form-control" id="CompanyName" formControlName="CompanyName" [ngClass]="{
+                        'is-invalid':
+                          UpdateDealForm.get('CompanyName')?.touched &&
+                          UpdateDealForm.get('CompanyName')?.invalid
+                      }" required>
+                      <small id="nameErrorMsg" class="form-text text-danger invalid-feedback">Company name is required.</small>
+                </div>
+            </li>
+            <li>
+                <label class="list-title" for="Address">Address</label>
+                <div class="list-value">
+                    <input type="text" class="form-control" id="CompanyAddress" formControlName="CompanyAddress">
+                </div>
+            </li>
+            <li>
+                <label class="list-title required-field-label" for="Email">Email Address</label>
+                <div class="list-value email">
+                    <input type="email" class="form-control" id="Email" formControlName="CompanyEmailAddress" [ngClass]="{
+                        'is-invalid':
+                          UpdateDealForm.get('CompanyEmailAddress')?.touched &&
+                          UpdateDealForm.get('CompanyEmailAddress')?.invalid
+                      }" required />
+                    <span class="invalid-feedback">
+                        <small class="form-text text-danger"
+                            *ngIf="UpdateDealForm.get('CompanyEmailAddress')?.hasError('required')">Email is
+                            required.
+                        </small>
+                        <small class="form-text text-danger"
+                            *ngIf="UpdateDealForm.get('CompanyEmailAddress')?.hasError('email')">You entered an
+                            invalid
+                            Email.
+                        </small>
+                    </span>
+                </div>
+            </li>
+            <li>
+                <label class="list-title required-field-label" for="CompanyPhoneNumber">Phone Number</label>
+                <div class="list-value phone">
+                    <!-- <input type="text" class="form-control" id="PhoneNumber" formControlName="CompanyPhoneNumber"> -->
+                    <ngx-intl-tel-input [enableAutoCountrySelect]="true" [enablePlaceholder]="true" [preferredCountries]="['nl']" 
+                        [searchCountryFlag]="true" [selectFirstCountry]="true" [phoneValidation]="false"
+                        name="CompanyPhoneNumber" formControlName="CompanyPhoneNumber">
+                    </ngx-intl-tel-input>
+                    <small id="phoneNumberErrorMsg" class="form-text text-danger"
+                        [ngClass]="{'d-none': !isphoneNumberError}">Phone
+                        number is
+                        required.</small>
+                </div>
+            </li>
+            <li>
+                <label class="list-title" for="Website">Website</label>
+                <div class="list-value phone">
+                    <input type="text" class="form-control" id="Website" formControlName="CompanyWebsite">
+                </div>
+            </li>
+            <!-- <li>
+                <label class="list-title" for="PhoneNumber">Phone Number</label>
+                <div class="list-value phone">
+                    <input type="text" class="form-control" id="PhoneNumber" formControlName="CompanyPhoneNumber">
+                </div>
+            </li> -->
+            <li>
+                <label class="list-title" for="Location">Location</label>
+                <div class="list-value">
+                    <input type="text" class="form-control" id="Location" formControlName="CompanyLocation">
+                </div>
+            </li>
+            <li>
+                <label class="list-title" for="CompanySize">Comapny SIze</label>
+                <div class="list-value">
+                    <input type="text" class="form-control" id="CompanySize" formControlName="CompanySize">
+                </div>
+            </li>
+            <li>
+                <label class="list-title required-field-label" for="VAT">Vat</label>
+                <div class="list-value">
+                    <input type="text" class="form-control" id="VAT" formControlName="CompanyVAT">
+                </div>
+            </li>
+            <li>
+                <label class="list-title" for="Description">Description</label>
+                <div class="list-value">
+                    <textarea name="Description" id="Description" cols="30" rows="10" class="form-control"
+                        formControlName="CompanyDescription"></textarea>
+                </div>
+            </li>
+
+
+            <li>
+                <div class="company-brand-logo-wrapper">
+                    <img [src]="logoImgSrc" alt="" class="img-fluid">
+                </div>
+                <ng-container>
+                    <label for="CompanyLogo" class="file-label">{{
+                        CompanyLogoLabel
+                        }}</label>
+                    <input type="file" class="form-control" id="CompanyLogo" hidden (change)="onSelectFile($event)" />
+                </ng-container>
+            </li>
+        </ul>
+    </div>
+    <button class="btn success-btn" [disabled]="UpdateDealForm.invalid || (isLoading$ | async)">
+        <ng-container *ngIf="!(isLoading$ | async); else isLoading">
+            Update
+        </ng-container>
+    </button>
+    <span class="mx-1"></span>
+    <button class="btn outline-danger-btn" (click)="onCloseForm()">Cancel</button>
+</form>
+
+
+<ng-template #isLoading>
+    Updating...
+</ng-template>

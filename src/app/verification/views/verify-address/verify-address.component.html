@@ -1,0 +1,140 @@
+<!-- <p>verify-address works!</p> -->
+<div class="verification-form-wrapper">
+    <div class="inner">
+        <div class="form-step-indicator text-center">
+            <ul class="steps">
+                <li class="step done">
+                    <div>
+                        <!-- <div class="number">01</div> -->
+                        <div class="heading">
+                            <span class="number">01</span>
+                            <span class="step-title">Picture upload</span>
+                        </div>
+                        <div class="bulb">
+                        </div>
+                    </div>
+                </li>
+                <li class="step done">
+                    <div>
+                        <!-- <div class="number">02</div> -->
+                        <div class="heading">
+                            <span class="number">02</span>
+                            <span class="step-title">Government ID</span>
+                        </div>
+                        <div class="bulb">
+                        </div>
+                    </div>
+                </li>
+                <li class="step active">
+                    <!-- <div class="number">03</div> -->
+                    <div>
+                        <div class="heading">
+                            <span class="number">03</span>
+                            <span class="step-title">Address Verification</span>
+                        </div>
+                        <div class="bulb">
+                        </div>
+                    </div>
+                </li>
+                <li class="step">
+                    <!-- <div class="number">04</div> -->
+                    <div>
+                        <div class="heading">
+                            <span class="number">04</span>
+                            <span class="step-title">Proof of Expertise</span>
+                        </div>
+                        <div class="bulb">
+                        </div>
+                    </div>
+                </li>
+                <li class="step">
+                    <!-- <div class="number">05</div> -->
+                    <div>
+                        <div class="heading">
+                            <span class="number">05</span>
+                            <span class="step-title">Gaurantor</span>
+                        </div>
+                        <div class="bulb">
+                        </div>
+                    </div>
+                </li>
+                <li class="step">
+                    <!-- <div class="number">06</div> -->
+                    <div>
+                        <div class="heading">
+                            <span class="number">06</span>
+                            <span class="step-title">Success</span>
+                        </div>
+                        <div class="bulb">
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <h1 class="title">We need a photo of your Government ID</h1>
+        <h2 class="sub-title">Your document should not be more than 2MB in size and should be in PDF or Word Document format</h2>
+
+
+        <form [formGroup]="verifyAddressForm" (ngSubmit)="onSubmit()">
+            <ng-template *ngIf="fetchImageUrlErrorMsg">
+                <small class="mb-0 text-muted text-danger"> {{fetchImageUrlErrorMsg}}</small>
+            </ng-template>
+            <div class="card mb-4 verification-form-wrap">
+                <!-- <form #verifyPasswordForm="ngForm" (ngSubmit)="onSubmit(verifyPasswordForm)"> -->
+                <div class="fieldset card-body">
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    <label for="Street" class="required-field-label">Street</label>
+                                    <input type="text" class="form-control" id="Street" formControlName="Street" required>
+                                </div>
+                                <div class="form-group col-12">
+                                    <label for="City" class="required-field-label">City</label>
+                                    <input type="text" class="form-control" id="City" formControlName="City" required>
+                                </div>
+                                <div class="form-group col-12">
+                                    <label for="State" class="required-field-label">State</label>
+                                    <input type="text" class="form-control" id="State" formControlName="State" required>
+                                </div>
+                                <div class="form-group col-12">
+                                    <label for="Zipcode" class="required-field-label">Zipcode</label>
+                                    <input type="text" class="form-control" id="Zipcode" formControlName="Zipcode" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="form-row h-100">
+                                <div class="form-group col-12">
+                                    <label for="Location" class="required-field-label">Location</label>
+                                    <!-- <input type="text" class="form-control" id="Location"> -->
+                                    <select name="Location" id="Location" class="form-control" formControlName="Location" required>
+                                        <option value="" selected="selected">-- Select Location --</option>
+                                        <option value="Country.Value" *ngFor="let Country of CountryList">{{Country.Name}}</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-12">
+                                    <div class="h-100 d-flex align-items-center justify-content-center">
+                                        <label id="file-label" for="idDocument">
+                                            <aside class="mb-0">Upload a proof of address such as Utility bill, Bank statement, or Tenancy agreement</aside>
+                                            <p class="mb-0 text-center" *ngIf="label">{{label}}</p>
+                                            <input type="file" id="idDocument" class="form-control" hidden (change)="onSelectFile($event)">
+                                        </label>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-right">
+                <div class="d-flex align-items-start">
+                    <button class="btn white-btn-green-border back-icon mr-4 ml-auto">Back</button>
+                    <button class="btn success-btn" [disabled]="verifyAddressForm.invalid">Save & Continue</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>

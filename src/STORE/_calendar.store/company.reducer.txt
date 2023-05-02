@@ -1,0 +1,30 @@
+import { tassign } from 'tassign';
+import {
+  FETCH_COMPANY_LIST,
+  FETCH_COMPANY_LIST_ERROR,
+  FETCH_COMPANY_LIST_SUCCESS,
+} from './calendar.actions';
+import { INITIAL_COMPANY_STATE, JID_CompanyState } from './company.store';
+
+export function CompanyReducer(
+  state: JID_CompanyState | any = INITIAL_COMPANY_STATE,
+  action: any
+): JID_CompanyState {
+  switch (action.type) {
+    case FETCH_COMPANY_LIST:
+      return tassign(state, {
+        isLoading: true,
+      });
+    case FETCH_COMPANY_LIST_SUCCESS:
+      return tassign(state, {
+        companyList: action.payload,
+        isLoading: false,
+      });
+
+    case FETCH_COMPANY_LIST_ERROR:
+      return tassign(state, {
+        error: action.payload,
+      });
+  }
+  return state;
+}

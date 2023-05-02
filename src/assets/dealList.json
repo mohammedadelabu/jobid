@@ -1,0 +1,110 @@
+{
+  "DealsList": [
+    {
+      "id": 1,
+      "stage": "Discovery",
+      "connectTo": "2",
+      "deals": [
+        {
+          "LeadId": "c075ad74-1ed1-4330-81ed-08da700a03cb",
+          "CompanyName": "BottomUp Tech",
+          "CompanyEmail": "ibrahimalli2016@yahoo.com",
+          "Address": "1, Peace Avenue,  off Moricas road",
+          "Location": "location.Value",
+          "CompanySize": 12,
+          "Website": "www.allisplace.org",
+          "VAT": "svGWAE3Y43",
+          "PhoneNumber": "+234 906 267 0797",
+          "Description": "",
+          "CompanyLogo": "",
+          "PrimaryContactFirstName": "Alli",
+          "PrimaryContactLastName": "Abayomi",
+          "PrimaryContactEmail": "ibrahimalli2016@yahoo.com ",
+          "PrimaryContactMobileNumber": "+234 906 267 0797",
+          "id": "1659419148738",
+          "date": "2022-08-02T05:45:48.738Z"
+        },
+        {
+          "LeadId": "c075ad74-1ed1-4330-81ed-08da700a03cb",
+          "CompanyName": "Allis Place",
+          "CompanyEmail": "ibrahimalli2016@yahoo.com",
+          "Address": "1, Peace Avenue,  off Moricas road",
+          "Location": "location.Value",
+          "CompanySize": 12,
+          "Website": "www.allisplace.org",
+          "VAT": "236geWE",
+          "PhoneNumber": "+234 906 267 0797",
+          "Description": "",
+          "CompanyLogo": "",
+          "PrimaryContactFirstName": "Alli",
+          "PrimaryContactLastName": "Abayomi",
+          "PrimaryContactEmail": "ibrahimalli2016@yahoo.com ",
+          "PrimaryContactMobileNumber": "+234 906 267 0797",
+          "id": "1659419236248",
+          "date": "2022-08-02T05:47:16.248Z"
+        },
+        {
+          "LeadId": "c075ad74-1ed1-4330-81ed-08da700a03cb",
+          "CompanyName": "BottomUp Tech",
+          "CompanyEmail": "ibrahimalli2016@yahoo.com",
+          "Address": "1, Peace Avenue,  off Moricas road",
+          "Location": "location.Value",
+          "CompanySize": 41,
+          "Website": "www.allisplace.org",
+          "VAT": "svGWAE3Y43",
+          "PhoneNumber": "+234 906 267 0797",
+          "Description": "",
+          "CompanyLogo": "",
+          "PrimaryContactFirstName": "Alli",
+          "PrimaryContactLastName": "Abayomi",
+          "PrimaryContactEmail": "ibrahimalli2016@yahoo.com ",
+          "PrimaryContactMobileNumber": "+234 906 267 0797",
+          "id": "1659626974868",
+          "date": "2022-08-04T15:29:34.868Z"
+        },
+        {
+          "LeadId": "c075ad74-1ed1-4330-81ed-08da700a03cb",
+          "CompanyName": "BottomUp Tech",
+          "CompanyEmail": "ibrahimalli2016@yahoo.com",
+          "Address": "1, Peace Avenue,  off Moricas road",
+          "Location": "location.Value",
+          "CompanySize": 41,
+          "Website": "www.allisplace.org",
+          "VAT": "236geWE",
+          "PhoneNumber": "+234 906 267 0797",
+          "Description": "",
+          "CompanyLogo": "",
+          "PrimaryContactFirstName": "Alli",
+          "PrimaryContactLastName": "Abayomi",
+          "PrimaryContactEmail": "ibrahimalli2016@yahoo.com ",
+          "PrimaryContactMobileNumber": "+234 906 267 0797",
+          "id": "1659696396535",
+          "date": "2022-08-05T10:46:36.536Z"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "stage": "Handover",
+      "connectTo": "3",
+      "deals": []
+    },
+    {
+      "id": 3,
+      "stage": "Interview",
+      "connectTo": "4",
+      "deals": []
+    },
+    {
+      "id": 4,
+      "stage": "Sold",
+      "connectTo": "1",
+      "deals": []
+    },
+    {
+      "id": 5,
+      "stage": "Lost",
+      "deals": []
+    }
+  ]
+}

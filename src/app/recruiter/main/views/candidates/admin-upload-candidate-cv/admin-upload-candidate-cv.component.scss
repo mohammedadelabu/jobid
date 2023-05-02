@@ -1,0 +1,44 @@
+#arrow-left-btn {
+    color: #819EB0;
+}
+
+.form-wrapper-sm {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    // min-height: 90vh;
+    padding-top: 5em;
+    .form-card-title {
+        margin-bottom: 2.5em;
+    }
+}
+
+.form-control-wrapper {
+    border: 1px dashed #62CC7B;
+    // cursor: pointer;
+    border-radius: 30px;
+    height: 200px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #E8FAF1;
+    input[type="file"] {
+        height: 100%;
+        width: 100%;
+        top: 0;
+        bottom: 0;
+        opacity: 0;
+        position: absolute;
+        width: 100%;
+        z-index: 2;
+    }
+}
+
+#ui-temp {
+    text-align: center;
+    .featured-icon {
+        max-width: 90px;
+        margin: 0 auto;
+    }
+}

@@ -1,0 +1,23 @@
+<!-- <p>update-admin-candidate-summary works!</p> -->
+<!-- <p>update-admin-candidate-summary works!</p> -->
+
+
+<form class="mb-5" [formGroup]="candidateSummaryForm" (ngSubmit)="updateSummary()">
+    <div class="text-right">
+        <button type="button" class="btn btn-sm" (click)="cancelEdit()" type="button">
+                <i class="fas fa-times text-danger"></i>
+            </button>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-12"> 
+            <editor initialValue="Summary" name="Summary" formControlName="Summary" [init]=" { height: 200, menubar: false, plugins: [ 'advlist autolink lists link image charmap print preview anchor',
+            'searchreplace visualblocks code fullscreen', 'insertdatetime media table paste code help wordcount' ], toolbar: 'undo redo | formatselect | bold italic backcolor | \
+              alignleft aligncenter alignright alignjustify | \
+              bullist numlist outdent indent | removeformat | help' } "></editor>
+        </div>
+    </div>
+    <div>
+        <button type="submit" class="btn btn-outline-success px-5">UPDATE</button>
+    </div>
+
+</form>

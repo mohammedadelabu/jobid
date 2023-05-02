@@ -1,0 +1,31 @@
+<!-- <p>job-applicants works!</p> -->
+
+<div class="d-flex align-items-center justify-content-between">
+  <div class="candidate-count">
+    Total Candidates {{ JobApplicants?.length
+    }}<span *ngIf="!JobApplicants?.length">0</span>
+  </div>
+  <div class="candidates-avatar">
+    <div class="avatar-wrap" *ngFor="let applicant of uiList">
+      <img
+        src="../../../../../../assets/images/image-placeholder.jpg"
+        alt=""
+        class="img-fluid"
+      />
+    </div>
+    <!-- <div class="avatar-wrap">
+            <img src="../../../../../../assets/images/candidate-test-avatar-1.png" alt="" class="img-fluid">
+        </div>
+        <div class="avatar-wrap">
+            <img src="../../../../../../assets/images/image-placeholder.jpg" alt="" class="img-fluid">
+        </div> -->
+    <!-- <div class="avatar-wrap" *ngIf="uiList?.length < JobApplicants?.length"> -->
+    <div class="avatar-wrap">
+      <!-- 47+ -->
+      <div>
+        {{ uiList?.length
+        }}<span *ngIf="uiList?.length < JobApplicants?.length">+</span>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,127 @@
+<!-- <p>uploaded-cv-registration-form works!</p> -->
+<!-- <p>cv-upload-candidate-register-form works!</p> -->
+
+<div *ngIf="isResponseMsg.message">
+    <div class="alert text-center my-2"
+        [ngClass]="{'alert-info': !isResponseMsg.error, 'alert-danger': isResponseMsg.error}">
+        <div *ngIf="isResponseMsg.message">
+            <div>{{isResponseMsg.message}}</div>
+            <!-- <div>
+               <a [routerLink]="['/administrator/candidates']" class="text-link tet-bold" >Return to dashboard</a>
+           </div> -->
+        </div>
+        <!-- <p *ngIf="isResponseMsg.message && !isResponseMsg.error">
+           Click <a class="text-link text-bold" [routerLink]="['/authenticate-user']">Here</a> to Login
+       </p> -->
+    </div>
+</div>
+<!-- {{RegisterUserForm.valid | json}}
+<p>
+    {{RegisterUserForm.value | json}}
+</p>
+<p>
+    {{RegisterUserForm.value.PhoneNumber | json}}
+</p>
+<p>
+    {{RegisterUserForm.value.PhoneNumber?.internationalNumber | json}}
+</p> -->
+<aside>
+    <small class="text-info">The scrapper is not working at the moment. Kindly enter the candidate's account information of the candidate below to
+        proceed.</small>
+</aside>
+<form [formGroup]="RegisterUserForm" (ngSubmit)="register()" novalidate *ngIf="!isResponseMsg.success">
+    <!-- <div class="alert text-center alert-info" *ngIf="responseMsg">
+        {{errorMsg}}
+    </div> -->
+    <div class="card shadow-sm p-md-4 border-0">
+        <div class="card-body">
+            <!-- {{RegisterUserForm.value | json}} -->
+            <div class="form-card-title mb-3">
+                <h1 class="form-title mb-4">PROVIDE ACCOUNT INFORMATION</h1>
+                <!-- <div class="tagline font-family-poppins">Create an account!!!</div> -->
+            </div>
+            <div class="text-center alert alert-danger" *ngIf="formIncompleteErrorMsg">{{formIncompleteErrorMsg}}</div>
+            <div class="form-row">
+                <div class="form-group col-12 col-md-6">
+                    <label for="FirstName" class="required-field-label">First Name</label>
+                    <input type="text" class="form-control" id="FirstName" aria-describedby="FirstName"
+                        formControlName="FirstName"
+                        [ngClass]="{'is-invalid': RegisterUserForm.get('FirstName')?.touched && RegisterUserForm.get('FirstName')?.invalid}"
+                        required>
+                    <small id="nameErrorMsg" class="form-text text-danger invalid-feedback">First Name
+                        is
+                        required.</small>
+                </div>
+                <div class="form-group col-12 col-md-6">
+                    <label for="MiddleName">Middle Name</label>
+                    <input type="text" class="form-control" id="MiddleName" aria-describedby="MiddleName"
+                        formControlName="MiddleName">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-12 col-md-6">
+                    <label for="LastName" class="required-field-label">Last Name</label>
+                    <input type="text" class="form-control" id="LastName" aria-describedby="LastName"
+                        formControlName="LastName"
+                        [ngClass]="{'is-invalid': RegisterUserForm.get('LastName')?.touched && RegisterUserForm.get('LastName')?.invalid}"
+                        required>
+                    <small id="firtsNameErrorMsg" class="form-text text-danger invalid-feedback">Last
+                        name is
+                        required.</small>
+                </div>
+                <div class="form-group col-12 col-md-6">
+                    <label for="Region" class="required-field-label">Recruitment Region</label>
+                    <select name="Region" id="Region" class="form-control" formControlName="Region"
+                        [ngClass]="{'is-invalid': RegisterUserForm.get('Region')?.touched && RegisterUserForm.get('Region')?.invalid}"
+                        required>
+                        <option value="" selected="selected">Select region</option>
+                        <option value="{{region}}" *ngFor="let region of regionList">
+                            {{region}}</option>
+                    </select>
+                    <small id="firtsNameErrorMsg" class="form-text text-danger invalid-feedback">Select a
+                        region</small>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-12 col-md-6">
+                    <label for="exampleInputEmail1" class="required-field-label">Email address</label>
+                    <input type="email" class="form-control"
+                        [ngClass]="{'is-invalid': RegisterUserForm.get('Email')?.touched && RegisterUserForm.get('Email')?.invalid}"
+                        id="exampleInputEmail" aria-describedby="EmailHelp" name="Email" formControlName="Email">
+
+                    <span class="invalid-feedback">
+                        <small class="form-text text-danger"
+                            *ngIf="RegisterUserForm.get('Email')?.hasError('required')">Email is
+                            required.
+                        </small>
+                        <small class="form-text text-danger"
+                            *ngIf="RegisterUserForm.get('Email')?.hasError('Email')">You entered an
+                            invalid
+                            Email.
+                        </small>
+                    </span>
+                </div>
+                <div class="form-group col-12 col-md-6">
+                    <label for="PhoneNumber" class="required-field-label">Phone Number</label>
+                    <ngx-intl-tel-input [enableAutoCountrySelect]="true" [enablePlaceholder]="true" [preferredCountries]="['nl']" 
+                        [searchCountryFlag]="true" [selectFirstCountry]="false" [phoneValidation]="false"
+                        name="PhoneNumber"
+                        [ngClass]="{'is-invalid': RegisterUserForm.get('PhoneNumber')?.touched && RegisterUserForm.get('PhoneNumber')?.invalid}"
+                        formControlName="PhoneNumber">
+                    </ngx-intl-tel-input>
+                    <small id="phoneNumberErrorMsg" class="form-text text-danger"
+                        [ngClass]="{'d-none': !isphoneNumberError}">Phone number is
+                        required.</small>
+                </div>
+            </div>
+            <div class="form-group text-center">
+                <!-- <button type="submit" class="btn form-btn btn-block" [disabled]="RegisterUserForm.invalid">CREATE
+                    ACCOUNT</button> -->
+                <button type="submit" class="btn success-btn btn-block" [disabled]="RegisterUserForm.invalid">CREATE
+                    ACCOUNT</button>
+                <!-- {{RegisterUserForm.valid | json}} -->
+                <!-- <button type="submit" class="btn form-btn btn-block">CREATE ACCOUNT</button> -->
+            </div>
+        </div>
+    </div>
+</form>

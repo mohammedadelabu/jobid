@@ -1,0 +1,14 @@
+@use "../../../../../../../../sass/_abstracts/colors";
+  .social-icons {
+    margin-bottom: 0.5em;
+    li {
+      margin-right: 0.5em;
+      a {
+        color: colors.$PrimaryColorGreen75;
+        font-size: 1.4rem;
+      }
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }

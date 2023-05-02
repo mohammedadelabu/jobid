@@ -1,0 +1,111 @@
+<!-- <p>preview-work-experience works!</p> -->
+<div class="alert alert-info text-center" *ngIf="!workHistoryList">No Work experince provided</div>
+<ul class="list-style-none pl-0">
+    <li *ngFor="let item of workHistoryList">
+        <div class="text-right">
+            <div class="inline-flex">
+                <!-- <button class="btn btn-sm py-0" [routerLink]="['/candidate/create-resume/projects/update-project/', item.Id]">
+                    <i class="fas fa-pen text-info"></i>
+                </button> -->
+                <button class="btn btn-sm py-0"
+                    [routerLink]="['/edit-candidate-cv/work-history/update-experience', item.Id]">
+                    <i class="fas fa-pen text-info"></i>
+                </button>
+                <button class="btn btn-sm py-0" (click)="removeExperience(item.Id)">
+                    <i class="fas fa-trash text-danger"></i>
+                </button>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead class="bg-light">
+                    <tr *ngIf="item?.EmployerName">
+                        <th scope="row" class="white-space-nowrap">Company name:</th>
+                        <td colspan="4">
+                            <h2 class="heading my-0">{{item?.EmployerName}}</h2>
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- <tr>
+                        <th scope="row" colspan="2">Company size:</th>
+                        <td colspan="4">
+                            10-15 People
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row" colspan="2">Industry:</th>
+                        <td colspan="4">
+                            Energy
+                        </td>
+                    </tr> -->
+                    <tr *ngIf="item?.Location">
+                        <th scope="row" colspan="2">Location:</th>
+                        <td colspan="4">
+                            {{item?.Location}}
+                        </td>
+                    </tr>
+                    <tr *ngIf="item?.Description">
+                        <th scope="row" colspan="2">Description:</th>
+                        <td colspan="4">
+                            <div [innerHTML]="item?.Description"></div>
+                            <!-- <ul class="dot-list">
+                                <li> Automate continuous integration and continuous delivery and suites collaboration using tools such as Gitlab, Jenkins, Docker, Kubernetes, Ansible
+                                </li>
+                                <li>Version/Source Code management control using Gitlab. Orchestrate the provisioning, load balancing, dynamic configuration, monitoring, and optimization of servers on Digital Ocean. </li>
+                                <li> Perform root cause analysis of staging and production impacting issues, including opening problem cases with vendors and driving them to conclusion.</li>
+                                <li> Drive and support DevOps adoption across SDLC, Pipeline implementation for legacy applications, while ensuring compliance with enterprise policies and best practices.</li>
+                                <li>Provide technology evaluations and recommendations for vendor selection, including proof of concepts.</li>
+                                <li> Create, Manage and Deploy microservices into Digital Ocean Kubernetes engine. </li>
+                            </ul> -->
+                        </td>
+                    </tr>
+                    <!-- <tr>
+                        <th scope="row" colspan="2">Tools and Technologies:</th>
+                        <td colspan="4" class="text-danger">Gitlab, Jenkins, Docker, Kubernetes, Ansible. Digital Ocean,
+                            Elasticsearch, Kafka
+                        </td>
+                    </tr> -->
+                    <tr *ngIf="item?.jobTitle">
+                        <th scope="row" colspan="2">Project Role:</th>
+                        <td colspan="4">{{item?.JobTitle}}
+                        </td>
+                    </tr>
+                    <tr *ngIf="item?.StartDate || item?.EndDate">
+                        <th scope="row" colspan="2">Involvement Duration:</th>
+                        <!-- <td colspan="4">4 months+ {{item?.StartDate}}
+                        </td> -->
+                        <td><strong>From:</strong> {{item?.StartDate}}
+                        </td>
+                        <td *ngIf="item?.EndDate">
+                            <strong>To:&nbsp;</strong>
+                            <span *ngIf="!item?.Currently">{{item?.EndDate}}</span> 
+                            <span *ngIf="item?.Currently">Currently works here</span> 
+                        </td>
+                    </tr>
+                    <tr *ngIf="item?.TechStack">
+                        <th scope="row" colspan="2">Tech stack:</th>
+                        <td colspan="4">{{item?.TechStack}}
+                        </td>
+                    </tr>
+                    <tr *ngIf="item?.TeamSize">
+                        <th scope="row" colspan="2">Team size:</th>
+                        <td colspan="4">{{item?.TeamSize}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </li>
+</ul>
+
+<!--  -->
+
+<div>
+    <button type="button" class="btn btn-block add-more-btn mb-5" [routerLink]="['/edit-candidate-cv/work-history/add-experience/']">
+        <span>+</span> ADD EXPERIENCE</button>
+</div>
+<div class="py-2 d-flex align-items-center justify-content-between">
+    <button type="submit" class="btn success-btn previous-btn px-md-5" (click)="onGoBack()">BACK</button>
+    <button type="submit" class="btn success-btn next-btn px-md-5" [routerLink]="['/edit-candidate-cv/education']">NEXT</button>
+</div>

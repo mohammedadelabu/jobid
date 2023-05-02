@@ -1,0 +1,89 @@
+<!-- <p>invite-company-form works!</p> -->
+<div class="card border-rounded-lg">
+  <div class="card-body">
+    <h5 class="form-title text-center mb-2">Invite Company</h5>
+    <!-- <ng-template #formBody>
+      <div id="form-body" class="card mb-4">
+        <div class="card-body">
+          <p>Dear Company Name,</p>
+          <blockquote>
+            <p>
+              Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet
+              sint. Velit officia consequat duis enim velit mollit. Exercitation
+              veniam consequat sunt nostrud amet.Amet minim mollit non deserunt
+              ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis
+              enim velit mollit. Exercitation veniam consequat sunt nostrud amet.
+            </p>
+          </blockquote>
+          <p>
+            Best regards<br />
+            HR Team
+          </p>
+        </div>
+      </div>
+    </ng-template> -->
+
+    <ng-container *ngIf="errorMsg">
+      <div class="alert alert-danger text-center">
+        <small>
+          {{errorMsg | json}}
+        </small>
+      </div>
+    </ng-container>
+    <form [formGroup]="invitationForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="Email">Email address</label>
+        <input type="email" class="form-control" id="Email" placeholder="Enter company email address"
+          aria-describedby="emailHelp" formControlName="Email" [ngClass]="{
+                'is-invalid':
+                  invitationForm.get('Email')?.touched &&
+                  invitationForm.get('Email')?.invalid
+              }" required />
+        <span class="invalid-feedback">
+          <small class="form-text text-danger" *ngIf="invitationForm.get('Email')?.hasError('required')">Email is
+            required.
+          </small>
+          <small class="form-text text-danger" *ngIf="invitationForm.get('Email')?.hasError('email')">You entered an
+            invalid
+            Email.
+          </small>
+        </span>
+      </div>
+      <!-- <ng-container *ngTemplateOutlet="formBody">
+        This text is not displayed
+      </ng-container> -->
+
+      <!-- <div class="form-group">
+            <label for="exampleFormControlTextarea1">Example textarea</label>
+            <editor
+              placeholder="Body"
+              initialValue="Message"
+              name="Body"
+              formControlName="Body"
+              [init]="{
+                height: 200,
+                menubar: false,
+                plugins: [
+                  'advlist autolink lists link image charmap print preview anchor',
+                  'searchreplace visualblocks code fullscreen',
+                  'insertdatetime media table paste code help wordcount'
+                ],
+                toolbar:
+                  'undo redo | formatselect | bold italic backcolor | \
+              alignleft aligncenter alignright alignjustify | \
+              bullist numlist outdent indent | removeformat | help'
+              }"
+            ></editor>
+          </div> -->
+      <button type="submit" class="btn success-btn" [disabled]="invitationForm.invalid || isSending">
+        <ng-container *ngIf="isSending">Sending...</ng-container>
+        <ng-container *ngIf="!isSending">
+          <i class="fas fa-paper-plane"></i>
+          Send Invite
+        </ng-container>
+      </button>
+      <span class="mx-1"></span>
+      <button type="submit" class="btn outline-danger-btn" (click)="onCloseForm()">Cancel</button>
+    </form>
+  </div>
+</div>

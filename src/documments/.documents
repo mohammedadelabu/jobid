@@ -1,0 +1,8 @@
+ng build --base-href=/cv/
+
+Using [(ngModel)] and formControlName together => [ngModelOptions]="{standalone: true}"
+
+npx rimraf /node_modules
+
+
+http://jobid.app

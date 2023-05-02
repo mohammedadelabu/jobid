@@ -1,0 +1,17 @@
+@use "../_abstracts/typography";
+@use "../_partials/mixins";
+@use "../_abstracts/colors";
+.flat-toolbar {
+    margin-bottom: 1.5em;
+    // border-bottom: 1px solid colors.$grey-100-;
+
+    .nav-link {
+        // color: colors.$text-colour-80-;
+        @include mixins.transition(color 300ms ease-in-out);
+        
+        &.router-link-active {
+            // border-bottom: 3px solid colors.$green-80-;
+        }
+    }
+
+}

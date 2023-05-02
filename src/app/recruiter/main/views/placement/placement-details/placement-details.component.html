@@ -1,0 +1,68 @@
+<!-- <p>placement-details works!</p> -->
+
+<div class="d-flex align-items-center">
+  <img
+    src="../../../../../../../assets/images/icons/angle-left-icon.svg"
+    alt=""
+    class="img-fluid mr-3 cursor-pointer"
+    (click)="back()"
+  />
+  <h1 class="page-title py-0 mb-0">Placement Details</h1>
+</div>
+
+<section>
+  <div id="placement-information">
+    <h2 class="company-name">{{ vacancy?.Company?.Name | titlecase }}</h2>
+    <div class="intro-data">
+      <ul class="list-style-none pl-0 mb-0">
+        <li class="onsite icon-before" *ngIf="vacancy?.JobType">
+          {{ vacancy?.JobType | titlecase }}
+        </li>
+        <li class="date icon-before" *ngIf="vacancy?.StartDate">
+          {{ vacancy?.StartDate }}
+        </li>
+        <li class="date icon-before" *ngIf="vacancy?.EndDate">
+          {{ vacancy?.EndDate }}
+        </li>
+        <li class="location icon-before" *ngIf="vacancy?.Company?.Location">
+          {{ vacancy?.Company?.Location | titlecase }}
+        </li>
+        <li class="time icon-before" *ngIf="vacancy?.HoursAWeek">
+          {{ vacancy?.HoursAWeek }}HR
+        </li>
+        <li class="money icon-before" *ngIf="vacancy?.HourlyRate">
+          €{{ vacancy?.HourlyRate }}
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<hr />
+<section>
+  <div id="placement-description" class="pb-5 pt-3">
+    <h3 class="title">Description</h3>
+    <div [innerHTML]="vacancy?.JobDescription"></div>
+    <p>
+      <!-- {{vacancy?.Company?.Description}} -->
+      <!-- Demonstrate deep engineering and architectural expertise on Microsoft Azure PAAS, FAAS and IAAS stack of services on multiple Consulting and Delivery engagements Minimum of 8 to 10+ years’ experience in Architect / Design / Develop various web
+            applications using .NET Framework / .NET Core / Java or any other programming frameworks. Minimum 2+ years of experience in Microsoft Azure PaaS Services mentioned in the skills sets. Experience in implementation of best practices using various
+            Design Patterns. Must have strong team and interpersonal skills, and the ability to multi-task, when required. Curious self-starter willing to learn and stay current with emerging technologies required. High customer orientation and quality
+            awareness. -->
+    </p>
+  </div>
+</section>
+
+<section id="placement-table">
+  <button class="btn btn-sm text-green-btn" id="create-project-btn">
+    Create Project
+  </button>
+  <mat-tab-group animationDuration="0ms">
+    <mat-tab label="Projects">
+      <app-projects></app-projects>
+    </mat-tab>
+    <mat-tab label="Employees">
+      <app-employees></app-employees>
+    </mat-tab>
+  </mat-tab-group>
+</section>

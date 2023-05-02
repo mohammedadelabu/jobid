@@ -1,0 +1,25 @@
+#resume-template-page {
+    font-size: 13px;
+    display: inline-block;
+    .inner {
+        // padding-top: 3em;
+        max-width: 900px;
+    }
+    .heading {
+        font-size: .85rem;
+        margin-bottom: 0;
+    }
+
+    .letter-head{
+        color: #14323D;
+
+        .company-name{
+            font-size: 1.2rem;
+        }
+        .zarttech-logo-wrapper{
+            max-width: 150px;
+            display: inline-block;
+            margin-bottom: 2em;
+        }
+    }
+}

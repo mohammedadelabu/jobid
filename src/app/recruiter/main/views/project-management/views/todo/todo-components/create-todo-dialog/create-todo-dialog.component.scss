@@ -1,0 +1,14 @@
+#add-candidate-btn {
+    background: #4f656e;
+    border: 1.05px solid #ffffff;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.candidates-avatar .avatar-wrap:last-child{
+    display: none;
+}

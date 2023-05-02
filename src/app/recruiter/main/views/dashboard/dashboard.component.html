@@ -1,0 +1,241 @@
+<!-- <p>dashboard works!</p> -->
+<div class="dashboard-page-Wrapper">
+  <div class="d-flex align-items-center justify-content-between flex-wrap">
+    <h1 class="page-title mb-4">Dashboard</h1>
+
+    <div *appRecruitment="Create" class="d-flex">
+      <button
+        type="button"
+        class="btn white-btn-green-border mr-2 mb-2 mb-sm-0"
+        (click)="openInvitationDialog()"
+      >
+        +&nbsp; Invite Candidate
+      </button>
+
+      <div ngbDropdown class="d-inline-block">
+        <button
+          type="button"
+          class="btn white-btn-green-border"
+          id="dropdownBasic1"
+          ngbDropdownToggle
+        >
+          Add Resume
+        </button>
+        <div
+          class="dropdown-content"
+          ngbDropdownMenu
+          aria-labelledby="dropdownBasic1"
+        >
+          <button ngbDropdownItem (click)="onCreateResume()">
+            Create Resume
+          </button>
+          <div class="dropdown-divider"></div>
+          <button ngbDropdownItem (click)="onUploadResume()">
+            Upload Resume
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div>
+        <div>Test</div>
+    </div> -->
+
+  <!-- COUNTS -->
+  <ng-template #noCount>0</ng-template>
+  <!-- {{ candidatesListIsLoading$ | async | json}} -->
+  <ng-template #loading>
+    <small>Loading...</small>
+  </ng-template>
+  <div id="counts" class="mb-4">
+    <div class="inner">
+      <div
+        *appCandidate="View"
+        class="card count-label"
+        id="candidates"
+        [routerLink]="'/recruiter/candidates'"
+      >
+        <div class="d-flex align-items-center">
+          <div class="icon card-body pr-0">
+            <img
+              src="../../../../../assets/images/icons/dashboard-candidates-count-icon.svg"
+              alt=""
+              class="img-fluid"
+            />
+          </div>
+          <div class="card-body">
+            <!-- <h5 class="card-title"
+                            *ngIf="!(candidatesListIsLoading$ | async) && !UserList.length; else loading">
+                            <span *ngIf="UserList?.length > 0; else noCount">
+                                <span *ngIf="!(candidatesListIsLoading$ | async)">{{UserList?.length}}</span>
+                            </span>
+                        </h5> -->
+
+            <!-- <ng-container *ngIf="!(candidatesListIsLoading$ | async) && UserList.length; else loading">
+                            <h5 class="card-title">
+                                <span *ngIf="UserList?.length > 0; else noCount">
+                                    {{UserList?.length}}
+                                </span>
+                            </h5>
+                        </ng-container> -->
+            <h5
+              class="card-title"
+              *ngIf="
+                !(candidatesListIsLoading$ | async) || UserList != 0;
+                else loading
+              "
+            >
+              <span *ngIf="UserList?.length > 0; else noCount">
+                <!-- <span *ngIf="!(candidatesListIsLoading$ | async)"> -->
+                <!-- {{UserList?.length}} -->
+                {{ totalRecords }}
+                <!-- </span> -->
+              </span>
+            </h5>
+            <p class="card-text">Candidates</p>
+          </div>
+        </div>
+      </div>
+      <div
+        *appCandidate="View"
+        class="card count-label"
+        id="company"
+        [routerLink]="'/recruiter/crm/companies'"
+      >
+        <div class="d-flex align-items-center">
+          <div class="icon card-body pr-0">
+            <img
+              src="../../../../../assets/images/icons/dashboard-company-count-icon.svg"
+              alt=""
+              class="img-fluid"
+            />
+          </div>
+          <div class="card-body">
+            <h5
+              class="card-title"
+              *ngIf="
+                !(companyListIsLoading$ | async) || companyList != 0;
+                else loading
+              "
+            >
+              <span *ngIf="companyList; else noCount">{{
+                companyList?.length
+              }}</span>
+            </h5>
+            <p class="card-text">Companies</p>
+          </div>
+        </div>
+      </div>
+      <!-- {{ companyListIsLoading$ | async | json}} -->
+      <hr />
+      <!-- {{companyList$ | async | json}} -->
+      <hr />
+      <!-- {{companyList | json}} -->
+
+      <!--  -->
+
+      <!--  -->
+      <!-- <div class="count-label" id="candidates">
+        <div class="icon">
+          <img
+            src="../../../../../assets/images/icons/dashboard-candidates-count-icon.svg"
+            alt=""
+            class="img-fluid"
+          />
+        </div>
+        <div>
+          <p>1200<br />Candidates</p>
+        </div>
+      </div>
+      <div class="count-label" id="company">
+        <div class="icon">
+          <img
+            src="../../../../../assets/images/icons/dashboard-company-count-icon.svg"
+            alt=""
+            class="img-fluid"
+          />
+        </div>
+        <div>
+          <p>1200<br />Candidates</p>
+        </div>
+      </div> -->
+    </div>
+  </div>
+
+  <!-- CALENDAR -->
+  <section id="calendar" class="mb-4">
+    <app-events-calendar></app-events-calendar>
+  </section>
+
+  <!-- <section class="mb-4">
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <div class="card display-content-card height-card-439">
+                    <div class="card-body">
+                        <h2 class="block-title">Candidates</h2>
+                        <table class="table table-borderless candidate-message-table">
+                            <thead>
+                                <tr class="border-bottom">
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Message</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">
+                                        <div class="d-flex align-items-center">
+                                            <div class="profile-image-wrapper mr-2">
+                                                <img src="../../../../../assets/images/user-solid.png" alt="" class="img-fluid">
+                                            </div>
+                                            <div class="name">Ali Raheed</div>
+                                        </div>
+                                    </th>
+                                    <td>
+                                        <div class="message">
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <button class="btn btn-sm show-more-btn">Show more</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="card display-content-card height-card-439">
+                    <div class="card-body">
+                        <h2 class="block-title">Company</h2>
+                        <table class="table table-borderless candidate-message-table">
+                            <thead>
+                                <tr class="border-bottom">
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Message</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">
+                                        <div class="d-flex align-items-center">
+                                            <div class="profile-image-wrapper mr-2">
+                                                <img src="../../../../../assets/images/sample-company-logo.png" alt="" class="img-fluid">
+                                            </div>
+                                            <div class="name">Ali Raheed</div>
+                                        </div>
+                                    </th>
+                                    <td>
+                                        <div class="message">
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <button class="btn btn-sm show-more-btn">Show more</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+</div>

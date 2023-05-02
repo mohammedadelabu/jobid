@@ -1,0 +1,106 @@
+<!-- <p>add-company-contact works!</p> -->
+<div class="pt-3 pb-5">
+    <div class="card border-rounded-lg">
+        <div class="card-body">
+            <h1 class="form-title">Add Contact</h1>
+            <form [formGroup]="CompanyContactForm" (ngSubmit)="onSubmit()" class="wide-form-controls-grid">
+                <div class="form-row">
+                    <div class="form-group col-12 col-md-6">
+                        <!-- <label for="FirstName" class="required-field-label">First Name</label> -->
+                        <label for="FirstName">First Name</label>
+                        <!-- <input type="text" class="form-control" id="FirstName" aria-describedby="FirstNameHelp"
+                            formControlName="FirstName"
+                            [ngClass]="{'is-invalid': CompanyContactForm.get('FirstName')?.touched && CompanyContactForm.get('FirstName')?.invalid}"
+                            required> -->
+
+                        <input type="text" class="form-control" id="FirstName" aria-describedby="FirstNameHelp"
+                            formControlName="FirstName"
+                            [ngClass]="{'is-invalid': CompanyContactForm.get('FirstName')?.pristine}"
+                            required>
+
+
+                        <!-- <small class="form-text text-danger invalid-feedback">First
+                            name is
+                            required.</small> -->
+                    </div>
+                    <div class="form-group col-12 col-md-6">
+                        <label for="LastName">Last Name</label>
+                        <!-- <input type="text" class="form-control" id="LastName" aria-describedby="LastNameHelp"
+                            formControlName="LastName"
+                            [ngClass]="{'is-invalid': CompanyContactForm.get('LastName')?.touched && CompanyContactForm.get('LastName')?.invalid}"
+                            required> -->
+                        <input type="text" class="form-control" id="LastName" aria-describedby="LastNameHelp"
+                            formControlName="LastName"
+                       >
+                        <small class="form-text text-danger invalid-feedback">Last
+                            name is
+                            required.</small>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-12 col-md-6">
+                        <!-- <label for="Email" class="required-field-label">Email address</label> -->
+                        <label for="Email">Email address</label>
+                        <!-- <input type="email" class="form-control" id="Email" aria-describedby="emailHelp"
+                            formControlName="Email"
+                            [ngClass]="{'is-invalid': CompanyContactForm.get('Email')?.touched && CompanyContactForm.get('Email')?.invalid}"
+                            required> -->
+                        <input type="email" class="form-control" id="Email" aria-describedby="emailHelp"
+                            formControlName="Email"
+                            >
+                        <span class="invalid-feedback">
+                            <small class="form-text text-danger"
+                                *ngIf="CompanyContactForm.get('Email')?.hasError('required')">Email is
+                                required.
+                            </small>
+                            <small class="form-text text-danger"
+                                *ngIf="CompanyContactForm.get('Email')?.hasError('email')">You entered an
+                                invalid
+                                Email.
+                            </small>
+                        </span>
+                    </div>
+                    <div class="form-group col-12 col-md-6">
+                        <label for="PhoneNumber">Mobile Number</label>
+                        <!-- <input type="text" class="form-control" id="PhoneNumber" formControlName="PhoneNumber"> -->
+                        <ngx-intl-tel-input [enableAutoCountrySelect]="true" [enablePlaceholder]="true"
+                            [preferredCountries]="['nl']" [selectFirstCountry]="true" [searchCountryFlag]="true"
+                            [phoneValidation]="false" formControlName="PhoneNumber">
+                        </ngx-intl-tel-input>
+                        <small id="phoneNumberErrorMsg" class="form-text text-danger"
+                            [ngClass]="{'d-none': !isphoneNumberError}">Phone
+                            number is
+                            required.</small>
+                    </div>
+                </div>
+                <div class="form-row align-items-end">
+                    <div class="form-group col-12 col-md-6">
+                        <label for="Role">Role</label>
+                        <input type="text" class="form-control" id="Role" aria-describedby="roleHelp"
+                            formControlName="Role">
+                    </div>
+                    <div class="form-group col-12 col-md-6">
+                        <div class="custom-check">
+                            <input type="checkbox" name="SendMail" id="SendMail">
+                            <label for="SendMail" class="mb-0">
+                                <span class="ui-check"></span>
+                                Send Mail
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn success-btn" [disabled]="CompanyContactForm.invalid || isSending">
+                    <ng-container *ngIf="isSending">Sending...</ng-container>
+                    <ng-container *ngIf="!isSending">Add Contact</ng-container>
+                </button>
+                <span class="mx-1"></span>
+                <button type="button" class="btn outline-danger-btn" (click)="onCloseForm()">Cancel</button>
+                <!-- <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="invite-contact-to-login" formControlName="InviteContact">
+                <label class="form-check-label" for="invite-contact-to-login">Invite Contact to login</label>
+            </div>
+             -->
+            </form>
+        </div>
+    </div>
+</div>

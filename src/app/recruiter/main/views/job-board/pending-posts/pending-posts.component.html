@@ -1,0 +1,32 @@
+<div *ngIf="pendingPostsList?.length">
+    <div class="dashboard-table table-responsive border-rounded-md">
+        <table class="table">
+            <thead class="thead">
+                <tr>
+                    <th scope="col">Job Title</th>
+                    <th scope="col">Company</th>
+                    <th scope="col">Start Date</th>
+                    <th scope="col">End Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let post of pendingPostsList | paginate : {
+        itemsPerPage: 12,
+        currentPage: page
+      }">
+                    <th scope="row">{{post.title}}</th>
+                    <td>{{post.company}}</td>
+                    <td>{{post.startDate}}</td>
+                    <td>{{post.endDate}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+
+    <!-- PAGINATION -->
+    <div class="text-right" *ngIf="pendingPostsList" id="pagination">
+        <pagination-controls (pageChange)="page = $event"></pagination-controls>
+    </div>
+</div>

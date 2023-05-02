@@ -1,0 +1,113 @@
+<!-- <p>phone-email-verification works!</p> -->
+<div class="verification-form-wrapper">
+    <div class="inner">
+        <h1 class="title">Phone and Email Verification</h1>
+        <h2 class="sub-title">Verify your phone number and email address with the codes sent to them</h2>
+        <!-- {{isEmailVerificationCodeSent | json}} -->
+        <div class="card mb-4 border-0">
+            <div>
+                <div class="alert alert-info text-center" *ngIf="ResponseMessage">
+                    {{ResponseMessage}}
+                </div>
+                <form #verifyEmailForm="ngForm" (ngSubmit)="onSubmit(verifyEmailForm)" *ngIf="!isEmailVerificationCodeSent; else isEmailVerificationCode">
+                    <div class="fieldset card-body">
+                        <div class="form-row align-items-end">
+                            <div class="form-group col-12 col-md-6">
+                                <label for="VerifyEmail" class="required-field-label">Email verification code </label>
+                                <!-- <input type="email" id="VerifyEmail" class="form-control" required> -->
+                                <div class="verification-input-group input-group">
+                                    <input type="text" class="form-control bg-none" aria-describedby="button-addon2" name="VerifyEmail" [(ngModel)]="Email" required email #email="ngModel">
+                                    <div class="input-group-append">
+                                        <button type="button" class="btn verify-refresh-btn" type="button" id="button-addon2"></button>
+                                    </div>
+                                </div>
+                                <div class="help-text" *ngIf="email?.touched && !email?.valid">
+                                    <small class="text-danger" *ngIf="email?.errors?.['required']">Email is required</small>
+                                    <small class="text-danger" *ngIf="email?.errors?.['email']">Enter a valid email address</small>
+                                </div>
+                            </div>
+                            <div class="form-group col-12 col-md-6">
+                                <button class="btn success-btn" [disabled]="!verifyEmailForm.valid">Verify</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <ng-template #isEmailVerificationCode>
+                    <div class="alert alert-info text-center" *ngIf="emailVerificationResponseMessage">
+                        {{emailVerificationResponseMessage}}
+                    </div>
+                    <form #verifyEmailCodeForm="ngForm" (ngSubmit)="onSubmitEmailCode(verifyEmailCodeForm)" *ngIf="!emailVerificationResponseMessage">
+                        <div class="fieldset card-body">
+                            <div class="form-row align-items-end">
+                                <div class="form-group col-12 col-md-6">
+                                    <label for="">Check your email and provide verification code below</label>
+                                    <input type="text" class="form-control verification-code-input" id="VerificationCode" name="VerificationCode" ngModel required #VerificationCode="ngModel">
+                                    <small id="VerificationCodeErrorMsg" class="form-text text-danger invalid-feedback">Provide verification code.</small>
+                                </div>
+                                <div class="form-group col-12 col-md-6">
+                                    <button class="btn success-btn" [disabled]="verifyEmailCodeForm.invalid">VERIFY</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </ng-template>
+            </div>
+
+            <div>
+                <div class="alert alert-info text-center" *ngIf="PhoneNumberResponseMessage">
+                    {{PhoneNumberResponseMessage}}
+                </div>
+                <form #verifyPhoneForm="ngForm" (ngSubmit)="onSubmitPhone(verifyPhoneForm)" *ngIf="!isPhoneNumberVerificationCodeSent; else isPhoneNumberVerificationCode">
+                    <div class="fieldset card-body">
+                        <div class="form-row align-items-end">
+                            <div class="form-group col-12 col-md-6">
+                                <label for="VerifyPhone" class="required-field-label">Phone Verification Code</label>
+                                <!-- <input type="text" id="VerifyPhone" class="form-control" required> -->
+                                <div class="verification-input-group input-group">
+                                    <input type="text" class="form-control bg-none" aria-describedby="button-addon2" name="VerifyPhone" [(ngModel)]="Phone" required #verifyPhone="ngModel">
+                                    <div class="input-group-append">
+                                        <button class="btn verify-refresh-btn" type="button" id="button-addon2"></button>
+                                    </div>
+                                </div>
+                                <div class="help-text" *ngIf="verifyPhone?.touched && !verifyPhone?.valid">
+                                    <small class="text-danger" *ngIf="verifyPhone?.errors?.['required']">Phone number is required</small>
+                                </div>
+                            </div>
+                            <div class="form-group col-12 col-md-6">
+                                <button class="btn success-btn" [disabled]="!verifyPhoneForm.valid">Verify</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <ng-template #isPhoneNumberVerificationCode>
+                    <div class="alert alert-info text-center" *ngIf="phoneNumberVerificationResponseMessage">
+                        {{phoneNumberVerificationResponseMessage}}
+                    </div>
+                    <form #verifyPhoneNumberCodeForm="ngForm" (ngSubmit)="onSubmitPhoneNumberCode(verifyPhoneNumberCodeForm)" *ngIf="!phoneNumberVerificationResponseMessage">
+                        <div class="fieldset card-body">
+                            <div class="form-row align-items-end">
+                                <div class="form-group col-12 col-md-6">
+                                    <label for="">Check your Phone and provide verification code below</label>
+                                    <input type="text" class="form-control verification-code-input" id="VerificationCode" name="VerificationCode" ngModel required #VerificationCode="ngModel">
+                                    <small id="VerificationCodeErrorMsg" class="form-text text-danger invalid-feedback">Provide verification code.</small>
+                                </div>
+                                <div class="form-group col-12 col-md-6">
+                                    <button class="btn success-btn" [disabled]="verifyPhoneNumberCodeForm.invalid">VERIFY</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </ng-template>
+
+
+                <p class="my-5">You can request another code after 2 minutes</p>
+            </div>
+        </div>
+        <div class="text-right">
+            <div class="d-flex align-items-start">
+                <button class="btn white-btn-green-border back-icon mr-4 ml-auto">Back</button>
+                <button class="btn success-btn">Continue</button>
+            </div>
+        </div>
+    </div>
+</div>

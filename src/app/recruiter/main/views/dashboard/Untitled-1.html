@@ -1,0 +1,194 @@
+<!-- <p>search-results works!</p> -->
+<div class="dashboard-page-Wrapper">
+  <!-- <section id="filter">
+        <div id="filter-list">
+            <app-filter></app-filter>
+        </div>
+    </section> -->
+  <!-- {{searchTerm}} -->
+  <ng-template #contentLoading>
+    <div>
+      <small class="text-info">Loading...</small>
+    </div>
+  </ng-template>
+  <!-- <div *ngIf="!(isCandidatesListLoading$ | async) && !(isCompanyListLoading$ | async); else contentLoading"> -->
+  <section id="candidate-cards">
+    <div class="row" *ngIf="CandidateList?.length">
+      <div class="col-12">
+        <h5 class="page-title mb-2">Candidates</h5>
+        <ul class="list-style-none pl-0 mb-0">
+          <!-- *ngFor="let item of [1, 2, 3, 4, 5]"  -->
+          <li
+            *ngFor="let candidate of CandidateList | slice:0:candidateMultiple"
+          >
+            <!-- <li *ngFor="let candidate of CandidateList"> -->
+            <div class="card mb-3 search-card">
+              <div class="card-body">
+                <div class="d-flex align-items-start">
+                  <div class="image-container">
+                    <div class="img-wrap">
+                      <img
+                        *ngIf="!candidate?.ProfileImageUrl"
+                        src="../../../../../assets/images/image-placeholder.jpg"
+                        alt="..."
+                        class="img-fluid"
+                      />
+                      <img
+                        *ngIf="candidate?.ProfileImageUrl"
+                        src="{{candidate?.ProfileImageUrl}}"
+                        alt="..."
+                        class="img-fluid"
+                      />
+                    </div>
+                  </div>
+                  <div class="">
+                    <h5 class="card-title">
+                      <a
+                        [routerLink]="['/recruiter/candidates/details/',candidate?.Id]"
+                        >{{candidate?.FirstName}}&nbsp;{{candidate?.LastName}}</a
+                      >
+                    </h5>
+                    <p class="mb-0">{{candidate?.Email}}</p>
+                    <p class="card-text">
+                      <app-candidate-profile
+                        [candidateId]="candidate?.Id"
+                        [ngStyle]="candidateProfessionGridStyle"
+                      ></app-candidate-profile>
+                    </p>
+                    <!-- <div class="card-action">
+                                            <a type="button" class="btn">
+                                                View CV
+                                            </a>
+                                        </div> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <!-- <p> {{CandidateList?.length}}</p>
+                 <p>{{candidateMultiple}}</p> -->
+        <button
+          class="btn text-green-btn"
+          (click)="onViewMoreCandidates()"
+          *ngIf="!isAllCandidateList"
+        >
+          View more
+        </button>
+      </div>
+    </div>
+  </section>
+  <section id="company-cards">
+    <div class="row" *ngIf="CompanyList?.length">
+      <div class="col-12">
+        <h5 class="page-title mb-2">Companies</h5>
+        <ul class="list-style-none pl-0 mb-0">
+          <li *ngFor="let Company of CompanyList | slice:0:companyMultiple">
+            <div class="card mb-3 search-card">
+              <div class="card-body">
+                <div class="d-flex align-items-start">
+                  <div class="image-container">
+                    <div class="img-wrap">
+                      <img
+                        *ngIf="!Company?.LogoUrl"
+                        src="../../../../../assets/images/image-placeholder.jpg"
+                        alt="..."
+                        class="img-fluid"
+                      />
+                      <img
+                        *ngIf="Company?.LogoUrl"
+                        src="{{Company?.LogoUrl}}"
+                        alt="..."
+                        class="img-fluid"
+                      />
+                    </div>
+                  </div>
+                  <div class="">
+                    <h5 class="card-title">
+                      <a
+                        [routerLink]="['/recruiter/crm/companies/company-details/', Company.CompanyId]"
+                        >{{Company.Name}}</a
+                      >
+                    </h5>
+                    <p class="card-text">
+                      This is a wider card with supporting text below as a
+                      natural lead-in to additional content. This content is a
+                      little bit longer.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <!-- <p> {{CompanyList?.length}}</p>
+                 <p>{{companyMultiple}}</p> -->
+        <button
+          class="btn text-green-btn"
+          (click)="onViewMoreCompanies()"
+          *ngIf="!isAllCompanyList"
+        >
+          View more
+        </button>
+      </div>
+    </div>
+  </section>
+  <section id="candidate-by-skills" *ngIf="candidateBySkillsList?.length">
+    <h5 class="page-title mb-2">Skills</h5>
+    <ul class="list-style-none pl-0 mb-0">
+      <!-- *ngFor="let item of [1, 2, 3, 4, 5]"  -->
+      <!-- {{candidateBySkillsList | json}} -->
+      <li
+        *ngFor="let candidate of candidateBySkillsList | slice:0:candidateBySkillsMultiple"
+      >
+        <!-- <li *ngFor="let candidate of CandidateList"> -->
+        <div class="card mb-3 search-card">
+          <div class="card-body">
+            <div class="d-flex align-items-start">
+              <div class="image-container">
+                <div class="img-wrap">
+                  <img
+                    *ngIf="!candidate?.User?.ProfileImageUrl"
+                    src="../../../../../assets/images/image-placeholder.jpg"
+                    alt="..."
+                    class="img-fluid"
+                  />
+                  <img
+                    *ngIf="candidate?.User?.ProfileImageUrl"
+                    src="{{candidate?.User?.ProfileImageUrl}}"
+                    alt="..."
+                    class="img-fluid"
+                  />
+                </div>
+              </div>
+              <div class="">
+                <h5 class="card-title">
+                  <a
+                    [routerLink]="['/recruiter/candidates/details/',candidate?.User?.Id]"
+                    >{{candidate?.User?.FirstName}}&nbsp;{{candidate?.User?.LastName}}</a
+                  >
+                </h5>
+                <p class="card-text" *ngIf="candidate?.Skills">
+                  {{candidate?.Skills}}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+    <!-- <p> {{candidateBySkillsList?.length}}</p>
+        <p>{{candidateBySkillsMultiple}}</p> -->
+    <!-- <p>{{{candidateBySkillsList?.length > candidateBySkillsMultiple}}</p> -->
+    <!-- *ngIf="candidateBySkillsList?.length > candidateBySkillsMultiple" -->
+    <button
+      class="btn text-green-btn"
+      (click)="onViewMoreCandidatesBySkills()"
+      *ngIf="!isAllCandidatesBySkills"
+    >
+      View more
+    </button>
+  </section>
+
+  <!-- </div> -->
+</div>

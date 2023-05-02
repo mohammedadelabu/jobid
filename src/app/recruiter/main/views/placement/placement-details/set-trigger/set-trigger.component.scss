@@ -1,0 +1,29 @@
+.progress {
+    height: 0.4em;
+    background: #dadada;
+    .progress-bar {
+        background: #4fb278;
+    }
+}
+
+#time-controller {
+    --widthSize: 100px;
+    .time-label {
+        width: var(--widthSize);
+        // display: flex;
+        // align-items: center;
+    }
+
+    .progress {
+        width: calc(100% - calc(var(--widthSize) * 2));
+    }
+    .mat-slider-horizontal {
+        height: 48px;
+        width: 100%;
+    }
+
+    .mat-slider.mat-accent .mat-slider-thumb{
+        background-color: #4F656E;
+    }
+}
+//

@@ -1,0 +1,43 @@
+<!-- <p>todo-list works!</p> -->
+<div class="dashboard-page-Wrapper">
+  <div id="todo">
+    <div id="top-action" class="py-3">
+      <div class="d-flex align-items-center justify-content-between flex-wrap">
+        <h1 class="page-title">To-Do</h1>
+        <button type="button" class="btn white-btn-green-border" (click)="openDialog()">
+          +&nbsp; Create Todo
+        </button>
+      </div>
+    </div>
+
+    <nav class="nav" id="todos-navigation">
+      <a class="nav-link" [routerLink]="['/recruiter/project-management/todo/upcoming']"
+        routerLinkActive="router-link-active">Upcoming</a>
+      <a class="nav-link" [routerLink]="['/recruiter/project-management/todo/completed']"
+        routerLinkActive="router-link-active">Completed</a>
+      <a class="nav-link" [routerLink]="['/recruiter/project-management/todo/over-due']"
+        routerLinkActive="router-link-active">Over Due</a>
+    </nav>
+
+    <div id="todos-category-wrapper" class="pt-2">
+      <router-outlet></router-outlet>
+    </div>
+
+
+    <!--   
+      <div id="todo-list-tabs">
+        <mat-tab-group>
+          <mat-tab label="Upcoming">
+            <app-upcoming-todos></app-upcoming-todos>
+          </mat-tab>
+          <mat-tab label="Completed">
+            <app-completed-todos></app-completed-todos>
+          </mat-tab>
+          <mat-tab label="Over Due">
+            <app-over-due-todos></app-over-due-todos>
+          </mat-tab>
+        </mat-tab-group>
+      </div>
+   -->
+  </div>
+</div>

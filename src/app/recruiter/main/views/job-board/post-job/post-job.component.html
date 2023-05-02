@@ -1,0 +1,695 @@
+<!-- <ng-http-loader></ng-http-loader> -->
+<div class="mt-4">
+  <div class="d-flex align-items-center mb-4">
+    <img
+      (click)="back()"
+      src="assets/images/icons/angle-left-icon.svg"
+      alt=""
+      class="img-fluid back-icon cursor-pointer mr-4"
+    />
+    <h1 class="page-title py-0 mb-0">Create a Job</h1>
+  </div>
+
+  <div class="form-wrapper pb-4" *ngIf="!responseMsg">
+    <div *ngIf="loading || (isCompanyListForUserLoading$ | async)">
+      <app-simple-component-loader-with-spinner></app-simple-component-loader-with-spinner>
+    </div>
+    <form [formGroup]="PostJobForm" (ngSubmit)="onSubmitForm()">
+      <fieldset>
+        <div class="form-row">
+          <div class="form-group col-12 col-md-6">
+            <label for="JobTitle" class="required-field-label">Job Title</label>
+            <input
+              type="text"
+              [ngClass]="{
+                'form-control': true,
+                'is-invalid':
+                  JobTitle?.invalid && (JobTitle?.dirty || JobTitle?.touched)
+              }"
+              id="JobTitle"
+              aria-describedby="JobTitleHelp"
+              formControlName="JobTitle"
+            />
+            <div
+              *ngIf="
+                JobTitle?.invalid && (JobTitle?.dirty || JobTitle?.touched)
+              "
+              class="invalid-feedback"
+            >
+              Job title is required
+            </div>
+          </div>
+          <div class="form-group col-12 col-md-6">
+            <label for="CompanyId" class="required-field-label">Company</label>
+            <select
+              name="CompanyId"
+              id=""
+              [ngClass]="{
+                'form-control': true,
+                'is-invalid':
+                  CompanyId?.invalid && (CompanyId?.dirty || CompanyId?.touched)
+              }"
+              formControlName="CompanyId"
+              (change)="onCompanyChange($event)"
+            >
+              <option value="" disabled>Select Company</option>
+              <option
+                value="{{ company.CompanyId }}"
+                *ngFor="let company of companyList"
+              >
+                {{ company.Name }}
+              </option>
+            </select>
+            <div
+              *ngIf="
+                CompanyId?.invalid && (CompanyId?.dirty || CompanyId?.touched)
+              "
+              class="invalid-feedback"
+            >
+              Company is required
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-12 col-md-6">
+            <label for="JobType">Job Type</label>
+            <select
+              name="JobType"
+              id=""
+              [ngClass]="{
+                'form-control': true,
+                'is-invalid':
+                  JobType?.invalid && (JobType?.dirty || JobType?.touched)
+              }"
+              formControlName="JobType"
+            >
+              <option value="" disabled>Select Job type</option>
+              <option value="{{ type.Value }}" *ngFor="let type of jobTypes">
+                {{ type.Name }}
+              </option>
+            </select>
+            <div
+              *ngIf="JobType?.invalid && (JobType?.dirty || JobType?.touched)"
+              class="invalid-feedback"
+            >
+              Job Type is required
+            </div>
+          </div>
+          <div class="form-group col-12 col-md-6">
+            <label for="JobLocation">Location</label>
+            <select
+              name="JobLocation"
+              id="JobLocation"
+              [ngClass]="{
+                'form-control': true,
+                'is-invalid':
+                  JobLocation?.invalid &&
+                  (JobLocation?.dirty || JobLocation?.touched)
+              }"
+              formControlName="JobLocation"
+            >
+              <option value="" disabled>Select a Location</option>
+              <option [value]="country.Id" *ngFor="let country of locations">
+                {{ country.LocatioName }}
+              </option>
+            </select>
+            <div
+              *ngIf="
+                JobLocation?.invalid &&
+                (JobLocation?.dirty || JobLocation?.touched)
+              "
+              class="invalid-feedback"
+            >
+              Job Location is required
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-12 col-md-6">
+            <label for="StartDate">Start date</label>
+            <input
+              type="date"
+              [ngClass]="{
+                'form-control': true,
+                'is-invalid':
+                  StartDate?.invalid && (StartDate?.dirty || StartDate?.touched)
+              }"
+              id="StartDate"
+              aria-describedby="StartDateHelp"
+              formControlName="StartDate"
+              min="{{ minDate }}"
+            />
+            <div
+              *ngIf="
+                StartDate?.invalid && (StartDate?.dirty || StartDate?.touched)
+              "
+              class="invalid-feedback"
+            >
+              Start Date is required
+            </div>
+          </div>
+          <div class="form-group col-12 col-md-6">
+            <label for="EndDate">End Date</label>
+            <input
+              type="date"
+              [ngClass]="{
+                'form-control': true,
+                'is-invalid':
+                  EndDate?.invalid && (EndDate?.dirty || EndDate?.touched)
+              }"
+              id="EndDate"
+              aria-describedby="EndDateHelp"
+              formControlName="EndDate"
+              min="{{ minDate }}"
+            />
+            <div
+              *ngIf="EndDate?.invalid && (EndDate?.dirty || EndDate?.touched)"
+              class="invalid-feedback"
+            >
+              End Date is required
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-12 col-md-6">
+            <label for="HoursAWeek">Hours a week</label>
+            <input
+              type="number"
+              min="1"
+              [ngClass]="{
+                'form-control': true,
+                'is-invalid':
+                  HoursAWeek?.invalid &&
+                  (HoursAWeek?.dirty || HoursAWeek?.touched)
+              }"
+              id="HoursAWeek"
+              aria-describedby="HoursAWeekHelp"
+              formControlName="HoursAWeek"
+            />
+            <div
+              *ngIf="
+                HoursAWeek?.invalid &&
+                (HoursAWeek?.dirty || HoursAWeek?.touched)
+              "
+              class="invalid-feedback"
+            >
+              Number of hours is required
+            </div>
+          </div>
+          <div class="form-group col-12 col-md-6">
+            <label for="HourlyRate">Hourly Rate</label>
+            <div class="input-group mb-3 rate">
+              <input
+                type="number"
+                min="1"
+                [ngClass]="{
+                  'form-control': true,
+                  'is-invalid':
+                    HourlyRate?.invalid &&
+                    (HourlyRate?.dirty || HourlyRate?.touched)
+                }"
+                aria-label="Hourly Rate"
+                aria-describedby="basic-addon2"
+                id="HourlyRate"
+                formControlName="HourlyRate"
+              />
+              <div class="input-group-append">
+                <!-- <span
+                  class="input-group-text text-bold bg-none"
+                  id="basic-addon2"
+                  >$</span
+                > -->
+                <select
+                  class="input-group-text text-bold bg-none"
+                  formControlName="Currency"
+                >
+                  <option
+                    *ngFor="let currency of currencies"
+                    [value]="currency"
+                  >
+                    {{ currency }}
+                  </option>
+                </select>
+              </div>
+              <div
+                *ngIf="
+                  HourlyRate?.invalid &&
+                  (HourlyRate?.dirty || HourlyRate?.touched)
+                "
+                class="invalid-feedback"
+              >
+                Hourly rate is required
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="JobDescription">Job Description</label>
+          <angular-editor
+            [config]="config"
+            [placeholder]="'Enter job description...'"
+            formControlName="JobDescription"
+          ></angular-editor>
+          <small
+            *ngIf="
+              JobDescription?.invalid &&
+              (JobDescription?.dirty || JobDescription?.touched)
+            "
+            class="alert alert-danger mt-2 d-block"
+          >
+            Enter Job Description
+          </small>
+        </div>
+
+        <div class="form-group">
+          <label for="JobDescription">Job Experience</label>
+          <angular-editor
+            [config]="config"
+            [placeholder]="'Enter job experience...'"
+            formControlName="JobExperience"
+          ></angular-editor>
+          <small
+            *ngIf="
+              JobExperience?.invalid &&
+              (JobExperience?.dirty || JobExperience?.touched)
+            "
+            class="alert alert-danger mt-2 d-block"
+          >
+            Enter Job Experience
+          </small>
+        </div>
+
+        <!-- <div class="form-row">
+          <div class="form-group col-12">
+            <label for="Skills"
+              >Skills
+              <small
+                >(Select multiple skills while holding the CTRL key)</small
+              ></label
+            >
+            <ng-template #loading>
+              <div>
+                <small class="text-info"> Loading... </small>
+              </div>
+            </ng-template>
+            <select
+              name="Skills"
+              id="Skills"
+              class="form-control"
+              multiple
+              size="10"
+              formControlName="Skills"
+              *ngIf="!(isLoading | async); else loading"
+            >
+              <option value="" disabled selected="selected">
+                Select skills
+              </option>
+              <option
+                *ngFor="let skill of skillsList | async"
+                [ngValue]="skill"
+              >
+                {{ skill }}
+              </option>
+            </select>
+            <div
+              id="skills-listing-wrap"
+              *ngIf="SelectedSkills && SelectedSkills[0]"
+            >
+              <ul class="skills list-style-none pl-0 pt-3 mb-0">
+                <li class="skill-item" *ngFor="let item of SelectedSkills">
+                  <span *ngIf="item">{{ item }}</span>
+                </li>
+              </ul>
+            </div>
+            <small
+              *ngIf="SelectedSkills.length === 0"
+              class="alert alert-danger mt-2 d-block"
+            >
+              Select at least one skill
+            </small>
+          </div>
+        </div> -->
+
+        <div class="form-row">
+          <div class="form-group col-12">
+            <label for="Skills">Skills </label>
+            <!-- <ng-select
+              [items]="skillsList | async"
+              [multiple]="true"
+              formControlName="Skills"
+            >
+            </ng-select> -->
+            <ng-select
+              [items]="skills$ | async"
+              formControlName="Skills"
+              [addTag]="true"
+              [multiple]="true"
+              [hideSelected]="true"
+              [trackByFn]="trackByFn"
+              [minTermLength]="2"
+              [loading]="skillsLoading"
+              typeToSearchText="Please enter 2 or more characters"
+              [typeahead]="skillsInput$"
+            >
+            </ng-select>
+            <small
+              *ngIf="SelectedSkills.length === 0"
+              class="alert alert-danger mt-2 d-block"
+            >
+              Select at least one skill
+            </small>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-12 col-md-6">
+            <label for="JobType">Certification</label>
+            <input
+              type="text"
+              name="Certification"
+              id="Certification"
+              [ngClass]="{
+                'form-control': true,
+                'is-invalid':
+                  Certification?.invalid &&
+                  (Certification?.dirty || Certification?.touched)
+              }"
+              formControlName="Certification"
+            />
+            <div
+              *ngIf="
+                Certification?.invalid &&
+                (Certification?.dirty || Certification?.touched)
+              "
+              class="invalid-feedback"
+            >
+              Certification is required
+            </div>
+          </div>
+          <!-- <div class="form-group col-12 col-md-6">
+            <label for="languages">Languages</label>
+            <select
+              name="languages"
+              id="languages"
+              [ngClass]="{
+                'form-control': true,
+                'is-invalid':
+                  Languages?.invalid && (Languages?.dirty || Languages?.touched)
+              }"
+              formControlName="Languages"
+            >
+              <option value="" disabled>Select a Language</option>
+              <option
+                value="{{ language.Id }}"
+                *ngFor="let language of spokenLanguages"
+              >
+                {{ language.Name }}
+              </option>
+            </select>
+            <div
+              *ngIf="
+                Languages?.invalid && (Languages?.dirty || Languages?.touched)
+              "
+              class="invalid-feedback"
+            >
+              Language is required
+            </div>
+          </div> -->
+          <!-- Language select -->
+          <div class="form-group col-12 col-md-6">
+            <label for="Skills">Languages</label>
+            <ng-select
+              [items]="spokenLanguages"
+              bindLabel="Name"
+              bindValue="Id"
+              [multiple]="true"
+              formControlName="Languages"
+            >
+            </ng-select>
+            <small
+              *ngIf="Languages.length === 0"
+              class="alert alert-danger mt-2 d-block"
+            >
+              Select at least one language
+            </small>
+          </div>
+        </div>
+      </fieldset>
+      <!--  -->
+      <hr />
+      <fieldset class="mt-5">
+        <legend>Contact Details</legend>
+        <div class="form-row mt-4">
+          <div class="form-group col-12">
+            <label for="ContactDetail" class="required-field-label"
+              >Select a contact detail</label
+            >
+            <select
+              name="ContactDetail"
+              id="ContactDetail"
+              [ngClass]="{
+                'form-control': true,
+                'is-invalid':
+                  ContactDetail?.invalid &&
+                  (ContactDetail?.dirty || ContactDetail?.touched)
+              }"
+              formControlName="ContactDetail"
+            >
+              <option value="" disabled>Select a contact</option>
+              <option
+                value="{{ contact.Id }}"
+                *ngFor="let contact of CompanyContactList"
+              >
+                {{ contact.FirstName }}&nbsp;{{ contact.LastName }}
+              </option>
+            </select>
+            <div
+              *ngIf="
+                ContactDetail?.invalid &&
+                (ContactDetail?.dirty || ContactDetail?.touched)
+              "
+              class="invalid-feedback"
+            >
+              Contact Detail is required
+            </div>
+          </div>
+        </div>
+      </fieldset>
+      <fieldset formGroupName="SalesPerson">
+        <legend>Sales Person</legend>
+        <div class="form-row">
+          <div class="form-group col-12 col-md-6">
+            <label for="FirstName" class="required-field-label"
+              >First Name</label
+            >
+            <input
+              type="text"
+              name="FirstName"
+              id="FirstName"
+              [ngClass]="{
+                'form-control': true,
+                'is-invalid':
+                  SalesPersonFirstName?.invalid &&
+                  (SalesPersonFirstName?.dirty || SalesPersonFirstName?.touched)
+              }"
+              formControlName="FirstName"
+            />
+            <div
+              *ngIf="
+                SalesPersonFirstName?.invalid &&
+                (SalesPersonFirstName?.dirty || SalesPersonFirstName?.touched)
+              "
+              class="invalid-feedback"
+            >
+              First Name is required
+            </div>
+          </div>
+          <div class="form-group col-12 col-md-6">
+            <label for="LastName" class="required-field-label">Last Name</label>
+            <input
+              type="text"
+              name="LastName"
+              id="LastName"
+              [ngClass]="{
+                'form-control': true,
+                'is-invalid':
+                  SalesPersonLastName?.invalid &&
+                  (SalesPersonLastName?.dirty || SalesPersonLastName?.touched)
+              }"
+              formControlName="LastName"
+            />
+            <div
+              *ngIf="
+                SalesPersonLastName?.invalid &&
+                (SalesPersonLastName?.dirty || SalesPersonLastName?.touched)
+              "
+              class="invalid-feedback"
+            >
+              Last Name is required
+            </div>
+          </div>
+          <div class="form-group col-12 col-md-6">
+            <label for="Email" class="required-field-label">Email</label>
+            <input
+              type="email"
+              name="Email"
+              id="Email"
+              [ngClass]="{
+                'form-control': true,
+                'is-invalid':
+                  SalesPersonEmail?.invalid &&
+                  (SalesPersonEmail?.dirty || SalesPersonEmail?.touched)
+              }"
+              formControlName="Email"
+            />
+            <div
+              *ngIf="
+                SalesPersonEmail?.invalid &&
+                (SalesPersonEmail?.dirty || SalesPersonEmail?.touched)
+              "
+              class="invalid-feedback"
+            >
+              <div *ngIf="SalesPersonEmail?.errors?.['required']">
+                Email is required.
+              </div>
+              <div *ngIf="SalesPersonEmail?.errors?.['email']">
+                Enter valid email
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-12 col-md-6">
+            <label for="PhoneNumber" class="required-field-label"
+              >Mobile No</label
+            >
+            <input
+              type="text"
+              name="PhoneNumber"
+              id="PhoneNumber"
+              [ngClass]="{
+                'form-control': true,
+                'is-invalid':
+                  SalesPersonPhone?.invalid &&
+                  (SalesPersonPhone?.dirty || SalesPersonPhone?.touched)
+              }"
+              formControlName="PhoneNumber"
+            />
+            <div
+              *ngIf="
+                SalesPersonPhone?.invalid &&
+                (SalesPersonPhone?.dirty || SalesPersonPhone?.touched)
+              "
+              class="invalid-feedback"
+            >
+              Mobile Number is required
+            </div>
+          </div>
+        </div>
+      </fieldset>
+
+      <hr />
+
+      <fieldset class="mt-5" formArrayName="JobQuestions">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+          <legend>Job Questions</legend>
+          <div>
+            <button
+              type="button"
+              class="btn text-green-btn btn-sm white-space-nowrap"
+              (click)="openQuestionDialog()"
+            >
+              +&nbsp;Add question
+            </button>
+          </div>
+        </div>
+        <div *ngIf="jobQuestionsFormArray.length === 0">No Question</div>
+        <div
+          class="form-group job-questions"
+          *ngFor="let jobQuestion of jobQuestions.controls; let i = index"
+        >
+          <!-- The repeated alias template -->
+          <label class="required-field-label" for="jobQuestion-{{ i }}">{{
+            jobQuestionsFormArray[i].Question
+          }}</label>
+          <ng-container *ngIf="jobQuestionsFormArray[i].InputType === 'input'"
+            ><input
+              class="form-control"
+              id="jobQuestion-{{ i }}"
+              type="text"
+              [formControlName]="i" /></ng-container
+          ><ng-container
+            *ngIf="jobQuestionsFormArray[i].InputType === 'multiple-option'"
+            ><select class="form-control" id="power" required name="power">
+              <option
+                *ngFor="let option of jobQuestionsFormArray[i].Options"
+                [value]="option"
+              >
+                {{ option }}
+              </option>
+            </select></ng-container
+          ><button
+            type="button"
+            class="btn btn-sm delete-btn"
+            (click)="deleteJobQuestion(i)"
+          >
+            <img
+              src="../../../../../../assets/images/icons/cancel-red-circle.svg"
+              alt=""
+              class="img-fluid"
+            />
+          </button>
+        </div>
+      </fieldset>
+
+      <fieldset class="mt-5 mb-5">
+        <div class="d-flex align-items-center justify-content-between">
+          <legend>Set up Interview Process</legend>
+          <div>
+            <button
+              type="button"
+              class="btn text-green-btn btn-sm white-space-nowrap"
+              (click)="openInterviewDialog()"
+            >
+              +&nbsp;Add a process
+            </button>
+          </div>
+        </div>
+        <div *ngIf="InterviewProcesses.length === 0">No Process</div>
+        <ul class="list-style-none pl-0 mb-0">
+          <li
+            class="process-item"
+            *ngFor="let process of InterviewProcesses; let i = index"
+          >
+            <div class="d-flex justify-content-between align-items-start">
+              <div>
+                <div class="date">
+                  <small>{{ process.ProcessDate | date : "d MMMM y" }}</small>
+                </div>
+                <div class="process-title">{{ process.ProcessName }}</div>
+              </div>
+
+              <div>
+                <button type="button" class="btn btn-sm" (click)="onDelete(i)">
+                  <img
+                    src="../../../../../../assets/images/icons/cancel-red-circle.svg"
+                    alt=""
+                    class="img-fluid"
+                  />
+                </button>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </fieldset>
+      <div class="text-right mt-5">
+        <button
+          type="submit"
+          [disabled]="!this.PostJobForm.valid || this.creating"
+          class="btn success-btn"
+        >
+          {{ this.creating ? "Creating..." : "Create Job" }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

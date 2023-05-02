@@ -1,0 +1,25 @@
+@use "../../../../../../../sass/_abstracts/colors";
+.contact-avatar {
+    display: flex;
+    li {
+        > div {
+            height: 30px;
+            width: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: colors.$PrimaryColorGreen75;
+            color: #ffffff;
+            margin-right: -12px;
+            border: 1.05px solid #ffffff;
+        }
+
+        &:last-child {
+            > div {
+                background: #4f656e;
+                border: 1.05px solid #ffffff;
+            }
+        }
+    }
+}

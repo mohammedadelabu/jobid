@@ -1,0 +1,36 @@
+<!-- <p>application-role-details works!</p> -->
+<div class="setting-content-container">
+    <div class="d-flex align-items-center justify-content-between flex-wrap px-2">
+        <h2 class="setting-content-title justify-content-start">
+            <button class="btn btn-sm" (click)="back()">
+                <i class="fas fa-arrow-left"></i>
+            </button>{{RoleDetails?.RoleName | titlecase}}
+        </h2>
+        <button class="btn success-btn" (click)="isAddModuleToRole = true">Add module</button>
+    </div>
+    <ng-container *ngIf="!isAddModuleToRole; else AddModuleForm">
+        <!-- <div *ngIf="!isAddModuleToRole; else AddModuleForm"></div> -->
+    </ng-container>
+    <div class="table-responsive">
+        <app-module-permissions></app-module-permissions>
+    </div>
+</div>
+<!-- {{moduleList | json}} -->
+<ng-template #AddModuleForm>
+    <div class="px-2">
+        <form #addModuleToRole="ngForm" (ngSubmit)="onSubmit(addModuleToRole)">
+            <div class="form-group mb-2">
+                <label for="ModuleId">Select Module</label>
+                <!-- <input type="text" class="form-control" name="ModuleId" [(ngModel)]="model.ModuleId"> -->
+                <select style="background-color: unset" name="" id="" class="form-control" name="ModuleId" [(ngModel)]="model.ModuleId">
+                    <option [value]="item?.Id" *ngFor="let item of moduleList">{{item?.ModuleName }}
+                    </option>
+                </select>
+            </div>
+            <div class="d-flex">
+                <button class="btn success-btn">Submit</button>
+                <button type="button" class="btn success-danger" (click)="isAddModuleToRole = false">Cancel</button>
+            </div>
+        </form>
+    </div>
+</ng-template>

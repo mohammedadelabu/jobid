@@ -1,0 +1,490 @@
+<div id="template-container" style="padding: 40px 0px;" class="pb-4" [ngClass]="{ undisclosedCv: isUndisclosed }">
+  <div class="inner" *ngIf="!wsWordFormat">
+    <div class="template-header">
+      <div class="inner">
+        <div class="zarttech-logo-wrapper">
+          <img src="../../../../assets/images/zarttech-new-brand-logo.png" class="img-fluid" alt="" />
+        </div>
+        <div class="" style="display: flex; align-items: center; justify-items: flex-end; margin-bottom: 30px;">
+          <img src="../../../../assets/images/iso-1.png" alt="" style="padding-right: 20px; width: 180px;">
+          <img src="../../../../assets/images/iso-2.png" alt="" style="padding-right: 20px; width: 100px;">
+          <img src="../../../../assets/images/iso-9.png" alt="" style="padding-right: 80px; width: 160px;">
+        </div>
+      </div>
+    </div>
+
+    <div id="candidate-skills">
+    <div class="section-content py-3 text-dark" style="background: #F4EFEA">
+      <div class="row">
+        <div class="col font-weight-bold list-title" style="margin-bottom: 5px; color: black;" >
+          OUR VISION
+        </div>
+        <div class="col font-weight-bold list-title" style="color: black;">
+          PRIVACY POLICY
+        </div>
+      </div>
+      <div class="row" style="font-family: Plus Jakarta Sans; color: black;">
+        <ul class="col list-style-disc">
+          <p>Every Talent has the opportunity to equal & fair work and experiences a great quality of life without being detached from their families.</p>
+        </ul>
+        <ul class="col">
+          <p>We handle every data with care. Please refer to our website <a href="#" style="color: #F7941D;">www.zarttech.com</a> to check our data privacy policy.</p>
+        </ul>
+      </div>
+      <div class="" >
+        <div class="col font-weight-bold list-title" style="margin-left: -15px; font-family: Plus Jakarta Sans; color: black;">
+          DISCLAIMER
+        </div>
+        <ul class="col list-style-disc" style="margin-left: -15px; font-family: Plus Jakarta Sans; color: black;">
+          <p>This communication contains confidential information. If you are not the intended recipient, you may not use, copy and/or disclose any of this information. Please contact us at <a mailto="info@zarttech.com" style="color: #F7941D;">info@zarttech.com</a> immediately and delete this communication from your systems.</p>
+        </ul>
+      </div>
+    </div>
+    </div>
+
+
+    <div class="content-one">
+      <div class="row">
+        <div class="col-4 order-1">
+          <div class="column-center pt-5">
+
+            <!-- USING CANDIDATE DETAILS INFORMATION -->
+            <div class="centerImage" *ngIf="!candidateProfileUserInfo?.ProfileImageUrl">
+              <img src="../../../../assets/images/zarttech-pix-logo.png" class="img-fluid" alt="">
+            </div>
+
+            <div class="profile-image" *ngIf="candidateProfileUserInfo?.ProfileImageUrl">
+              <div class="image-container mx-auto">
+                <img image_placeholder src="{{ candidateInformation?.ProfileImageUrl }}" alt="" class="img-fluid" />
+              </div>
+            </div>
+            <!-- <h1 class="content-name text-center" style="text-transform: none; font-size: 30px; color: #131230; font-family: Plus Jakarta Sans; padding-top: 70px;"> -->
+            <h1 class="content-name text-center" style="text-transform: none; font-size: 30px; color: #131230; font-family: Plus Jakarta Sans;">
+              {{ candidateInformation?.LastName }}&nbsp;
+              <span *ngIf="candidateInformation?.MiddleName">{{
+                candidateInformation?.MiddleName | slice: 0:1
+                }}.&nbsp;</span>
+              {{ candidateInformation?.FirstName }}
+            </h1>
+            <!-- <div class="content-profession text-capitalize text-center" style="font-family: Plus Jakarta Sans!important; margin-top: 70px;" *ngIf="candidateProfile?.Profession"> -->
+            <div class="content-profession text-capitalize text-center" style="font-family: Plus Jakarta Sans!important; margin-top: 20px;" *ngIf="candidateProfile?.Profession">
+              {{ candidateProfile?.Profession }}
+            </div>
+            <div class="candidate-ref-number text-center pb-3" style="font-family: Plus Jakarta Sans; font-weight: 500;">
+              <ng-template #notUserInformationNewReference>No Ref No</ng-template>
+              <span *ngIf="
+                  candidateInformation?.NewReference;
+                  else notUserInformationNewReference
+                ">{{ candidateInformation?.NewReference }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-4 order-2 pt-5 column-center">
+          <h2 class="column-header" style="white-space: nowrap; font-family: Plus Jakarta Sans;">
+            Candidate summary
+          </h2>
+          <div class="column-content py-3" *ngIf="candidateSummary">
+            <div *ngFor="let item of candidateSummary" style="font-family: Plus Jakarta Sans;">
+              <div [innerHTML]="item?.Summary"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-4 order-3 py-5 pl-5">
+          <h2 class="column-header">Recruiter summary</h2>
+          <div class="column-content py-3" *ngIf="recruiterOpinion">
+            <div *ngFor="let item of recruiterOpinion" style="font-family: Plus Jakarta Sans;">
+              <div [innerHTML]="item?.opinion"></div>
+            </div>
+
+            <!-- <div *ngFor="let item of workHistory;">
+              <h5 class="list-title mb-0" style="color:#AC393F">Industry:</h5>
+              <div class="capitalize">{{ item?.Industry || 'N/A' }}</div>
+            </div> -->
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+      <!-- CANDIDATE SKILLS -->
+      <div id="candidate-skills" *ngIf="candidateSkillList?.length">
+        <h4 class="section-header mb-0" style="color: white; background: #6B2F66; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); font-family: Plus Jakarta Sans !important;">SKILLS</h4>
+        <div class="section-content py-5">
+          <div class="skills list-style-none pl-0">
+            <div *ngFor="let item of candidateSkillList">
+              <app-skill-title [skillCategoryId]="item?.CategoryId" [ngStyle]="{
+                  'text-transform': 'uppercase',
+                  font: 'normal normal bold 20px Plus Jakarta Sans',
+                  'letter-spacing': '0', color: '#6B2F66'
+                }">
+              </app-skill-title>
+              <ul class="pl-0">
+                <li class="capitalize" style="font-family: Plus Jakarta Sans; font-weight: 500;" *ngFor="let catItem of item?.Skills | stringToArray">
+                  {{ catItem }}
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+            <!-- CANDIDATE WORK EXPERIENCE -->
+            <div id="candidate-experience" *ngIf="workHistory?.length" style="font-family: Plus Jakarta Sans !important;">
+              <h4 class="section-header mb-0" style="color: white; background: #AC393F;
+              box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); font-family: Plus Jakarta Sans !important;">WORK EXPERIENCE</h4>
+              <div class="section-content pt-5">
+                <ul class="projects list-style-none pl-0">
+                  <li class="list-item" *ngFor="let item of workHistory; let i = index" [class.last-item]="i+1 == workHistory.length" >
+                    <div class="list-content s-border">
+                      <ul class="list-style-none pl-0">
+
+                        <div class="wrap d-flex">
+                          <div class="one">
+                            <li class="d-block mb-3" *ngIf="item?.EmployerName && !isUndisclosed">
+                              <h5 class="list-title mb-1" style="color:#AC393F; font-family: Plus Jakarta Sans !important;">Company Name:</h5>
+                              <div class="value">{{ item?.EmployerName }}</div>
+                            </li>
+                            <li class="d-block mb-3" *ngIf="item?.JobTitle">
+                              <h5 class="list-title mb-1" style="color:#AC393F; font-family: Plus Jakarta Sans !important;">Project Role:</h5>
+                              <div class="value">{{ item?.JobTitle }}</div>
+                            </li>
+                            <li class="d-block mb-3" *ngIf="item?.TechStack">
+                              <h5 class="list-title mb-1" style="color:#AC393F; font-family: Plus Jakarta Sans !important;">Tech Stack:</h5>
+                              <div class="capitalize">{{ item?.TechStack }}</div>
+                            </li>
+                            <li class="d-block mb-3">
+                              <h5 class="list-title mb-1" style="color:#AC393F; font-family: Plus Jakarta Sans !important;">Industry:</h5>
+                              <div class="capitalize">{{ item?.Industry || 'N/A' }}</div>
+                            </li>
+                            <li class="d-block mb-3" *ngIf="item?.TeamSize">
+                              <h5 class="list-title mb-1">Team size:</h5>
+                              <div>{{ item?.TeamSize }}</div>
+                            </li>
+                          </div>
+                          <div class="two">
+                            <li class="item d-block mb-3" *ngIf="item?.Location  && !isUndisclosed">
+                              <h5 class="list-title mb-1" style="color:#AC393F; font-family: Plus Jakarta Sans !important;">Location:</h5>
+                              <div class="capitalize">{{ item?.Location }}</div>
+                            </li>
+                            <li class="d-block mb-3" *ngIf="item?.Description">
+                              <h5 class="list-title mb-1" style="color:#AC393F; font-family: Plus Jakarta Sans !important;">Description:</h5>
+                              <div [innerHTML]="item?.Description"></div>
+                            </li>
+                            <li class="d-block mb-3" *ngIf="item?.StartDate || item?.EndDate" >
+                              <h5 class="list-title mb-1" style="color:#AC393F; font-family: Plus Jakarta Sans !important;">Involvement Duration:</h5>
+
+                              <div>
+                                <div *ngIf="item?.StartDate">
+                                  <strong>From:</strong> {{ item?.StartDate }}
+                                </div>
+                                <div *ngIf="item?.EndDate">
+                                  <strong>To:</strong>
+                                  <!-- {{item?.EndDate}} -->
+                                  <span *ngIf="!item?.Currently">&nbsp;{{ item?.EndDate }}</span>
+                                  <span *ngIf="item?.Currently">&nbsp;Currently works here</span>
+                                </div>
+                              </div>
+                            </li>
+                          </div>
+                        </div>
+
+                        <!-- <li class="d-flex mb-3">
+                          <h5 class="list-title mb-0" style="color:#AC393F">Industry:</h5>
+                          <div class="capitalize">{{ item?.Industry || 'N/A' }}</div>
+                        </li> -->
+
+                      </ul>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+
+      <!-- CANDIDATE EDUCATION -->
+      <div id="candidate-education" *ngIf="educationList?.length">
+        <h4 class="section-header mb-0" style="color: white; background: #D54128;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); font-family: Plus Jakarta Sans !important;">EDUCATION</h4>
+        <div class="section-content pt-5" *ngIf="educationList">
+          <div class="pl-0">
+            <div class="list-item">
+              <div class="list-content">
+                <ul class="pl-0">
+                  <li class="mb-3" *ngFor="let item of educationList">
+                    <div class="list-title">
+                      {{ item?.Degree }}, {{ item.Field }}
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CANDIDATE CERTIFICATIONS -->
+
+      <div id="candidate-certification" *ngIf="certificationList?.length">
+        <h4 class="section-header mb-0" style="color: white; background: #F79420;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) ; font-family: Plus Jakarta Sans !important;">CERTIFICATIONS</h4>
+          <div class="section-content pt-5">
+          <div class="d-flex mb-3">
+            <!-- <div> -->
+              <div class="list-item">
+                <div class="list-content">
+                  <ul class="pl-0">
+                    <li class="mb-3" *ngFor="let item of certificationList">
+                      <div class="list-title">
+                        {{ item?.CertificationName }}
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            <!-- </div> -->
+          </div>
+        </div>
+      </div>
+
+
+
+
+      <!-- <div id="candidate-skills" *ngIf="languagesSpoken?.length">
+        <h4 class="section-header mb-0" style="color: white; background: #018B45;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">LANGUAGES SPOKEN</h4>
+        <div class="section-content py-5">
+          <div class="row">
+            <div class="col font-weight-bold list-title">
+              LANGUAGE
+            </div>
+            <div class="col font-weight-bold list-title">
+              PROFICIENCY
+            </div>
+          </div>
+          <div class="row">
+            <ul class="col list-style-disc">
+              <li *ngFor="let language of languagesSpoken">{{language.Language | titlecase}}</li>
+            </ul>
+            <ul class="col">
+              <li *ngFor="let language of languagesSpoken">{{language.Proficiency | titlecase}}</li>
+            </ul>
+          </div>
+        </div>
+
+      </div> -->
+
+
+      <!-- CANDIDATE PROJECTS -->
+      <div id="candidate-projects" *ngIf="projectList?.length">
+        <h4 class="section-header mb-0" style="background: #F79420;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); font-family: Plus Jakarta Sans !important;">PROJECTS</h4>
+        <div class="section-content pt-5">
+          <ul class="pl-0">
+            <li class="list-item" *ngFor="let project of projectList">
+              <div class="list-content">
+                <div class="pl-0">
+                  <div class="d-flex mb-3">
+                    <h6 class="list-title mb-0">Project Name:</h6>
+                    <div>
+                      <a class="text-white capitalize" href="{{ project?.ProjectUrl }}" target="_blank">{{
+                        project?.ProjectName }}</a>
+                    </div>
+                  </div>
+                  <div class="d-flex mb-3">
+                    <h6 class="list-title mb-0">Involvement Duration:</h6>
+                    <div>
+                      <div><strong>From:</strong> {{ project?.StartDate }}</div>
+                      <div><strong>To:</strong> {{ project?.StopDate }}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+       <!-- CANDIDATE LANGUAGES SPOKEN -->
+    <div id="candidate-skills" *ngIf="languagesSpoken?.length">
+      <h4 class="section-header mb-0" style="color: white; background: #018B45;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); font-family: Plus Jakarta Sans !important;">LANGUAGES SPOKEN</h4>
+      <div class="section-content py-5">
+        <div class="row mb-2">
+          <div class="col font-weight-bold list-title">
+            LANGUAGE
+          </div>
+          <div class="col font-weight-bold list-title">
+            PROFICIENCY
+          </div>
+        </div>
+        <div class="row">
+          <ul class="col list-title list-style-disc">
+            <li *ngFor="let language of languagesSpoken">{{language.Language | titlecase}}</li>
+          </ul>
+          <ul class="col list-title">
+            <li *ngFor="let language of languagesSpoken">{{language.Proficiency | titlecase}}</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+
+      <!-- CANDIDATE PROJECTS -->
+      <!-- <div id="candidate-projects">
+                <div class="section-header">PROJECTS</div>
+                <div class="section-content pt-5">
+                    <ul class="projects list-style-none pl-0">
+                        <li class="project-item">
+                            <div class="list-content">
+                                <ul class="list-style-none pl-0">
+                                    <li class="d-flex mb-3">
+                                        <div class="list-title">Company:</div>
+                                        <div>Tek Experts</div>
+                                    </li>
+                                    <li class="d-flex mb-3">
+                                        <div class="list-title">PROJECT:</div>
+                                        <div>Web Developer/Trainer</div>
+                                    </li>
+                                    <li class="d-flex mb-3">
+                                        <div class="list-title">COMPANY SIZE::</div>
+                                        <div>12</div>
+                                    </li>
+                                    <li class="d-flex mb-3">
+                                        <div class="list-title">INDUSTRY:</div>
+                                        <div>Information Technology</div>
+                                    </li>
+                                    <li class="d-flex mb-3">
+                                        <div class="list-title">LOCATION:</div>
+                                        <div>Nigeria</div>
+                                    </li>
+                                    <li class="d-flex mb-3">
+                                        <div class="list-title">DESCRIPTION:</div>
+                                        <div>Web/Application development IT consultancy IT training</div>
+                                    </li>
+                                    <li class="d-flex mb-3">
+                                        <div class="list-title">TOOLS AND TECHNOLOGIES:</div>
+                                        <div>Python, PHP, MySQL, MongoDB, GitHub Actions, Django Framework Django Rest
+                                            API, Deep learning and machine Learning</div>
+                                    </li>
+                                    <li class="d-flex mb-3">
+                                        <div class="list-title"> PROJECT ROLE:</div>
+                                        <div>Business System Analyst/Web Developer/Tutor</div>
+                                    </li>
+                                    <li class="d-flex mb-3">
+                                        <div class="list-title">INVOLVEMENT DURATION:</div>
+                                        <div>1 year 6 months</div>
+                                    </li>
+                                    <li class="d-flex mb-3">
+                                        <div class="list-title">TEAM SIZE:</div>
+                                        <div>20</div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="project-item">
+                            <div class="list-content">
+                                <ul class="list-style-none pl-0">
+                                    <li class="d-flex mb-3">
+                                        <div class="list-title">Company:</div>
+                                        <div>Tek Experts</div>
+                                    </li>
+                                    <li class="d-flex mb-3">
+                                        <div class="list-title">PROJECT:</div>
+                                        <div>Web Developer/Trainer</div>
+                                    </li>
+                                    <li class="d-flex mb-3">
+                                        <div class="list-title">COMPANY SIZE::</div>
+                                        <div>12</div>
+                                    </li>
+                                    <li class="d-flex mb-3">
+                                        <div class="list-title">INDUSTRY:</div>
+                                        <div>Information Technology</div>
+                                    </li>
+                                    <li class="d-flex mb-3">
+                                        <div class="list-title">LOCATION:</div>
+                                        <div>Nigeria</div>
+                                    </li>
+                                    <li class="d-flex mb-3">
+                                        <div class="list-title">DESCRIPTION:</div>
+                                        <div>Web/Application development IT consultancy IT training</div>
+                                    </li>
+                                    <li class="d-flex mb-3">
+                                        <div class="list-title">TOOLS AND TECHNOLOGIES:</div>
+                                        <div>Python, PHP, MySQL, MongoDB, GitHub Actions, Django Framework Django Rest
+                                            API, Deep learning and machine Learning</div>
+                                    </li>
+                                    <li class="d-flex mb-3">
+                                        <div class="list-title"> PROJECT ROLE:</div>
+                                        <div>Business System Analyst/Web Developer/Tutor</div>
+                                    </li>
+                                    <li class="d-flex mb-3">
+                                        <div class="list-title">INVOLVEMENT DURATION:</div>
+                                        <div>1 year 6 months</div>
+                                    </li>
+                                    <li class="d-flex mb-3">
+                                        <div class="list-title">TEAM SIZE:</div>
+                                        <div>20</div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="project-item">
+                            <div class="list-content">
+                                <ul class="list-style-none pl-0">
+                                    <li class="d-flex mb-3">
+                                        <div class="list-title">Company:</div>
+                                        <div>Tek Experts</div>
+                                    </li>
+                                    <li class="d-flex mb-3">
+                                        <div class="list-title">PROJECT:</div>
+                                        <div>Web Developer/Trainer</div>
+                                    </li>
+                                    <li class="d-flex mb-3">
+                                        <div class="list-title">COMPANY SIZE::</div>
+                                        <div>12</div>
+                                    </li>
+                                    <li class="d-flex mb-3">
+                                        <div class="list-title">INDUSTRY:</div>
+                                        <div>Information Technology</div>
+                                    </li>
+                                    <li class="d-flex mb-3">
+                                        <div class="list-title">LOCATION:</div>
+                                        <div>Nigeria</div>
+                                    </li>
+                                    <li class="d-flex mb-3">
+                                        <div class="list-title">DESCRIPTION:</div>
+                                        <div>Web/Application development IT consultancy IT training</div>
+                                    </li>
+                                    <li class="d-flex mb-3">
+                                        <div class="list-title">TOOLS AND TECHNOLOGIES:</div>
+                                        <div>Python, PHP, MySQL, MongoDB, GitHub Actions, Django Framework Django Rest
+                                            API, Deep learning and machine Learning</div>
+                                    </li>
+                                    <li class="d-flex mb-3">
+                                        <div class="list-title"> PROJECT ROLE:</div>
+                                        <div>Business System Analyst/Web Developer/Tutor</div>
+                                    </li>
+                                    <li class="d-flex mb-3">
+                                        <div class="list-title">INVOLVEMENT DURATION:</div>
+                                        <div>1 year 6 months</div>
+                                    </li>
+                                    <li class="d-flex mb-3">
+                                        <div class="list-title">TEAM SIZE:</div>
+                                        <div>20</div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div> -->
+
+      <div class="template-footer text-center py-3" style="background-color: white;">
+        <hr>
+        <!-- <a mailto="info@zarttech.com" class="text-white text-bold">info@zarttech.com</a> -->
+        <a class="text-dark">Private and confidential - All rights reserved</a>
+      </div>
+  </div>
+</div>

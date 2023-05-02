@@ -1,0 +1,72 @@
+.task-information-wrapper {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    >div:first-child {
+        margin-right: 3em;
+    }
+}
+.task-date {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    color: #14323e;
+}
+.task-type-card {
+    font-family: "Poppins";
+    font-style: normal;
+    background: #14323e;
+    border: 1px solid #14323e;
+    border-radius: 10px;
+    max-width: 289px;
+    .title {
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 24px;
+        color: #ffffff;
+    }
+    .date {
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 18px;
+        color: #ff4444;
+        margin-bottom: 1.5em;
+    }
+}
+
+.task-info {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    .label {
+        font-family: "Poppins";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 10px;
+        line-height: 15px;
+        color: #c7c7c7;
+        margin-bottom: 0.3em;
+    }
+
+    .card-avatar {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 1.05px solid #ffffff;
+    }
+
+    .assignee {
+        ul {
+            display: flex;
+            li {
+                margin-left: -8px;
+                &:first-child {
+                    margin-left: 0;
+                }
+            }
+        }
+    }
+}

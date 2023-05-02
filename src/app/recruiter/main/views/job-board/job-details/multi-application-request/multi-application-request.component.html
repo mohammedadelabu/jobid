@@ -1,0 +1,8 @@
+<!-- <p>multi-application-request works!</p> -->
+<form [formGroup]="ApplicationForm" (ngSubmit)="onSubmit()">
+
+    <ng-multiselect-dropdown formControlName="Candidates" [placeholder]="'custom placeholder'" [settings]="dropdownSettings" [data]="dropdownList" [(ngModel)]="selectedItems" (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
+    </ng-multiselect-dropdown>
+
+    <button class="btn success-btn">Send Application</button>
+</form>

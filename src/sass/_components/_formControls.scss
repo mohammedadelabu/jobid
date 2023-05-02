@@ -1,0 +1,264 @@
+@use "../_abstracts/colors";
+@use "../_abstracts/typography";
+@use "../_partials/mixins";
+input[type="text"],
+input[type="password"],
+input[type="number"],
+input[type="email"],
+input[type="date"],
+input[type="time"],
+input[type="month"],
+input[type="file"],
+.custom-file-input,
+.custom-file-label,
+textarea,
+select,
+select.custom-select {
+    &.form-control {
+        border: 1px solid #c4c4c4;
+        padding: 0.5em 0.6em;
+        font-size: 0.88rem;
+        height: 50px;
+        border-radius: 5px !important;
+        &:focus {
+            outline: 0;
+            box-shadow: none;
+            border: 1px solid colors.$PrimaryColorGreen75 !important;
+            //
+            color: #495057;
+            background-color: #fff;
+            // border-color: colors.$lightGreenColor !important;
+            box-shadow: unset !important;
+        }
+        &::placeholder {
+            // font-family: $primary-font-family;
+        }
+        &::-webkit-input-placeholder {
+            /* Edge */
+            // font-family: $primary-font-family;
+        }
+        &:-ms-input-placeholder {
+            /* Internet Explorer 10-11 */
+            // font-family: $primary-font-family;
+        }
+    }
+}
+
+.form-control {
+    border: 1px solid #c4c4c4;
+    padding: 0.5em 0.6em;
+    font-size: 0.88rem;
+    &:focus {
+        outline: 0;
+        box-shadow: none;
+        border: 1px solid colors.$PrimaryColorGreen75 !important;
+        //
+        color: #495057;
+        background-color: #fff;
+        // border-color: colors.$lightGreenColor !important;
+        box-shadow: unset !important;
+    }
+    &::placeholder {
+        // font-family: $primary-font-family;
+    }
+    &::-webkit-input-placeholder {
+        /* Edge */
+        // font-family: $primary-font-family;
+    }
+    &:-ms-input-placeholder {
+        /* Internet Explorer 10-11 */
+        // font-family: $primary-font-family;
+    }
+}
+
+form {
+    // color: #C7D0DB;
+    color: #14323d;
+    .form-control {
+        border-color: #b5b5b5;
+    }
+}
+
+label {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #4f656e;
+    cursor: pointer;
+    &.required-field-label {
+        &::after {
+            content: "*";
+            color: rgb(238, 79, 79);
+            margin-left: 0.25em;
+        }
+    }
+    &.required-field-account-setup{
+        &::after {
+            content: "*";
+            color: #1D28FA;
+            margin-left: 0.25em;
+        }
+    }
+}
+
+// UPDATING THE FORM CONTROL GRID
+.wide-form-controls-grid {
+    @media (min-width: 768px) {
+        // # Customize grid gap for form grig system
+        .form-row > .col,
+        .form-row {
+            margin-right: -20px;
+            margin-left: -20px;
+            & > [class*="col-"] {
+                padding-right: 20px;
+                padding-left: 20px;
+            }
+        }
+    }
+}
+
+.custom-check {
+    input[type="radio"] {
+        position: absolute;
+        &:checked + label {
+            // color: red;
+        }
+    }
+    label {
+        display: flex;
+        align-items: center;
+    }
+    .ui-radio,
+    .ui-check {
+        display: block;
+        width: 1.2rem;
+        min-width: 1.2rem;
+        height: 1.2rem;
+        left: 409px;
+        top: 450px;
+        background: #ffffff;
+        border: 2px solid colors.$Grey;
+        box-sizing: border-box;
+        margin-right: 1em;
+    }
+    .ui-check {
+        border-radius: 3px;
+    }
+    .ui-radio {
+        border-radius: 50%;
+    }
+    input[type="checkbox"],
+    input[type="radio"] {
+        position: absolute;
+        opacity: 0;
+        &:checked + label {
+            color: rgba(76, 111, 53, 1);
+            .ui-radio,
+            .ui-check {
+                padding: 1px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border: none;
+                background-color: colors.$PrimaryColorGreen;
+                &::before {
+                    @include mixins.before("\f00c", 12px);
+                    color: #ffffff;
+                }
+            }
+        }
+    }
+}
+
+.form-group {
+    margin-bottom: 1.5rem !important;
+    font-family: typography.$lexendFontFamily;
+}
+
+.flat-search-input-group {
+    // border-bottom: 1px solid colors.$text-colour-30-;
+    input[type="text"] {
+        border: none;
+    }
+}
+.custom-select.flat-select {
+    border: none !important;
+    // border-bottom: 1px solid colors.$text-colour-30- !important;
+    border-radius: 0 !important;
+}
+// select {
+//     -webkit-appearance: none;
+//     -moz-appearance: none;
+//     text-indent: 1px;
+//     text-overflow: '';
+//   }
+
+.form-title {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 30px;
+    text-align: center;
+    color: #4f656e;
+    margin-bottom: 2em;
+}
+
+.input-group.generate-password {
+    border: 1px solid #c4c4c4;
+    border-radius: 5px;
+    input.form-control {
+        border: none;
+        color: rgba(181, 181, 181, 1);
+        background: unset;
+        &:focus {
+            border: none !important;
+        }
+    }
+    input.password {
+        letter-spacing: 10px;
+    }
+
+    /* Remove input background color on content fill */
+    input:-webkit-autofill,
+    input:-webkit-autofill:focus {
+        transition: background-color 600000s 0s, color 600000s 0s;
+    }
+    input[data-autocompleted] {
+        background-color: transparent !important;
+    }
+}
+
+.verification-code-input {
+    letter-spacing: 20px !important;
+    font-weight: 600 !important;
+    font-size: 1.3rem !important;
+    text-align: center !important;
+}
+
+.custom-control-input:checked ~ .custom-control-label::before {
+    color: #fff !important;
+    border-color: #04aa6d !important;
+    background-color: #04aa6d !important;
+}
+.custom-control-input:focus ~ .custom-control-label::before {
+    // box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 25%);
+    box-shadow: 0 0 0 0.2rem rgb(4 170 109 / 25%) !important;
+}
+
+.input-group {
+    &.rate {
+        input {
+            &.form-control {
+                border-right: none;
+                border-top-right-radius: 0 !important;
+                border-bottom-right-radius: 0 !important;
+                + .input-group-append span {
+                    border-color: #b5b5b5 !important;
+                }
+            }
+        }
+    }
+}

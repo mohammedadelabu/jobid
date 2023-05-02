@@ -1,0 +1,40 @@
+<div class="card">
+  <div class="card-body">
+    <!-- <p>update-source-week works!</p> -->
+
+    <h2 class="form-title">Sourcing week</h2>
+    <form [formGroup]="UpdateSourceWeekForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="SourceWeek">Week</label>
+        <input
+          type="text"
+          class="form-control"
+          id="SourceWeek"
+          placeholder="e.g Week 1"
+          formControlName="SourceWeek"
+        />
+      </div>
+      <div class="form-row">
+        <div class="form-group col-12 col-lg-6">
+          <label for="SourceWeekStartDate">Start Date</label>
+          <input
+            type="date"
+            id="SourceWeekStartDate"
+            class="form-control"
+            formControlName="SourceWeekStartDate"
+          />
+        </div>
+        <div class="form-group col-12 col-lg-6">
+          <label for="SourceWeekEndDate">End Date</label>
+          <input
+            type="date"
+            id="SourceWeekEndDate"
+            class="form-control"
+            formControlName="SourceWeekEndDate"
+          />
+        </div>
+      </div>
+      <button class="btn success-btn">Update</button>
+    </form>
+  </div>
+</div>

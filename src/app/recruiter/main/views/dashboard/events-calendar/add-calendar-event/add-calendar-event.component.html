@@ -1,0 +1,80 @@
+<!-- <p>add-calendar-event works!</p> -->
+
+<div class="card">
+    <div class="card-body">
+        <div class="text-right">
+            <button class="btn btn-sm" (click)="closeDialog()">
+                <i class="fas fa-times text-danger"></i>
+            </button>
+        </div>
+        <form [formGroup]="AddEventForm" (ngSubmit)="onAddEvent()">
+            <div class="form-group">
+                <label for="Title">Title</label>
+                <input id="Title" type="text" class="form-control" formControlName="Title">
+            </div>
+            <div class="form-group">
+                <label for="Date">Date</label>
+                <input id="Date" type="date" class="form-control" formControlName="Date">
+            </div>
+            <ul class="color-pallete list-style-none pl-0 mb-0">
+                <li>
+                    <div class="custom-check">
+                        <input type="radio" name="Colour" id="color-1" formControlName="Colour" value="#e9d5eb">
+                        <label for="color-1" class="color-1">
+                            <span class="ui-radio"></span>
+                        </label>
+                    </div>
+                </li>
+                <li>
+                    <div class="custom-check">
+                        <input type="radio" name="Colour" id="color-2" formControlName="Colour" value="#eddeeb69">
+                        <label for="color-2" class="color-2">
+                            <span class="ui-radio"></span>
+                        </label>
+                    </div>
+                </li>
+                <li>
+                    <div class="custom-check">
+                        <input type="radio" name="Colour" id="color-3" formControlName="Colour" value="#d0eadb">
+                        <label for="color-3" class="color-3">
+                            <span class="ui-radio"></span>
+                        </label>
+                    </div>
+                </li>
+                <li>
+                    <div class="custom-check">
+                        <input type="radio" name="Colour" id="color-4" formControlName="Colour" value="#e0c1c4">
+                        <label for="color-4" class="color-4">
+                            <span class="ui-radio"></span>
+                        </label>
+                    </div>
+                </li>
+                <li>
+                    <div class="custom-check">
+                        <input type="radio" name="Colour" id="color-5" formControlName="Colour" value="#edd7d7">
+                        <label for="color-5" class="color-5">
+                            <span class="ui-radio"></span>
+                        </label>
+                    </div>
+                </li>
+                <li>
+                    <div class="custom-check">
+                        <input type="radio" name="Colour" id="color-6" formControlName="Colour" value="#e2eed4">
+                        <label for="color-6" class="color-6">
+                            <span class="ui-radio"></span>
+                        </label>
+                    </div>
+                </li>
+                <li>
+                    <div class="custom-check">
+                        <input type="radio" name="Colour" id="color-7" formControlName="Colour" value="#daeaec">
+                        <label for="color-7" class="color-7">
+                            <span class="ui-radio"></span>
+                        </label>
+                    </div>
+                </li>
+            </ul>
+            <button class="btn success-btn" [disabled]="AddEventForm.invalid">Add Event</button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+<!-- <p>upload-academic-professional-certificate works!</p> -->
+<form>
+  <div>
+    <div class="wrap">
+      <ng-container>
+        <div class="custom-file-group">
+          <div class="inner">
+            <div class="icon">
+              <img
+                src="../../../../assets/images/icons/edge-wheel-icon.svg"
+                alt=""
+                class="img-fluid"
+              />
+            </div>
+            <label for="CertificateFile" class="mb-0">
+              {{ label }}
+              <input
+                type="file"
+                id="CertificateFile"
+                class="form-control"
+                placeholder="Username"
+                aria-label="Username"
+                aria-describedby="basic-addon1"
+                hidden
+                (change)="onSelectFile($event)"
+              />
+            </label>
+          </div>
+          <div class="save-action">
+            <button class="btn" *ngIf="isReadyToBeSaved">
+              <i class="fas fa-save"></i>SAVE
+            </button>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</form>

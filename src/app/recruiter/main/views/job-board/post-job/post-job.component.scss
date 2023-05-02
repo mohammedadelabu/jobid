@@ -1,0 +1,74 @@
+.page-title {
+  line-height: unset !important;
+  margin-bottom: 0;
+  font-size: 2rem;
+  font-family: "Poppins", sans-serif !important;
+}
+
+.back-icon {
+  width: 11px;
+}
+
+legend {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 30px;
+  color: #4f656e;
+}
+
+.process-item {
+  font-family: "Poppins";
+  font-style: normal;
+  border-bottom: 1px solid #c7c7c7;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  // &:last-child {
+  //   border-bottom: none;
+  // }
+  .date {
+    small {
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 18px;
+      color: #b5b5b5;
+    }
+  }
+  .process-title {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 21px;
+    color: #14323e;
+  }
+}
+
+.job-questions {
+  position: relative;
+
+  .form-control {
+    border: none;
+    border-bottom: 1px solid #c7c7c7;
+    border-radius: 0 !important;
+    height: 30px !important;
+
+    &:focus {
+      border: none !important;
+      border-bottom: 1px solid #c7c7c7 !important;
+    }
+  }
+
+  .delete-btn {
+    position: absolute !important;
+    right: 0;
+    top: 0;
+  }
+}
+
+.arial {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.poppins {
+  font-family: "Poppins", sans-serif;
+}

@@ -1,0 +1,14 @@
+section {
+    padding: 3em 2em;
+}
+#camera {
+    // max-width: 400px;
+    // margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.image-wrapper {
+    max-width: 300px;
+    margin: 0 auto;
+}

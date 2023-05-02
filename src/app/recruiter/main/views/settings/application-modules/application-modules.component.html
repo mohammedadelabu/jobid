@@ -1,0 +1,64 @@
+<!-- <p>application-modules works!</p> -->
+<div class="setting-content-container">
+    <h2 class="setting-content-title">Application Modules</h2>
+    <!-- {{applicationModuleList | json}} -->
+    <div *ngIf="errorMessage">
+        <div class="alert alert-danger text-center">
+            <small>{{errorMessage}}</small>
+        </div>
+    </div>
+    <div id="application-modules-content">
+        <div *ngIf="!(isLoading$ | async); else loading">
+            <div class="table-responsive" *ngIf="!isRegisterModule && !isEditModule">
+                <!-- {{applicationModules$ | async | json}} -->
+                <table class="table table-striped table-sm">
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Created by</th>
+                            <th scope="col">Created at</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of applicationModules$ | async; let i = index">
+                            <th scope="row">{{i + 1}}.</th>
+                            <td>{{item?.ModuleName}}</td>
+                            <td>{{item?.CreatedBy}}</td>
+                            <td>{{item?.CreatedAt | date}}</td>
+                            <td class="text-right">
+                                <div class="btn-group">
+                                    <button class="btn btn-info btn-sm" (click)="onEdit(item)">Edit</button>
+                                    <button class="btn btn-danger btn-sm" (click)="onRemove(item)">Delete</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="5">
+                                <button class="btn primary-border-btn" (click)="isRegisterModule=true">Register
+                                    module</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <ng-container *ngIf="isRegisterModule">
+                <app-register-module-form (closeAddModuleForm)="onCloseAddModuleForm($event)">
+                </app-register-module-form>
+            </ng-container>
+
+            <ng-container *ngIf="isEditModule">
+                <app-edit-module-form [moduleData]="moduleData" (closeEditModuleForm)="onCloseEditModuleForm($event)">
+                </app-edit-module-form>
+            </ng-container>
+        </div>
+    </div>
+</div>
+
+<ng-template #loading>
+    <div class="text-center">
+        <small class="text-info">Loading</small>
+    </div>
+</ng-template>

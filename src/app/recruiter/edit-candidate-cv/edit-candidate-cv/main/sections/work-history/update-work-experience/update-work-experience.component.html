@@ -1,0 +1,113 @@
+<!-- <p>update-work-experience works!</p> -->
+<div class="alert alert-info text-center" *ngIf="responseMsg">
+    {{responseMsg}}</div>
+<form class="mb-5" [formGroup]="updateWorkExperienceForm" (ngSubmit)="saveData()" novalidate *ngIf="!responseMsg">
+    <div>
+        <div class="single-form-list-item">
+            <div class="text-right">
+                <button type="button" class="btn btn-sm px-0" [routerLink]="['/edit-candidate-cv/work-history']">
+                    <i class="fas fa-times text-danger"></i>
+                </button>
+            </div>
+            <div>
+                <div class="form-row">
+                    <div class="form-group col-12 col-sm-6">
+                        <label for="JobTitle">JobTitle</label>
+                        <input type="text" name="JobTitle" id="JobTitle" class="form-control" name="JobTitle" formControlName="JobTitle" [ngClass]="{'is-invalid': updateWorkExperienceForm.get('JobTitle')?.touched && updateWorkExperienceForm.get('JobTitle')?.invalid}" required>
+                    </div>
+                    <div class="form-group col-12 col-sm-6">
+                        <label for="Industry">Industry</label>
+                        <input type="text" name="Industry" id="Industry" class="form-control" name="Industry" formControlName="Industry" [ngClass]="{'is-invalid': updateWorkExperienceForm.get('Industry')?.touched && updateWorkExperienceForm.get('Industry')?.invalid}" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-12 col-sm-6">
+                        <label for="EmployerName">Employer Name</label>
+                        <input type="text" id="EmployerName" class="form-control" name="EmployerName" formControlName="EmployerName" [ngClass]="{'is-invalid': updateWorkExperienceForm.get('EmployerName')?.touched && updateWorkExperienceForm.get('EmployerName')?.invalid}" required>
+                    </div>
+                    <div class="form-group col-12 col-sm-6">
+                        <label for="Location">Location</label>
+                        <!-- <input type="text" id="Location" class="form-control" name="Location" formControlName="Location" [ngClass]="{'is-invalid': updateWorkExperienceForm.get('Location')?.touched && updateWorkExperienceForm.get('Location')?.invalid}" required> -->
+                        
+                        <!-- <select name="Location" id="Location" class="form-control" formControlName="Location"
+                        [ngClass]="{'is-invalid': updateWorkExperienceForm.get('Location')?.touched && updateWorkExperienceForm.get('Location')?.invalid}" required>
+                            <option value="" selected="selected">Select location</option>
+                            <option value={{location.name}} *ngFor="let location of countryList">{{location.name}}</option>
+                        </select> -->
+                        <select name="Location" id="Location" class="form-control" formControlName="Location">
+                            <option value="" selected="selected">Select country</option>
+                            <option value={{country.Value}} *ngFor="let country of countryList">{{country.Name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-12" [ngClass]="{'col-sm-6': !updateWorkExperienceForm.value.Currently}">
+                        <label for="StartDate">Start Date</label>
+                        <!-- <input type="text" name="StartDate" id="StartDate" class="form-control" placeholder="Start Date e.g January 2019" name="StartDate" formControlName="StartDate"> -->
+                        <input type="month" name="StartDate" id="StartDate" class="form-control" name="StartDate" formControlName="StartDate">
+                    </div>
+                    <div class="form-group col-12 col-sm-6" *ngIf="!updateWorkExperienceForm.value.Currently">
+                        <label for="EndDate">End Date</label>
+                        <!-- <input type="text" name="EndDate" id="EndDate" class="form-control" placeholder="Start Date e.g January 2019" name="EndDate" formControlName="EndDate"> -->
+                        <input type="month" name="EndDate" id="EndDate" class="form-control" name="EndDate" formControlName="EndDate">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-12 custom-check">
+                        <input type="checkbox" name="currently" id="currently" name="currently" formControlName="Currently">
+                        <label for="currently">
+                                    <span class="ui-radio"></span>
+                                    I currently work here
+                                </label>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-12">
+                        <label for="Description">Description</label>
+                        <!-- <input type="text" name="Description" id="Description" class="form-control" placeholder="Description" formControlName="Description"> -->
+                        <!-- <textarea class="form-control" name="Description" id="Description" cols="30" rows="6" ngModel [(ngModel)]="workExperienceModel.Description">Description</textarea> -->
+                        <editor placeholder="Description" initialValue="Description" name="Description" formControlName="Description" [init]=" { height: 200, menubar: false, plugins: [ 'advlist autolink lists link image charmap print preview anchor',
+                            'searchreplace visualblocks code fullscreen', 'insertdatetime media table paste code help wordcount' ], toolbar: 'undo redo | formatselect | bold italic backcolor | \
+                              alignleft aligncenter alignright alignjustify | \
+                              bullist numlist outdent indent | removeformat | help' } "></editor>
+
+                        <!-- <editor id="Description " placeholder="Description " formControlName="Description " [init]="{ height: 200, menubar: false, plugins: [ 'advlist autolink lists link image charmap print preview anchor',
+                            'searchreplace visualblocks code fullscreen', 'insertdatetime media table paste code help wordcount' ], toolbar: 'undo redo | formatselect | bold italic backcolor | \
+alignleft aligncenter alignright alignjustify | \
+bullist numlist outdent indent | removeformat | help' } "></editor> -->
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-12 col-sm-6">
+                        <label for="TeamSize">Team Size</label>
+                        <input type="text" id="TeamSize" class="form-control" name="TeamSize" formControlName="TeamSize">
+                    </div>
+                    <div class="form-group col-12 col-sm-6">
+                        <label for="TechStack">Tech Stack</label>
+                        <input type="text" id="TechStack" class="form-control" name="TechStack" formControlName="TechStack">
+                    </div>
+                </div>
+
+                <!-- <div class="form-row">
+                    <div class="form-group col-12 col-sm-6">
+                        <input type="text" id="ProjectDuration" class="form-control" placeholder="Project Duration" name="ProjectDuration" formControlName="ProjectDuration">
+                    </div>
+                    <div class="form-group col-12 col-sm-6">
+                        <input type="text" id="ProjectIndustry" class="form-control" placeholder="Project Industry" name="ProjectIndustry" formControlName="ProjectIndustry">
+                    </div>
+                </div> -->
+
+                <div>
+                    <button type="submit" class="btn btn-outline-success px-5">UPDATE</button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <!-- <div class="d-flex justify-content-between align-items-center ">
+        <button type="button " class="btn white-btn-green-border px-5 " (click)="goBack() ">BACK</button>
+        <button class="btn form-btn px-md-5 ">NEXT</button>
+    </div> -->
+</form>

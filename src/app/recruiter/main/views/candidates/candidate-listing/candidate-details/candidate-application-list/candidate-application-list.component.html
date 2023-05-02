@@ -1,0 +1,89 @@
+<!-- <p>candidate-application-list works!</p> -->
+
+<ul class="list-style-none pl-0" id="history">
+    <li *ngFor="let item of candidateApplicationList">
+        <div class="inner">
+            <div class="indicator">
+                <div class="bulb"></div>
+            </div>
+            <div>
+                <div class="date">
+                    {{item?.ApplicationDate}}
+                    <!-- 2nd May 2022 -->
+                </div>
+                <!-- <div class="title">Applied to Project Management</div> -->
+                <div class="title d-flex align-items-center">
+                    Applied to&nbsp;
+                    <app-job-vacancy [Vacancy]="item"></app-job-vacancy>
+                </div>
+            </div>
+        </div>
+    </li>
+    <!-- <li>
+        <div class="inner">
+            <div class="indicator">
+                <div class="bulb"></div>
+            </div>
+            <div>
+                <div class="date">2nd May 2022</div>
+                <div class="title">Applied to Project Management</div>
+            </div>
+        </div>
+    </li>
+    <li>
+        <div class="inner">
+            <div class="indicator">
+                <div class="bulb"></div>
+            </div>
+            <div>
+                <div class="date">2nd May 2022</div>
+                <div class="title">Applied to Project Management</div>
+            </div>
+        </div>
+    </li>
+    <li>
+        <div class="inner">
+            <div class="indicator">
+                <div class="bulb"></div>
+            </div>
+            <div>
+                <div class="date">2nd May 2022</div>
+                <div class="title">Applied to Project Management</div>
+            </div>
+        </div>
+    </li>
+    <li>
+        <div class="inner">
+            <div class="indicator">
+                <div class="bulb"></div>
+            </div>
+            <div>
+                <div class="date">2nd May 2022</div>
+                <div class="title">Interviewed for Web Designer Role</div>
+            </div>
+        </div>
+    </li>
+    <li>
+        <div class="inner">
+            <div class="indicator">
+                <div class="bulb"></div>
+            </div>
+            <div>
+                <div class="date">2nd May 2022</div>
+                <div class="title">Rejected for Web designer role</div>
+            </div>
+        </div>
+    </li>
+    <li>
+        <div class="inner">
+            <div class="indicator">
+                <div class="bulb"></div>
+            </div>
+            <div>
+                <div class="date">2nd May 2022</div>
+                <div class="title">Shortlisted For Web Developer role</div>
+            </div>
+        </div>
+    </li> -->
+</ul>
+<!-- <a href="#" class="btn btn-sm btn-default show-more-btn">Show more</a> -->

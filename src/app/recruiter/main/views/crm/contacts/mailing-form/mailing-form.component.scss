@@ -1,0 +1,51 @@
+#custom-textarea {
+    --width: 100px;
+    #field-values {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        .field-item {
+            margin-right: 0.3em;
+            // width: var(--width);
+        }
+    }
+
+    #custom-textbox {
+        // width: 100%;
+    }
+}
+
+aside{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;    
+    color: #8A999F;
+}
+
+.multiselect-dropdown .dropdown-btn .selected-item-container .selected-item {
+    // width: 213px;
+    // height: 24px;
+    // left: 286px;
+    // top: 144px;
+    background: #d0eadb;
+    border: 1px solid #4fb278;
+    border-radius: 15.5px !important;
+    a {
+        padding-left: 2px;
+        color: #4fb278;
+    }
+}
+
+.selected-item-container {
+    .selected-item{
+        width: 213px;
+        height: 24px;
+        left: 286px;
+        top: 144px;
+        background: #d0eadb !important;
+        border: 1px solid #4fb278;
+        border-radius: 15.5px !important;
+    }
+}

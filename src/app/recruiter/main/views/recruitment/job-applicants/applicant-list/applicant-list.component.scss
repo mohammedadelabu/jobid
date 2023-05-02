@@ -1,0 +1,22 @@
+// .content-container *{
+//     font-size: 12px;
+// }
+.action-btn {
+  padding: 10px 17px;
+  border-radius: 5px;
+  color: #fff;
+  background: #4164ad !important;
+  border: none;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+
+  &:disabled {
+    opacity: 0.8;
+    cursor: not-allowed;
+  }
+}
+
+.btn-img {
+  margin-right: 8px;
+}

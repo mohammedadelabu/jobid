@@ -1,0 +1,41 @@
+<!-- <p>mailing-form works!</p> -->
+<div id="mailing-form">
+    <div class="card border-rounded-lg">
+        <div class="card-body">
+            <h5 class="form-title">Email</h5>
+            <div class="form-wrapper">
+                <form [formGroup]="MailForm" (ngSubmit)="onSubmit()">
+                    <!-- selectedItems: {{selectedItems | json}}
+                    <hr>
+                    dropdownList: {{dropdownList | json}}
+                    <hr> -->
+                    <!-- <div class="form-group">
+                        <label for="Email">Email</label>
+                        <input type="text" class="form-control" id="Email" [value]="textValue">
+                        <div id="custom-textarea">
+                            <ul id="field-values" class="list-style-none pl-0 mb-0">
+                                <li class="field-item" *ngFor="let item of emailAddress">{{item}}</li>
+                            </ul>
+                            <textarea name="" id="custom-textbox" rows="1" formControlName="EmailAddress"></textarea>
+                            <input type="text">
+                        </div>
+                    </div> -->
+                    <div class="form-group">
+                        <label for="Email">Email</label>
+                        <ng-multiselect-dropdown [settings]="dropdownSettings" [data]="dropdownList"
+                            [(ngModel)]="selectedItems" (onSelect)="onItemSelect($event)"
+                            (onSelectAll)="onSelectAll($event)" formControlName="EmailAddress">
+                        </ng-multiselect-dropdown>
+                        <aside>Multiple emails can be seperated with a comma “,”</aside>
+                    </div>
+                    <div class="form-group">
+                        <label for="Message">Enter massage</label>
+                        <textarea name="Message" class="form-control" formControlName="Message" id="Message" cols="30"
+                            rows="10"></textarea>
+                    </div>
+                    <button class="btn action-btn mail-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

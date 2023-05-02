@@ -1,0 +1,19 @@
+#FormType {
+    background: #14323e;
+    border-radius: 5px;
+    &.form-control {
+      color: #ffffff;
+    }
+  }
+  
+  .options-form {
+    .form-group {
+      position: relative;
+      .delete-btn {
+        position: absolute !important;
+        right: 0;
+        top: 0;
+      }
+    }
+  }
+  

@@ -1,0 +1,9 @@
+<!-- <p>completed works!</p> -->
+<div id="upcoming-todos">
+    <ul id="todo-list" class="list-style-none pl-0 mb-0">
+        <li class="todo-item" *ngFor="let todo of todoList; let i = index">
+            <app-todo-list-card [todo]="todo" [indexNumber]="i" (onUpdateIsCompleted)="UpdateIsCompleted(todo)">
+            </app-todo-list-card>
+        </li>
+    </ul>
+</div>

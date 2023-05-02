@@ -1,0 +1,100 @@
+<!-- <p>account-settings works!</p> -->
+<div class="setting-content-container">
+    <h2 class="setting-content-title">Account Setting</h2>
+    <!-- {{userByIdEmail$ | async | json}} -->
+    <div class="account-details container-fluid" *ngIf="getUserDetails">
+        <ul class="list-style-none pl-0 mb-0">
+            <li>
+                <div class="preview-info">
+                    <div class="profile-img-wrap">
+                        <img src="../../../../../../assets/images/image-placeholder.jpg" alt="" class="img-fluid">
+                    </div>
+                    <div>
+                        <div class="user-name">
+                            <!-- Jane Cooper -->
+                            <!-- {{userDetails.LastName | json}} -->
+                            {{userDetails?.LastName}}&nbsp;{{userDetails?.FirstName}}
+                        </div>
+                        <div class="user-email">
+                            <!-- jackson.graham@example.com -->
+                            {{userDetails?.Email}}
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li *ngIf="!isUpdatePersonalInfo; else UpdatePersonalInfo">
+                <div class="account-details-list-card">
+                    <div class="content">
+                        <div class="list-card-title">Full Name</div>
+                        <div class="list-card-tagline">
+                            <!-- Jane Cooper -->
+                            {{userDetails?.LastName}}&nbsp;{{userDetails?.FirstName}}
+                        </div>
+                    </div>
+                    <div class="action">
+                        <button class="btn success-btn edit-btn" (click)="isUpdatePersonalInfo = true">Edit</button>
+                    </div>
+                </div>
+            </li>
+            <!-- <li *ngIf="isUpdatePersonalInfo"> -->
+            <ng-template #UpdatePersonalInfo>
+                <li>
+                    <app-update-personal-information [userEmailAddress]="userDetails?.Email"
+                        (closeUpdatePersonalInfoForm)="onCloseUpdatePersonalInfoForm($event)">
+                    </app-update-personal-information>
+                </li>
+            </ng-template>
+            <li>
+                <div class="account-details-list-card">
+                    <div class="content">
+                        <div class="list-card-title">Email</div>
+                        <div class="list-card-tagline">
+                            <!-- jackson.graham@example.com -->
+                            {{userDetails?.Email}}
+                        </div>
+                    </div>
+                    <!-- <div class="action">
+                        <button class="btn success-btn add-btn" (click)="isAddSecondaryEmailAddress = true">Add
+                            secondary email</button>
+                    </div> -->
+                </div>
+            </li>
+            <li *ngIf="isAddSecondaryEmailAddress">
+                <app-add-secondary-email-address
+                    (closeAddSecondaryEmailAddressForm)="onCloseAddSecondaryEmailAddressForm($event)">
+                </app-add-secondary-email-address>
+            </li>
+            <li *ngIf="!isVerifyEmailCode">
+                <div class="account-details-list-card">
+                    <div class="content">
+                        <div class="list-card-title">Password</div>
+                        <div class="list-card-tagline password-hash">........</div>
+                    </div>
+                    <div class="action" *ngIf="userDetails?.Email">
+                        <button class="btn success-btn edit-btn" [disabled]="isSubmittingForm"
+                            (click)="onSendVerificationCode(userDetails?.Email)">
+                            <ng-container *ngIf="!isSubmittingForm">Reset</ng-container>
+                            <ng-container *ngIf="isSubmittingForm">Updating...</ng-container>
+                        </button>
+                        <!-- <button class="btn success-btn edit-btn" [routerLink]="['/auth/reset-password']">Reset</button> -->
+                        <!-- <button class="btn success-btn edit-btn">Reset</button> -->
+
+                    </div>
+                </div>
+            </li>
+            <li *ngIf="errorMsg || ResponseMessage">
+                <div class="alert alert-warning text-center" *ngIf="errorMsg">{{errorMsg}}</div>
+                <div class="alert alert-info text-center" *ngIf="ResponseMessage">{{ResponseMessage}}</div>
+            </li>
+            <!-- <li *ngIf="isResetPassword"> -->
+            <li *ngIf="isSetNewPassword">
+                <app-reset-password [userEmail]="userDetails?.Email"
+                    (closeResetPasswordForm)="onCloseResetPasswordForm($event)"></app-reset-password>
+            </li>
+            <li *ngIf="isVerifyEmailCode">
+                <app-verify-email-code [userEmail]="userDetails?.Email" (onSetNewPassword)="onSetNewPassword()">
+                </app-verify-email-code>
+            </li>
+        </ul>
+    </div>
+</div>

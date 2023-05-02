@@ -1,0 +1,27 @@
+@use '../../../../sass/_partials/mixins';
+.star-rating {
+    font-size: 30px;
+    // display: flex;
+    // flex-direction: column;
+}
+
+::ng-deep label.star {
+    padding: 0 1px !important;
+    font-size: 20px !important;
+    &::before {
+        content: "\f005";
+    }
+
+    @include mixins.minmq('768px'){
+        padding: 0 5px !important;
+        font-size: 50px !important;
+        // &::before {
+        //     content: "\f005";
+        // }
+    }
+}
+
+.star-wrapper {
+    height: 40px;
+    display: inline-flex;
+}

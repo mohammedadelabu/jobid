@@ -1,0 +1,126 @@
+<!-- <p>matched-candidates works!</p> -->
+<div id="related-items-block" *ngIf="matchedCandidatesList?.length">
+  <div class="card display-content-card">
+    <div class="card-body">
+      <h1 class="block-title">Matched Candidates</h1>
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="
+            let candidate of matchedCandidatesList
+              | paginate
+                : {
+                    itemsPerPage: 20,
+                    currentPage: page,
+                    totalItems: totalRecords
+                  }
+          ">
+          <!-- <a [routerLink]="['/recruiter/candidates/details/', candidate.User.Id]"> -->
+          <div class="card bg-none border-0">
+            <div class="row no-gutters align-items-start">
+              <div class="col-md-2">
+                <div class="img-wrap">
+                  <img src="../../../../../../../assets/images/image-placeholder.jpg" alt="..." class="img-fluid" />
+                </div>
+              </div>
+              <div class="col-md-10">
+                <div class="card-body pt-0">
+                  <h6 class="card-title mb-0 cursor-pointer" [routerLink]="[
+                      '/recruiter/candidates/details/',
+                      candidate.User.Id
+                    ]">
+                    {{ candidate?.User?.FirstName }}&nbsp;{{
+                    candidate?.User?.LastName
+                    }}
+                  </h6>
+                  <app-candidate-profession [relatedCandidateId]="candidate?.User?.Id">
+                  </app-candidate-profession>
+                  <!-- <p class="card-text mb-0">
+                                            <small class="text-muted">Product Designer</small>
+                                        </p> -->
+                  <div class="matched-skills-count">
+                    <app-matched-skills-count
+                      [candidateSkillsString]="candidate?.Skills"
+                      [JobDetails]="jobDetailSkills"
+                    ></app-matched-skills-count>
+                  </div>
+                  <div class="text-right application-btn">
+                    <app-application-button [CandidateId]="candidate?.User?.Id" [JobId]="JobDetails?.Id">
+                    </app-application-button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- </a> -->
+        </li>
+        <!-- <li class="list-group-item">
+                    <a href="#">
+                        <div class="card bg-none border-0">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col-md-2">
+                                    <div class="img-wrap">
+                                        <img src="../../../../../../../assets/images/image-placeholder.jpg" alt="..." class="img-fluid">
+                                    </div>
+                                </div>
+                                <div class="col-md-10">
+                                    <div class="card-body">
+                                        <h6 class="card-title mb-0">Brooklyn Simmons</h6>
+                                        <p class="card-text mb-0"><small class="text-muted">Product Designer</small>
+                                        </p>
+                                        <div class="matched-skills-count">5 skill match Job description</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </li> -->
+        <!-- <li class="list-group-item">
+                    <a href="#">
+                        <div class="card bg-none border-0">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col-md-2">
+                                    <div class="img-wrap">
+                                        <img src="../../../../../../../assets/images/image-placeholder.jpg"
+                                            alt="..." class="img-fluid">
+                                    </div>
+                                </div>
+                                <div class="col-md-10">
+                                    <div class="card-body">
+                                        <h6 class="card-title">Brooklyn Simmons</h6>
+                                        <p class="card-text"><small class="text-muted">Product Designer</small>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    <a href="#">
+                        <div class="card bg-none border-0">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col-md-2">
+                                    <div class="img-wrap">
+                                        <img src="../../../../../../../assets/images/candidate-test-avatar-1.png"
+                                            alt="..." class="img-fluid">
+                                    </div>
+                                </div>
+                                <div class="col-md-10">
+                                    <div class="card-body">
+                                        <h6 class="card-title">Brooklyn Simmons</h6>
+                                        <p class="card-text"><small class="text-muted">Product Designer</small>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </li>  -->
+      </ul>
+      <!-- PAGINATION -->
+      <div class="text-center py-2">
+        <pagination-controls (pageChange)="page = $event" previousLabel="" nextLabel=""
+          screenReaderPaginationLabel="Pagination"></pagination-controls>
+      </div>
+    </div>
+  </div>
+</div>

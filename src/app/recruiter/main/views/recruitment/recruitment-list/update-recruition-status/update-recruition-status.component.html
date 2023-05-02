@@ -1,0 +1,15 @@
+<!-- <p>update-recruition-status works!</p> -->
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h5 class="mb-0">{{Job?.JobTitle}}</h5>
+    <div class="text-right">
+        <button class="btn btn-sm p-0" (click)="closeDialog()">
+        <i class="fas fa-times text-danger"></i>
+    </button>
+    </div>
+</div>
+<form [formGroup]="UpdateRecruisitionStatusForm" (ngSubmit)="onSubmit()">
+    <select name="" id="" formControlName="Status" style="height: 45px;">
+        <option value="{{item?.value}}" *ngFor="let item of RecruisitionStatus">{{item?.name}}</option>
+    </select>
+    <button class="btn success-btn rounded-0" style="height: 45px;">Update</button>
+</form>

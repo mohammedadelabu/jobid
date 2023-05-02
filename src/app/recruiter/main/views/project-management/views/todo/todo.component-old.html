@@ -1,0 +1,94 @@
+<div class="todo-container">
+    <nav class="todo-nav">
+        <div class="todo-div">
+            <h1 class="page-title">To-Do</h1>
+            <div>
+                <button type="button" class="btn btn-sm white-btn-green-border mr-5 mb-2 mb-sm-0" (click)="openDialog()">
+          +&nbsp; Create Todo
+        </button>
+            </div>
+        </div>
+        <div class="todo-menu">
+            <ul class="nav-menu">
+                <li class="link-item active-link">
+                    <a class="text-link" [routerLink]="['/recruiter/project-management/todo']" routerLinkActive="active-link">Applicants</a
+          >
+        </li>
+        <li class="">
+          <a
+            class="text-link"
+            [routerLink]="['/recruiter/project-management/todo']"
+            >Shortlisted</a
+          >
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="check-container">
+    <div class="check-div">
+      <div class="round">
+        <input type="checkbox" id="checkbox" />
+        <label for="checkbox"></label>
+      </div>
+      <div>
+        <p>
+          <strong class="invite"> Invite all candidates</strong>
+          <font class="date"> 25th May</font> <font class="time">7am</font>
+        </p>
+        <p class="desc">
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam nulla
+          a asperiores reiciendis delectus aliquam repellat ea alias nostrum
+          quas illum esse quos, doloribus voluptates cum expedita cumque rerum
+          animi.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="check-container">
+    <div class="check-div">
+      <div class="round">
+        <input type="checkbox" id="checkbox1" />
+        <label for="checkbox1"></label>
+      </div>
+      <div>
+        <p>
+          <strong class="invite"> Invite all candidates</strong>
+          <font class="date"> 25th May</font> <font class="time">7am</font>
+        </p>
+        <p class="desc">
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam nulla
+          a asperiores reiciendis delectus aliquam repellat ea alias nostrum
+          quas illum esse quos, doloribus voluptates cum expedita cumque rerum
+          animi.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="check-container">
+    <div class="check-div">
+      <div class="round">
+        <input type="checkbox" id="checkbox2" />
+        <label for="checkbox2"></label>
+      </div>
+      <div>
+        <p>
+          <strong class="invite"> Invite all candidates</strong>
+          <font class="date"> 25th May</font> <font class="time">7am</font>
+        </p>
+        <p class="desc">
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam nulla
+          a asperiores reiciendis delectus aliquam repellat ea alias nostrum
+          quas illum esse quos, doloribus voluptates cum expedita cumque rerum
+          animi.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- <p>
+    Options selected: {{shoes.selectedOptions.selected.length}}
+  </p> -->
+</div>

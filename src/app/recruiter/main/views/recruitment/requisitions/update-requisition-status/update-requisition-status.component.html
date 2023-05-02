@@ -1,0 +1,38 @@
+<div class="card">
+  <div class="card-body">
+    <!-- <p>update-requisition-status works!</p> -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <div>
+        <h3 class="form-title mb-0 text-left">{{ Requisition?.Client }}</h3>
+        <small>{{ Requisition?.JobRole }}</small>
+      </div>
+      <div class="text-right">
+        <button class="btn btn-sm p-0" (click)="closeDialog()">
+          <i class="fas fa-times text-danger"></i>
+        </button>
+      </div>
+    </div>
+
+    <form [formGroup]="UpdateRequisitionStatusForm" (ngSubmit)="onSubmit()">
+      <!-- <div class="input-group w-100 mb-3"> -->
+      <select
+        class="form-control mb-2"
+        name="Status"
+        id="Status"
+        formControlName="Status"
+        required
+      >
+        <option
+          value="{{ item?.value }}"
+          *ngFor="let item of RequisitionStatusList"
+        >
+          {{ item?.name }}
+        </option>
+      </select>
+      <div class="input-group-append">
+        <button class="btn success-btn">Update</button>
+      </div>
+      <!-- </div> -->
+    </form>
+  </div>
+</div>

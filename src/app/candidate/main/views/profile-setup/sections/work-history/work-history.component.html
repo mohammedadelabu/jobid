@@ -1,0 +1,32 @@
+<!-- <p>work-history works!</p> -->
+<h1 class="page-title">Add experience</h1>
+<div class="page-tagline pb-5">Do you have more than one experience?. Please add it</div>
+<div class="mb-5">
+    <!-- PREVIEW WORK HISTORY -->
+    <app-preview-experience [candidateId]="candidateId" *ngIf="!isAddExperience"></app-preview-experience>
+    <!-- ADD WORK EXPERIENCE -->
+    <div *ngIf="isAddExperience">
+        <!-- <div class="text-right">
+            <button type="button" class="btn btn-sm px-0" (click)="isAddExperience=false">
+                <i class="fas fa-times text-danger"></i>
+            </button>
+        </div> -->
+        <app-add-experience [candidateId]="candidateId" (closeIsAddExperience)="onCloseIsAddExperience()"></app-add-experience>
+    </div>
+    <!-- UPDATE WORK EXPERIENCE -->
+    <div *ngIf="isUpdateExperience">
+        <!-- <div class="text-right">
+                <button type="button" class="btn btn-sm px-0" (click)="isAddExperience=false">
+                    <i class="fas fa-times text-danger"></i>
+                </button>
+            </div> -->
+        <app-update-experience (closeIsUpdateExperience)="onCloseIsUpdateExperience()"></app-update-experience>
+    </div>
+    <div class="mb-4">
+        <button class="btn btn-lg btn-block text-uppercase add-more-block-btn" *ngIf="!isAddExperience" (click)="isAddExperience=true">Add Experience</button>
+    </div>
+    <div class="d-flex justify-content-between align-items-center " *ngIf="!isAddExperience">
+        <button type="button " class="btn btn-outline-success px-md-4 previous-btn" [routerLink]="['/candidate/profile-setup/personal-profile']">BACK</button>
+        <button type="submit" class="btn success-btn px-md-4 next-btn" [routerLink]="['/candidate/profile-setup/education']">NEXT</button>
+    </div>
+</div>

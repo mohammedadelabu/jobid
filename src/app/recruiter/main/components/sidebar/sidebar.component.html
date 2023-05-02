@@ -1,0 +1,210 @@
+<div class="sidebar-sticky pt-5 h-75">
+  <div class="d-flex flex-column justify-content-between h-100">
+    <ul class="nav flex-column">
+      <!-- <ng-container *ngFor="let item of navigationLinks">
+        <li class="nav-item" *appHasModule="'item?.appHasModule'">
+          {{item?.appHasModule}}
+          <a class="nav-link active" [routerLink]="[item?.routeLink]" routerLinkActive="router-link-active">
+            <span class="navlink-icon"><img [src]="item?.iconImageLink" alt="" class="img-fluid" /></span>
+            {{item?.title}}?? <span class="sr-only">(current)</span>
+          </a>
+        </li>
+      </ng-container> -->
+      <ng-container *ngFor="let item of navigationLinks">
+        <!-- <li class="nav-item"> -->
+        <app-navigation-dropdown-link
+          [linkDetails]="item"
+        ></app-navigation-dropdown-link>
+        <!-- </li> -->
+      </ng-container>
+
+      <!-- PREVIOUS VERSION -->
+      <!-- <li class="nav-item">
+        <a class="nav-link active" [routerLink]="['/recruiter/dashboard']" routerLinkActive="router-link-active">
+          <span class="navlink-icon"><img src="../../../../../assets/images/icons/dashboard-icon.svg" alt=""
+              class="img-fluid" /></span>
+          Dashboard <span class="sr-only">(current)</span>
+        </a>
+      </li>
+      <li class="nav-item" *appHasModule="CANDIDATES">
+        <a class="nav-link" [routerLink]="['/recruiter/candidates']" routerLinkActive="router-link-active">
+          <span class="navlink-icon"><img src="../../../../../assets/images/icons/candidates-icon.svg" alt=""
+              class="img-fluid" /></span>
+          Candidates
+        </a>
+      </li>
+      <li class="nav-item" *appHasModule="COMPANY">
+        <a class="nav-link" [routerLink]="['/recruiter/crm/companies']" routerLinkActive="router-link-active">
+          <span class="navlink-icon"><img src="../../../../../assets/images/icons/company-icon.svg" alt=""
+              class="img-fluid" /></span>
+          Company
+        </a>
+      </li>
+      <li class="nav-item" *appHasModule="JOB_BORD">
+        <a class="nav-link" [routerLink]="['/recruiter/employee-management/job-board']" routerLinkActive="router-link-active">
+          <span class="navlink-icon"><img src="../../../../../assets/images/icons/job-board-icon.svg" alt=""
+              class="img-fluid" /></span>
+          Job Board
+        </a>
+      </li>
+      <li class="nav-item" *appHasModule="RECRUITMENT">
+        <a class="nav-link" [routerLink]="['/recruiter/employee-management/recruitment']" routerLinkActive="router-link-active">
+          <span class="navlink-icon"><img src="../../../../../assets/images/icons/recruitment-icon.svg" alt=""
+              class="img-fluid" /></span>
+          Recruitment
+        </a>
+      </li>
+      <li class="nav-item" *appHasModule="PLACEMENT">
+        <a class="nav-link" [routerLink]="['/recruiter/placement']" routerLinkActive="router-link-active">
+          <span class="navlink-icon"><img src="../../../../../assets/images/icons/placement-icon.svg" alt=""
+              class="img-fluid" /></span>
+          Placement
+        </a>
+      </li>
+      <li class="nav-item drop cursor-pointer" [ngClass]="{'open-dropdown': true}" *appHasModule="CRM">
+        <a class="nav-link">
+          <div>
+            <span class="navlink-icon"><img src="../../../../../assets/images/icons/briefcase-green-icon.svg" alt=""
+                class="img-fluid" /></span>
+            CRM
+          </div>
+        </a>
+        <div [ngClass]="{ 'drop-content': true, show: showCRMSubMenus }">
+          <ul class="list-style-none">
+            <li>
+              <a [routerLink]="['/recruiter/crm/leads']" routerLinkActive="router-link-active" class="nav-link">
+                <span class="navlink-icon"><img src="../../../../../assets/images/icons/briefcase-green-icon.svg" alt=""
+                    class="img-fluid" /></span>
+                Leads
+              </a>
+            </li>
+            <li>
+              <a [routerLink]="['/recruiter/crm/deals']" routerLinkActive="router-link-active" class="nav-link">
+                <span class="navlink-icon"><img src="../../../../../assets/images/icons/briefcase-green-icon.svg" alt=""
+                    class="img-fluid" /></span>
+                Deals
+              </a>
+            </li>
+            <li>
+              <a [routerLink]="['/recruiter/crm/contacts']" routerLinkActive="router-link-active" class="nav-link">
+                <span class="navlink-icon"><img src="../../../../../assets/images/icons/briefcase-green-icon.svg" alt=""
+                    class="img-fluid" /></span>
+                Contacts
+              </a>
+            </li>
+          </ul>
+        </div>
+      </li>
+      <li class="nav-item drop cursor-pointer" *appHasModule="PROJECT_MANAGEMENT">
+        <a class="nav-link">
+          <div>
+            <span class="navlink-icon"><img src="../../../../../assets/images/icons/project-management-icon.svg" alt=""
+                class="img-fluid" /></span>
+            Project Management
+          </div>
+        </a>
+        <div [ngClass]="{ 'drop-content': true, show: showProjectsSubMenus }">
+          <ul class="list-style-none">
+            <li>
+              <a [routerLink]="['/recruiter/project-management/calendar']" routerLinkActive="router-link-active"
+                class="nav-link">
+                <span class="navlink-icon"><img src="../../../../../assets/images/icons/timesheet-icon.svg" alt=""
+                    class="img-fluid" /></span>
+                Calendar
+              </a>
+            </li>
+            <li>
+              <a [routerLink]="['/recruiter/project-management/project']" routerLinkActive="router-link-active"
+                class="nav-link">
+                <span class="navlink-icon"><img src="../../../../../assets/images/icons/timesheet-icon.svg" alt=""
+                    class="img-fluid" /></span>
+                Project
+              </a>
+            </li>
+            <li>
+              <a [routerLink]="['/recruiter/project-management/todo']" routerLinkActive="router-link-active"
+                class="nav-link">
+                <span class="navlink-icon"><img src="../../../../../assets/images/icons/timesheet-icon.svg" alt=""
+                    class="img-fluid" /></span>
+                Todo*
+              </a>
+            </li>
+            <li>
+              <a [routerLink]="['/recruiter/project-management/timesheet']" routerLinkActive="router-link-active"
+                class="nav-link">
+                <span class="navlink-icon"><img src="../../../../../assets/images/icons/timesheet-icon.svg" alt=""
+                    class="img-fluid" /></span>
+                Timesheet
+              </a>
+            </li>
+          </ul>
+        </div>
+      </li>
+      <li class="nav-item drop" *appHasModule="FINANCIALS">
+        <a class="nav-link" [routerLink]="['/administrator/settings']" routerLinkActive="router-link-active">
+          <div>
+            <span class="navlink-icon"><img src="../../../../../assets/images/icons/financials-icon.svg" alt=""
+                class="img-fluid" /></span>
+            Financials
+          </div>
+        </a>
+        <div class="drop-content">
+          <ul class="list-style-none">
+            <li>
+              <a [routerLink]="['/recruiter/project-management/project']" routerLinkActive="router-link-active"
+                class="nav-link">
+                <span class="navlink-icon"><img src="../../../../../assets/images/icons/financials-icon.svg" alt=""
+                    class="img-fluid" /></span>
+                Invoicing
+              </a>
+            </li>
+            <li>
+              <a [routerLink]="['/recruiter/project-management/project']" routerLinkActive="router-link-active"
+                class="nav-link">
+                <span class="navlink-icon"><img src="../../../../../assets/images/icons/financials-icon.svg" alt=""
+                    class="img-fluid" /></span>
+                Payroll
+              </a>
+            </li>
+            <li>
+              <a [routerLink]="['/recruiter/project-management/project']" routerLinkActive="router-link-active"
+                class="nav-link">
+                <span class="navlink-icon"><img src="../../../../../assets/images/icons/financials-icon.svg" alt=""
+                    class="img-fluid" /></span>
+                Timesheet
+              </a>
+            </li>
+          </ul>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/recruiter/chat']" routerLinkActive="router-link-active">
+          <span class="navlink-icon"><img src="../../../../../assets/images/icons/chat-icon.svg" alt=""
+              class="img-fluid" /></span>
+          Chat
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/recruiter/settings']" routerLinkActive="router-link-active">
+          <span class="navlink-icon"><img src="../../../../../assets/images/icons/settings-icon.svg" alt=""
+              class="img-fluid" /></span>
+          Settings
+        </a>
+      </li> -->
+    </ul>
+
+    <ul class="nav flex-column">
+      <li class="nav-item cursor-pointer" (click)="logoutUser()">
+        <div class="nav-link">
+          <span class="navlink-icon"
+            ><img
+              src="../../../../../assets/images/icons/sign-out-icon.svg"
+              alt=""
+              class="img-fluid"
+          /></span>
+          Sign out
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

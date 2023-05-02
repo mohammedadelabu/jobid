@@ -1,0 +1,107 @@
+@use "../../../sass/_abstracts/typography";
+@use "../../../sass/_partials/mixins";
+
+
+.main-page-wrapper {
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+.navbar-expand-lg {
+    .main-page-wrapper {
+        display: flex;
+    }
+}
+
+.navbar {
+    background: #FFFFFF;
+    box-shadow: 2px 2px 36px rgba(0, 0, 0, 0.05);
+
+    @include mixins.minmq(800px) {
+        // padding: 1.8em 4em;
+        padding-top: 1.8em;
+        padding-bottom: 1.8em;
+
+        .navbar-brand {
+            margin-right: 2em;
+        }
+
+        .navbar-nav {
+            .nav-item {
+                margin-right: 2em;
+            }
+        }
+
+        .action-spacer {
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+    }
+}
+
+.navbar-brand {
+    max-width: 140px;
+}
+
+.call-to-action {
+    background: #008CFE;
+    border-radius: 16px;
+    text-decoration: none;
+    font-family: typography.$rubikFontFamily;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 28px;
+    color: #FCFCFC;
+}
+
+.navbar-light .navbar-nav .nav-link,
+.login-link {
+    font-family: typography.$robotoFontFamily;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    color: #000000;
+
+}
+
+#welcome-back-page {
+    .title {
+        text-align: center;
+        font-family: typography.$rubikFontFamily;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 36px;
+        line-height: 150%;
+        letter-spacing: -0.03em;
+        color: #000000;
+    }
+
+    .welcome-back-form {
+        input.form-control {
+            max-width: 395px;
+            margin: 0 auto;
+            height: 58px;
+            background: #EEEEEE;
+            border-radius: 8px;
+            border: none;
+        }
+
+        button.btn-primary {
+            background: #008CFE;
+            max-width: 395px;
+            margin: 0 auto;
+            border-radius: 8px;
+            font-family: typography.$rubikFontFamily;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 144.5%;
+            letter-spacing: -0.02em;
+            color: #FCFCFC;
+            height: 51px;
+        }
+    }
+}

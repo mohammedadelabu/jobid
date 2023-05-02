@@ -1,0 +1,12 @@
+.input-group {
+    input {
+        &.form-control {
+            border-right: none;
+            border-top-right-radius: 0 !important;
+            border-bottom-right-radius: 0 !important;
+            + .input-group-append span {
+                border-color: #b5b5b5 !important;
+            }
+        }
+    }
+}

@@ -1,0 +1,56 @@
+<div class="container">
+  <h3 class="text-center mb-4">Edit Section Section</h3>
+  <mat-dialog-content class="mat-typography">
+    <form [formGroup]="EditSectionForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-md-12 mb-4">
+          <label for="SectionName" class="required-field-label form-label"
+            >Section Name</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            id="SectionName"
+            formControlName="SectionName"
+            [ngClass]="{
+              'is-invalid':
+                EditSectionForm.get('SectionName')?.touched &&
+                EditSectionForm.get('SectionName')?.invalid
+            }"
+            required
+          />
+          <small
+            id="nameErrorMsg"
+            class="form-text text-danger invalid-feedback"
+            >Section Title is required.</small
+          >
+        </div>
+        <div class="col-md-12 mb-4">
+          <label for="SectionDescription" class="required-field-label form-label"
+            >Description</label
+          >
+          <textarea
+            type="text"
+            class="form-control"
+            id="SectionDescription"
+            formControlName="SectionDescription"
+            [ngClass]="{
+              'is-invalid':
+                EditSectionForm.get('SectionDescription')?.touched &&
+                EditSectionForm.get('SectionDescription')?.invalid
+            }"
+            required
+          ></textarea>
+          <small
+            id="nameErrorMsg"
+            class="form-text text-danger invalid-feedback"
+            >Description is required.</small
+          >
+        </div>
+      </div>
+      <div class="mt-3">
+        <button type="submit" class="btn btn-success">Save</button>
+      </div>
+    </form>
+  </mat-dialog-content>
+</div>

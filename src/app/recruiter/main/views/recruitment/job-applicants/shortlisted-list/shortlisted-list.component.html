@@ -1,0 +1,241 @@
+<!-- Loader -->
+<div
+  *ngIf="isLoading"
+  style="
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5000;
+    background-color: rgba(0, 0, 0, 0.2);
+  "
+>
+  <img src="assets/images/animated-loader.gif" alt="animated loader" />
+</div>
+<div class="content-container" id="recruitment-table">
+  <div class="table-content-head">
+    <ul class="title-list list-style-none pl-0">
+      <li>Name</li>
+      <li>Position</li>
+      <li>Email</li>
+      <li>Mobile No.</li>
+      <li>Location</li>
+      <li>Progress</li>
+      <li></li>
+    </ul>
+  </div>
+  <div class="table-content-body pb-5">
+    <ng-template #noShortlistedApplicant>
+      <div
+        class="alert alert-info text-center"
+        style="width: calc(300px + calc(200px * 6))"
+      >
+        No Shortlisted applicant
+      </div>
+    </ng-template>
+    <cdk-accordion
+      class="example-accordion"
+      *ngIf="shortlistedApplicants?.length; else noShortlistedApplicant"
+    >
+      <cdk-accordion-item
+        *ngFor="
+          let application of shortlistedApplicants
+            | paginate
+              : {
+                  itemsPerPage: pageSize,
+                  currentPage: page,
+                  totalItems: totalPosts
+                };
+          let index = index
+        "
+        #accordionItem="cdkAccordionItem"
+        class="example-accordion-item"
+        role="button"
+        tabindex="0"
+        [attr.id]="'accordion-header-' + index"
+        [attr.aria-expanded]="accordionItem.expanded"
+        [attr.aria-controls]="'accordion-body-' + index"
+      >
+        <div
+          class="example-accordion-item-header"
+          (click)="accordionItem.toggle()"
+        >
+          <!-- {{ item }} -->
+          <ul
+            class="body-list list-style-none pl-0 mb-0 d-flex align-items-center"
+          >
+            <li class="d-flex align-items-center">
+              <div class="company-logo">
+                <img
+                  src="assets/images/sample-company-logo.png"
+                  alt=""
+                  class="img-fluid"
+                  *ngIf="!application?.Candidate.ProfileImageUrl"
+                />
+                <img
+                  src="{{ application?.Candidate.ProfileImageUrl }}"
+                  alt=""
+                  class="ing img-fluid"
+                  *ngIf="application?.Candidate.ProfileImageUrl"
+                />
+              </div>
+              <div>
+                {{ application?.Candidate.FirstName }}&nbsp;{{
+                  application?.Candidate.LastName
+                }}
+              </div>
+            </li>
+            <li>
+              <div>{{ application?.Vacancies?.JobTitle }}</div>
+            </li>
+            <li>
+              <div>{{ application?.Candidate.Email }}</div>
+            </li>
+            <li>
+              <div>{{ application?.Candidate.PhoneNumber }}</div>
+            </li>
+            <li>
+              <div>
+                <app-applicant-location
+                  [candidateId]="application?.Candidate.Id"
+                ></app-applicant-location>
+              </div>
+            </li>
+            <li>
+              <div>
+                <app-application-process-count
+                  [application]="application"
+                ></app-application-process-count>
+                /{{ ZarttechProcesses?.length }} steps
+              </div>
+              <!-- <div>00/00</div> -->
+            </li>
+            <li class="text-right">
+              <span class="example-accordion-item-description">
+                <!-- Click to {{ accordionItem.expanded ? 'close' : 'open' }} -->
+                <span class="">
+                  <img
+                    src="assets/images/icons/angle-circle-green-icon.svg"
+                    alt=""
+                    class="img-fluid rotate"
+                    [ngClass]="{ 'd-none': !accordionItem.expanded }"
+                  />
+                  <img
+                    src="assets/images/icons/angle-circle-grey-icon.svg"
+                    alt=""
+                    class="img-fluid"
+                    [ngClass]="{ 'd-none': accordionItem.expanded }"
+                  />
+                </span>
+              </span>
+            </li>
+          </ul>
+
+          <!-- <span class="example-accordion-item-description">
+         Click to {{ accordionItem.expanded ? "close" : "open" }}
+        </span> -->
+        </div>
+        <div
+          class="example-accordion-item-body"
+          role="region"
+          [style.display]="accordionItem.expanded ? '' : 'none'"
+          [attr.id]="'accordion-body-' + index"
+          [attr.aria-labelledby]="'accordion-header-' + index"
+        >
+          <!-- Internal -->
+          <div style="width: fit-content">
+            <h1 class="block-title mb-3">Internal Hiring Process</h1>
+            <app-check-job-application-stage
+              [application]="application"
+            ></app-check-job-application-stage>
+          </div>
+
+          <ng-container *ngIf="hiringType === 1"
+            ><hr />
+
+            <div style="width: fit-content">
+              <h1 class="block-title mb-3">External Hiring Process</h1>
+              <app-check-external-job-application-stage
+                [application]="application"
+                [vacancyId]="vacancyId"
+              ></app-check-external-job-application-stage>
+            </div>
+
+            <hr
+          /></ng-container>
+
+          <!-- QUESTIONS -->
+          <form (ngSubmit)="onSubmit(form, application)" #form="ngForm">
+            <ul class="list-style-none pl-0 application-questions">
+              <li *ngFor="let jobQuestion of jobQuestions">
+                <label class="question">
+                  {{ jobQuestion.Question }}
+                </label>
+                <div class="response" *ngIf="!jobQuestion.isMultipleChoice">
+                  <input
+                    type="text"
+                    class="form-control"
+                    ngModel
+                    [name]="jobQuestion.Question"
+                    required
+                  />
+                </div>
+                <div class="response" *ngIf="jobQuestion.isMultipleChoice">
+                  <select
+                    name="CompanyId"
+                    class="form-control"
+                    ngModel
+                    [name]="jobQuestion.Question"
+                    required
+                  >
+                    <option value="" disabled selected>Select Option</option>
+                    <option
+                      [value]="option.OptionName"
+                      *ngFor="let option of jobQuestion.questionOptions"
+                    >
+                      {{ option.OptionName }}
+                    </option>
+                  </select>
+                </div>
+              </li>
+
+              <!-- <li>
+              <div class="question">Are you willing to work remotely?</div>
+              <div class="response">
+                <input type="text" value="Yes" class="form-control" readonly />
+              </div>
+            </li>
+            <li>
+              <div class="question">
+                How many years experience do you have in unsing XD
+              </div>
+              <div class="response">
+                <input
+                  type="text"
+                  value="2 years"
+                  class="form-control"
+                  readonly
+                />
+              </div>
+            </li> -->
+              <button class="btn btn-primary" [disabled]="!form.valid">
+                Submit
+              </button>
+            </ul>
+          </form>
+        </div>
+      </cdk-accordion-item>
+    </cdk-accordion>
+  </div>
+</div>
+
+<!-- PAGINATION -->
+<div *ngIf="shortlistedApplicants?.length" class="text-right" id="pagination">
+  <pagination-controls
+    (pageChange)="pageChangeEvent($event)"
+  ></pagination-controls>
+</div>

@@ -1,0 +1,36 @@
+<!-- <p>share-job works!</p> -->
+
+<div id="page-top">
+  <div class="inner my-5">
+    <h1 class="page-title">Share Job</h1>
+
+    <div ngbDropdown class="d-inline-block">
+      <button class="mr-3 btn white-btn-green-border">
+        <i class="fa fa-share-alt mr-2" aria-hidden="true"></i> Share
+      </button>
+      <button
+        type="button"
+        class="btn white-btn-green-border"
+        id="dropdownBasic1"
+        ngbDropdownToggle
+      >
+        Download Job
+      </button>
+      <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+        <button (click)="onToggleShowDisclosedJob()" ngbDropdownItem>
+          Disclosed
+        </button>
+        <button (click)="onToggleShowDisclosedJob()" ngbDropdownItem>
+          Undisclosed
+        </button>
+      </div>
+    </div>
+    <!-- <div class="btn-group">
+            <button class="btn">Share</button>
+            <button class="btn">Download Job</button>
+        </div> -->
+  </div>
+</div>
+<app-share-job-template
+  [events]="eventsSubject.asObservable()"
+></app-share-job-template>

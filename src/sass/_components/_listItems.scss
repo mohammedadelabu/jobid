@@ -1,0 +1,41 @@
+.pills-listing{
+    display: flex;
+    flex-wrap: wrap;
+    .list-item {
+        margin-right: 0.5em;
+        margin-bottom: 0.5em;
+        height: 24px;
+        a {
+            display: inline-block;
+            text-decoration: none;
+            // display: flex;
+            // flex-direction: column;
+            // align-items: flex-start;
+            padding: 3px 20px;
+
+            // position: absolute;
+            // width: 122px;
+            // height: 24px;
+            // left: 790px;
+            // top: 662px;
+            /* Primary Color/Green 20% */
+            background: #d0eadb;
+            /* Primary Color/Green 75% */
+            border: 1px solid #4fb278;
+            box-sizing: border-box;
+            border-radius: 15.5px;
+            //
+            /* Body 2/Left */
+            font-family: "Poppins";
+            font-style: normal;
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 18px;
+            /* Primary Color/Green 75% */
+            color: #4fb278;
+        }
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+}

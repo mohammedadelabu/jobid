@@ -1,0 +1,31 @@
+<!-- <p>job-applicants-navigation works!</p> -->
+
+<ul class="nav">
+  <li
+    class="nav-item"
+    [routerLink]="[
+      '/recruiter/employee-management/recruitment/job-applicants/applicant-list'
+    ]"
+    routerLinkActive="router-link-active"
+  >
+    <a class="nav-link">Applicants</a>
+  </li>
+  <li
+    class="nav-item"
+    [routerLink]="[
+      '/recruiter/employee-management/recruitment/job-applicants/shortlisted-list'
+    ]"
+    routerLinkActive="router-link-active"
+  >
+    <a class="nav-link">Shortlisted</a>
+  </li>
+  <li
+    class="nav-item"
+    [routerLink]="[
+      '/recruiter/employee-management/recruitment/job-applicants/hired-list'
+    ]"
+    routerLinkActive="router-link-active"
+  >
+    <a class="nav-link">Hired</a>
+  </li>
+</ul>

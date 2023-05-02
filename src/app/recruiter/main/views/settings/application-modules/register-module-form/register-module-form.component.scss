@@ -1,0 +1,9 @@
+.form-card {
+    &.card {
+        background-color: unset;
+        border: none;
+        input.form-control{
+            background-color: unset;
+        }
+    }
+}

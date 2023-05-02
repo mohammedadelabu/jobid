@@ -1,0 +1,44 @@
+<!-- <p>select-company works!</p> -->
+<div id="convert-lead-to-deal-page">
+  <app-page-title></app-page-title>
+  <ng-container *ngIf="isCompanyListForUserLoading$ | async">
+    <!-- <app-spinner></app-spinner> -->
+    <!-- <small>Please wait...</small> -->
+    <app-simple-component-loader-with-spinner></app-simple-component-loader-with-spinner>
+  </ng-container>
+  <div id="content-wrapper" class="card">
+    <div class="card-body text-center">
+      <h2 class="card-title">Select company to view all available details</h2>
+      <!-- {{companyList$ | async | json}} -->
+      <div class="select-control-wrapper">
+        <div class="form-group text-left">
+          <label for="Company" class="field-label">Select Company</label>
+          <select
+            name="Company"
+            id="Company"
+            class="form-control cursor-pointer"
+            [(ngModel)]="SelectedCompany"
+            (change)="onSelectCompany()"
+          >
+            <option value="" selected="selected" selected>
+              Select a company
+            </option>
+            <option [value]="item?.CompanyId" *ngFor="let item of companyList">
+              {{ item?.Name }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <p class="separator-text">Or</p>
+      <div>
+        <button
+          class="btn outline-success-btn"
+          (click)="onAddNewCompanyRoute()"
+        >
+          <span class="mr-2">+</span>
+          Add New Company
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

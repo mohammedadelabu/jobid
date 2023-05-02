@@ -1,0 +1,25 @@
+.page-wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .featured-image {
+        max-width: 300px;
+        margin-bottom: 20px;
+    }
+
+    .title {
+        font-family: "Poppins";
+        font-style: normal;
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 30px;
+        text-align: center;
+        color: #14984b;
+    }
+
+    .btn.next-btn{
+        
+    }
+}

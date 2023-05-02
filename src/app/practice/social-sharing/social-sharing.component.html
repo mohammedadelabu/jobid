@@ -1,0 +1,113 @@
+<!-- <p>social-sharing works!</p> -->
+
+<div class="container">
+  <h1 class="text-center">A Page To Share</h1>
+  <!--  -->
+
+  <div class="date-range">
+    <mat-form-field appearance="fill">
+      <mat-label>Enter a date range</mat-label>
+      <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+        <input matStartDate formControlName="start" placeholder="Start date" />
+        <input matEndDate formControlName="end" placeholder="End date" />
+      </mat-date-range-input>
+      <!-- <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint> -->
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-date-range-picker #picker></mat-date-range-picker>
+
+      <!-- <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">Invalid start date</mat-error>
+        <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Invalid end date</mat-error> -->
+    </mat-form-field>
+  </div>
+
+  <p>Selected range: {{ range.value | json }}</p>
+  <!--  -->
+  <div class="row">
+    <div class="col-12 col-lg-6">
+      <p class="text-justify">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas,
+        incidunt! Laborum magni rerum quae! Minus iure maiores, esse atque nobis
+        dolor alias incidunt dolorem? Earum exercitationem accusantium dolorum
+        sed nemo fugit adipisci alias minus, in autem nam deleniti, fugiat odit
+        quas hic suscipit dignissimos quod excepturi cumque vel. Numquam
+        pariatur reiciendis aspernatur vero ducimus maxime natus velit a? At
+        mollitia ipsum provident asperiores totam blanditiis ut, iusto quibusdam
+        a exercitationem. Laborum minus dolor odit repudiandae similique iste,
+        quos, non libero suscipit nisi accusamus sed dolores dolorem architecto
+        beatae cumque eveniet officia? Dolorem corrupti molestias voluptas
+        accusamus voluptates quisquam consectetur et. <br />
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel sed
+        molestiae officiis amet quibusdam maiores. Architecto ipsa a debitis!
+        Inventore consequatur sequi hic atque quisquam voluptates pariatur iure.
+        Ratione qui nulla voluptates deleniti! Eos aliquid pariatur quidem ullam
+        natus minima, doloribus, quae obcaecati adipisci voluptatum, quia a
+        asperiores. In commodi laborum modi eius aspernatur corporis maiores
+        enim nesciunt. Rem adipisci commodi, quo praesentium asperiores saepe
+        vel tenetur, enim ullam reprehenderit reiciendis similique rerum esse
+        hic consequuntur atque minus natus repellat optio. Praesentium
+        voluptatum consequatur porro molestiae doloribus, vero, reiciendis optio
+        fugit ex libero, at recusandae! Doloribus architecto inventore rerum
+        enim.
+      </p>
+    </div>
+    <div class="col-12 col-lg-6">
+      <p class="text-justify">
+        Tempore, amet distinctio temporibus, praesentium consequatur dicta
+        obcaecati eum eligendi quas reprehenderit ipsum quisquam fuga enim
+        magnam aliquid voluptatibus error ratione commodi maxime perferendis!
+        Nisi voluptatem nam beatae, vitae cumque veritatis praesentium dolorem
+        illum voluptas eligendi aliquid qui quibusdam corporis enim provident
+        facere voluptates atque! Ut quis error sit sunt magnam maiores
+        voluptatibus quisquam deleniti eligendi. Quisquam repudiandae numquam,
+        itaque animi dolorem quod suscipit sunt facere laudantium recusandae ab
+        eos debitis aliquid iste tempora. Quidem vitae a et doloribus cum qui
+        nulla sapiente iste voluptatem optio dignissimos obcaecati, voluptates
+        molestiae autem consequatur accusantium dolores inventore architecto.
+        Sed magni ea et quo repudiandae deleniti, magnam, similique suscipit
+        optio eius quasi ipsum odit illum necessitatibus quisquam distinctio est
+        autem natus voluptatibus sit quae? Alias aperiam tempora dolores dolor
+        iste accusantium maxime! Sint laudantium distinctio, dolorum obcaecati
+        unde aspernatur dolor veritatis suscipit optio temporibus exercitationem
+        earum magnam a illum culpa esse dignissimos ipsum eius velit repudiandae
+        quaerat? Amet iusto consequuntur error quis magni suscipit natus iure
+        incidunt praesentium libero eveniet officiis rerum iste sunt, repellat
+        corrupti dolores recusandae doloremque ipsum ad ipsam! Labore, maxime
+        commodi placeat perspiciatis molestias earum. Atque deleniti tenetur sed
+        distinctio tempore voluptatibus molestias ipsam perspiciatis saepe
+        suscipit? In possimus repellat magnam accusamus sed! Sequi voluptate,
+        eos impedit incidunt molestiae exercitationem quaerat nam sed nulla,
+        eligendi eum dolor. Rerum, recusandae tempora veritatis repudiandae amet
+        unde.
+      </p>
+    </div>
+  </div>
+  <!-- <div>
+        <mat-link-preview-container color="primary" [multiple]="true"></mat-link-preview-container>
+    </div> -->
+  <!-- <share-buttons [theme]="'modern-dark'" [include]="['facebook','twitter','linkedin','pinterest','reddit','mix','vk','telegram','messenger','whatsapp','xing','line','sms','email','copy']" [show]="9" [url]="'https://www.eduforbetterment.com/generate-qr-code-in-angular/'"
+    [image]="'https://www.eduforbetterment.com/wp-content/uploads/2020/08/qrcode.jpg'" [autoSetMeta]="false"></share-buttons> 
+    <hr>
+    <hr> -->
+  <div class="pb-5">
+    <share-buttons
+      [theme]="'modern-dark'"
+      [include]="[
+        'facebook',
+        'twitter',
+        'linkedin',
+        'reddit',
+        'telegram',
+        'whatsapp',
+        'email',
+        'copy'
+      ]"
+      [show]="4"
+      [url]="'https://jobid.app/cv/recruiter/employee-management/job-board'"
+      [image]="
+        'https://www.eduforbetterment.com/wp-content/uploads/2020/08/qrcode.jpg'
+      "
+      [autoSetMeta]="false"
+    >
+    </share-buttons>
+  </div>
+</div>

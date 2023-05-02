@@ -1,0 +1,123 @@
+#recruitment-table {
+    &.content-container {
+        // min-width: 100vw;
+        // background-color: aqua;
+        overflow-x: auto;
+        .table-content-head {
+            // background: #dadada;
+            // border: 1px solid #dadada;
+            // border-radius: 10px 10px 0px 0px;
+            padding-top: 1.5em;
+            display: inline-block;
+            .title-list {
+                display: flex;
+                li {
+                    width: 200px;
+                    min-width: 200px;
+                    // background-color: aqua;
+                    // padding-bottom: 1em;
+                    // padding-top: 0.5em;
+                    // padding: 0.7em 1em;
+                    padding: 14px 20px;
+                    background: #dadada;
+                    border: 1px solid #dadada;
+                    font-weight: 600;
+                    font-size: 13px;
+                    line-height: 24px;
+                    color: #000000;
+                    &:last-child {
+                        border-top-right-radius: 10px;
+                        &.action {
+                            width: auto;
+                        }
+                    }
+                    &:first-child {
+                        border-top-left-radius: 10px;
+                        min-width: 300px;
+                    }
+                }
+            }
+        }
+
+        .table-content-body {
+            display: inline-block;
+            .example-accordion-item {
+                margin-bottom: 0.3em;
+                background: #f0f0f0;
+                border: 1px solid #dadada;
+                border-radius: 10px;
+                display: block;
+            }
+            .body-list {
+                li {
+                    width: 200px;
+                    min-width: 200px;
+                    padding: 9px 20px;
+                    // background: #dadada;
+                    // border: 1px solid #dadada;
+                    // font-weight: 600;
+                    // font-size: 16px;
+                    // line-height: 24px;
+                    // color: #000000;
+                    // background-color: aqua;
+                    font-family: "Poppins";
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 13px;
+                    line-height: 24px;
+                    /* identical to box height */
+
+                    color: #000000;
+                    div {
+                        width: 100%;
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
+                        overflow-x: hidden;
+                    }
+
+                    &:first-child {
+                        min-width: 300px;
+                    }
+                }
+            }
+
+            .example-accordion-item-body {
+                // background-color: red;
+                padding: 9px 20px;
+            }
+        }
+
+        .company-logo {
+            max-width: 30px;
+            margin-right: 1em;
+        }
+
+        // .process-monitor{
+        // background-color: red;
+        // text-align: left;
+        // }
+        #recruiter-actions {
+            display: inline-flex;
+        }
+
+        .application-questions {
+            li {
+                margin-bottom: 1em;
+            }
+            .question {
+                font-family: "Poppins";
+                font-style: normal;
+                font-weight: 400;
+                font-size: 13px;
+                line-height: 24px;
+                color: #4f656e;
+                margin-bottom: 7px;
+                &::after {
+                    content: "*";
+                    color: #ff4444;
+                    margin-right: 10px;
+                }
+            }
+        }
+    }
+}

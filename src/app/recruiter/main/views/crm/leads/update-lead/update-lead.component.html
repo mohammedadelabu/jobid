@@ -1,0 +1,173 @@
+<!-- <p>update-lead works!</p> -->
+<div class="card">
+    <div class="card-body">
+        <div class="d-flex align-items-start justify-content-between">
+            <h1 class="form-title text-left">Update Lead</h1>
+            <button class="btn" (click)="closeDialog()">
+                <i class="fas fa-times text-danger"></i>
+            </button>
+        </div>
+        <ng-template #formSubmitted>
+            <div class="alert alert-info text-center">
+                {{responseMessage}}
+            </div>
+        </ng-template>
+        <ng-container *ngIf="(isLoading$ | async)">
+            <div class="text-center mb-3">
+               <small class="text-info text-bold">Loading...</small>
+            </div>
+        </ng-container>
+        <div class="form-wrapper" *ngIf="!responseMessage; else formSubmitted">
+            <form [formGroup]="UpdateLeadForm" (ngSubmit)="onSubmit()">
+                <div class="form-row">
+                    <div class="form-group col-12 col-lg-6">
+                        <label for="AccountName">Account Name</label>
+                        <input type="text" id="AccountName" class="form-control" formControlName="AccountName"
+                            [ngClass]="{'is-invalid': UpdateLeadForm.get('AccountName')?.touched && UpdateLeadForm.get('AccountName')?.invalid}"
+                            required>
+                    </div>
+                    <div class="form-group col-12 col-lg-6">
+                        <label for="EmailAddress">Email Address</label>
+                        <input type="email" id="EmailAddress" class="form-control" formControlName="EmailAddress"
+                            [ngClass]="{'is-invalid': UpdateLeadForm.get('EmailAddress')?.touched && UpdateLeadForm.get('EmailAddress')?.invalid}">
+
+                        <span class="invalid-feedback">
+                            <small class="form-text text-danger"
+                                *ngIf="UpdateLeadForm.get('EmailAddress')?.hasError('required')">Email is
+                                required.
+                            </small>
+                            <small class="form-text text-danger"
+                                *ngIf="UpdateLeadForm.get('EmailAddress')?.hasError('email')">You entered an
+                                invalid
+                                Email.
+                            </small>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-12 col-lg-6">
+                        <label for="PhoneNumber">Phone Number</label>
+                        <input type="text" id="PhoneNumber" class="form-control" formControlName="PhoneNumber"
+                            [ngClass]="{'is-invalid': UpdateLeadForm.get('PhoneNumber')?.touched && UpdateLeadForm.get('PhoneNumber')?.invalid}"
+                            required>
+                    </div>
+                    <!-- <div class="form-group col-12 col-lg-6">
+                        <label for="Location">Location</label>
+                        <select name="Location" id="Location" class="form-control" formControlName="Location"
+                            [ngClass]="{'is-invalid': UpdateLeadForm.get('Location')?.touched && UpdateLeadForm.get('Location')?.invalid}"
+                            required>
+                            <option value="opt1">Option 1</option>
+                        </select>
+                        <select name="Location" id="Location" class="form-control cursor-pointer"
+                            formControlName="Location"
+                            [ngClass]="{'is-invalid': UpdateLeadForm.get('Location')?.touched && UpdateLeadForm.get('Location')?.invalid}"
+                            required>
+                            <option value="" selected="selected">Select location</option>
+                            <option value={{country.Value}} *ngFor="let country of countryList">{{country.Name}}
+                            </option>
+                        </select>
+                    </div> -->
+                    <div class="form-group col-12 col-lg-6">
+                        <label for="tag_">Tag</label>
+                        <div class="jid-custom-dropdown-select">
+                            <div class="form-control jid-select-control">
+                                <div class="select-inner">
+                                    <div class="drop-label" *ngIf="selectedItemsList?.length == 0; else selectedList">
+                                        Select a Tag
+                                    </div>
+                                    <div class="drop-trigger" [ngClass]="{'rotate': !isShowDropOptions}"
+                                        (click)="toggleIsShowDropOptions()"></div>
+                                </div>
+                            </div>
+                            <div class="custom-select-dropdown shadow-sm" [ngClass]="{'d-none': isShowDropOptions}">
+                                <ul class="list-style-none pl-0 mb-0">
+                                    <!-- leadTags$ -->
+                                    <!-- <li *ngFor="let item of dropDownDataList">
+                                        <input type="checkbox" id="{{item?.id}}" hidden [(ngModel)]="item.isChecked"
+                                            [ngModelOptions]="{standalone: true}" (change)="onChecked()">
+                                        <label for="{{item?.id}}">
+                                            <span class="fake-box"></span>{{item?.name}}
+                                        </label>
+                                    </li> -->
+                                    <li *ngFor="let item of leadTags">
+                                        <input type="checkbox" id="{{item?.id}}" hidden [(ngModel)]="item.isChecked"
+                                            [ngModelOptions]="{standalone: true}" (change)="onChecked()">
+                                        <label for="{{item?.id}}">
+                                            <span class="fake-box"></span>{{item?.name}}
+                                        </label>
+                                    </li>
+                                    <li *ngIf="addNewTag">
+                                        <!-- ADDING NEW TAG -->
+                                        <div class="text-right" (click)="toggleaddNewTag()">
+                                            <button type="button" class="btn btn-sm">
+                                                <i class="fas fa-times text-danger"></i>
+                                            </button>
+                                        </div>
+                                        <div class="input-group align-items-center new-tag-input">
+                                            <input type="text" class="form-control" placeholder="Enter tag"
+                                                aria-label="Enter tag" aria-describedby="button-addon2"
+                                                [(ngModel)]="tag" [ngModelOptions]="{standalone: true}">
+                                            <div class="input-group-append">
+                                                <button class="btn primary-btn" type="button" id="button-addon2"
+                                                    (click)="onAddNewTag()">+</button>
+                                            </div>
+                                        </div>
+                                        <!--  -->
+                                    </li>
+                                    <li *ngIf="!addNewTag">
+                                        <button type="button" class="btn btn-sm text-primary-link  px-0"
+                                            (click)="toggleaddNewTag()">Add new
+                                            tag</button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="form-row">
+                <div class="form-group col-12 col-lg-6">
+                    <label for="LeadSource">Lead Source</label>
+                    <input type="text" id="LeadSource" class="form-control" formControlName="LeadSource" [ngClass]="{'is-invalid': UpdateLeadForm.get('LeadSource')?.touched && UpdateLeadForm.get('LeadSource')?.invalid}" required>
+                </div>
+                <div class="form-group col-12 col-lg-6">
+                    <label for="ContactName">Contact Name</label>
+                    <input type="text" id="ContactName" class="form-control" formControlName="ContactName" [ngClass]="{'is-invalid': UpdateLeadForm.get('ContactName')?.touched && UpdateLeadForm.get('ContactName')?.invalid}" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-12 col-lg-6">
+                    <label for="StartDate">Start Date</label>
+                    <input type="date" id="StartDate" class="form-control" formControlName="StartDate" [ngClass]="{'is-invalid': UpdateLeadForm.get('StartDate')?.touched && UpdateLeadForm.get('StartDate')?.invalid}" required>
+                </div>
+                <div class="form-group col-12 col-lg-6">
+                    <label for="EndDate">End Date</label>
+                    <input type="date" id="EndDate" class="form-control" formControlName="EndDate" [ngClass]="{'is-invalid': UpdateLeadForm.get('EndDate')?.touched && UpdateLeadForm.get('EndDate')?.invalid}" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-12 col-lg-6">
+                    <label for="AmountPerHour">Amount/hr</label>
+                    <div class="input-group mb-3">
+                        <input type="number" class="form-control" aria-label="Hourly Rate" aria-describedby="basic-addon2" id="AmountPerHour" formControlName="AmountPerHour" [ngClass]="{'is-invalid': UpdateLeadForm.get('AmountPerHour')?.touched && UpdateLeadForm.get('AmountPerHour')?.invalid}"
+                            required/>
+                        <div class="input-group-append">
+                            <span class="input-group-text text-bold bg-none" id="basic-addon2">$</span>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+
+                <button class="btn success-btn" [disabled]="UpdateLeadForm.invalid">Update</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<ng-template #selectedList>
+    <ul class="list-style-none pl-0 mb-0 selected-drop-list">
+        <li class="list-item" *ngFor="let item of UIList">
+            {{item?.name}}
+        </li>
+        <li *ngIf="selectedItemsList?.length > UIList?.length">{{UIList?.length}}+</li>
+    </ul>
+</ng-template>

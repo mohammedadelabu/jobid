@@ -1,0 +1,119 @@
+<!-- <p>preview-interview-process works!</p> -->
+<ng-template #noProcessList>
+  <div class="text-center alert alert-info">No Process</div>
+</ng-template>
+<div
+  class="display-content-card card"
+  *ngIf="CompanyProcess?.length; else noProcessList"
+>
+  <div class="process-monitor card-body" id="external">
+    <ul class="list-style-none pl-0 mb-0">
+      <!-- <p>   {{processList | json}}</p> -->
+      <li
+        [ngClass]="{ passed: process?.Successful == true }"
+        *ngFor="let process of CompanyProcess"
+      >
+        <div class="inner">
+          <div class="bulb">
+            <div class="label">
+              <!-- <i class="fas fa-check"></i> -->
+            </div>
+          </div>
+          <div class="process-date">
+            {{ process.InterviewDate | date: "d MMMM y" }}
+          </div>
+          <div class="process-title">{{ process.Name }}</div>
+          <div>
+            <div
+              [ngClass]="{ 'process-status': process?.Successful == true }"
+              *ngIf="process?.Successful == true"
+            >
+              <span>Passed</span>
+            </div>
+          </div>
+          <!-- <div class="btn-group">
+            <button
+              class="btn btn-sm btn-default"
+              (click)="onEditProcess(process)"
+            >
+              <i class="fas fa-pen"></i>
+            </button>
+            <button
+              class="btn btn-sm btn-default text-danger"
+              (click)="onRemoveProcess(process?.Id)"
+            >
+              <i class="fas fa-trash"></i>
+            </button>
+          </div> -->
+        </div>
+      </li>
+      <!--  -->
+      <!-- <li class="passed">
+          <div class="inner">
+            <div class="bulb">
+              <i class="fas fa-check"></i>
+            </div>
+            <div class="process-date">3 April 2022</div>
+            <div class="process-title">Round 1</div>
+            <div class="process-status">
+              <span>Passed</span>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="inner">
+            <div class="bulb">
+              <i class="fas fa-check"></i>
+            </div>
+            <div class="process-date">8 April 2022</div>
+            <div class="process-title">Round 2</div>
+            <div class="process-status">
+                      <span>Passed</span>
+                  </div>
+          </div>
+        </li> -->
+      <!-- <li>
+          <div class="inner">
+            <div class="bulb trophy">
+              <img
+                src="../../../../../../../assets/images/icons/trophy.svg"
+                alt=""
+                class="img-fluid default-trophy"
+              />
+              <img
+                src="../../../../../../../assets/images/icons/trophy-gold.svg"
+                alt=""
+                class="img-fluid passed-trophy"
+              />
+            </div>
+            <div class="process-date">8 April 2022</div>
+            <div class="process-title">Offered</div>
+            <div class="process-status">
+              <span>Passed</span>
+            </div>
+          </div>
+        </li> -->
+      <!-- <li>
+          <div class="inner">
+            <div class="bulb trophy">
+              <img
+                src="../../../../../../../assets/images/icons/trophy.svg"
+                alt=""
+                class="img-fluid default-trophy"
+              />
+              <img
+                src="../../../../../../../assets/images/icons/trophy-gold.svg"
+                alt=""
+                class="img-fluid passed-trophy"
+              />
+            </div>
+            <div class="process-date">8 April 2022</div>
+            <div class="process-title">Offered</div>
+            <div class="process-status">
+              <span>Passed</span>
+            </div>
+          </div>
+        </li> -->
+    </ul>
+  </div>
+</div>

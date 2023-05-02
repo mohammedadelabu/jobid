@@ -1,0 +1,13 @@
+@use "../_abstracts/colors";
+@use "../_abstracts/typography";
+.ngx-pagination {
+    .current {
+        padding: 0.1875rem 0.725rem !important;
+        // background: colors.$PrimaryColorGreen !important;
+        background-color: #14323E !important;
+        color: #fefefe;
+        cursor: default;
+        border-radius: 50%;
+    }
+    
+}

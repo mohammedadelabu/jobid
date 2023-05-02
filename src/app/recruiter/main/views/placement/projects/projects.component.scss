@@ -1,0 +1,24 @@
+.progress {
+    height: 0.4em;
+    background: #dadada;
+    .progress-bar {
+        background: #4fb278;
+    }
+}
+
+.text-green-btn {
+    text-decoration: underline;
+}
+
+.dashboard-table {
+    thead {
+        tr {
+            th {
+                border: none;
+                &:last-child {
+                    border-top-right-radius: 10px;
+                }
+            }
+        }
+    }
+}

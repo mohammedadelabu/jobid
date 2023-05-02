@@ -1,0 +1,21 @@
+
+#star-ratings {
+    display: flex;
+    .star-score {
+        margin-right: 0.4em;
+        font-family: "Poppins";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+        color: #000000;
+    }
+    .fas {
+        font-size: 0.8rem;
+        color: rgba(255, 206, 49, 1);
+        margin-right: 0.3em;
+        &.null {
+            color: #dadada;
+        }
+    }
+}

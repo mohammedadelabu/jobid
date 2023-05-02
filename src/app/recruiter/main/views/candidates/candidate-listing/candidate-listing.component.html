@@ -1,0 +1,88 @@
+<p>candidate-listing works!</p>
+
+<div
+  class="card-wrapper col-12 col-md-4"
+  *ngFor="
+    let Candidate of UserList
+      | paginate
+        : {
+            itemsPerPage: 12,
+            currentPage: page,
+            totalItems: totalRecords
+          }
+  "
+>
+  <div class="candidate-list-card card border-0">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="card-profile-img">
+            <!-- <img src="../../../../../assets/images/candidate-test-avatar-1.png" class="img-fluid"
+                            alt="..."> -->
+            <img
+              src="../../../../../assets/images/image-placeholder.jpg"
+              alt="candidate image"
+              class="img-fluid"
+              *ngIf="!Candidate?.ProfileImageUrl"
+            />
+            <img
+              src="{{ Candidate?.ProfileImageUrl }}"
+              alt="candidate image"
+              class="img-fluid"
+              *ngIf="Candidate?.ProfileImageUrl"
+            />
+          </div>
+        </div>
+        <div class="col-md-9">
+          <h5
+            class="card-title"
+            title="{{ Candidate?.FirstName }}&nbsp;{{
+              Candidate?.MiddleName
+            }}&nbsp;{{ Candidate?.LastName }}"
+          >
+            {{ Candidate?.FirstName }}&nbsp;{{ Candidate?.MiddleName }}&nbsp;{{
+              Candidate?.LastName
+            }}
+          </h5>
+          <p class="position card-text">Full stack Developer</p>
+          <ul class="social-icons list-style-none pl-0 d-flex">
+            <li>
+              <a href="#">
+                <i class="fab fa-linkedin"></i>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fab fa-github"></i>
+              </a>
+            </li>
+          </ul>
+          <div
+            class="card-action btn-group btn-block"
+            role="group"
+            aria-label="card action"
+          >
+            <!-- <button type="button" class="btn">View CV</button>
+                        <button type="button" class="btn">Interview</button> -->
+            <a href="#" type="button" class="btn">
+              <img
+                src="../../../../../assets/images/icons/view-cv-btn-icon.svg"
+                alt="view"
+                class="img-fluid mr-1"
+              />
+              View CV</a
+            >
+            <a href="#" type="button" class="btn">
+              <img
+                src="../../../../../assets/images/icons/interview-btn-icon.svg"
+                alt="interview"
+                class="img-fluid mr-1"
+              />
+              Interview</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

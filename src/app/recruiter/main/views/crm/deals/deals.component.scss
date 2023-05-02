@@ -1,0 +1,453 @@
+.page-title {
+    border-bottom: 1px solid #c7c7c7;
+    margin-bottom: 1em;
+}
+
+.counter-wrapper {
+    overflow-x: auto;
+}
+
+.deals-count {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    text-align: right;
+    color: #4f656e;
+}
+#counter {
+    display: inline-flex;
+    li {
+        width: 108px;
+        height: 65px;
+        border: 1px solid #dadada;
+        border-radius: 7px;
+        // padding: 14px 20px;
+        padding: 1em 1.2em;
+        font-family: "Poppins";
+        font-style: normal;
+        margin-right: 1em;
+        &:last-child {
+            margin-right: 0;
+        }
+        .count,
+        .label {
+            white-space: nowrap;
+        }
+        .count {
+            color: #000000;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 24px;
+        }
+        .label {
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 18px;
+            color: #8a999f;
+        }
+    }
+}
+
+.cdk-drag-preview {
+    box-sizing: border-box;
+    border-radius: 4px;
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14),
+        0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drag-placeholder {
+    opacity: 0;
+}
+
+.cdk-drag-animating {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.stage-column:last-child {
+    border: none;
+}
+
+.column-list.cdk-drop-list-dragging .stage-column:not(.cdk-drag-placeholder) {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+//
+.jid-dropdown {
+    .jid-dropdown-btn {
+        &.drop {
+            + .dropdown-content {
+                display: block;
+            }
+        }
+
+        + .dropdown-content {
+            display: none;
+        }
+    }
+}
+
+#horizon-control-wrapper {
+    height: 30px;
+    background-color: #ffffff;
+    z-index: 0;
+}
+
+section {
+    &#progress-space {
+        min-height: 50vh;
+        .columns-list-wrapper {
+            max-width: 1200px;
+            overflow-x: auto;
+            margin-right: 12px;
+        }
+        .column-list {
+            display: flex;
+            align-items: flex-start;
+            cursor: move;
+            cursor: -moz-move;
+            cursor: -webkit-move;
+        }
+        .stage-column {
+            width: 300px;
+            min-width: 300px;
+            background: #ffffff;
+            border: 1px solid #dadada;
+            border-radius: 17px;
+            padding: 0.3em 012px;
+            margin-right: 12px;
+        }
+        .column-inner-wrap {
+            max-height: 600px;
+            overflow-y: auto;
+
+            &::-webkit-scrollbar-track {
+                -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+                border-radius: 10px;
+                background-color: #f5f5f5;
+            }
+
+            &::-webkit-scrollbar {
+                width: 5px;
+                background-color: #f5f5f5;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                border-radius: 10px;
+                -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+                // background-color: #d62929;
+                background: #8a999f;
+                border-radius: 11px;
+            }
+        }
+        .top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 2em;
+            .stage-title {
+                font-family: "Poppins";
+                font-style: normal;
+                font-weight: 600;
+                font-size: 16px;
+                line-height: 24px;
+                color: #14323e;
+                white-space: nowrap;
+                // width: calc(80%);
+                overflow: hidden;
+                text-overflow: ellipsis;
+                margin-right: .5em;
+            }
+            .control {
+                .edit-btn,
+                .menu-alt-btn {
+                    &::before {
+                        content: "";
+                        display: block;
+                        height: 14px;
+                        width: 14px;
+                        background-repeat: no-repeat;
+                        background-size: contain;
+                    }
+                }
+                .edit-btn {
+                    &::before {
+                        background-image: url(../../../../../../assets/images/icons/grey-pen-icon.svg);
+                    }
+                }
+                .menu-alt-btn {
+                    &::before {
+                        background-image: url(../../../../../../assets/images/icons/grey-menu-alt-icon.svg);
+                    }
+                }
+            }
+        }
+
+        .deal-card {
+            font-family: "Poppins";
+            font-style: normal;
+            font-weight: 400;
+            // width: 250px;
+            width: 98%;
+            // height: 156px;
+            margin: 0 auto;
+            background: #f0f0f0;
+            border: 1px solid #dadada;
+            border-radius: 10px;
+            cursor: move; /* fallback if grab cursor is unsupported */
+            cursor: grab;
+            cursor: -moz-grab;
+            cursor: -webkit-grab;
+            font-size: 12px;
+            line-height: 18px;
+            padding: 12px 14px;
+            margin-bottom: 12px;
+            .inner {
+                // display: flex;
+                // flex-direction: column;
+                // justify-content: space-between;
+                // height: 100%;
+
+                .horizontal-line {
+                    border-top: 1px solid #c7c7c7;
+                    width: 100%;
+                    margin-top: 0.5rem;
+                    margin-bottom: 0.5rem;
+                }
+
+                .company-info {
+                    color: #4f656e;
+                    font-size: 12px;
+                    line-height: 23px;
+                    .company-name {
+                        font-weight: 700;
+                        color: #14323e;
+                    }
+                    .date {
+                        font-size: 10px;
+                        line-height: 15px;
+                    }
+                    // .company-email {
+                    // }
+                }
+                .contact-info {
+                    font-size: 10px;
+                    color: #4f656e;
+                    line-height: 15px;
+                    .contact-name {
+                        font-size: 12px;
+                        line-height: 23px;
+                        color: #14323e;
+
+                        .inner {
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            // flex-direction: column;
+                            .card-tag {
+                                background: #d0eadb;
+                                border: 1px solid #14984b;
+                                border-radius: 15.5px;
+                                font-weight: 700;
+                                line-height: 13px;
+                                color: #14984b;
+                                font-size: 0.65rem;
+                                padding: 0.1em 0.5em;
+                                max-width: 150px;
+                                white-space: nowrap;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                            }
+                        }
+                    }
+                    .contact-email {
+                        line-height: 25px;
+                    }
+                    .contact-phone {
+                        line-height: 15px;
+                    }
+                }
+            }
+            .name {
+                font-weight: 700;
+                color: #14323e;
+            }
+            .phone {
+                font-weight: 400;
+                color: #4f656e;
+            }
+            .date {
+                font-family: "Poppins";
+                font-style: normal;
+                font-weight: 400;
+                font-size: 12px;
+                line-height: 18px;
+                color: #4f656e;
+            }
+        }
+
+        #add-column-button-wrapper {
+            // width: 130px;
+            // align-items: center;
+            white-space: nowrap;
+        }
+    }
+}
+
+//
+
+.example-container {
+    width: 400px;
+    max-width: 100%;
+    margin: 0 25px 25px 0;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.example-list {
+    // border: solid 1px #ccc;
+    min-height: 60px;
+    background: white;
+    border-radius: 4px;
+    overflow: hidden;
+    display: block;
+}
+
+// .example-box {
+//     padding: 20px 10px;
+//     border-bottom: solid 1px #ccc;
+//     color: rgba(0, 0, 0, 0.87);
+//     // display: flex;
+//     // flex-direction: row;
+//     // align-items: center;
+//     // justify-content: space-between;
+//     box-sizing: border-box;
+//     cursor: move;
+//     background: white;
+//     font-size: 14px;
+// }
+
+.cdk-drag-preview {
+    list-style: none;
+    // box-sizing: border-box;
+    // border-radius: 4px;
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14),
+        0 3px 14px 2px rgba(0, 0, 0, 0.12);
+
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 400;
+    width: 250px;
+    // height: 156px;
+    margin: 0 auto;
+    background: #f0f0f0;
+    border: 1px solid #dadada;
+    border-radius: 10px;
+    cursor: move; /* fallback if grab cursor is unsupported */
+    cursor: grab;
+    cursor: -moz-grab;
+    cursor: -webkit-grab;
+    font-size: 12px;
+    line-height: 18px;
+    padding: 12px 14px;
+    margin-bottom: 12px;
+    .inner {
+        // display: flex;
+        // flex-direction: column;
+        // justify-content: space-between;
+        // height: 100%;
+
+        .horizontal-line {
+            border-top: 1px solid #c7c7c7;
+            width: 100%;
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .company-info {
+            color: #4f656e;
+            font-size: 12px;
+            line-height: 18px;
+            .company-name {
+                font-weight: 700;
+                color: #14323e;
+            }
+            .date {
+                font-size: 10px;
+                line-height: 15px;
+            }
+            // .company-email {
+            // }
+        }
+        .contact-info {
+            font-size: 10px;
+            color: #4f656e;
+            line-height: 15px;
+            .contact-name {
+                font-size: 12px;
+                line-height: 28px;
+                color: #14323e;
+
+                .inner {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    // flex-direction: column;
+                    .card-tag {
+                        background: #d0eadb;
+                        border: 1px solid #14984b;
+                        border-radius: 15.5px;
+                        font-weight: 700;
+                        line-height: 13px;
+                        color: #14984b;
+                        font-size: 0.65rem;
+                        padding: 0.1em 0.5em;
+                        max-width: 150px;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
+                }
+            }
+            .contact-email {
+                line-height: 25px;
+            }
+            .contact-phone {
+                line-height: 15px;
+            }
+        }
+    }
+    .name {
+        font-weight: 700;
+        color: #14323e;
+    }
+    .phone {
+        font-weight: 400;
+        color: #4f656e;
+    }
+    .date {
+        font-family: "Poppins";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 18px;
+        color: #4f656e;
+    }
+}
+
+.cdk-drag-placeholder {
+    opacity: 0;
+}
+
+.cdk-drag-animating {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.example-box:last-child {
+    border: none;
+}
+
+.example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}

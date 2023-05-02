@@ -1,0 +1,95 @@
+@use "../../../../../sass/_partials/mixins";
+
+#counts {
+    .inner {
+        display: flex;
+
+        .count-label {
+            cursor: pointer;
+            flex-direction: unset;
+            font-family: "Poppins";
+            font-style: normal;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 24px;
+            color: #ffffff;
+            margin-right: 1em;
+            border-radius: 10px;
+
+            &:last-child {
+                margin-right: 0;
+            }
+
+            &#candidates {
+                background: #0ca5fc;
+                border: 1px solid #afe2ff;
+            }
+
+            &#company {
+                background: #ff4444;
+                border: 1px solid #ffc6c6;
+            }
+
+            .icon {
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            @include mixins.transition(300ms ease-in-out);
+
+            &:hover {
+                box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%) !important;
+            }
+        }
+    }
+}
+
+
+
+
+
+.candidate-message-table {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #14323e;
+
+    thead {
+        .border-bottom {
+            border-bottom: 1px solid #c7c7c7 !important;
+        }
+
+        th {
+            font-weight: 600;
+            color: #4f656e;
+        }
+    }
+
+    .profile-image-wrapper {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        overflow: hidden;
+    }
+
+    .name {
+        white-space: nowrap;
+        max-width: 200px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+.show-more-btn {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 21px;
+    text-align: right;
+    color: #14984b;
+}

@@ -1,0 +1,9 @@
+<!-- <p>shortlist-candidate-button works!</p> -->
+<button
+  [disabled]="application.Status === 'Shortlisted'"
+  class="action-btn btn btn-sm shortlisted-btn"
+  (click)="onShortlistApplication()"
+>
+  {{ application.Status === "Shortlisted" ? "Shortlisted" : "Shortlist" }}
+</button>
+<!-- (click)="onShortlistApplication(application)" -->

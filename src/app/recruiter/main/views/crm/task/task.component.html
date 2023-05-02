@@ -1,0 +1,32 @@
+<div id="top-action">
+  <div class="d-flex align-items-center justify-content-between flex-wrap pt-3 mb-4">
+    <div class="d-flex align-items-center">
+      <button class="btn px-0" (click)="back()">
+        <img src="../../../assets/images/icons/nav-back-green-icon.svg" alt="back-icon" />
+      </button>
+      <h1 class="page-title ml-4">Task</h1>
+    </div>
+    <div class="d-flex">
+      <div class="date-range-wrap">
+        <form [formGroup]="range">
+          <mat-form-field appearance="fill">
+            <mat-label>Enter a date range</mat-label>
+            <mat-date-range-input [rangePicker]="picker">
+              <input matStartDate formControlName="Start" (focus)="focusPicker(picker)" placeholder="Start date"
+                (dateChange)="onChange($event)">
+              <input matEndDate formControlName="End" placeholder="End date" (dateChange)="onChange($event)">
+            </mat-date-range-input>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
+          </mat-form-field>
+        </form>
+      </div>
+      <span class="mx-1"></span>
+      <button type="button" class="btn white-btn-green-border" (click)="openCreateTaskDialog()">
+          Create Task
+      </button>
+    </div>
+  </div>
+</div>
+
+<app-task-list></app-task-list>

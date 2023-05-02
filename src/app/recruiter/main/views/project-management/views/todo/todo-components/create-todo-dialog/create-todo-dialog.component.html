@@ -1,0 +1,76 @@
+<!-- <p>create-todo-dialog works!</p> -->
+<div class="container-fluid">
+    <div class="card border-rounded-lg">
+        <div class="card-body">
+            <h5 class="form-title text-center">Create Todo</h5>
+            <form [formGroup]="CreateTodoForm" class="wide-form-controls-grid" (ngSubmit)="onSubmit()">
+                <div class="form-row">
+                    <div class="form-group col-12 col-sm-6">
+                        <label for="Title" class="required-field-label">Todo Title</label>
+                        <input type="text" id="Title" class="form-control" formControlName="Title"
+                            [ngClass]="{'is-invalid': CreateTodoForm.get('Title')?.touched && CreateTodoForm.get('Title')?.invalid}"
+                            required>
+                        <small id="nameErrorMsg" class="form-text text-danger invalid-feedback">Todo title
+                            is
+                            required.</small>
+                    </div>
+
+
+                    <div class="form-group col-12 col-sm-6">
+                        <label for="DueDate" class="required-field-label">Due Date</label>
+                        <input type="date" id="DueDate" class="form-control" formControlName="DueDate"
+                            [ngClass]="{'is-invalid': CreateTodoForm.get('DueDate')?.touched && CreateTodoForm.get('DueDate')?.invalid}" required>
+                        <small id="nameErrorMsg" class="form-text text-danger invalid-feedback">Provide due date</small>
+                    </div>
+                    <div class="form-group col-12">
+                        <label for="Description" class="required-field-label">Description</label>
+                        <textarea name="" id="Description" cols="30" rows="5" class="form-control"
+                            formControlName="Description"></textarea>
+                    </div>
+                    <div class="form-group col-12">
+                        <label for="CandidateList" class="required-field-label">Assign a Candidate</label>
+                        <!-- <input type="date" id="DueDate" class="form-control"> -->
+                        <div class="d-flex">
+                            <div class="candidates-avatar cursor-pointer">
+                                <div class="avatar-wrap">
+                                    <img src="../../../../../../assets/images/image-placeholder.jpg" alt=""
+                                        class="img-fluid" />
+                                </div>
+                                <div class="avatar-wrap">
+                                    <img src="../../../../../../assets/images/candidate-test-avatar-1.png" alt=""
+                                        class="img-fluid" />
+                                </div>
+                                <div class="avatar-wrap">
+                                    <img src="../../../../../../assets/images/image-placeholder.jpg" alt=""
+                                        class="img-fluid" />
+                                </div>
+                                <div class="avatar-wrap">
+                                    <img src="../../../../../../assets/images/image-placeholder.jpg" alt=""
+                                        class="img-fluid" />
+                                </div>
+                                <div class="avatar-wrap">
+                                    <img src="../../../../../../assets/images/image-placeholder.jpg" alt=""
+                                        class="img-fluid" />
+                                </div>
+                                <div class="avatar-wrap">
+                                    <img src="../../../../../../assets/images/image-placeholder.jpg" alt=""
+                                        class="img-fluid" />
+                                </div>
+                                <div class="avatar-wrap">
+                                    47+
+                                </div>
+                            </div>
+                            <span class="mx-2"></span>
+                            <button class="" id="add-candidate-btn">+</button>
+                        </div>
+                    </div>
+                    <div class="form-group col-12">
+                        <button class="btn success-btn" [disabled]="CreateTodoForm.invalid">Save</button>
+                        <span class="mx-1"></span>
+                        <button class="btn outline-danger-btn" (click)="closeDialog()">Cancel</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,63 @@
+@use "../../sass/_abstracts/typography";
+@use "../../sass/_partials/mixins";
+@use "../../sass/_abstracts/colors";
+#related-items-block {
+    .block-title {
+        margin-bottom: 1.2em;
+    }
+    .list-group-item {
+        background-color: unset;
+        border: none;
+        padding: 0;
+        margin-left: 0;
+        margin-bottom: 10px;
+        > a {
+            text-decoration: none;
+            font-family: "Poppins";
+            font-style: normal;
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 21px;
+            color: #14323e;
+        }
+        @include mixins.transition(all 300ms ease-in-out);
+        &:hover {
+            @include mixins.transform(scale(1.03));
+            @include mixins.transition(all 300ms ease-in-out);
+            border-bottom: 1px solid #C7C7C7;
+        }
+
+        .job-title {
+            font-weight: 500;
+            margin-bottom: 0;
+        }
+        .company-name,
+        .time-remaining,
+        .total-applicants {
+            font-size: 12px;
+            line-height: 18px;
+        }
+        .company-name,
+        .total-applicants {
+            font-weight: 400;
+        }
+        .company-name {
+            color: #4f656e;
+        }
+        .time-remaining {
+            font-weight: 400;
+            color: #8a999f;
+        }
+        .total-applicants {
+            color: #4fb278;
+        }
+    }
+
+    
+    .img-wrap {
+        height: 55px;
+        width: 55px;
+        border-radius: 50%;
+        overflow: hidden;
+    }
+}

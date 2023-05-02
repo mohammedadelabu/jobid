@@ -1,0 +1,192 @@
+#recruitment-tab-table {
+  .mat-tab-label {
+    // color: #14984B !important;
+    // opacity: 1;
+    .mat-ink-bar {
+      color: #14984b !important;
+      opacity: 1;
+    }
+  }
+
+  .mat-tab-group.mat-primary .mat-ink-bar,
+  .mat-tab-nav-bar.mat-primary .mat-ink-bar {
+    background-color: #14984b;
+  }
+}
+
+.job-list-table {
+  thead {
+    th {
+      font-size: 0.9rem;
+    }
+  }
+  tbody {
+    th,
+    td {
+      font-size: 0.8rem;
+    }
+  }
+
+  td,
+  th {
+    white-space: nowrap;
+  }
+
+  td {
+    // overflow: hidden;
+    // text-overflow: ellipsis;
+    // max-width: 200px;
+  }
+}
+
+.job-list-table {
+  thead {
+    tr {
+      th {
+        border: none;
+        &:last-child {
+          border-top-right-radius: 10px;
+        }
+      }
+    }
+  }
+  tbody {
+    tr {
+      &:last-child {
+        th {
+          border: none;
+          &:first-child {
+            border-bottom-left-radius: 10px;
+          }
+        }
+        td {
+          &:last-child {
+            border-bottom-right-radius: 10px;
+          }
+        }
+      }
+    }
+  }
+}
+.job-list-table {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  /* identical to box height */
+  color: #000000;
+
+  thead {
+    th {
+      font-weight: 600;
+      &:first-child {
+        // background-color: red;
+        padding-left: 2em;
+      }
+      &:last-child {
+        // background-color: blue;
+        padding-right: 2em;
+      }
+
+      &.column-action {
+        min-width: 80px;
+      }
+    }
+  }
+
+  tbody {
+    background: #f0f0f0;
+    // border: 1px solid #dadada;
+    // box-sizing: border-box;
+    // border-radius: 10px;
+    //
+    th {
+      &:first-child {
+        // background-color: red;
+        padding-left: 2em;
+      }
+    }
+    td {
+      &:last-child {
+        // background-color: blue;
+        padding-right: 2em;
+      }
+    }
+    td,
+    th {
+      // font-size: 16px;
+      padding-top: 0.5em;
+      padding-bottom: 0.5em;
+    }
+  }
+
+  .thead {
+    background: #dadada;
+  }
+  .column-action {
+    width: 200px;
+    max-width: 200px;
+    min-width: 70px;
+  }
+
+  #pagination {
+    font-size: 0.9rem;
+  }
+
+  .company-logo {
+    max-width: 40px;
+    margin-right: 1em;
+  }
+}
+
+select {
+  border: none;
+  font-size: 12px;
+  background: #000;
+  color: #fff;
+  border-radius: 15px;
+  outline: none !important;
+  padding: 5px 10px;
+
+  &:focus {
+    border: none !important;
+  }
+
+  &.ongoing {
+    background: #f19d38;
+  }
+
+  &.rejected {
+    background: #ea3223;
+  }
+  &.on-hold {
+    background: #ea3cf7;
+  }
+  &.closed {
+    background: #000;
+  }
+  &.rollover {
+    background: #18333c;
+  }
+  &.awaiting-feedback {
+    background: #eecdcd;
+    color: #000;
+  }
+}
+
+.date-label {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+// .sort-btn {
+//   transform: translateY(25%);
+// }
+
+.requisitions-btn {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+}

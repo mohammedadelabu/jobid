@@ -1,0 +1,46 @@
+<!-- <p>update-project works!</p> -->
+<div class="alert alert-info text-center mb-0" *ngIf="responseMsg">
+    {{responseMsg}}</div>
+
+
+<!-- PROJECT FORM -->
+<div *ngIf="!responseMsg">
+    <form [formGroup]="updateProjectForm" (ngSubmit)="updateProject()" novalidate>
+        <div class="text-right">
+            <button class="btn btn-sm" (click)="onCloseForm()">
+                <i class="fas fa-times text-danger"></i>
+            </button>
+        </div>
+        <div class="">
+            <div class="form-row">
+                <div class="form-group col-12 col-sm-6">
+                    <label for="ProjectName">Project Name</label>
+                    <input type="text" name="ProjectName" id="ProjectName" class="form-control" formControlName="ProjectName">
+                </div>
+                <div class="form-group col-12 col-sm-6">
+                    <label for="ProjectUrl">Project Url</label>
+                    <input type="text" name="ProjectUrl" id="ProjectUrl" class="form-control" formControlName="ProjectUrl">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-12 col-sm-6">
+                    <label for="StartDate">Start Date</label>
+                    <!-- <input type="text" name="StartDate" id="StartDate" class="form-control" placeholder="Start Date" formControlName="StartDate" ngbDatepicker #StartDate="ngbDatepicker" (click)="StartDate.toggle()"> -->
+                    <input type="month" name="StartDate" id="StartDate" class="form-control" formControlName="StartDate">
+                </div>
+                <div class="form-group col-12 col-sm-6">
+                    <label for="StopDate">Stop Date</label>
+                    <!-- <input type="text" name="StopDate" id="StopDate" class="form-control" placeholder="StopDate" formControlName="StopDate" ngbDatepicker #StopDate="ngbDatepicker" (click)="StopDate.toggle()"> -->
+                    <input type="month" name="StopDate" id="StopDate" class="form-control" formControlName="StopDate">
+                </div>
+            </div>
+        </div>
+        <!-- <div>
+            <button type="submit" class="btn btn-outline-success px-5">SAVE</button>
+        </div> -->
+        <div>
+            <button type="submit" class="btn btn-outline-success px-5">UPDATE</button>
+        </div>
+
+    </form>
+</div>

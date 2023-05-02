@@ -1,0 +1,79 @@
+<!-- <p>requisition-status-button works!</p> -->
+
+<!-- <button class="btn btn-sm px-0 recruisition-status" (click)="openUpdateRequisitionSatausFormDialog(requisition)"> -->
+<button class="btn btn-sm px-0 recruisition-status">
+  <!-- <div class="status badge badge-pill badge-new py-1 px-3">
+        {{RequisitionStatus}}
+    </div> -->
+  <!-- <p>{{RequisitionStatus}}</p> -->
+  <div [ngSwitch]="RequisitionStatus">
+    <div *ngSwitchCase="'new'">
+      <div class="status badge badge-pill badge-new py-1 px-3">
+        {{ RequisitionStatus | titlecase }}
+      </div>
+    </div>
+    <div *ngSwitchCase="'ongoing'">
+      <div class="status badge badge-pill badge-ongoing py-1 px-3">
+        {{ RequisitionStatus | titlecase }}
+      </div>
+    </div>
+    <div *ngSwitchCase="'rejected'">
+      <div class="status badge badge-pill badge-rejected py-1 px-3">
+        {{ RequisitionStatus | titlecase }}
+      </div>
+    </div>
+    <div *ngSwitchCase="'onhold'">
+      <div class="status badge badge-pill badge-onhold py-1 px-3">
+        {{ RequisitionStatus | titlecase }}
+      </div>
+    </div>
+    <div *ngSwitchCase="'closed'">
+      <div class="status badge badge-pill badge-closed py-1 px-3">
+        {{ RequisitionStatus | titlecase }}
+      </div>
+    </div>
+    <div *ngSwitchCase="'rollover'">
+      <div class="status badge badge-pill badge-rollover py-1 px-3">
+        {{ RequisitionStatus | titlecase }}
+      </div>
+    </div>
+    <div *ngSwitchCase="'completed'">
+      <div class="status badge badge-pill badge-rollover py-1 px-3">
+        {{ RequisitionStatus | titlecase }}
+      </div>
+    </div>
+    <div *ngSwitchCase="'awaiting feedback'">
+      <div class="status badge badge-pill badge-awaiting-feedback py-1 px-3">
+        {{ RequisitionStatus | titlecase }}
+      </div>
+    </div>
+    <div *ngSwitchDefault>
+      <div class="status badge badge-pill badge-new py-1 px-3">New</div>
+    </div>
+  </div>
+  <!-- Ongoing -->
+
+  <!--  -->
+  <!-- <div [ngSwitch]="candidateProfileDetails?.User.Status">
+            <div *ngSwitchCase="'Registered' || 'registered'">
+                <div class="status badge badge-pill badge-registered py-1 px-3">
+                    {{UserInformation?.Status}}
+                </div>
+            </div>
+            <div *ngSwitchCase="'Blocked' || 'blocked'">
+                <div class="status badge badge-pill badge-blocked py-1 px-3">
+                    {{UserInformation?.Status}}
+                </div>
+            </div>
+            <div *ngSwitchCase="'Flagged' || 'flagged'">
+                <div class="status badge badge-pill badge-flagged py-1 px-3">
+                    {{UserInformation?.Status}}
+                </div>
+            </div>
+            <div *ngSwitchDefault>
+                <div class="status badge badge-pill badge-registered py-1 px-3">
+                    Registered
+                </div>
+            </div>
+        </div> -->
+</button>

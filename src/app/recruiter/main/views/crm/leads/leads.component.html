@@ -1,0 +1,116 @@
+<!-- <p>leads works!</p> -->
+
+<div id="top-action">
+    <div class="d-flex align-items-center justify-content-between flex-wrap">
+        <h1 class="page-title">Leads</h1>
+        <div id="top-buttons">
+            <div class="d-flex flex-wrap">
+                <div id="action-lg" class="d-none d-md-block">
+                    <button type="button" class="btn white-btn-green-border" (click)="onDeleteMultipleLeads()"
+                        *appCrm="Delete" [disabled]="!SelectedLeadList.length">
+                        <i class="fas fa fa-trash"></i>&nbsp; Delete
+                    </button>
+                    <button type="button" class="btn white-btn-green-border" (click)="openEmailMessageDialog()"
+                        [disabled]="!SelectedLeadList.length">
+                        Send Mail
+                    </button>
+                    <!-- <button type="button" class="btn white-btn-green-border" (click)="openCreateTaskDialog()">
+                        Create Task
+                    </button> -->
+                    <button type="button" class="btn white-btn-green-border" (click)="openDialog()" *appCrm="Update">
+                        +&nbsp; Import Lead
+                    </button>
+                    <button type="button" class="btn white-btn-green-border"
+                        [routerLink]="['/recruiter/crm/leads/create-lead']" *appCrm="Create">
+                        +&nbsp; Create Lead
+                    </button>
+                </div>
+                <div class="action-sm d-block d-md-none">
+                    <button class="btn mr-0" [matMenuTriggerFor]="action">
+                        <i class="fas fa-ellipsis-h"></i>
+                    </button>
+                    <mat-menu #action="matMenu">
+                        <button mat-menu-item (click)="onDeleteMultipleLeads()">Delete</button>
+                        <button mat-menu-item (click)="openEmailMessageDialog()">Send mail</button>
+                        <button mat-menu-item (click)="openEmailMessageDialog()">Create task</button>
+                        <button mat-menu-item (click)="openDialog()">Import Lead</button>
+                        <button mat-menu-item [routerLink]="['/recruiter/crm/leads/create-lead']"
+                            *appCrm="Create">Create Lead</button>
+                    </mat-menu>
+                </div>
+                <div>
+                    <button [matMenuTriggerFor]="menu" class="btn sort-btn"></button>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item (click)="onSortByMostRecent('DateCreated')">By Most Recent</button>
+                        <button mat-menu-item (click)="onSortByOldest('DateCreated')">By oldest</button>
+                        <button mat-menu-item (click)="onSortByAphabeticalOrder('AccountName')">In Alphabetical
+                            order</button>
+                        <!-- <button mat-menu-item>By Status</button> -->
+                        <!-- <button mat-menu-item>Item</button> -->
+                    </mat-menu>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- {{range | json}} -->
+    <!-- {{ isDateSearchLead | json }} -->
+    <ul id="action-tool" class="mb-5 list-style-none pl-0">
+        <li class="date-range-wrap">
+            <form [formGroup]="range">
+                <mat-form-field appearance="fill">
+                    <mat-label>Enter a date range</mat-label>
+                    <mat-date-range-input [rangePicker]="picker">
+                        <input matStartDate formControlName="Start" (focus)="focusPicker(picker)"
+                            placeholder="Start date" (dateChange)="onChange($event)">
+                        <input matEndDate formControlName="End" placeholder="End date" (dateChange)="onChange($event)">
+                    </mat-date-range-input>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-date-range-picker #picker></mat-date-range-picker>
+                </mat-form-field>
+            </form>
+        </li>
+        <li class="mat-select-wrap">
+            <form [formGroup]="tagSearch">
+                <mat-form-field appearance="fill">
+                    <mat-label>Tags</mat-label>
+                    <mat-select formControlName="Tag" (selectionChange)="onChangeTagSearch()">
+                        <mat-option *ngFor="let tag of (leadTags$ | async)" [value]="tag">
+                            {{tag.name}}
+                        </mat-option>
+                        <mat-option>
+                            All
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </form>
+        </li>
+    </ul>
+</div>
+
+<!--
+
+<ng-container *ngIf="!(leadsList$ | async)">
+    <ng-container *ngIf="(isLoading$ | async)">
+        <app-simple-component-loader-with-spinner></app-simple-component-loader-with-spinner>
+    </ng-container>
+</ng-container>
+<ng-container *ngIf="!(isLoading$ | async) && !(leadsList$ | async)">
+    <div class="alert alert-info text-center">No lead available</div>
+</ng-container> -->
+
+<div>
+    <div *ngIf="isSearchLead">
+        <button class="btn btn-sm" (click)="onGetLeadsList()">
+            <i class="fas fa-refresh"></i>
+            Refresh</button>
+    </div>
+    <app-lead-list-table [isLoadingData]="(isLoading$ | async)" [leadsListArray]="leadsListArray"
+        (GetEmailList)="onGetEmailList($event)" (GetSelectedLeadList)="onGetSelectedLeadList($event)"
+        [paginationData]="paginationData" [deleteLead]="onDeleteLeadEventSubject"></app-lead-list-table>
+
+    <!-- PAGINATION -->
+    <div class="text-right" *ngIf="leadsListArray?.length" id="pagination">
+        <!-- <pagination-controls (pageChange)="page = $event"></pagination-controls> -->
+        <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
+    </div>
+</div>

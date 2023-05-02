@@ -1,0 +1,47 @@
+@use "../_partials/mixins";
+@use "../_abstracts/colors";
+.setting-content-container {
+    font-family: "Poppins";
+    font-style: normal;
+    // font-size: 20px;
+    // line-height: 30px;
+    .setting-content-title {
+        font-weight: 700;
+        text-align: center;
+        color: #4f656e;
+        font-size: 20px;
+        height: 50px;
+        // background-color: lightcyan;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 0;
+    }
+
+    .custom-check .ui-radio,
+    .custom-check .ui-check {
+        display: block;
+        width: 1.2rem;
+        min-width: 1.2rem;
+        height: 1.2rem;
+        left: 409px;
+        top: 450px;
+        background: #c7c7c7;
+        // border: 2px solid #b5b5b5;
+        box-sizing: border-box;
+        margin-right: 1em;
+        //
+        padding: 1px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        // background-color: colors.$PrimaryColorGreen;
+        &.preview-check {
+            &::before {
+                @include mixins.before("\f00c", 12px);
+                color: #ffffff;
+            }
+        }
+    }
+}

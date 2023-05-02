@@ -1,0 +1,160 @@
+<div class="container">
+  <h3 class="text-center mb-4">Create Project</h3>
+  <mat-dialog-content class="mat-typography">
+    <form [formGroup]="AddProjectForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-md-6 mb-4">
+          <label for="ProjectName" class="required-field-label form-label"
+            >Project Name</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            id="ProjectName"
+            formControlName="ProjectName"
+            [ngClass]="{
+              'is-invalid':
+                AddProjectForm.get('ProjectName')?.touched &&
+                AddProjectForm.get('ProjectName')?.invalid
+            }"
+            required
+          />
+          <small
+            id="nameErrorMsg"
+            class="form-text text-danger invalid-feedback"
+            >Project Name is required.</small
+          >
+        </div>
+        <div class="col-md-6 mb-4">
+          <!-- <label for="company-field" class="form-label"
+            >Company<span>*</span></label
+          > -->
+          <label for="Company" class="required-field-label">Company</label>
+
+          <select
+            name="CompanyId"
+            id="Company"
+            class="form-control"
+            formControlName="CompanyId"
+            [ngClass]="{
+              'is-invalid':
+                AddProjectForm.get('CompanyId')?.touched &&
+                AddProjectForm.get('CompanyId')?.invalid
+            }"
+            required
+          >
+            <option value="" selected="selected">Select Company</option>
+            <option
+              *ngFor="let company of companyList"
+              value="{{ company.CompanyId }}"
+            >
+              {{ company.Name }}
+            </option>
+          </select>
+        </div>
+
+        <!-- <div class="form-group col-md-6 mb-4">
+          <label for="name">Assign a Candidate</label>
+          <mat-chip-list #chipList aria-label="Assignee selection">
+            <mat-chip *ngFor="let assignee of assignees" (removed)="remove(assignee)">
+              {{ assignee }}
+              <button matChipRemove>
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </mat-chip>
+            <input
+              #assigneeInput
+              [formControl]="assigneeControl"
+              [matAutocomplete]="auto"
+              [matChipInputFor]="chipList"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+              (matChipInputTokenEnd)="add($event)"
+              class="form-control"
+              formControlName="CompanyId"
+              [ngClass]="{
+                'is-invalid':
+                  AddProjectForm.get('CompanyId')?.touched &&
+                  AddProjectForm.get('CompanyId')?.invalid
+              }"
+              required
+            />
+          </mat-chip-list>
+          <mat-autocomplete
+            #auto="matAutocomplete"
+            (optionSelected)="selected($event)"
+          >
+            <mat-option
+              *ngFor="let assignee of filteredAssignees | async"
+              [value]="assignee"
+            >
+              {{ assignee }}
+            </mat-option>
+          </mat-autocomplete>
+        </div> -->
+
+        <div class="col-md-6 mb-4">
+          <label for="time-field" class="required-field-label form-label"
+            >Hours</label
+          >
+          <input
+            type="number"
+            name="Hours"
+            class="form-control"
+            placeholder="HH"
+            id="time-field"
+            formControlName="Hours"
+            [ngClass]="{
+              'is-invalid':
+                AddProjectForm.get('Hours')?.touched &&
+                AddProjectForm.get('Hours')?.invalid
+            }"
+            required
+          />
+        </div>
+        <div class="col-md-6 mb-4">
+          <label for="time-trigger" class="required-field-label form-label"
+            >Set Time Trigger</label
+          >
+          <input
+            type="time"
+            name="TimeTrigger"
+            class="form-control"
+            id="time-trigger"
+            value=""
+            placeholder="Select a Time"
+            formControlName="TimeTrigger"
+            [ngClass]="{
+              'is-invalid':
+                AddProjectForm.get('TimeTrigger')?.touched &&
+                AddProjectForm.get('TimeTrigger')?.invalid
+            }"
+            required
+          />
+        </div>
+        <div class="col-md-6 mb-4">
+          <label for="trigger-name" class="required-field-label form-label"
+            >Enter Trigger Name</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            id="project-title"
+            name="TriggerName"
+            value=""
+            placeholder="Trigger Name"
+            formControlName="TriggerName"
+            [ngClass]="{
+              'is-invalid':
+                AddProjectForm.get('TriggerName')?.touched &&
+                AddProjectForm.get('TriggerName')?.invalid
+            }"
+            required
+          />
+        </div>
+      </div>
+      <div class="mt-3">
+        <button type="submit" class="btn btn-success">Save</button>
+      </div>
+    </form>
+  </mat-dialog-content>
+</div>

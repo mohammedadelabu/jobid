@@ -1,0 +1,142 @@
+@use "../../../../../../../sass/_abstracts/colors";
+@use "../../../../../../../sass/_partials/mixins";
+
+.brandlogo-wrapper {
+    max-width: 150px;
+}
+.nav {
+    // padding-left: 1.5em;
+    // padding-right: 1.5em;
+}
+
+.nav-item {
+    // padding-left: 1em;
+    // padding-right: 1em;
+    // padding-bottom: 0.5em;
+    // margin-bottom: 1em;
+    // margin-bottom: 3em;
+    .drop-content {
+        display: none;
+    }
+    &.drop {
+        > a {
+            display: flex;
+            justify-content: space-between;
+            &::after {
+                @include mixins.after("\f0d7", inherit);
+            }
+        }
+        &:hover {
+            > a {
+                &::after {
+                    @include mixins.after("\f0d8", inherit);
+                }
+            }
+            .drop-content {
+                display: block;
+            }
+        }
+    }
+    .nav-link {
+        color: #ffffff;
+        font-family: "Poppins";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+
+        padding-left: 1em;
+        padding-right: 1em;
+        padding-bottom: 0.5em;
+        @include mixins.transition(all 300ms ease-in-out);
+        // &:hover,
+        &.router-link-active {
+            // background-color: colors.$PrimaryColorGreen20;
+            // color: colors.$SecondaryColorDarkGreen;
+            .navlink-number {
+                background-color: #d2f6e3;
+                border: 1px solid #20d072;
+                font-family: "Lexend";
+                font-style: normal;
+                font-weight: 500;
+                font-size: 15.9758px;
+                line-height: 20px;
+                color: #4fb278;
+            }
+        }
+        &.done{
+            .navlink-number{
+                background-color: #14984B;
+                border: none;
+                &::after {
+                    @include mixins.after("\f00c", inherit);
+                    color: #F0F0F0;
+                }
+                .index {
+                    display: none;
+                }
+            }
+
+            
+            .list-label {
+                background-color: #20d072;
+                .index {
+                    display: none;
+                }
+                &::after {
+                    @include mixins.after("\f00c", inherit);
+                }
+            }
+            .nav-link {
+                // color: colors.$text-colour-100-;
+                font-weight: 600;
+            }
+        }
+        .navlink-icon {
+            margin-right: 5px;
+        }
+    }
+
+    &::after {
+        content: "";
+        display: block;
+        height: 4vh;
+        width: 2px;
+        // background-color: #c9d0da;
+        // position: absolute;
+        // top: calc(-100% - 0.5em);
+        // bottom: calc(100% + 0.5em);
+        // left: 20px;
+        position: relative;
+        left: 35px;
+        border-left: 0.887546px solid #c9d0da;
+    }
+    &:last-child {
+        &::after {
+            display: none;
+        }
+    }
+}
+
+//
+
+.navlink-number {
+    width: 40px;
+    height: 30px;
+    background-color: #ffffff;
+    border: 1px solid #c9d0da;
+    border-radius: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: inherit;
+    color: #c7d0db;
+    transition: all 300ms ease-in-out;
+    //
+    // font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    margin-right: 1em;
+}

@@ -1,0 +1,19 @@
+
+.file-label {
+    color: #4fb278;
+    font-size: 16px;
+    margin: 0 auto;
+    border: 1px dashed #4fb278;
+    height: 50px;
+    border-radius: 5px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding-right: 0.5em;
+    padding-left: 0.5em;
+    &::before {
+        content: url(../../assets/images/icons/upload-green-icon.svg);
+        margin-right: 0.5em;
+        margin-top: 0.3em;
+    }
+}

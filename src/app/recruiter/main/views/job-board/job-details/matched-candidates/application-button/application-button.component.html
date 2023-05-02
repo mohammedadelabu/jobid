@@ -1,0 +1,3 @@
+<!-- <p>application-button works!</p> -->
+<button class="btn btn-sm text-info btn-light" (click)="apply(CandidateId, JobId)" [disabled]="isSend" *ngIf="!responseMessage">Apply</button>
+<div class="alert text-success py-1 text-right" *ngIf="responseMessage">{{responseMessage}}</div>
